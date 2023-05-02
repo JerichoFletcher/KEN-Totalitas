@@ -101,8 +101,6 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == startButton){
             System.out.println("run main program");
-            startButton.getModel().setPressed(false);
-            startButton.getModel().setSelected(false);
         }
     }
 }
