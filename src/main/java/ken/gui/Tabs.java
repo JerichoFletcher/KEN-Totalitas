@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 public class Tabs extends JTabbedPane {
     public Tabs() {
         super();
-        this.addTab("Tab 1",new JLabel("Content for Tab 2") );
+        DaftarMember layarDM = new DaftarMember();
+        this.addTab("Tab 1", layarDM );
         this.addTab("Tab 2", new JLabel("Content for Tab 2"));
         this.setVisible(true);
     }

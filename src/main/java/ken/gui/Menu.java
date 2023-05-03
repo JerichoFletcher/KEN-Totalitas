@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 public class Menu extends JLabel {
     private JLabel menuLabel;
     private JPopupMenu menuPop;
+    private String[] menuItems
     Menu() {
         super("MENU");
         this.setForeground(new Color(0xFFFFFF));
