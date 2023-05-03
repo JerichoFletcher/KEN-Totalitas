@@ -9,8 +9,13 @@ public class Main{
 
     public static void main(String[] args) {
         DefaultLayar defLay = new DefaultLayar();
+        Class<? extends JPanel>[] contentClasses = new Class[] {DaftarMember.class};
         Tabs tabs = new Tabs();
-        tabs.setBounds(0, 70, defLay.getWidth(), defLay.getHeight() - 70); // set the bounds
+        Menu menu = new Menu(tabs);
+        defLay.add(menu);
+        menu.setBounds(20,10,300,50);
+        menu.setPreferredSize(new Dimension(300, 50));
         defLay.add(tabs);
+        tabs.setBounds(0, 70, defLay.getWidth(), defLay.getHeight() - 70); // set the bounds
     }
 }

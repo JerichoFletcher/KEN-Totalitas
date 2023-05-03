@@ -12,10 +12,10 @@ public class DefaultLayar extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true);
-        Menu menu = new Menu();
-        menu.setBounds(20,10,300,50);
-        menu.setBackground(Color.red);
-        menu.setPreferredSize(new Dimension(300, 50));
-        this.add(menu);
+//        Tabs tabs = new Tabs();
+//        Menu menu = new Menu(tabs);
+//        menu.setBounds(20,10,300,50);
+//        menu.setPreferredSize(new Dimension(300, 50));
+//        this.add(menu);
     }
 }
