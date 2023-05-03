@@ -9,9 +9,9 @@ public class Main{
 
     public static void main(String[] args) {
         DefaultLayar defLay = new DefaultLayar();
-        Class<? extends JPanel>[] contentClasses = new Class[] {DaftarMember.class};
+        Class<? extends JPanel>[] contentClasses = new Class[] {DaftarMember.class, EditMember.class};
         Tabs tabs = new Tabs();
-        Menu menu = new Menu(tabs);
+        Menu menu = new Menu(tabs, contentClasses);
         defLay.add(menu);
         menu.setBounds(20,10,300,50);
         menu.setPreferredSize(new Dimension(300, 50));

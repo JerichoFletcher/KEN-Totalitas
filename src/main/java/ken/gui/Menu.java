@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 
 public class Menu extends JLabel {
     private JLabel menuLabel;
@@ -14,11 +15,12 @@ public class Menu extends JLabel {
     private Tabs tabs;
     private JPanel[] panelList;
     private Class<? extends JPanel>[] contentClasses;
-    Menu(Tabs tabs) {
+    Menu(Tabs tabs, Class<? extends JPanel>[] contentClasses) {
         super("MENU");
         this.setForeground(new Color(0xFFFFFF));
         this.setFont(new Font("Poppins", Font.BOLD,20));
         this.tabs = tabs;
+        this.contentClasses = contentClasses;
         menuItems = new String[]{"Daftar Member", "Edit Member", "Kasir"};
         menuPop = new JPopupMenu();
         for (int i = 0; i <= menuItems.length-1; i++) {
@@ -27,25 +29,22 @@ public class Menu extends JLabel {
             menuPop.add(menuItem);
             menuItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    tabs.addTab(menuItems[index], new JLabel("Content for " + menuItems[index]));
+                    try {
+                        Class<? extends JPanel> contentClass = contentClasses[index];
+                        JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
+                        tabs.addCustomTab(menuItems[index], contentPanel, tabs.getTabCount());
+                    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             });
         }
 
-//        menuPop = new JPopupMenu();
-//        JMenuItem option1 = new JMenuItem("Option 1");
-//        menuPop.add(option1);
-//
-//        JMenuItem option2 = new JMenuItem("Option 2");
-//        menuPop.add(option2);
         this.setVisible(true);
         this.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 menuPop.show(Menu.this, 0, Menu.this.getHeight());
             }
         });
-
-
-
     }
 }
