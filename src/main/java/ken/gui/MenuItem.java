@@ -7,14 +7,22 @@ import java.awt.event.ActionListener;
 
 public class MenuItem extends JPanel implements ActionListener {
     private JButton addButton;
-    MenuItem(String judul, int harga){
+    private JPanel cart;
+    private String judul;
+    private int harga;
+    MenuItem(String judul, int harga, JPanel cart){
         super();
+        this.judul = judul;
+        this.harga = harga;
+        this.cart = cart;
         JLabel title = new JLabel(judul);
         JLabel price = new JLabel("Rp" + harga +"000");
         addButton = new JButton("+");
         this.setLayout(null);
         this.setBackground(new Color(0xF2F2F2));
-        this.setPreferredSize(new Dimension(980,50));
+        this.setPreferredSize(new Dimension(1000,50));
+        this.setMaximumSize(new Dimension(1000,50)); // set maximum size to fixed value
+        this.setMinimumSize(new Dimension(1000,50));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         addButton.addActionListener(this);
         addButton.setFocusable(false);
@@ -38,6 +46,10 @@ public class MenuItem extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == addButton){
             System.out.println("tambah dummy");
+            CartItem cartItem = new CartItem(judul, harga, cart);
+            cart.add(cartItem);
+            cart.revalidate();
+            cart.repaint();
         }
     }
 }
