@@ -9,7 +9,7 @@ public class Main{
 
     public static void main(String[] args) {
         DefaultLayar defLay = new DefaultLayar();
-        Class<? extends JPanel>[] contentClasses = new Class[] {DaftarMember.class, EditMember.class};
+        Class<? extends JPanel>[] contentClasses = new Class[] {DaftarMember.class, EditMember.class, Kasir.class};
         Tabs tabs = new Tabs();
         Menu menu = new Menu(tabs, contentClasses);
         defLay.add(menu);
