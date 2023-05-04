@@ -2,12 +2,14 @@ package ken.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class DaftarMember extends JPanel {
+public class DaftarMember extends JPanel implements ActionListener{
     private JPanel panelDaftar;
+    private JButton daftarButton;
     DaftarMember(){
         panelDaftar = new JPanel();
         this.setSize(500,500);
@@ -76,8 +78,32 @@ public class DaftarMember extends JPanel {
                 }
             }
         });
+        String[] tipeMember = new String[]{"Member", "VIP"};
+        JComboBox pilihMember = new JComboBox(tipeMember);
+        pilihMember.setBackground(new Color(0xD9D9D9));
+        pilihMember.setBounds(310,480,590,90);
+        pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
+        pilihMember.setForeground(new Color(0x395B64));
+        daftarButton = new JButton();
+        daftarButton.addActionListener(this);
+        daftarButton.setFocusable(false);
+        daftarButton.setContentAreaFilled( false );
+        daftarButton.setText("DAFTAR");
+        daftarButton.setFont(new Font("Poppins", Font.BOLD,40));
+        daftarButton.setBackground(new Color(0, 0, 0, 0));
+        daftarButton.setForeground(new Color(0x395B64));
+        daftarButton.setBorder(BorderFactory.createEmptyBorder());
+        daftarButton.setBounds(850,650,400,200);
         panelDaftar.add(textField);
         panelDaftar.add(textField2);
+        panelDaftar.add(pilihMember);
+        panelDaftar.add(daftarButton);
 
+    }
+
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == daftarButton){
+            System.out.println("daftar dummy");
+        }
     }
 }

@@ -18,4 +18,6 @@ public class Main{
         defLay.add(tabs);
         tabs.setBounds(0, 70, defLay.getWidth(), defLay.getHeight() - 70); // set the bounds
     }
+
+
 }
