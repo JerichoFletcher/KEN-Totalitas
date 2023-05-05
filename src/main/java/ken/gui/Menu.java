@@ -32,7 +32,8 @@ public class Menu extends JLabel {
                     try {
                         Class<? extends JPanel> contentClass = contentClasses[index];
                         JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
-                        tabs.addCustomTab(menuItems[index], contentPanel, tabs.getTabCount());
+                        Tabs.tabs.addCustomTab(menuItems[index], contentPanel, tabs.getTabCount());
+                        Tabs.tabCount = tabs.getTabCount();
                     } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
                         ex.printStackTrace();
                     }

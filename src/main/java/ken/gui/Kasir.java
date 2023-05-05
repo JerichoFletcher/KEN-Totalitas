@@ -9,6 +9,8 @@ public class Kasir extends JPanel implements ActionListener {
     private JPanel inventory;
     private JPanel cart;
     private JButton checkoutButton;
+    private JTabbedPane tabbedPane;
+    private Tabs tabs;
     Kasir(){
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -25,6 +27,7 @@ public class Kasir extends JPanel implements ActionListener {
         headerCart.setLayout(null);
         cart = new JPanel();
         inventory = new JPanel();
+        this.tabs = tabs;
         // Set the background and size of the header panel
         JLabel menuText = new JLabel("Menu");
         JLabel cartText = new JLabel("Cart");
@@ -48,7 +51,6 @@ public class Kasir extends JPanel implements ActionListener {
         for (int i = 1; i <= 5; i++) {
             MenuItem menuItem = new MenuItem("Barang ke " + i, i, cart);
             inventory.add(menuItem);
-
         }
         JScrollPane scrollPane = new JScrollPane(inventory);
         JScrollPane scrollPane1 = new JScrollPane(cart);
@@ -74,6 +76,9 @@ public class Kasir extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == checkoutButton){
             System.out.println("redirect ke checkout menu");
+            LayarCheckout layarCheckout = new LayarCheckout();
+            Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
+            Tabs.tabCount++;
         }
     }
 

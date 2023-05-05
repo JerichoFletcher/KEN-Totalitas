@@ -7,12 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Tabs extends JTabbedPane {
+    public static Tabs tabs;
+    public static int tabCount;
     public Tabs() {
         super();
+        tabs = this;
+        tabCount = 0;
         this.setVisible(true);
         this.setBackground(new Color(0x395B64));
         this.setFocusable(false);
         this.setBorder(BorderFactory.createEmptyBorder());
+        this.addCustomTab("layar cek", new LayarCheckout(), 0);
         this.setUI(new BasicTabbedPaneUI() {
             @Override
             protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
@@ -34,6 +39,7 @@ public class Tabs extends JTabbedPane {
     public void addCustomTab(String title, Component component, int index){
         this.addTab(null, component);
         this.setTabComponentAt(index, new ButtonTabComponent(this, title));
+        Tabs.tabCount = this.getTabCount();
     }
 }
 
@@ -66,6 +72,7 @@ class ButtonTabComponent extends JPanel {
                 int i = pane.indexOfTabComponent(ButtonTabComponent.this);
                 if (i != -1) {
                     pane.remove(i);
+                    Tabs.tabCount = pane.getTabCount();
                 }
             }
         });
