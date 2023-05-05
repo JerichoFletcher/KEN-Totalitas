@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 public class LayarCheckout extends JPanel implements ActionListener{
     private JPanel panelBarang;
     private JButton fixBill;
+    private JComboBox pilihMember;
     LayarCheckout(){
         super();
         this.setVisible(true);
@@ -44,7 +45,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
         scrollPane.setBounds(600, 150, 700, 600);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         String[] tipeMember = new String[]{"", "jovan", "farhan", "shidqi", "alek", "jericho"};
-        JComboBox pilihMember = new JComboBox(tipeMember);
+        pilihMember = new JComboBox(tipeMember);
         pilihMember.setBackground(new Color(0xD9D9D9));
         pilihMember.setBounds(700,850,500,50);
         pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
@@ -69,9 +70,10 @@ public class LayarCheckout extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == fixBill){
             System.out.println("tix dummy");
-            LayarCheckout layarCheckout = new LayarCheckout();
-            Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarCheckout);
+            String selectedItem = (String) pilihMember.getSelectedItem();
+            LayarFixedBill layarFB = new LayarFixedBill(selectedItem);
+            Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
+            Tabs.tabs.setSelectedComponent(layarFB);
         }
     }
 }
