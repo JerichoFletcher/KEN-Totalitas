@@ -21,7 +21,7 @@ public class Menu extends JLabel {
         this.setFont(new Font("Poppins", Font.BOLD,20));
         this.tabs = tabs;
         this.contentClasses = contentClasses;
-        menuItems = new String[]{"Daftar Member", "Edit Member", "Kasir"};
+        menuItems = new String[]{"Edit Member", "Kasir", "Members"};
         menuPop = new JPopupMenu();
         for (int i = 0; i <= menuItems.length-1; i++) {
             final int index = i;

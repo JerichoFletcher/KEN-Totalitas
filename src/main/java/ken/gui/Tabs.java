@@ -12,11 +12,12 @@ public class Tabs extends JTabbedPane {
     public Tabs() {
         super();
         tabs = this;
-        tabCount = -1;
+        tabCount = 0;
         this.setVisible(true);
         this.setBackground(new Color(0x395B64));
         this.setFocusable(false);
         this.setBorder(BorderFactory.createEmptyBorder());
+        this.addCustomTab("Members", new Members(), Tabs.tabCount);
         this.setUI(new BasicTabbedPaneUI() {
             @Override
             protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
