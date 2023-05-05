@@ -78,7 +78,7 @@ public class Kasir extends JPanel implements ActionListener {
             System.out.println("redirect ke checkout menu");
             LayarCheckout layarCheckout = new LayarCheckout();
             Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
-            Tabs.tabCount++;
+            Tabs.tabs.setSelectedComponent(layarCheckout);
         }
     }
 
