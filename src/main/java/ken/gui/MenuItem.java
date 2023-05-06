@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.gui.tab.Kasir;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,13 +14,9 @@ public class MenuItem extends JPanel implements ActionListener {
     private JPanel cart;
     private String judul;
     private int harga;
-<<<<<<< Updated upstream
     private int id;
 
-    MenuItem(int id, String judul, int harga, JPanel cart) {
-=======
     public MenuItem(String judul, int harga, JPanel cart){
->>>>>>> Stashed changes
         super();
         this.judul = judul;
         this.harga = harga;
