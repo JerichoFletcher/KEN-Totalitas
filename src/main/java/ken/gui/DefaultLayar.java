@@ -6,7 +6,7 @@ import java.awt.*;
 public class DefaultLayar extends JFrame {
     DefaultLayar(){
         super();
-        this.setSize(1960, 1280);
+        this.setSize(1280, 720);
         this.getContentPane().setBackground(new Color(0x2C3333));
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

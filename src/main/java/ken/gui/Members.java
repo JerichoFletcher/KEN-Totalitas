@@ -23,8 +23,8 @@ public class Members extends JPanel {
         headerText.setFont(new Font("Poppins", Font.BOLD,15));
         headerText.setForeground(Color.black);
         headerMember.add(headerText);
-        headerText.setBounds(550,0,200,50);
-        headerMember.setBounds(370,50,1200, 50);
+        headerText.setBounds(600,0,1280,50);
+        headerMember.setBounds(0,0,1280, 50);
         this.add(headerMember);
         members.setBackground(new Color(0xFFFFFF));
         members.setLayout(new BoxLayout(members, BoxLayout.Y_AXIS));
@@ -33,7 +33,7 @@ public class Members extends JPanel {
             members.add(memberPanel);
         }
         JScrollPane scrollPane = new JScrollPane(members);
-        scrollPane.setBounds(370, 100, 1200, 920);
+        scrollPane.setBounds(0, 50, 1260, 520);
         this.add(scrollPane);
     }
 
