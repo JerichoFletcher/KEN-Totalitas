@@ -1,4 +1,4 @@
-package ken.backend.kelas;
+package ken.backend.kelas.anggota;
 
 public class Customer {
     private int id;

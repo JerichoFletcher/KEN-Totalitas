@@ -1,4 +1,4 @@
-package ken.backend.kelas;
+package ken.backend.kelas.anggota;
 
 public class Member extends Customer {
     private String name;
