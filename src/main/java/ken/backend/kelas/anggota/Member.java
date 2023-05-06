@@ -1,8 +1,16 @@
 package ken.backend.kelas.anggota;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Member extends Customer {
+    @Getter
     private String name;
+    @Getter
+    @Setter
     private String phoneNumber;
+    @Getter
+    @Setter
     private int points;
 
     public Member(String name, String phoneNumber) {
@@ -10,22 +18,6 @@ public class Member extends Customer {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.points = 0;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getId(){
-        return getId();
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public int getPoints() {
-        return points;
     }
 
     public void addPoints(double price) {
