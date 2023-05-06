@@ -24,18 +24,18 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
     private JButton startButton;
 
     LayarUtama(){
-        this.setSize(1960, 1280);
+        this.setSize(1280, 720);
         this.getContentPane().setBackground(new Color(0x2C3333));
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         startButton = new JButton();
-        startButton.setBounds(1580,1010,400,200);
+        startButton.setBounds(900,520,400,200);
         startButton.addActionListener(this);
         startButton.setFocusable(false);
         startButton.setContentAreaFilled( false );
         startButton.setText("START");
-        startButton.setFont(new Font("Poppins", Font.PLAIN,80));
+        startButton.setFont(new Font("Poppins", Font.BOLD,50));
         startButton.setBackground(new Color(0, 0, 0, 0));
         startButton.setForeground(Color.white);
         startButton.setBorder(BorderFactory.createEmptyBorder());
@@ -87,20 +87,32 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
         clockLabel = new JLabel();
         dayLabel = new JLabel();
         dateLabel = new JLabel();
-        clockLabel.setFont(new Font("Poppins", Font.BOLD,150));
+        clockLabel.setFont(new Font("Poppins", Font.BOLD,100));
         clockLabel.setForeground(new Color(0xFFFFFF));
-        clockLabel.setBounds(750,100,1000,250);
-        dayLabel.setFont(new Font("Poppins", Font.BOLD,50));
-        dayLabel.setBounds(680,0,400,250);
+        clockLabel.setBounds(490,80,1000,250);
+        dayLabel.setFont(new Font("Poppins", Font.BOLD,30));
+        dayLabel.setBounds(450,0,400,250);
         dayLabel.setForeground(new Color(0xFFFFFF));
-        dateLabel.setFont(new Font("Poppins", Font.BOLD,50));
-        dateLabel.setBounds(950,0,400,250);
+        dateLabel.setFont(new Font("Poppins", Font.BOLD,30));
+        dateLabel.setBounds(620,0,400,250);
         dateLabel.setForeground(new Color(0xFFFFFF));
     }
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == startButton){
             System.out.println("run main program");
+            this.setVisible(false);
+            DefaultLayar defLay = new DefaultLayar();
+            Panels panels = new Panels();
+            panels.init();
+            Tabs tabs = new Tabs();
+            Menu menu = new Menu(tabs, panels);
+
+            defLay.add(menu);
+            menu.setBounds(20,10,300,50);
+            menu.setPreferredSize(new Dimension(300, 50));
+            defLay.add(tabs);
+            tabs.setBounds(0, 70, defLay.getWidth(), defLay.getHeight() - 70); // set the bounds
         }
     }
 }
