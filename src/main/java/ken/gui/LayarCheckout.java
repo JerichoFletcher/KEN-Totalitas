@@ -42,14 +42,15 @@ public class LayarCheckout extends JPanel implements ActionListener{
         panelBarang.setBorder(BorderFactory.createEmptyBorder());
         for (int i = 0; i <= listOfCartItem.size() - 1; i++) {
             String judulBarang = listOfCartItem.get(i).getJudul();
-            JLabel item = new JLabel(judulBarang);
+            int jmlhBarang = listOfCartItem.get(i).getCounter();
+            JLabel item = new JLabel(judulBarang + "    " + jmlhBarang + 'x');
             item.setForeground(Color.white);
             item.setFont(new Font("Poppins", Font.BOLD,20));
             panelBarang.add(item);
         }
         JScrollPane scrollPane = new JScrollPane(panelBarang);
         scrollPane.setBackground(new Color(0, 0, 0, 0));
-        scrollPane.setBounds(500, 150, 280, 350);
+        scrollPane.setBounds(500, 150, 500, 350);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         String[] tipeMember = new String[]{"", "jovan", "farhan", "shidqi", "alek", "jericho"};
         pilihMember = new JComboBox(tipeMember);
@@ -96,7 +97,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
         fixBill.setBackground(new Color(0, 0, 0, 0));
         fixBill.setForeground(Color.white);
         fixBill.setBorder(BorderFactory.createEmptyBorder());
-        fixBill.setBounds(920,460,250,75);
+        fixBill.setBounds(920,500,250,75);
         this.add(fixBill);
 
     }

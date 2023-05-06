@@ -40,14 +40,15 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         panelBarang.setBorder(BorderFactory.createEmptyBorder());
         for (int i = 0; i <= listOfCartItem.size() - 1; i++) {
             String judulBarang = listOfCartItem.get(i).getJudul();
-            JLabel item = new JLabel(judulBarang);
+            int jmlhBarang = listOfCartItem.get(i).getCounter();
+            JLabel item = new JLabel(judulBarang + "    " + jmlhBarang + 'x');
             item.setForeground(Color.white);
             item.setFont(new Font("Poppins", Font.BOLD,20));
             panelBarang.add(item);
         }
         JScrollPane scrollPane = new JScrollPane(panelBarang);
         scrollPane.setBackground(new Color(0, 0, 0, 0));
-        scrollPane.setBounds(250, 110, 280, 400);
+        scrollPane.setBounds(100, 110, 500, 400);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(scrollPane);
         if (customer.length() == 0) {

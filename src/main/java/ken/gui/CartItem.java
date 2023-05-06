@@ -77,6 +77,9 @@ public class CartItem extends JPanel implements ActionListener {
         return judul;
     }
 
+    public int getCounter() {
+        return this.counter;
+    }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == addButton){
             counter++; // increment counter
