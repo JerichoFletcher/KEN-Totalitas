@@ -4,14 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class LayarFixedBill extends JPanel implements ActionListener {
     private JPanel panelBarang;
     private JButton daftarButton;
     private JButton cetakButton;
     private String customer;
-    LayarFixedBill(String customer) {
+    private List<CartItem> listOfCartItem;
+    LayarFixedBill(String customer, List<CartItem> listOfCartItem) {
         super();
+        this.listOfCartItem = listOfCartItem;
         this.customer = customer;
         this.setVisible(true);
         this.setBackground(new Color(0x2C3333));
@@ -35,15 +38,17 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         panelBarang.setBackground(new Color(0x2C3333));
         panelBarang.setLayout(new BoxLayout(panelBarang, BoxLayout.Y_AXIS));
         panelBarang.setBorder(BorderFactory.createEmptyBorder());
-        for (int i = 1; i <= 20; i++) {
-            JLabel item = new JLabel("Label " + i);
+        for (int i = 0; i <= listOfCartItem.size() - 1; i++) {
+            String judulBarang = listOfCartItem.get(i).getJudul();
+            int jmlhBarang = listOfCartItem.get(i).getCounter();
+            JLabel item = new JLabel(judulBarang + "    " + jmlhBarang + 'x');
             item.setForeground(Color.white);
-            item.setFont(new Font("Poppins", Font.BOLD, 20));
+            item.setFont(new Font("Poppins", Font.BOLD,20));
             panelBarang.add(item);
         }
         JScrollPane scrollPane = new JScrollPane(panelBarang);
         scrollPane.setBackground(new Color(0, 0, 0, 0));
-        scrollPane.setBounds(250, 110, 280, 400);
+        scrollPane.setBounds(100, 110, 500, 400);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(scrollPane);
         if (customer.length() == 0) {

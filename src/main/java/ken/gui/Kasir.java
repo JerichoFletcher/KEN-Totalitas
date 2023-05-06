@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Kasir extends JPanel implements ActionListener {
     private JPanel inventory;
@@ -21,6 +25,7 @@ public class Kasir extends JPanel implements ActionListener {
     private JTextField inputFieldNama;
     private JTextField inputFieldHarga;
     private JComboBox catDrop;
+    public static List<CartItem> listOfCartItem = new ArrayList<>();
     Kasir(){
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -30,6 +35,7 @@ public class Kasir extends JPanel implements ActionListener {
     }
 
     public void makePanelKasir() {
+
         JPanel headerInv = new JPanel();
         JPanel headerCart = new JPanel();
         JPanel pricePanel = new JPanel();
@@ -83,17 +89,51 @@ public class Kasir extends JPanel implements ActionListener {
         inventory.setLocation(0,0);
         cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
         for (int i = 1; i <= 15; i++) {
-            MenuItem menuItem = new MenuItem("Barang ke " + i, i, cart);
+            MenuItem menuItem = new MenuItem(i, "Barang ke " + i, i, cart);
             inventory.add(menuItem);
         }
 
         inputFieldNama = new JTextField();
         inputFieldNama.setBounds(10, 55, 230, 40);
         inputFieldNama.setFont(new Font("Poppins", Font.PLAIN, 20));
+        inputFieldNama.setText("Nama Barang");
+        inputFieldNama.setForeground(new Color(0x395B64));
+        inputFieldNama.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (inputFieldNama.getText().equals("Nama Barang")) {
+                    inputFieldNama.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (inputFieldNama.getText().equals("")) {
+                    inputFieldNama.setText("Nama Barang");
+                }
+            }
+        });
         this.add(inputFieldNama);
         inputFieldHarga = new JTextField();
         inputFieldHarga.setBounds(240, 55, 230, 40);
         inputFieldHarga.setFont(new Font("Poppins", Font.PLAIN, 20));
+        inputFieldHarga.setText("Harga Barang");
+        inputFieldHarga.setForeground(new Color(0x395B64));
+        inputFieldHarga.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (inputFieldHarga.getText().equals("Harga Barang")) {
+                    inputFieldHarga.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (inputFieldHarga.getText().equals("")) {
+                    inputFieldHarga.setText("Harga Barang");
+                }
+            }
+        });
         this.add(inputFieldHarga);
 
         String[] catList = new String[]{"","Makanan","Minuman"};
@@ -150,7 +190,8 @@ public class Kasir extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == checkoutButton){
             System.out.println("redirect ke checkout menu");
-            LayarCheckout layarCheckout = new LayarCheckout();
+            System.out.println(listOfCartItem.size());
+            LayarCheckout layarCheckout = new LayarCheckout(listOfCartItem);
             Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarCheckout);
         } else if (e.getSource()==saveBillButton) {

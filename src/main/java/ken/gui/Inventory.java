@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class Inventory extends JPanel implements ActionListener {
     private JPanel inventory;
@@ -45,10 +47,44 @@ public class Inventory extends JPanel implements ActionListener {
         inputFieldNama = new JTextField();
         inputFieldNama.setBounds(0, 50, 400, 40);
         inputFieldNama.setFont(new Font("Poppins", Font.PLAIN, 20));
+        inputFieldNama.setText("Nama Barang");
+        inputFieldNama.setForeground(new Color(0x395B64));
+        inputFieldNama.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (inputFieldNama.getText().equals("Nama Barang")) {
+                    inputFieldNama.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (inputFieldNama.getText().equals("")) {
+                    inputFieldNama.setText("Nama Barang");
+                }
+            }
+        });
         this.add(inputFieldNama);
         inputFieldHarga = new JTextField();
         inputFieldHarga.setBounds(400, 50, 400, 40);
         inputFieldHarga.setFont(new Font("Poppins", Font.PLAIN, 20));
+        inputFieldHarga.setText("Harga Barang");
+        inputFieldHarga.setForeground(new Color(0x395B64));
+        inputFieldHarga.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (inputFieldHarga.getText().equals("Harga Barang")) {
+                    inputFieldHarga.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (inputFieldHarga.getText().equals("")) {
+                    inputFieldHarga.setText("Harga Barang");
+                }
+            }
+        });
         this.add(inputFieldHarga);
 
         String[] catList = new String[]{"","Makanan","Minuman"};

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 
 public class LayarCheckout extends JPanel implements ActionListener{
@@ -13,8 +14,10 @@ public class LayarCheckout extends JPanel implements ActionListener{
     private JButton fixBill;
     private JComboBox pilihMember;
     private JTextField inputField;
-    LayarCheckout(){
+    private List<CartItem> listOfCartItem;
+    LayarCheckout(List<CartItem> listOfCartItem){
         super();
+        this.listOfCartItem = listOfCartItem;
         this.setVisible(true);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
@@ -37,15 +40,17 @@ public class LayarCheckout extends JPanel implements ActionListener{
         panelBarang.setBackground(new Color(0x2C3333));
         panelBarang.setLayout(new BoxLayout(panelBarang, BoxLayout.Y_AXIS));
         panelBarang.setBorder(BorderFactory.createEmptyBorder());
-        for (int i = 1; i <= 20; i++) {
-            JLabel item = new JLabel("Label " + i);
+        for (int i = 0; i <= listOfCartItem.size() - 1; i++) {
+            String judulBarang = listOfCartItem.get(i).getJudul();
+            int jmlhBarang = listOfCartItem.get(i).getCounter();
+            JLabel item = new JLabel(judulBarang + "    " + jmlhBarang + 'x');
             item.setForeground(Color.white);
             item.setFont(new Font("Poppins", Font.BOLD,20));
             panelBarang.add(item);
         }
         JScrollPane scrollPane = new JScrollPane(panelBarang);
         scrollPane.setBackground(new Color(0, 0, 0, 0));
-        scrollPane.setBounds(500, 150, 280, 350);
+        scrollPane.setBounds(500, 150, 500, 350);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         String[] tipeMember = new String[]{"", "jovan", "farhan", "shidqi", "alek", "jericho"};
         pilihMember = new JComboBox(tipeMember);
@@ -92,7 +97,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
         fixBill.setBackground(new Color(0, 0, 0, 0));
         fixBill.setForeground(Color.white);
         fixBill.setBorder(BorderFactory.createEmptyBorder());
-        fixBill.setBounds(920,460,250,75);
+        fixBill.setBounds(920,500,250,75);
         this.add(fixBill);
 
     }
@@ -101,7 +106,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
         if(e.getSource() == fixBill){
             System.out.println("tix dummy");
             String selectedItem = (String) pilihMember.getSelectedItem();
-            LayarFixedBill layarFB = new LayarFixedBill(selectedItem);
+            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem);
             Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarFB);
         }
