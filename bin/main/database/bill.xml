@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bill>
+    <billItem>
+        <idBill>0</idBill>
+        <idCustomer>1</idCustomer>
+        <isFixed>true</isFixed>
+        <totalHarga>14000</totalHarga>
+        <listBarang>
+            <barang>
+                <namaBarang>Pensil</namaBarang>
+                <jumlahDibeli>10</jumlahDibeli>
+                <hargaBarang>1000</hargaBarang>
+            </barang>
+            <barang>
+                <namaBarang>Penghapus</namaBarang>
+                <jumlahDibeli>2</jumlahDibeli>
+                <hargaBarang>2000</hargaBarang>
+            </barang>
+        </listBarang>
+    </billItem>
+    <billItem>
+        <idBill>1</idBill>
+        <idCustomer>2</idCustomer>
+        <isFixed>true</isFixed>
+        <totalHarga>8000</totalHarga>
+        <listBarang>
+            <barang>
+                <namaBarang>Pensil</namaBarang>
+                <jumlahDibeli>2</jumlahDibeli>
+                <hargaBarang>1000</hargaBarang>
+            </barang>
+            <barang>
+                <namaBarang>Penghapus</namaBarang>
+                <jumlahDibeli>3</jumlahDibeli>
+                <hargaBarang>2000</hargaBarang>
+            </barang>
+        </listBarang>
+    </billItem>
+</bill>
