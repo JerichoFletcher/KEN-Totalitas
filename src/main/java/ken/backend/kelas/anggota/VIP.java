@@ -1,4 +1,4 @@
-package ken.backend.kelas;
+package ken.backend.kelas.anggota;
 
 public class VIP extends Member {
     private static final double DISCOUNT_RATE = 0.1;

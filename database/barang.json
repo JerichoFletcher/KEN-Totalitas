@@ -1,0 +1,44 @@
+{
+  "barang" : [
+  {
+    "nama_barang": "Buku Tulis",
+    "stok": 50,
+    "harga_barang": 5000,
+    "harga_beli_barang": 3500,
+    "kategori": "Alat Tulis",
+    "gambar": "./asset/buku_tulis.jpg"
+  },
+  {
+    "nama_barang": "Pensil",
+    "stok": 100,
+    "harga_barang": 1000,
+    "harga_beli_barang": 700,
+    "kategori": "Alat Tulis",
+    "gambar": "./asset/pensil.jpg"
+  },
+  {
+    "nama_barang": "Penghapus",
+    "stok": 75,
+    "harga_barang": 2000,
+    "harga_beli_barang": 1500,
+    "kategori": "Alat Tulis",
+    "gambar": "./asset/penghapus.jpg"
+  },
+  {
+    "nama_barang": "Gunting",
+    "stok": 30,
+    "harga_barang": 5000,
+    "harga_beli_barang": 3500,
+    "kategori": "Alat Potong",
+    "gambar": "./asset/gunting.jpg"
+  },
+  {
+    "nama_barang": "Pisau",
+    "stok": 20,
+    "harga_barang": 15000,
+    "harga_beli_barang": 10000,
+    "kategori": "Alat Potong",
+    "gambar": "./asset/pisau.jpg"
+  }
+]
+}
