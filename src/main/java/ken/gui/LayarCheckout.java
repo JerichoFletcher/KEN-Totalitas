@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 
 public class LayarCheckout extends JPanel implements ActionListener{
@@ -13,8 +14,10 @@ public class LayarCheckout extends JPanel implements ActionListener{
     private JButton fixBill;
     private JComboBox pilihMember;
     private JTextField inputField;
-    LayarCheckout(){
+    private List<CartItem> listOfCartItem;
+    LayarCheckout(List<CartItem> listOfCartItem){
         super();
+        this.listOfCartItem = listOfCartItem;
         this.setVisible(true);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
@@ -37,8 +40,9 @@ public class LayarCheckout extends JPanel implements ActionListener{
         panelBarang.setBackground(new Color(0x2C3333));
         panelBarang.setLayout(new BoxLayout(panelBarang, BoxLayout.Y_AXIS));
         panelBarang.setBorder(BorderFactory.createEmptyBorder());
-        for (int i = 1; i <= 20; i++) {
-            JLabel item = new JLabel("Label " + i);
+        for (int i = 0; i <= listOfCartItem.size() - 1; i++) {
+            String judulBarang = listOfCartItem.get(i).getJudul();
+            JLabel item = new JLabel(judulBarang);
             item.setForeground(Color.white);
             item.setFont(new Font("Poppins", Font.BOLD,20));
             panelBarang.add(item);
@@ -101,7 +105,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
         if(e.getSource() == fixBill){
             System.out.println("tix dummy");
             String selectedItem = (String) pilihMember.getSelectedItem();
-            LayarFixedBill layarFB = new LayarFixedBill(selectedItem);
+            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem);
             Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarFB);
         }

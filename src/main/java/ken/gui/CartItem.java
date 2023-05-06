@@ -11,14 +11,16 @@ public class CartItem extends JPanel implements ActionListener {
     private JPanel cart;
     private String judul;
     private int harga;
+    private int id;
     private int counter; // added counter variable
     private JLabel counterLabel; // added counter label
-    CartItem(String judul, int harga, JPanel cart){
+    CartItem(int id, String judul, int harga, JPanel cart){
         super();
         this.judul = judul;
         this.harga = harga;
         this.cart = cart;
-        this.counter = 0; // initialize counter to 0
+        this.counter = 1; // initialize counter to 0
+        this.id = id;
         JLabel title = new JLabel(judul);
         JLabel price = new JLabel("Rp" + harga +"000");
         addButton = new JButton("+");
@@ -36,7 +38,7 @@ public class CartItem extends JPanel implements ActionListener {
         addButton.setBackground(new Color(0, 0, 0, 0));
         addButton.setForeground(new Color(0x395B64));
         addButton.setBorder(BorderFactory.createEmptyBorder());
-        addButton.setBounds(200,0,50,50);
+        addButton.setBounds(300,0,50,50);
         minusButton.addActionListener(this);
         minusButton.setFocusable(false);
         minusButton.setContentAreaFilled( false );
@@ -44,7 +46,7 @@ public class CartItem extends JPanel implements ActionListener {
         minusButton.setBackground(new Color(0, 0, 0, 0));
         minusButton.setForeground(new Color(0x395B64));
         minusButton.setBorder(BorderFactory.createEmptyBorder());
-        minusButton.setBounds(300,0,50,50);
+        minusButton.setBounds(200,0,50,50);
         title.setBounds(10,0,180,50);
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD,20));
@@ -62,13 +64,26 @@ public class CartItem extends JPanel implements ActionListener {
         this.add(counterLabel); // add counter label to panel
     }
 
+    public int getID(){
+        return id;
+    }
+
+    public void incrementCounter(){
+        counter++;
+        counterLabel.setText(Integer.toString(counter));
+    }
+
+    public String getJudul(){
+        return judul;
+    }
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == addButton){
             counter++; // increment counter
             counterLabel.setText(Integer.toString(counter)); // update counter label text
         }
         if(e.getSource() == minusButton){
-            if(counter == 0) {
+            if(counter == 1) {
                 // remove this panel from the parent panel
                 cart.remove(this);
                 // update the parent panel

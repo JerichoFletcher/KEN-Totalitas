@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class HistoryPanel extends JPanel implements ActionListener {
     private JButton showDetailBUtton;
     private String judul;
+//    private List<CartItem> = listOfCartItem;
     HistoryPanel(String judul){
         super();
         JLabel title = new JLabel(judul);
@@ -42,9 +44,9 @@ public class HistoryPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == showDetailBUtton) {
-            LayarFixedBill layarFB = new LayarFixedBill(judul);
-            Tabs.tabs.addCustomTab("Detatil Transaksi", layarFB, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarFB);
+//            LayarFixedBill layarFB = new LayarFixedBill(judul, listOfCartItem);
+//            Tabs.tabs.addCustomTab("Detatil Transaksi", layarFB, Tabs.tabCount);
+//            Tabs.tabs.setSelectedComponent(layarFB);
         }
     }
 }
