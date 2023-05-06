@@ -26,6 +26,7 @@ public class Menu extends JLabel {
         this.contentClasses = contentClasses;
         menuItems = new String[]{"Kasir", "Members", "Inventory", "History", "Setting"};
         menuPop = new JPopupMenu();
+<<<<<<< Updated upstream
         for (Map.Entry<String, Class<? extends JPanel>> entry : this.panels.entrySet()) {
             String judulMenuItem = entry.getKey(); // gets the String key
             Class<? extends JPanel> value = entry.getValue(); // gets the Class<? extends JPanel> value
@@ -45,6 +46,33 @@ public class Menu extends JLabel {
                     }
                 }
             });
+=======
+        for (Map.Entry<String, Class<? extends KENTab>> entry : this.panels.entrySet()) {
+            Class<? extends KENTab> clazz = entry.getValue();
+            try {
+                String judulMenuItem = (String) clazz.getMethod("tabName").invoke(clazz.getConstructor().newInstance());
+//                String judulMenuItem = ((KENTab)contentPanel).tabName(); // gets the String key
+//                Class<? extends JPanel> value = entry.getValue(); // gets the Class<? extends JPanel> value
+                JMenuItem menuItem = new JMenuItem(judulMenuItem);
+                menuPop.add(menuItem);
+                menuItem.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            Class<? extends JPanel> contentClass = entry.getValue();
+                            JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
+                            Tabs.tabs.addCustomTab(judulMenuItem, contentPanel, tabs.getTabCount());
+                            Tabs.tabCount = tabs.getTabCount();
+                            Tabs.tabs.setSelectedComponent(contentPanel);
+                        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
+                                 InvocationTargetException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+            }catch(NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException ex){
+                ex.printStackTrace();
+            }
+>>>>>>> Stashed changes
         }
 
         this.setVisible(true);
