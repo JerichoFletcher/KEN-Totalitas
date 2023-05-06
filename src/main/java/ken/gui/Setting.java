@@ -49,14 +49,14 @@ public class Setting extends JPanel implements ActionListener {
 
         dataType = new JComboBox(dataTypeList);
         dataType.setBackground(new Color(0xD9D9D9));
-        dataType.setBounds(650,400,350,70);
+        dataType.setBounds(650,400,250,70);
         dataType.setFont(new Font("Poppins", Font.BOLD,20));
         dataType.setForeground(new Color(0x395B64));
         dataType.setFocusable(false);
         this.add(dataType);
 
         dataTypeButton = new JButton("SET");
-        dataTypeButton.setBounds(1000, 400, 70 , 70);
+        dataTypeButton.setBounds(900, 400, 70 , 70);
         dataTypeButton.setBackground(new Color(0xD9D9D9));
         dataTypeButton.setForeground(Color.black);
         dataTypeButton.setFont(new Font("Poppins", Font.BOLD,25));
