@@ -17,12 +17,12 @@ public class Menu extends JLabel {
     private JPanel[] panelList;
     private Class<? extends JPanel>[] contentClasses;
     private Map<String, Class<? extends JPanel>> panels;
-    Menu(Tabs tabs, Panels panels) {
+    Menu(Tabs tabs) {
         super("MENU");
         this.setForeground(new Color(0xFFFFFF));
         this.setFont(new Font("Poppins", Font.BOLD,20));
         this.tabs = tabs;
-        this.panels = panels.getPanels();
+        this.panels = Panels.getPanels();
         this.contentClasses = contentClasses;
         menuItems = new String[]{"Kasir", "Members", "Inventory", "History", "Setting"};
         menuPop = new JPopupMenu();

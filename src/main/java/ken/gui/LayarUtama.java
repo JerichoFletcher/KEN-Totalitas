@@ -45,51 +45,53 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
         this.add(clockLabel);
         this.add(startButton);
         this.setVisible(true);
-        setTime();
+
+        Thread clockThread = new Thread(this::setTime);
+        clockThread.start();
     }
 
     public void setTime(){
         while(true){
-            Thread clockThread = new Thread(this); // create a new thread
-            clockThread.start();
-//            time = timeFormat.format(Calendar.getInstance().getTime());
-//            clockLabel.setText(time);
+//            Thread clockThread = new Thread(this); // create a new thread
+//            clockThread.start();
+            time = timeFormat.format(Calendar.getInstance().getTime());
+            clockLabel.setText(time);
             day = dayFormat.format(Calendar.getInstance().getTime());
             dayLabel.setText(day);
             date = dateFormat.format(Calendar.getInstance().getTime());
             dateLabel.setText(date);
-            try {
-                Thread.sleep(1000);
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(1000);
+//            }catch (InterruptedException e){
+//                e.printStackTrace();
+//            }
         }
     }
 
     @Override
     public void run(){
-        while(true){
-            try{
-                time = timeFormat.format(Calendar.getInstance().getTime());
-                clockLabel.setText(time);
-                Thread.sleep(1000);
-            }catch(InterruptedException e){
-                e.printStackTrace();
-            }
-        }
+//        while(true){
+//            try{
+//                time = timeFormat.format(Calendar.getInstance().getTime());
+//                clockLabel.setText(time);
+//                Thread.sleep(1000);
+//            }catch(InterruptedException e){
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     public void createLabels(){
-        timeFormat = new SimpleDateFormat("HH:mm ");
+        timeFormat = new SimpleDateFormat("HH:mm:ss ");
         dayFormat = new SimpleDateFormat("EEEE, ");
-        dateFormat = new SimpleDateFormat("dd MMMMM YYYY");
+        dateFormat = new SimpleDateFormat("dd MMMMM yyyy");
         timeDayPanel = new JPanel();
         clockLabel = new JLabel();
         dayLabel = new JLabel();
         dateLabel = new JLabel();
         clockLabel.setFont(new Font("Poppins", Font.BOLD,100));
         clockLabel.setForeground(new Color(0xFFFFFF));
-        clockLabel.setBounds(490,80,1000,250);
+        clockLabel.setBounds(420,80,1000,250);
         dayLabel.setFont(new Font("Poppins", Font.BOLD,30));
         dayLabel.setBounds(450,0,400,250);
         dayLabel.setForeground(new Color(0xFFFFFF));
@@ -103,10 +105,9 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
             System.out.println("run main program");
             this.setVisible(false);
             DefaultLayar defLay = new DefaultLayar();
-            Panels panels = new Panels();
-            panels.init();
+            Panels.init();
             Tabs tabs = new Tabs();
-            Menu menu = new Menu(tabs, panels);
+            Menu menu = new Menu(tabs);
 
             defLay.add(menu);
             menu.setBounds(20,10,300,50);
