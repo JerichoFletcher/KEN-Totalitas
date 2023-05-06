@@ -10,7 +10,7 @@ import java.awt.event.FocusListener;
 public class DaftarMember extends JPanel implements ActionListener{
     private JPanel panelEdit;
     private JButton addButton;
-    DaftarMember(){
+    public DaftarMember(){
         panelEdit = new JPanel();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));

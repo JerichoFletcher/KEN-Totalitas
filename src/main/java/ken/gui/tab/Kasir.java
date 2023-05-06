@@ -1,4 +1,8 @@
-package ken.gui;
+package ken.gui.tab;
+
+import ken.gui.LayarCheckout;
+import ken.gui.MenuItem;
+import ken.gui.Tabs;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +13,7 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kasir extends JPanel implements ActionListener {
+public class Kasir extends KENTab implements ActionListener {
     private JPanel inventory;
     private JPanel cart;
     private JButton checkoutButton;
@@ -25,13 +29,22 @@ public class Kasir extends JPanel implements ActionListener {
     private JTextField inputFieldNama;
     private JTextField inputFieldHarga;
     private JComboBox catDrop;
+<<<<<<< Updated upstream:src/main/java/ken/gui/Kasir.java
     public static List<CartItem> listOfCartItem = new ArrayList<>();
     Kasir(){
+=======
+    public Kasir(){
+>>>>>>> Stashed changes:src/main/java/ken/gui/tab/Kasir.java
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
         makePanelKasir();
         this.setBounds(0,0,500,500);
+    }
+
+    @Override
+    public String tabName(){
+        return "Kasir";
     }
 
     public void makePanelKasir() {
@@ -89,7 +102,11 @@ public class Kasir extends JPanel implements ActionListener {
         inventory.setLocation(0,0);
         cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
         for (int i = 1; i <= 15; i++) {
+<<<<<<< Updated upstream:src/main/java/ken/gui/Kasir.java
             MenuItem menuItem = new MenuItem(i, "Barang ke " + i, i, cart);
+=======
+            ken.gui.MenuItem menuItem = new MenuItem("Barang ke " + i, i, cart);
+>>>>>>> Stashed changes:src/main/java/ken/gui/tab/Kasir.java
             inventory.add(menuItem);
         }
 

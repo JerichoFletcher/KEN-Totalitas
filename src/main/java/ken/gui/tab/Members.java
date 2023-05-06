@@ -1,17 +1,24 @@
-package ken.gui;
+package ken.gui.tab;
+
+import ken.gui.MemberPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Members extends JPanel {
+public class Members extends KENTab {
     private JPanel members;
-    Members(){
+    public Members(){
         super();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
         makePanelMembers();
         this.setBounds(0,0,500,500);
+    }
+
+    @Override
+    public String tabName(){
+        return "Members";
     }
 
     public void makePanelMembers(){

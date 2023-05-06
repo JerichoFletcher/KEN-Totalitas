@@ -1,20 +1,27 @@
-package ken.gui;
+package ken.gui.tab;
+
+import ken.gui.HistoryPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class History extends JPanel implements ActionListener {
+public class History extends KENTab implements ActionListener {
     private JPanel history;
     private JButton unduhButton;
-    History(){
+    public History(){
         super();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
         makePanelMembers();
         this.setBounds(0,0,500,500);
+    }
+
+    @Override
+    public String tabName(){
+        return "History";
     }
 
     public void makePanelMembers(){

@@ -1,4 +1,6 @@
-package ken.gui;
+package ken.gui.tab;
+
+import ken.gui.InventoryPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,19 +9,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class Inventory extends JPanel implements ActionListener {
+public class Inventory extends KENTab implements ActionListener {
     private JPanel inventory;
     private JTextField inputFieldNama;
     private JTextField inputFieldHarga;
     private JComboBox catDrop;
     private JButton searchButton;
-    Inventory(){
+    public Inventory(){
         super();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
         makePanelInventory();
         this.setBounds(0,0,500,500);
+    }
+
+    @Override
+    public String tabName(){
+        return "Inventory";
     }
 
     public void makePanelInventory(){

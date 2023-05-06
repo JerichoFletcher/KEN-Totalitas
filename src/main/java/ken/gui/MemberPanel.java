@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class MemberPanel extends JPanel implements ActionListener {
     private JButton editButton;
-    MemberPanel(String judul){
+    public MemberPanel(String judul){
         super();
         JLabel title = new JLabel(judul);
         editButton = new JButton("EDIT");

@@ -1,4 +1,4 @@
-package ken.gui;
+package ken.gui.tab;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -6,18 +6,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Setting extends JPanel implements ActionListener {
+public class Setting extends KENTab implements ActionListener {
     private JButton buttonPlugin;
     private JButton buttonFile;
     private JLabel dataTypeText;
     private JComboBox dataType;
     private JButton dataTypeButton;
-    Setting(){
+    public Setting(){
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
         makePanelSetting();
         this.setBounds(0,0,500,500);
+    }
+
+    @Override
+    public String tabName(){
+        return "Setting";
     }
 
     public void makePanelSetting() {

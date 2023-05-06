@@ -10,7 +10,7 @@ import java.awt.event.FocusListener;
 public class EditMember extends JPanel implements ActionListener{
     private JPanel panelEdit;
     private JButton editButton;
-    EditMember(){
+    public EditMember(){
         panelEdit = new JPanel();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));

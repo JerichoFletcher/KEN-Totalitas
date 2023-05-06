@@ -11,8 +11,12 @@ public class LayarFixedBill extends JPanel implements ActionListener {
     private JButton daftarButton;
     private JButton cetakButton;
     private String customer;
+<<<<<<< Updated upstream
     private List<CartItem> listOfCartItem;
     LayarFixedBill(String customer, List<CartItem> listOfCartItem) {
+=======
+    public LayarFixedBill(String customer) {
+>>>>>>> Stashed changes
         super();
         this.listOfCartItem = listOfCartItem;
         this.customer = customer;

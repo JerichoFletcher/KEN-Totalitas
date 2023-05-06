@@ -10,7 +10,7 @@ import java.awt.event.FocusListener;
 public class EditInventoryItem extends JPanel implements ActionListener{
     private JPanel panelEdit;
     private JButton editButton;
-    EditInventoryItem(){
+    public EditInventoryItem(){
         panelEdit = new JPanel();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));

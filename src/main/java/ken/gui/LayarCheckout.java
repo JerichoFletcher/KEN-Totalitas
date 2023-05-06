@@ -14,8 +14,12 @@ public class LayarCheckout extends JPanel implements ActionListener{
     private JButton fixBill;
     private JComboBox pilihMember;
     private JTextField inputField;
+<<<<<<< Updated upstream
     private List<CartItem> listOfCartItem;
     LayarCheckout(List<CartItem> listOfCartItem){
+=======
+    public LayarCheckout(){
+>>>>>>> Stashed changes
         super();
         this.listOfCartItem = listOfCartItem;
         this.setVisible(true);

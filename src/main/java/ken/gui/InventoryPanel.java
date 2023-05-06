@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class InventoryPanel extends JPanel implements ActionListener {
     private JButton editButton;
-    InventoryPanel(String judul){
+    public InventoryPanel(String judul){
         super();
         JLabel title = new JLabel(judul);
         editButton = new JButton("EDIT");

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DefaultLayar extends JFrame {
-    DefaultLayar(){
+    public DefaultLayar(){
         super();
         this.setSize(1280, 720);
         this.getContentPane().setBackground(new Color(0x2C3333));
