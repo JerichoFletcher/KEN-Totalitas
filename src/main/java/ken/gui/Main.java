@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class Main{
     public static void main(String[] args) {
         DefaultLayar defLay = new DefaultLayar();
-        Class<? extends JPanel>[] contentClasses = new Class[] {EditMember.class, Kasir.class, Members.class};
+        Class<? extends JPanel>[] contentClasses = new Class[] {DaftarMember.class, Kasir.class, Members.class};
         Tabs tabs = new Tabs();
         Menu menu = new Menu(tabs, contentClasses);
         defLay.add(menu);

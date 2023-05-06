@@ -25,17 +25,17 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         JLabel totalPrice = new JLabel("Total: Rp." + 1000);
         fixedBill.setFont(new Font("Poppins", Font.BOLD, 40));
         fixedBill.setForeground(Color.white);
-        fixedBill.setBounds(850, 50, 500, 100);
+        fixedBill.setBounds(160, 10, 500, 100);
         totalPrice.setFont(new Font("Poppins", Font.BOLD, 30));
         totalPrice.setForeground(Color.white);
-        totalPrice.setBounds(600, 750, 500, 100);
+        totalPrice.setBounds(135, 480, 500, 100);
         this.add(fixedBill);
         this.add(totalPrice);
         panelBarang = new JPanel();
         panelBarang.setBackground(new Color(0x2C3333));
         panelBarang.setLayout(new BoxLayout(panelBarang, BoxLayout.Y_AXIS));
         panelBarang.setBorder(BorderFactory.createEmptyBorder());
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 20; i++) {
             JLabel item = new JLabel("Label " + i);
             item.setForeground(Color.white);
             item.setFont(new Font("Poppins", Font.BOLD, 20));
@@ -43,30 +43,30 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         }
         JScrollPane scrollPane = new JScrollPane(panelBarang);
         scrollPane.setBackground(new Color(0, 0, 0, 0));
-        scrollPane.setBounds(600, 150, 700, 600);
+        scrollPane.setBounds(250, 110, 280, 400);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(scrollPane);
         if (customer.length() == 0) {
             daftarButton = new JButton("Daftar Member/VIP");
             daftarButton.addActionListener(this);
             daftarButton.setBackground(new Color(0xD9D9D9));
-            daftarButton.setBounds(700, 850, 500, 50);
+            daftarButton.setBounds(775, 250, 230, 100);
             daftarButton.setFont(new Font("Poppins", Font.BOLD, 20));
             daftarButton.setForeground(new Color(0x395B64));
             daftarButton.setFocusable(false);
             this.add(daftarButton);
         }
         else{
-            JLabel namaCustomer = new JLabel("Pembelian " + customer + " berhasil di catat");
+            JLabel namaCustomer = new JLabel("Pembelian " + customer + " berhasil di catat!");
             namaCustomer.setFont(new Font("Poppins", Font.BOLD, 30));
             namaCustomer.setForeground(Color.white);
-            namaCustomer.setBounds(600, 800, 1000, 100);
+            namaCustomer.setBounds(650, 120, 1000, 100);
             this.add(namaCustomer);
         }
         cetakButton = new JButton("Cetak Bill");
         cetakButton.addActionListener(this);
         cetakButton.setBackground(new Color(0xD9D9D9));
-        cetakButton.setBounds(700, 930, 500, 50);
+        cetakButton.setBounds(775, 400, 230, 50);
         cetakButton.setFont(new Font("Poppins", Font.BOLD, 20));
         cetakButton.setForeground(new Color(0x395B64));
         cetakButton.setFocusable(false);
