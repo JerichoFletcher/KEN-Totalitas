@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 public class Menu extends JLabel {
     private JLabel menuLabel;
@@ -15,27 +16,31 @@ public class Menu extends JLabel {
     private Tabs tabs;
     private JPanel[] panelList;
     private Class<? extends JPanel>[] contentClasses;
-    Menu(Tabs tabs, Class<? extends JPanel>[] contentClasses) {
+    private Map<String, Class<? extends JPanel>> panels;
+    Menu(Tabs tabs, Panels panels) {
         super("MENU");
         this.setForeground(new Color(0xFFFFFF));
         this.setFont(new Font("Poppins", Font.BOLD,20));
         this.tabs = tabs;
+        this.panels = panels.getPanels();
         this.contentClasses = contentClasses;
-        menuItems = new String[]{"Kasir", "Members", "History"};
+        menuItems = new String[]{"Kasir", "Members", "History", "Setting"};
         menuPop = new JPopupMenu();
-        for (int i = 0; i <= menuItems.length-1; i++) {
-            final int index = i;
-            JMenuItem menuItem = new JMenuItem(menuItems[i]);
+        for (Map.Entry<String, Class<? extends JPanel>> entry : this.panels.entrySet()) {
+            String judulMenuItem = entry.getKey(); // gets the String key
+            Class<? extends JPanel> value = entry.getValue(); // gets the Class<? extends JPanel> value
+            JMenuItem menuItem = new JMenuItem(judulMenuItem);
             menuPop.add(menuItem);
             menuItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        Class<? extends JPanel> contentClass = contentClasses[index];
+                        Class<? extends JPanel> contentClass = entry.getValue();
                         JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
-                        Tabs.tabs.addCustomTab(menuItems[index], contentPanel, tabs.getTabCount());
+                        Tabs.tabs.addCustomTab(judulMenuItem, contentPanel, tabs.getTabCount());
                         Tabs.tabCount = tabs.getTabCount();
                         Tabs.tabs.setSelectedComponent(contentPanel);
-                    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
+                    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
+                             InvocationTargetException ex) {
                         ex.printStackTrace();
                     }
                 }

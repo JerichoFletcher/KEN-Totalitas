@@ -13,7 +13,9 @@ public class Panels{
 
         // Tambahin panel builtin di sini
         panels.put("Kasir", Kasir.class);
-//        panels.put("Mem")
+        panels.put("Members", Members.class);
+        panels.put("History", History.class);
+        panels.put("Settings", Setting.class);
     }
 
     public static void add(String id, Class<? extends JPanel> panelClass) throws Exception {
@@ -25,5 +27,9 @@ public class Panels{
     public static Class<? extends JPanel> get(String id) throws Exception {
         if(!panels.containsKey(id))throw new Exception(String.format("Unknown ID: %s", id));
         return panels.get(id);
+    }
+
+    public static Map<String, Class<? extends JPanel>> getPanels() {
+        return panels;
     }
 }
