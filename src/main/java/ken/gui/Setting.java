@@ -1,6 +1,7 @@
 package ken.gui;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,6 +69,9 @@ public class Setting extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if (e.getSource()==buttonPlugin) {
             JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            FileNameExtensionFilter jarFilter = new FileNameExtensionFilter("JAR FILES","jar");
+            fileChooser.setFileFilter(jarFilter);
             int returnValue = fileChooser.showOpenDialog(this);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 // File selected by the user

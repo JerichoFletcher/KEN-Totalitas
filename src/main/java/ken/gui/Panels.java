@@ -14,6 +14,7 @@ public class Panels{
         // Tambahin panel builtin di sini
         panels.put("Kasir", Kasir.class);
         panels.put("Members", Members.class);
+        panels.put("Incentory", Inventory.class);
         panels.put("History", History.class);
         panels.put("Settings", Setting.class);
     }

@@ -24,7 +24,7 @@ public class Menu extends JLabel {
         this.tabs = tabs;
         this.panels = panels.getPanels();
         this.contentClasses = contentClasses;
-        menuItems = new String[]{"Kasir", "Members", "History", "Setting"};
+        menuItems = new String[]{"Kasir", "Members", "Inventory", "History", "Setting"};
         menuPop = new JPopupMenu();
         for (Map.Entry<String, Class<? extends JPanel>> entry : this.panels.entrySet()) {
             String judulMenuItem = entry.getKey(); // gets the String key
