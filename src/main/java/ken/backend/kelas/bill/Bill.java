@@ -1,33 +1,23 @@
 package ken.backend.kelas.bill;
 import ken.backend.kelas.barang.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 
 public class Bill {
-    private ArrayList<Barang> listBarang;
+    @Getter
+    private ArrayList<BillItem> listBarang;
+    @Getter
+    @Setter
     private boolean isFixed;
     
     public Bill() {
-        this.listBarang = new ArrayList<Barang>();
-        this.isFixed = false;
+        this.listBarang = new ArrayList<BillItem>();
     }
-
-    public void makeBillFixed(){
-        this.isFixed = true;
-    }
-
-    public void tambahBarang(Barang barang) {
+    public void tambahBarang(BillItem barang) {
         listBarang.add(barang);
     }
+    public void removeBarang(BillItem barang) {listBarang.remove(barang);}
 
-    public ArrayList<Barang> getListBarang() {
-        return listBarang;
-    }
-
-    public int getTotalHarga(){
-        int total = 0;
-        for(Barang b : this.listBarang){
-            total += b.getHargaJual();
-        }
-        return total;
-    }
 }

@@ -13,12 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterJSON implements AdapterData{
-    public Inventory getInventory(URI uri) throws IOException {
+    public <T> T get(URI uri, Class<T> clazz) throws IOException{
         Gson gson = new Gson();
         String json = new String(Files.readAllBytes(Paths.get(uri)));
-        System.out.println(json);
-        Inventory inventory = gson.fromJson(json, Inventory.class);
-        return inventory;
+//        System.out.println(json);
+        return gson.fromJson(json, clazz);
+    }
+
+    public <T> void write(URI uri, Class<T> clazz) throws IOException{
 
     }
 
