@@ -21,7 +21,7 @@ public class Menu extends JLabel {
         this.setFont(new Font("Poppins", Font.BOLD,20));
         this.tabs = tabs;
         this.contentClasses = contentClasses;
-        menuItems = new String[]{"Daftar Member", "Kasir", "Members"};
+        menuItems = new String[]{"Kasir", "Members", "History"};
         menuPop = new JPopupMenu();
         for (int i = 0; i <= menuItems.length-1; i++) {
             final int index = i;
@@ -34,6 +34,7 @@ public class Menu extends JLabel {
                         JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
                         Tabs.tabs.addCustomTab(menuItems[index], contentPanel, tabs.getTabCount());
                         Tabs.tabCount = tabs.getTabCount();
+                        Tabs.tabs.setSelectedComponent(contentPanel);
                     } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
                         ex.printStackTrace();
                     }
