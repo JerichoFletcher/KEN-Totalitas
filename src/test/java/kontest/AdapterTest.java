@@ -13,8 +13,8 @@ public class AdapterTest {
     public void testAdapterJSON() throws IOException, URISyntaxException {
         AdapterJSON adapter = new AdapterJSON();;
 //        Human hum = adapter.testUU(getClass().getResource("/database/tes.json").toURI());
-        Inventory inven = adapter.getInventory(getClass().getResource("/database/barang.json").toURI());
-        Assertions.assertEquals(5, inven.getBanyakBarang());
+        Inventory.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
+        Assertions.assertEquals(5, Inventory.instance().getBanyakBarang());
 //        System.out.println(inven.getBanyakBarang());
     }
 }

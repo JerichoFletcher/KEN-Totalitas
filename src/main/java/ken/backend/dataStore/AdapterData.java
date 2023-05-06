@@ -9,7 +9,10 @@ import java.net.URI;
 import java.util.List;
 
 public interface AdapterData {
-    public Inventory getInventory(URI uri) throws IOException;
+    public <T> T get(URI uri, Class<T> clazz) throws IOException;
+
+    public <T> void write(URI uri, Class<T> clazz) throws  IOException;
+
 //    public Bill[] getFixedBill();
 //    public Bill[] getBill();
 }
