@@ -1,4 +1,4 @@
-package kontest;
+package kentest.backend;
 
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.inventory.Inventory;
@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 
 public class AdapterTest {
     @Test
-    public void testAdapterJSON() throws IOException, URISyntaxException {
+    public void givenValidJSON_WhenReadWithAdapter_ShouldReadCorrectly() throws IOException, URISyntaxException {
         AdapterJSON adapter = new AdapterJSON();;
 //        Human hum = adapter.testUU(getClass().getResource("/database/tes.json").toURI());
         Inventory.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
