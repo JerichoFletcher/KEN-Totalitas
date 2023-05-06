@@ -25,7 +25,7 @@ public class CartItem extends JPanel implements ActionListener {
         minusButton = new JButton("-");
         this.setLayout(null);
         this.setBackground(new Color(0xF2F2F2));
-        this.setPreferredSize(new Dimension(700,50));
+        this.setPreferredSize(new Dimension(470,50));
         this.setMaximumSize(new Dimension(800,50)); // set maximum size to fixed value
         this.setMinimumSize(new Dimension(800,50));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -36,7 +36,7 @@ public class CartItem extends JPanel implements ActionListener {
         addButton.setBackground(new Color(0, 0, 0, 0));
         addButton.setForeground(new Color(0x395B64));
         addButton.setBorder(BorderFactory.createEmptyBorder());
-        addButton.setBounds(720,0,50,50);
+        addButton.setBounds(200,0,50,50);
         minusButton.addActionListener(this);
         minusButton.setFocusable(false);
         minusButton.setContentAreaFilled( false );
@@ -44,15 +44,15 @@ public class CartItem extends JPanel implements ActionListener {
         minusButton.setBackground(new Color(0, 0, 0, 0));
         minusButton.setForeground(new Color(0x395B64));
         minusButton.setBorder(BorderFactory.createEmptyBorder());
-        minusButton.setBounds(670,0,50,50);
-        title.setBounds(10,0,200,50);
+        minusButton.setBounds(300,0,50,50);
+        title.setBounds(10,0,180,50);
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD,20));
-        price.setBounds(500,0,200,50);
+        price.setBounds(350,0,200,50);
         price.setForeground(new Color(0x395B64));
         price.setFont(new Font("Poppins", Font.BOLD,20));
         counterLabel = new JLabel(Integer.toString(counter)); // create counter label and set text to 0
-        counterLabel.setBounds(630,0,50,50);
+        counterLabel.setBounds(275,0,50,50);
         counterLabel.setForeground(new Color(0x395B64));
         counterLabel.setFont(new Font("Poppins", Font.BOLD,20));
         this.add(minusButton);

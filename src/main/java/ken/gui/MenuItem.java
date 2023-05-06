@@ -20,7 +20,7 @@ public class MenuItem extends JPanel implements ActionListener {
         addButton = new JButton("+");
         this.setLayout(null);
         this.setBackground(new Color(0xF2F2F2));
-        this.setPreferredSize(new Dimension(1000,50));
+        this.setPreferredSize(new Dimension(720,50));
         this.setMaximumSize(new Dimension(1000,50)); // set maximum size to fixed value
         this.setMinimumSize(new Dimension(1000,50));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -31,7 +31,7 @@ public class MenuItem extends JPanel implements ActionListener {
         addButton.setBackground(new Color(0, 0, 0, 0));
         addButton.setForeground(new Color(0x395B64));
         addButton.setBorder(BorderFactory.createEmptyBorder());
-        addButton.setBounds(920,0,50,50);
+        addButton.setBounds(640,0,50,50);
         title.setBounds(10,0,200,50);
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD,20));

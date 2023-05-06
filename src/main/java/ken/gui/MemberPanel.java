@@ -14,8 +14,8 @@ public class MemberPanel extends JPanel implements ActionListener {
         this.setLayout(null);
         this.setBackground(new Color(0xF2F2F2));
         this.setPreferredSize(new Dimension(1000,50));
-        this.setMaximumSize(new Dimension(1200,100)); // set maximum size to fixed value
-        this.setMinimumSize(new Dimension(1200,100));
+        this.setMaximumSize(new Dimension(1280,100)); // set maximum size to fixed value
+        this.setMinimumSize(new Dimension(1280,100));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         editButton.addActionListener(this);
         editButton.setFocusable(false);
