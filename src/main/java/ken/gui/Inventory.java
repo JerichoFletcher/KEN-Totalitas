@@ -2,9 +2,15 @@ package ken.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Inventory extends JPanel {
+public class Inventory extends JPanel implements ActionListener {
     private JPanel inventory;
+    private JTextField inputFieldNama;
+    private JTextField inputFieldHarga;
+    private JComboBox catDrop;
+    private JButton searchButton;
     Inventory(){
         super();
         this.setSize(500,500);
@@ -33,8 +39,57 @@ public class Inventory extends JPanel {
             inventory.add(invPanel);
         }
         JScrollPane scrollPane = new JScrollPane(inventory);
-        scrollPane.setBounds(0, 50, 1260, 520);
+        scrollPane.setBounds(0, 90, 1260, 480);
         this.add(scrollPane);
+
+        inputFieldNama = new JTextField();
+        inputFieldNama.setBounds(0, 50, 400, 40);
+        inputFieldNama.setFont(new Font("Poppins", Font.PLAIN, 20));
+        this.add(inputFieldNama);
+        inputFieldHarga = new JTextField();
+        inputFieldHarga.setBounds(400, 50, 400, 40);
+        inputFieldHarga.setFont(new Font("Poppins", Font.PLAIN, 20));
+        this.add(inputFieldHarga);
+
+        String[] catList = new String[]{"","Makanan","Minuman"};
+
+        catDrop = new JComboBox(catList);
+        catDrop.setBackground(new Color(0xD9D9D9));
+        catDrop.setBounds(800,50,400,40);
+        catDrop.setFont(new Font("Poppins", Font.BOLD,15));
+        catDrop.setForeground(new Color(0x395B64));
+        catDrop.setFocusable(false);
+        this.add(catDrop);
+
+        searchButton = new JButton("Search");
+        searchButton.setBounds(1200, 50,  60, 40);
+        searchButton.setBackground(new Color(0xD9D9D9));
+        searchButton.setForeground(Color.black);
+        searchButton.setFont(new Font("Poppins", Font.BOLD,12));
+        searchButton.addActionListener(this);
+        searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.add(searchButton);
     }
 
+    public void actionPerformed(ActionEvent e){
+        if (e.getSource()==searchButton) {
+            int searchHarga= -1;
+            String searchNama = (String) inputFieldNama.getText();
+            String searchHargaString = (String) inputFieldHarga.getText();
+            String searchCat = (String) catDrop.getSelectedItem();
+            if (searchHargaString.length() !=0 ) {
+                try {
+                    searchHarga = Integer.parseInt(searchHargaString);
+                } catch (NumberFormatException ex) {
+                    System.out.println("Invalid integer input");
+                }
+            }
+            if (searchHarga != -1 || searchHargaString.length() == 0) {
+                System.out.println("Searching...");
+                System.out.println("Nama: " + searchNama);
+                System.out.println("Harga: " + searchHarga);
+                System.out.println("Kategori: " + searchCat);
+            }
+        }
+    }
 }
