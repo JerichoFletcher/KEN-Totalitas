@@ -9,12 +9,8 @@ import java.util.List;
 public class HistoryPanel extends JPanel implements ActionListener {
     private JButton showDetailBUtton;
     private String judul;
-<<<<<<< Updated upstream
-//    private List<CartItem> = listOfCartItem;
-    HistoryPanel(String judul){
-=======
+
     public HistoryPanel(String judul){
->>>>>>> Stashed changes
         super();
         JLabel title = new JLabel(judul);
         JLabel price = new JLabel("Rp " + 1000);
