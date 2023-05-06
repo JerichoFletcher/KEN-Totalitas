@@ -103,7 +103,7 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
             System.out.println("run main program");
             this.setVisible(false);
             DefaultLayar defLay = new DefaultLayar();
-            Class<? extends JPanel>[] contentClasses = new Class[] {Kasir.class, Members.class, History.class, Setting.class};
+            Class<? extends JPanel>[] contentClasses = new Class[] {Kasir.class, Members.class, Inventory.class, History.class, Setting.class};
             Tabs tabs = new Tabs();
             Menu menu = new Menu(tabs, contentClasses);
 
