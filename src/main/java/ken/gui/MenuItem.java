@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Image;
 
 public class MenuItem extends JPanel implements ActionListener {
     private JButton addButton;
@@ -15,14 +16,19 @@ public class MenuItem extends JPanel implements ActionListener {
         this.judul = judul;
         this.harga = harga;
         this.cart = cart;
+        ImageIcon image = new ImageIcon("./test.jpg");
+        Image scaledImage = image.getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
+        ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+
         JLabel title = new JLabel(judul);
+        title.setIcon((Icon) scaledImageIcon);
         JLabel price = new JLabel("Rp" + harga +"000");
         addButton = new JButton("+");
         this.setLayout(null);
         this.setBackground(new Color(0xF2F2F2));
-        this.setPreferredSize(new Dimension(720,50));
-        this.setMaximumSize(new Dimension(1000,50)); // set maximum size to fixed value
-        this.setMinimumSize(new Dimension(1000,50));
+        this.setPreferredSize(new Dimension(720,100));
+        this.setMaximumSize(new Dimension(1000,100)); // set maximum size to fixed value
+        this.setMinimumSize(new Dimension(1000,100));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         addButton.addActionListener(this);
         addButton.setFocusable(false);
