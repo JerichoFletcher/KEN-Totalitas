@@ -100,7 +100,7 @@ public class Kasir extends KENTab implements ActionListener {
         inventory.setLocation(0,0);
         cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
         for (int i = 1; i <= 15; i++) {
-            ken.gui.MenuItem menuItem = new MenuItem("Barang ke " + i, i, cart);
+            ken.gui.MenuItem menuItem = new MenuItem(i, "Barang ke " + i, 1000, cart);
             inventory.add(menuItem);
         }
 

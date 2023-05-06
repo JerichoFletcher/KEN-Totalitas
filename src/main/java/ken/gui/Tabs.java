@@ -38,6 +38,7 @@ public class Tabs extends JTabbedPane {
     public void addCustomTab(String title, Component component, int index){
         this.addTab(null, component);
         this.setTabComponentAt(index, new ButtonTabComponent(this, title));
+        System.out.println("Tabs" + this.getTabCount());
         Tabs.tabCount = this.getTabCount();
     }
 }

@@ -28,24 +28,24 @@ public class Menu extends JLabel {
 //        this.contentClasses = contentClasses;
         menuPop = new JPopupMenu();
         for (Map.Entry<String, Class<? extends KENTab>> entry : this.panels.entrySet()) {
-            try {
-                Class<? extends JPanel> contentClass = entry.getValue();
-                JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
-                String judulMenuItem = ((KENTab)contentPanel).tabName(); // gets the String key
-//                Class<? extends JPanel> value = entry.getValue(); // gets the Class<? extends JPanel> value
-                JMenuItem menuItem = new JMenuItem(judulMenuItem);
-                menuPop.add(menuItem);
-                menuItem.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                            Tabs.tabs.addCustomTab(judulMenuItem, contentPanel, tabs.getTabCount());
-                            Tabs.tabCount = tabs.getTabCount();
-                            Tabs.tabs.setSelectedComponent(contentPanel);
+            String judulMenuItem = entry.getKey(); // gets the String key
+            Class<? extends JPanel> value = entry.getValue(); // gets the Class<? extends JPanel> value
+            JMenuItem menuItem = new JMenuItem(judulMenuItem);
+            menuPop.add(menuItem);
+            menuItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        Class<? extends JPanel> contentClass = entry.getValue();
+                        JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
+                        Tabs.tabs.addCustomTab(judulMenuItem, contentPanel, tabs.getTabCount());
+                        Tabs.tabCount = tabs.getTabCount();
+                        Tabs.tabs.setSelectedComponent(contentPanel);
+                    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
+                             InvocationTargetException ex) {
+                        ex.printStackTrace();
                     }
-                });
-            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
-                InvocationTargetException ex) {
-                ex.printStackTrace();
-            }
+                }
+            });
         }
 
         this.setVisible(true);

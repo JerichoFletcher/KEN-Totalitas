@@ -16,7 +16,7 @@ public class MenuItem extends JPanel implements ActionListener {
     private int harga;
     private int id;
 
-    public MenuItem(String judul, int harga, JPanel cart){
+    public MenuItem(int id, String judul, int harga, JPanel cart){
         super();
         this.judul = judul;
         this.harga = harga;
@@ -60,6 +60,8 @@ public class MenuItem extends JPanel implements ActionListener {
         boolean found = false;
         if (e.getSource() == addButton) {
             CartItem cartItem = new CartItem(id, judul, harga, cart);
+            System.out.println(cartItem.getID());
+            System.out.println(id);
             for (CartItem item : Kasir.listOfCartItem) {
                 if (item.getID() == id) {
                     item.incrementCounter();
