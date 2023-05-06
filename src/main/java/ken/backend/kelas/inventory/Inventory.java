@@ -11,6 +11,16 @@ public class Inventory {
     public Inventory() {
         this.listBarang = new HashMap<>();
     }
+    public Inventory(ArrayList<Barang> listBarang) {
+        this.listBarang = listBarang;
+    }
+
+    public Inventory( Inventory inv) {
+        this.listBarang = new ArrayList<Barang>();
+        for (Barang barang: inv.listBarang) {
+            addBarang(barang);
+        }
+    }
 
     public int getBanyakBarang() {
         return listBarang.size();

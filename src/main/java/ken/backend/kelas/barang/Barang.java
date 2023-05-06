@@ -19,9 +19,10 @@ public class Barang {
     @Setter
     private String kategori;
     @Getter
+    @Setter
     private String gambar;
 
-    public Barang(int s, String n, int hj, int hb, String k, String g){
+    public Barang(String n, int s, int hj, int hb, String k, String g){
         this.stok = s;
         this.namaBarang = n;
         this.hargaBarang = hj;
@@ -44,5 +45,3 @@ public class Barang {
         this.hargaBeliBarang = Math.max(s, 0);
     }
 }
-
-
