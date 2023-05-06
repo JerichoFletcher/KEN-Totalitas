@@ -1,17 +1,26 @@
 package ken.gui.tab;
 
 import ken.gui.HistoryPanel;
+import ken.gui.UnduhDetil;
+import ken.gui.UnduhHistory;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class History extends KENTab implements ActionListener {
     private JPanel history;
     private JButton unduhButton;
+    private List<String> listOfName;
+    private List<Integer>  listOfPrice;
     public History(){
         super();
+        listOfPrice = new ArrayList<Integer>();
+        listOfName = new ArrayList<String>();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
@@ -52,6 +61,8 @@ public class History extends KENTab implements ActionListener {
         for (int i = 1; i <= 20; i++) {
             HistoryPanel historyPanel = new HistoryPanel("nama " + i);
             history.add(historyPanel);
+            listOfName.add("nama " + i);
+            listOfPrice.add(1000);
         }
         JScrollPane scrollPane = new JScrollPane(history);
         scrollPane.setBounds(0, 50, 1260, 520);
@@ -61,6 +72,9 @@ public class History extends KENTab implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == unduhButton){
             System.out.println("unduh dummy");
+            UnduhHistory unduhHistory = new UnduhHistory(listOfName, listOfPrice);
+            Thread cetakBill = new Thread(unduhHistory);
+            cetakBill.run();
         }
     }
 }

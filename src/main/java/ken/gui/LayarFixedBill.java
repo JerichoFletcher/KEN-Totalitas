@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class LayarFixedBill extends JPanel implements ActionListener {
@@ -12,11 +14,16 @@ public class LayarFixedBill extends JPanel implements ActionListener {
     private JButton cetakButton;
     private String customer;
     private List<CartItem> listOfCartItem;
+    private List<String> listOfName;
+    private ArrayList<Integer> listOfAmount;
+
 
     public LayarFixedBill(String customer, List<CartItem> listOfCartItem) {
         super();
         this.listOfCartItem = listOfCartItem;
         this.customer = customer;
+        listOfAmount = new ArrayList<Integer>();
+        listOfName = new ArrayList<String>();
         this.setVisible(true);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
@@ -42,6 +49,8 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         for (int i = 0; i <= listOfCartItem.size() - 1; i++) {
             String judulBarang = listOfCartItem.get(i).getJudul();
             int jmlhBarang = listOfCartItem.get(i).getCounter();
+            listOfName.add(judulBarang);
+            listOfAmount.add(jmlhBarang);
             JLabel item = new JLabel(judulBarang + "    " + jmlhBarang + 'x');
             item.setForeground(Color.white);
             item.setFont(new Font("Poppins", Font.BOLD,20));
@@ -88,6 +97,13 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         }
         if(e.getSource() == cetakButton) {
             System.out.println("cetak dummy");
+            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount);
+            Thread cetakBill = new Thread(unduhDetil);
+            cetakBill.run();
+
         }
     }
+
+
+
 }
