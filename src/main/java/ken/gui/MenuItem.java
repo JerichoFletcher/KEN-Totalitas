@@ -37,7 +37,7 @@ public class MenuItem extends JPanel implements ActionListener {
         addButton.setBackground(new Color(0, 0, 0, 0));
         addButton.setForeground(new Color(0x395B64));
         addButton.setBorder(BorderFactory.createEmptyBorder());
-        addButton.setBounds(640,0,50,50);
+        addButton.setBounds(640,20,50,50);
         title.setBounds(10,0,200,50);
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD,20));
