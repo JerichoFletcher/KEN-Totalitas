@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class BillItem {
+    
     @Getter
     private String namaBarang;
     @Getter
@@ -12,4 +13,9 @@ public class BillItem {
     @Getter
     @Setter
     private int hargaBarang;
+    public BillItem(String s, int jd, int hb){
+        this.namaBarang = s;
+        this.jumlahDibeli = jd;
+        this.hargaBarang = hb;
+    }
 }
