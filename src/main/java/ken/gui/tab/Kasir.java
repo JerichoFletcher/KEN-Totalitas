@@ -30,7 +30,7 @@ public class Kasir extends KENTab implements ActionListener {
     private JTextField inputFieldNama;
     private JTextField inputFieldHarga;
     private JComboBox catDrop;
-    public static List<CartItem> listOfCartItem = new ArrayList<>();
+    private List<CartItem> listOfCartItem = new ArrayList<>();
 
     public Kasir(){
         this.setSize(500,500);
@@ -100,7 +100,7 @@ public class Kasir extends KENTab implements ActionListener {
         inventory.setLocation(0,0);
         cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
         for (int i = 1; i <= 15; i++) {
-            ken.gui.MenuItem menuItem = new MenuItem(i, "Barang ke " + i, 1000, cart);
+            ken.gui.MenuItem menuItem = new MenuItem(i, "Barang ke " + i, i, cart, this);
             inventory.add(menuItem);
         }
 
@@ -196,6 +196,14 @@ public class Kasir extends KENTab implements ActionListener {
         this.add(scrollPane);
         this.add(saveBillButton);
         JPanel item1 = new JPanel();
+    }
+
+    public List<CartItem> getCart(){
+        return listOfCartItem;
+    }
+
+    public void addCartItem(CartItem cartItem){
+        listOfCartItem.add(cartItem);
     }
 
     public void actionPerformed(ActionEvent e){
