@@ -13,6 +13,10 @@ public class Kasir extends JPanel implements ActionListener {
     private JButton saveBillButton;
     private JTabbedPane tabbedPane;
     private Tabs tabs;
+    private JComboBox pilihHistory;
+
+    private JButton getHistoryButton;
+    private String selectedHistory;
     Kasir(){
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -47,6 +51,29 @@ public class Kasir extends JPanel implements ActionListener {
         headerCart.add(cartText);
         pricePanel.setBackground(new Color(0xD9D9D9));
         pricePanel.setBounds(760,475,490, 40);
+
+
+        String[] historyList = new String[]{"","History1", "History2"};
+
+        pilihHistory = new JComboBox(historyList);
+        pilihHistory.setBackground(new Color(0xD9D9D9));
+        pilihHistory.setBounds(760,55,350,50);
+        pilihHistory.setFont(new Font("Poppins", Font.BOLD,20));
+        pilihHistory.setForeground(new Color(0x395B64));
+        pilihHistory.setFocusable(false);
+        this.add(pilihHistory);
+
+        selectedHistory = (String) pilihHistory.getSelectedItem();
+
+        getHistoryButton = new JButton("Get Bill");
+        getHistoryButton.setBounds(1110, 55,  140, 50);
+        getHistoryButton.setBackground(new Color(0xD9D9D9));
+        getHistoryButton.setForeground(Color.black);
+        getHistoryButton.setFont(new Font("Poppins", Font.BOLD,20));
+        getHistoryButton.addActionListener(this);
+        getHistoryButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.add(getHistoryButton);
+
         inventory.setBackground(new Color(0xFFFFFF));
         inventory.setLayout(new BoxLayout(inventory, BoxLayout.Y_AXIS));
         inventory.setLocation(0,0);
@@ -58,7 +85,7 @@ public class Kasir extends JPanel implements ActionListener {
         JScrollPane scrollPane = new JScrollPane(inventory);
         JScrollPane scrollPane1 = new JScrollPane(cart);
         scrollPane.setBounds(10, 55, 740, 520);
-        scrollPane1.setBounds(760, 55, 490, 420);
+        scrollPane1.setBounds(760, 105, 490, 370);
         checkoutButton = new JButton("Checkout");
         checkoutButton.setBounds(950, 515,  300, 60);
         checkoutButton.setBackground(new Color(0xD9D9D9));
@@ -94,6 +121,13 @@ public class Kasir extends JPanel implements ActionListener {
             Tabs.tabs.setSelectedComponent(layarCheckout);
         } else if (e.getSource()==saveBillButton) {
             System.out.println("save bill");
+        } else if (e.getSource()==getHistoryButton) {
+            selectedHistory = (String) pilihHistory.getSelectedItem();
+            if (selectedHistory.length() != 0) {
+                System.out.println("get history" + selectedHistory);
+            } else {
+                System.out.println("Tidak memilih history");
+            }
         }
     }
 
