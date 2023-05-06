@@ -11,12 +11,16 @@ public class Kasir extends JPanel implements ActionListener {
     private JButton checkoutButton;
 
     private JButton saveBillButton;
+    private JButton searchButton;
     private JTabbedPane tabbedPane;
     private Tabs tabs;
     private JComboBox pilihHistory;
 
     private JButton getHistoryButton;
     private String selectedHistory;
+    private JTextField inputFieldNama;
+    private JTextField inputFieldHarga;
+    private JComboBox catDrop;
     Kasir(){
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -35,7 +39,7 @@ public class Kasir extends JPanel implements ActionListener {
         inventory = new JPanel();
         this.tabs = tabs;
         // Set the background and size of the header panel
-        JLabel menuText = new JLabel("Menu");
+        JLabel menuText = new JLabel("Items");
         JLabel cartText = new JLabel("Cart");
         menuText.setFont(new Font("Poppins", Font.BOLD,15));
         menuText.setForeground(Color.black);
@@ -82,9 +86,39 @@ public class Kasir extends JPanel implements ActionListener {
             MenuItem menuItem = new MenuItem("Barang ke " + i, i, cart);
             inventory.add(menuItem);
         }
+
+        inputFieldNama = new JTextField();
+        inputFieldNama.setBounds(10, 55, 230, 40);
+        inputFieldNama.setFont(new Font("Poppins", Font.PLAIN, 20));
+        this.add(inputFieldNama);
+        inputFieldHarga = new JTextField();
+        inputFieldHarga.setBounds(240, 55, 230, 40);
+        inputFieldHarga.setFont(new Font("Poppins", Font.PLAIN, 20));
+        this.add(inputFieldHarga);
+
+        String[] catList = new String[]{"","Makanan","Minuman"};
+
+        catDrop = new JComboBox(catList);
+        catDrop.setBackground(new Color(0xD9D9D9));
+        catDrop.setBounds(470,55,230,40);
+        catDrop.setFont(new Font("Poppins", Font.BOLD,15));
+        catDrop.setForeground(new Color(0x395B64));
+        catDrop.setFocusable(false);
+        this.add(catDrop);
+
+        searchButton = new JButton("Search");
+        searchButton.setBounds(700, 55,  50, 40);
+        searchButton.setBackground(new Color(0xD9D9D9));
+        searchButton.setForeground(Color.black);
+        searchButton.setFont(new Font("Poppins", Font.BOLD,12));
+        searchButton.addActionListener(this);
+        searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.add(searchButton);
+
+
         JScrollPane scrollPane = new JScrollPane(inventory);
         JScrollPane scrollPane1 = new JScrollPane(cart);
-        scrollPane.setBounds(10, 55, 740, 520);
+        scrollPane.setBounds(10, 95, 740, 480);
         scrollPane1.setBounds(760, 105, 490, 370);
         checkoutButton = new JButton("Checkout");
         checkoutButton.setBounds(950, 515,  300, 60);
@@ -127,6 +161,24 @@ public class Kasir extends JPanel implements ActionListener {
                 System.out.println("get history" + selectedHistory);
             } else {
                 System.out.println("Tidak memilih history");
+            }
+        } else if (e.getSource()==searchButton) {
+            int searchHarga= -1;
+            String searchNama = (String) inputFieldNama.getText();
+            String searchHargaString = (String) inputFieldHarga.getText();
+            String searchCat = (String) catDrop.getSelectedItem();
+            if (searchHargaString.length() !=0 ) {
+                try {
+                    searchHarga = Integer.parseInt(searchHargaString);
+                } catch (NumberFormatException ex) {
+                    System.out.println("Invalid integer input");
+                }
+            }
+            if (searchHarga != -1 || searchHargaString.length() == 0) {
+                System.out.println("Searching...");
+                System.out.println("Nama: " + searchNama);
+                System.out.println("Harga: " + searchHarga);
+                System.out.println("Kategori: " + searchCat);
             }
         }
     }
