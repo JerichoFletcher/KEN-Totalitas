@@ -17,16 +17,18 @@ public class MenuItem extends JPanel implements ActionListener {
     private int harga;
     private int id;
     private String imagePath;
+    private Kasir kasir;
 
 
-    public MenuItem(int id, String judul, int harga, JPanel cart){
+    public MenuItem(int id, String judul, int harga, JPanel cart, Kasir kasir){
         super();
         this.judul = judul;
         this.harga = harga;
         this.cart = cart;
         this.id = id;
+        this.kasir = kasir;
         JLabel title = new JLabel(judul);
-        this.harga = 20000;
+        this.harga = harga;
         imagePath = "./src/main/java/ken/gui/test2.jpg";
         File imageFile = new File(imagePath);
         if (imageFile.exists()) {
@@ -73,10 +75,11 @@ public class MenuItem extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         boolean found = false;
         if (e.getSource() == addButton) {
+            System.out.println(harga);
             CartItem cartItem = new CartItem(id, judul, harga, cart);
             System.out.println(cartItem.getID());
             System.out.println(id);
-            for (CartItem item : Kasir.listOfCartItem) {
+            for (CartItem item : kasir.getCart()) {
                 if (item.getID() == id) {
                     item.incrementCounter();
                     found = true;
@@ -84,7 +87,7 @@ public class MenuItem extends JPanel implements ActionListener {
                 }
             }
             if (!found) {
-                Kasir.listOfCartItem.add(cartItem);
+                kasir.addCartItem(cartItem);
                 cart.add(cartItem);
             }
             cart.revalidate();
