@@ -25,7 +25,7 @@ public class MemberPanel extends JPanel implements ActionListener {
         editButton.setForeground(new Color(0x395B64));
         editButton.setBorder(BorderFactory.createEmptyBorder());
         editButton.setBounds(1020,0,100,50);
-        title.setBounds(10,0,200,50);
+        title.setBounds(10,0,500,50);
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD,20));
         this.add(title);
