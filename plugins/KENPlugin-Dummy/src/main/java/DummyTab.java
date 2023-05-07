@@ -1,21 +1,20 @@
-import ken.backend.plugin.CallOnLoad;
-import ken.gui.TabManager;
+import ken.backend.plugin.AddMenuTab;
 import ken.gui.tab.KENTab;
-import ken.util.UID;
 
 import javax.swing.*;
 import java.awt.*;
 
+@AddMenuTab(path = "tabs/dummy")
 public class DummyTab extends KENTab{
     @Override
     public String tabName(){
         return "Dummy";
     }
 
-    @CallOnLoad(namespace = KENPluginDummy.NAMESPACE)
-    public static void addDummyTab() throws Exception{
-        TabManager.add(UID.of(KENPluginDummy.NAMESPACE, "tabs", "dummy"), DummyTab.class);
-    }
+//    @CallOnLoad(namespace = KENPluginDummy.NAMESPACE)
+//    public static void addDummyTab() throws Exception{
+//        TabManager.add(UID.of(KENPluginDummy.NAMESPACE, "tabs", "dummy"), DummyTab.class);
+//    }
 
     public DummyTab(){
         this.setSize(500,500);

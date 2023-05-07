@@ -1,11 +1,11 @@
 package kontest;
 
+import ken.backend.controller.holder.*;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.anggota.*;
 import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.BillHolder;
 import ken.backend.kelas.bill.BillItem;
-import ken.backend.kelas.holder.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -93,7 +93,7 @@ public class AdapterTest {
         AdapterJSON adapter = new AdapterJSON();;
         MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
         System.out.println("jumlah " + MemberHolder.instance().getBanyakMember());
-        Member newMember = new Member("Asu Meme","09988776");
+        Member newMember = new Member("Asu Meme","09988776", 1);
         MemberHolder.instance().addMember(newMember);
         MemberHolder.instance().write(getClass().getResource("/database/member2.json").toURI(),adapter);
     }

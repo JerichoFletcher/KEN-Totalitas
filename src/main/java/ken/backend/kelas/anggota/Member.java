@@ -16,8 +16,8 @@ public class Member extends Customer {
     @Setter
     private boolean active;
 
-    public Member(String name, String phoneNumber) {
-        super();
+    public Member(String name, String phoneNumber, int id) {
+        super(id);
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.points = 0;
