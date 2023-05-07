@@ -367,6 +367,7 @@ public class Kasir extends KENTab implements ActionListener {
 
 
                 setScrollPane(getScrollPane());
+                updatePriceText();
             } else {
                 System.out.println("No Selected History, Setting to default");
                 inventory.removeAll();
@@ -383,6 +384,7 @@ public class Kasir extends KENTab implements ActionListener {
                     inventory.add(menuItem);
                 }
                 setScrollPane(getScrollPane());
+                updatePriceText();
             }
         } else if (e.getSource()==searchButton) {
             float searchHarga= -1;

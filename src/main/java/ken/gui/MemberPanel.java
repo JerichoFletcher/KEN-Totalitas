@@ -1,6 +1,7 @@
 package ken.gui;
 
 import ken.backend.kelas.anggota.Member;
+import ken.gui.HistoryMember;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ public class MemberPanel extends JPanel implements ActionListener {
     private String phone;
     private String memberType;
     private boolean activeType;
+    private JButton historyButton;
     public MemberPanel(int iid, String judul, String iphone, String imemberType, boolean iactiveType){
         super();
         this.id = iid;
@@ -25,11 +27,12 @@ public class MemberPanel extends JPanel implements ActionListener {
         JLabel activeT = new JLabel();
         JLabel tipeMember = new JLabel();
         editButton = new JButton("EDIT");
+        historyButton = new JButton("HISTORY");
         this.setLayout(null);
         this.setBackground(new Color(0xF2F2F2));
-        this.setPreferredSize(new Dimension(1000,50));
-        this.setMaximumSize(new Dimension(1280,100)); // set maximum size to fixed value
-        this.setMinimumSize(new Dimension(1280,100));
+        this.setPreferredSize(new Dimension(1000,70));
+        this.setMaximumSize(new Dimension(1280,70)); // set maximum size to fixed value
+        this.setMinimumSize(new Dimension(1280,70));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         editButton.addActionListener(this);
         editButton.setFocusable(false);
@@ -39,6 +42,14 @@ public class MemberPanel extends JPanel implements ActionListener {
         editButton.setForeground(new Color(0x395B64));
         editButton.setBorder(BorderFactory.createEmptyBorder());
         editButton.setBounds(1020,25,100,50);
+        historyButton.addActionListener(this);
+        historyButton.setFocusable(false);
+        historyButton.setContentAreaFilled( false );
+        historyButton.setFont(new Font("Poppins", Font.BOLD,20));
+        historyButton.setBackground(new Color(0, 0, 0, 0));
+        historyButton.setForeground(new Color(0x395B64));
+        historyButton.setBorder(BorderFactory.createEmptyBorder());
+        historyButton.setBounds(910,25,100,50);
         title.setBounds(10,25,500,50);
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD,20));
@@ -65,6 +76,7 @@ public class MemberPanel extends JPanel implements ActionListener {
         this.add(tipeMember);
         this.add(title);
         this.add(editButton);
+        this.add(historyButton);
     }
 
     public void actionPerformed(ActionEvent e){
@@ -73,6 +85,11 @@ public class MemberPanel extends JPanel implements ActionListener {
             EditMember layarEM = new EditMember(id,nama,phone,memberType,activeType);
             Tabs.tabs.addCustomTab("Edit Member", layarEM, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarEM);
+        } else if (e.getSource() == historyButton) {
+            System.out.println("Redirecting to History");
+            HistoryMember layarHM = new HistoryMember(id, nama);
+            Tabs.tabs.addCustomTab("History Member", layarHM, Tabs.tabCount);
+            Tabs.tabs.setSelectedComponent(layarHM);
         }
     }
 }
