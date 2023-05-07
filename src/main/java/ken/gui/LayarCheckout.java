@@ -36,9 +36,9 @@ public class LayarCheckout extends JPanel implements ActionListener{
     private JTextField inputField;
     private List<CartItem> listOfCartItem;
     private int id;
-    private int total;
+    private float total;
 
-    public LayarCheckout(List<CartItem> listOfCartItem, int total){
+    public LayarCheckout(List<CartItem> listOfCartItem, float total){
         super();
         this.listOfCartItem = listOfCartItem;
         this.setVisible(true);

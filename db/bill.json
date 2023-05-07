@@ -1,53 +1,15 @@
 {
   "listBill": {
-    "0": {
-      "listBarang": {
-        "0": {
-          "id": 1,
-          "namaBarang": "Buku Tulis",
-          "jumlahDibeli": 10,
-          "hargaBarang": 1000
-        },
-        "1": {
-          "id": 2,
-          "namaBarang": "Pensil",
-          "jumlahDibeli": 2,
-          "hargaBarang": 2000
-        }
-      },
-      "idBill": 0,
-      "idCustomer": 2,
-      "totalHarga": 14000
-    },
-    "1": {
-      "listBarang": {
-        "0": {
-          "id": 1,
-          "namaBarang": "Buku Tulis",
-          "jumlahDibeli": 2,
-          "hargaBarang": 1000
-        },
-        "1": {
-          "id": 2,
-          "namaBarang": "Pensil",
-          "jumlahDibeli": 3,
-          "hargaBarang": 2000
-        }
-      },
-      "idBill": 1,
-      "idCustomer": 3,
-      "totalHarga": 8000
-    },
     "844554853": {
       "listBarang": {
         "0": {
-          "id": 1,
+          "id": 0,
           "namaBarang": "Buku Tulis",
           "jumlahDibeli": 3,
           "hargaBarang": 15000
         },
         "1": {
-          "id": 2,
+          "id": 1,
           "namaBarang": "Pensil",
           "jumlahDibeli": 2,
           "hargaBarang": 5000
@@ -60,7 +22,7 @@
     "804966222": {
       "listBarang": {
         "0": {
-          "id": 1,
+          "id": 0,
           "namaBarang": "Buku Tulis",
           "jumlahDibeli": 5,
           "hargaBarang": 15000

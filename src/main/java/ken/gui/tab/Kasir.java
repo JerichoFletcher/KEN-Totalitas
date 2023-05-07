@@ -42,7 +42,7 @@ public class Kasir extends KENTab implements ActionListener {
     private JTextField inputFieldHarga;
     private JTextField inputFieldKategori;
     private List<Map.Entry<Integer, String>> allBill = new ArrayList<>();
-    private int price;
+    private float price;
     private JLabel priceText;
 //    private JPanel pricePanel;
     private List<CartItem> listOfCartItem = new ArrayList<>();
@@ -264,11 +264,11 @@ public class Kasir extends KENTab implements ActionListener {
         listOfCartItem.remove(cartItem);
     }
 
-    public void setPriceText(int price){
+    public void setPriceText(float price){
         this.price = price;
         priceText.setText(Vars.mataUang + " " + price);
     }
-    public int getPriceText(){
+    public float getPriceText(){
         return this.price;
     }
 

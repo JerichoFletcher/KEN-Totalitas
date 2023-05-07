@@ -44,10 +44,10 @@ public class Controller {
 //        URI uri = URI.create("file://" + "D:/Coding/java/KEN-Totalitas/db");
 //        URI uri = URI.create("file://" + "D:/Coding/java/KEN-Totalitas/db");
 
-        obj.load(new File(Vars.path+whatData+"."+Vars.extension).toURI(),adapterList.get(Vars.extension));
+        obj.load(new File(Vars.path+"/"+whatData+"."+Vars.extension).toURI(),adapterList.get(Vars.extension));
     }
     public void writeData(Holder obj, String whatData) throws URISyntaxException, IOException {
-        obj.write(new File(Vars.path+whatData+"."+Vars.extension).toURI(),adapterList.get(Vars.extension));
+        obj.write(new File(Vars.path+"/"+whatData+"."+Vars.extension).toURI(),adapterList.get(Vars.extension));
     }
 
 

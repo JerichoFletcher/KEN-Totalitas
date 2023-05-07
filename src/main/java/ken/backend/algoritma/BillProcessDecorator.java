@@ -12,7 +12,7 @@ public abstract class BillProcessDecorator implements BillProcess{
     }
 
     @Override
-    public int process(Map<Integer, BillItem> listBarang){
+    public float process(Map<Integer, BillItem> listBarang){
         return wrappee.process(listBarang);
     }
 }

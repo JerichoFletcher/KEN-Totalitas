@@ -3,11 +3,13 @@
     "0": {
       "listBarang": {
         "0": {
+          "id": 0,
           "namaBarang": "Pensil",
           "jumlahDibeli": 10,
           "hargaBarang": 1000
         },
         "1": {
+          "id": 1,
           "namaBarang": "Penghapus",
           "jumlahDibeli": 2,
           "hargaBarang": 2000
@@ -20,11 +22,13 @@
     "1": {
       "listBarang": {
         "0": {
+          "id": 0,
           "namaBarang": "Pensil",
           "jumlahDibeli": 2,
           "hargaBarang": 1000
         },
         "1": {
+          "id": 1,
           "namaBarang": "Penghapus",
           "jumlahDibeli": 3,
           "hargaBarang": 2000
@@ -37,10 +41,14 @@
     "844554853": {
       "listBarang": {
         "0": {
+          "id": 0,
+          "namaBarang": "Sapi Emas",
           "jumlahDibeli": 3,
           "hargaBarang": 15000
         },
         "1": {
+          "id": 1,
+          "namaBarang": "Kucing Hamil",
           "jumlahDibeli": 2,
           "hargaBarang": 5000
         }
@@ -58,10 +66,14 @@
     "912155221": {
       "listBarang": {
         "0": {
+          "id": 0,
+          "namaBarang" : "Sapiderman",
           "jumlahDibeli": 5,
           "hargaBarang": 15000
         },
         "1": {
+          "id": 1,
+          "namaBarang" : "Papa Aku Mau Pulang - Best Seller",
           "jumlahDibeli": 4,
           "hargaBarang": 5000
         }
@@ -73,6 +85,8 @@
     "1858364027": {
       "listBarang": {
         "0": {
+          "id": 0,
+          "namaBarang" : "Spatula",
           "jumlahDibeli": 5,
           "hargaBarang": 15000
         }
@@ -84,6 +98,8 @@
     "467219941": {
       "listBarang": {
         "0": {
+          "id": 0,
+          "namaBarang" : "Sapino",
           "jumlahDibeli": 4,
           "hargaBarang": 5000
         }
@@ -95,6 +111,8 @@
     "1429884164": {
       "listBarang": {
         "0": {
+          "id": 0,
+          "namaBarang": "Pensil",
           "jumlahDibeli": 3,
           "hargaBarang": 1000
         }
@@ -106,6 +124,7 @@
     "1120690037": {
       "listBarang": {
         "0": {
+          "id": 0,
           "namaBarang": "Pensil",
           "jumlahDibeli": 6,
           "hargaBarang": 1000
@@ -114,18 +133,17 @@
       "idBill": 1120690037,
       "idCustomer": 7,
       "totalHarga": 6000
-      "totalHarga": {
-        "IDR": 6000
-      }
     },
     "572657121": {
       "listBarang": {
         "0": {
+          "id": 0,
           "namaBarang": "Buku Tulis",
           "jumlahDibeli": 7,
           "hargaBarang": 5000
         },
         "1": {
+          "id": 1,
           "namaBarang": "Pensil",
           "jumlahDibeli": 3,
           "hargaBarang": 1000
@@ -133,18 +151,18 @@
       },
       "idBill": 572657121,
       "idCustomer": 0,
-      "totalHarga": {
-        "IDR": 38000
-      }
+      "totalHarga": 38000
     },
     "827941309": {
       "listBarang": {
         "0": {
+          "id": 0,
           "namaBarang": "Buku Tulis",
           "jumlahDibeli": 7,
           "hargaBarang": 5000
         },
         "1": {
+          "id": 1,
           "namaBarang": "Pensil",
           "jumlahDibeli": 3,
           "hargaBarang": 1000
@@ -152,9 +170,7 @@
       },
       "idBill": 827941309,
       "idCustomer": 9,
-      "totalHarga": {
-        "IDR": 38000
-      }
+      "totalHarga": 38000
     }
   }
 }

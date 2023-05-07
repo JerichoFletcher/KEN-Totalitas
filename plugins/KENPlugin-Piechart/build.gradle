@@ -16,6 +16,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     implementation files('../../build/libs/KEN-Totalitas-1.0-SNAPSHOT.jar')
+    implementation 'org.jfree:jfreechart:1.5.3'
 }
 
 test {

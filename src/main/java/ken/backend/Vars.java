@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Vars{
     public static final String defaultNamespace = "ken";
-    public static String path = "./db/";
+    public static String path = "./db";
     public static String extension = "json";
     public static String mataUang = "IDR";
 

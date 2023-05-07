@@ -19,12 +19,12 @@ public class CartItem extends JPanel implements ActionListener {
     private float harga;
     private int id;
     private int counter; // added counter variable
-    private int priceHolder;
+    private float priceHolder;
     private Kasir kasir;
     private MenuItem correspondingMI;
     private JLabel counterLabel; // added counter label
 
-    public CartItem(int id, String judul, float harga, JPanel cart, Kasir kasir, int priceHolder, MenuItem menuItem){
+    public CartItem(int id, String judul, float harga, JPanel cart, Kasir kasir, float priceHolder, MenuItem menuItem){
         super();
         this.priceHolder = priceHolder;
         this.judul = judul;
