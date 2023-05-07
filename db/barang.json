@@ -1,14 +1,5 @@
 {
   "listBarang": {
-    "1": {
-      "id": 1,
-      "stok": 1,
-      "namaBarang": "jovan",
-      "hargaBarang": 1.0E15,
-      "hargaBeliBarang": 1.0E16,
-      "kategori": "orang",
-      "gambar": "./asset/buku_tulis.jpg"
-    },
     "2": {
       "id": 2,
       "stok": 1000,
@@ -90,22 +81,22 @@
       "kategori": "Aksesoris",
       "gambar": "./assets/dealDown.png"
     },
-    "1372871775": {
-      "id": 1372871775,
-      "stok": 1,
-      "namaBarang": "air",
-      "hargaBarang": 5000.0,
-      "hargaBeliBarang": 2000.0,
-      "kategori": "minuman",
+    "1126476482": {
+      "id": 1126476482,
+      "stok": 100,
+      "namaBarang": "jovan",
+      "hargaBarang": 1000.0,
+      "hargaBeliBarang": 100000.0,
+      "kategori": "orang",
       "gambar": ""
     },
-    "7318871": {
-      "id": 7318871,
-      "stok": 10,
-      "namaBarang": "Nama Barang",
-      "hargaBarang": 10000.0,
-      "hargaBeliBarang": 1000.0,
-      "kategori": "apa",
+    "2086956640": {
+      "id": 2086956640,
+      "stok": 1,
+      "namaBarang": "jovan",
+      "hargaBarang": 123.0,
+      "hargaBeliBarang": 1234.0,
+      "kategori": "orang",
       "gambar": ""
     }
   }

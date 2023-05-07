@@ -290,7 +290,17 @@ public class EditInventoryItem extends JPanel implements ActionListener{
                 imagelinkLabel.setText("Selected file: " + imgurl);
             }
         } else if (e.getSource() == deleteButton) {
-            System.out.println("Delete Dummy!");
+            try {
+                Controller.instance().fetchData(InventoryHolder.instance(), "barang");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            InventoryHolder.instance().removeBarang(id);
+            try {
+                Controller.instance().writeData(InventoryHolder.instance(), "barang");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }

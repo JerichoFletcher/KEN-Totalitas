@@ -12,13 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UnduhDetil implements Runnable{
+    private  int id;
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
     private float total;
-    UnduhDetil(List<String> listOfName, ArrayList<Integer> listOfAMount, float total){
+    UnduhDetil(List<String> listOfName, ArrayList<Integer> listOfAMount, float total, int id){
         this.listOfName = listOfName;
         this.listOfAmount = listOfAMount;
         this.total = total;
+        this.id = id;
     }
 
     @Override
@@ -48,7 +50,7 @@ public class UnduhDetil implements Runnable{
             contentStream.showText("" + total);
             contentStream.endText();
             contentStream.close();
-            document.save("/home/arieljovananda/Documents/KEN-Totalitas/test/output.pdf");
+            document.save("./test/Bill " + id);
             document.close();
         } catch (IOException e) {
             e.printStackTrace();

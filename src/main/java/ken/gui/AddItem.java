@@ -22,7 +22,6 @@ import java.net.URISyntaxException;
 public class AddItem extends JPanel implements ActionListener{
     private JPanel panelEdit;
     private JButton editButton;
-    private JButton deleteButton;
     private JTextField textField;
     private JTextField textField2;
     private JTextField textField3;
@@ -178,16 +177,6 @@ public class AddItem extends JPanel implements ActionListener{
         editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
         editButton.setBounds(950,440,200,90);
 
-        deleteButton = new JButton();
-        deleteButton.addActionListener(this);
-        deleteButton.setFocusable(false);
-        deleteButton.setContentAreaFilled( false );
-        deleteButton.setText("DELETE");
-        deleteButton.setFont(new Font("Poppins", Font.BOLD,40));
-        deleteButton.setBackground(new Color(0, 0, 0, 0));
-        deleteButton.setForeground(new Color(0x395B64));
-        deleteButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        deleteButton.setBounds(100,440,200,90);
 
         imageButton = new JButton("Choose Image");
         imageButton.setBounds(650, 250,  550, 50);
@@ -208,37 +197,30 @@ public class AddItem extends JPanel implements ActionListener{
         panelEdit.add(textField4);
         panelEdit.add(textField5);
         panelEdit.add(editButton);
-        panelEdit.add(deleteButton);
         panelEdit.add(imageButton);
         panelEdit.add(imagelinkLabel);
 
     }
 
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == editButton){
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == editButton) {
             try {
-                System.out.println("Adding Item...");
-                System.out.println("Nama : " + textField.getText());
-                System.out.println("Stok : " + textField2.getText());
-                System.out.println("Harga : " + textField3.getText());
-                System.out.println("Harga Beli : " + textField4.getText());
-                System.out.println("Kategori : " + textField5.getText());
-                System.out.println("Image URL : " + imgurl);
                 Controller.instance().fetchData(InventoryHolder.instance(), "barang");
-                String addName = textField.getText();
-                String addStok = textField2.getText();
-                String addHarga = textField3.getText();
-                String addHargaBeli = textField4.getText();
-                String addKategori = textField5.getText();
-                if (addName != "Nama Barang" || addName.length() != 0
-                        || addStok != "Stok" || addStok.length() != 0 ||
-                        addHarga != "Harga" || addHarga.length() != 0 ||
-                        addHargaBeli != "Harga Beli" || addHargaBeli.length() != 0||
-                        addKategori != "Kategori" || addKategori.length() != 0)  {
-                    Barang newBarang = new Barang(addName, Integer.parseInt(addStok), Float.parseFloat(addHarga),
-                            Float.parseFloat(addHargaBeli), addKategori, imgurl);
+                String addName = textField.getText().trim();
+                String addStok = textField2.getText().trim();
+                String addHarga = textField3.getText().trim();
+                String addHargaBeli = textField4.getText().trim();
+                String addKategori = textField5.getText().trim();
+                if (!addName.equals("Nama Barang") && addName.length() != 0 && !addStok.equals("Stok") && addStok.length() != 0 && !addHarga.equals("Harga") && addHarga.length() != 0 && !addHargaBeli.equals("Harga Beli") && addHargaBeli.length() != 0 && !addKategori.equals("Kategori") && addKategori.length() != 0) {
+                    System.out.println("Nama : " + addName);
+                    System.out.println("Stok : " + addStok);
+                    System.out.println("Harga : " + addHarga);
+                    System.out.println("Harga Beli : " + addHargaBeli);
+                    System.out.println("Kategori : " + addKategori);
+                    System.out.println("Image URL : " + imgurl);
+                    Barang newBarang = new Barang(addName, Integer.parseInt(addStok), Float.parseFloat(addHarga), Float.parseFloat(addHargaBeli), addKategori, imgurl);
                     InventoryHolder.instance().addBarang(newBarang);
-                    Controller.instance().writeData(InventoryHolder.instance() , "barang");
+                    Controller.instance().writeData(InventoryHolder.instance(), "barang");
 //                    Controller.instance().writeData(MemberHolder.instance() , "member");
 //                    Controller.instance().writeData(VIPHolder.instance() , "vip");
                 }
@@ -259,8 +241,6 @@ public class AddItem extends JPanel implements ActionListener{
                 System.out.println("Selected file: " + imgurl);
                 imagelinkLabel.setText("Selected file: " + imgurl);
             }
-        } else if (e.getSource() == deleteButton) {
-            System.out.println("Delete Dummy!");
         }
     }
 }

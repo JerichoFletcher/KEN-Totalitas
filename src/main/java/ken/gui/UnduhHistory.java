@@ -43,7 +43,7 @@ public class UnduhHistory implements Runnable{
                 contentStream.endText();
             }
             contentStream.close();
-            document.save("/home/arieljovananda/Documents/KEN-Totalitas/test/output2.pdf");
+            document.save("./test/riwayat transaksi.pdf");
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
