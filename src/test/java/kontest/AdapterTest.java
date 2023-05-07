@@ -4,7 +4,7 @@ import ken.backend.controller.holder.*;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.anggota.*;
 import ken.backend.kelas.barang.Barang;
-import ken.backend.kelas.bill.BillHolder;
+import ken.backend.controller.holder.BillHolder;
 import ken.backend.kelas.bill.BillItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

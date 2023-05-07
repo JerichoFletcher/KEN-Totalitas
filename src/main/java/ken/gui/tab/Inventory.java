@@ -5,7 +5,7 @@ import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.barang.Barang;
-import ken.gui.InventoryPanel;
+import ken.gui.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +24,7 @@ public class Inventory extends KENTab implements ActionListener {
     private JTextField inputFieldHarga;
     private JTextField inputFieldKategori;
     private JButton searchButton;
+    private JButton addItemButton;
     public Inventory() throws URISyntaxException, IOException {
         super();
         this.setSize(500,500);
@@ -47,7 +48,17 @@ public class Inventory extends KENTab implements ActionListener {
         JLabel headerText = new JLabel("Inventory List");
         headerText.setFont(new Font("Poppins", Font.BOLD,15));
         headerText.setForeground(Color.black);
+        addItemButton = new JButton("ADD ITEM");
+        addItemButton.addActionListener(this);
+        addItemButton.setFocusable(false);
+        addItemButton.setContentAreaFilled( false );
+        addItemButton.setFont(new Font("Poppins", Font.BOLD,20));
+        addItemButton.setBackground(new Color(0, 0, 0, 0));
+        addItemButton.setForeground(new Color(0x395B64));
+        addItemButton.setBorder(BorderFactory.createEmptyBorder());
+        addItemButton.setBounds(1120,0,150,50);
         headerInventory.add(headerText);
+        headerInventory.add(addItemButton);
         headerText.setBounds(600,0,1280,50);
         headerInventory.setBounds(0,0,1280, 50);
         this.add(headerInventory);
@@ -161,6 +172,10 @@ public class Inventory extends KENTab implements ActionListener {
                 System.out.println("Harga: " + searchHarga);
                 System.out.println("Kategori: " + searchCat);
             }
+        } else if (e.getSource() == addItemButton) {
+            AddItem layarAI = new AddItem();
+            Tabs.tabs.addCustomTab("Add Item", layarAI, Tabs.tabCount);
+            Tabs.tabs.setSelectedComponent(layarAI);
         }
     }
 }
