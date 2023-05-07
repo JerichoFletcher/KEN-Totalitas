@@ -1,11 +1,9 @@
 package ken.gui.tab;
 
+import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.barang.Barang;
 import ken.gui.InventoryPanel;
-
-import ken.backend.kelas.holder.InventoryHolder;
-
 
 import javax.swing.*;
 import java.awt.*;
