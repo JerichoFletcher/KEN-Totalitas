@@ -1,10 +1,13 @@
 package ken.gui.tab;
 
+import ken.backend.plugin.PluginManager;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.jar.JarFile;
 
 public class Setting extends KENTab implements ActionListener {
     private JButton buttonPlugin;
@@ -82,7 +85,14 @@ public class Setting extends KENTab implements ActionListener {
                 // File selected by the user
                 String filePath = fileChooser.getSelectedFile().getPath();
                 // Perform any necessary operations with the selected file
-                System.out.println("Selected file: " + filePath);
+//                System.out.println("Selected file: " + filePath);
+                try{
+                    JarFile jar = new JarFile(filePath);
+                    PluginManager.addFromArchive(jar);
+                }catch(Exception ex){
+                    System.out.println("Failed to load JAR:");
+                    ex.printStackTrace();
+                }
             }
         } else if (e.getSource() == buttonFile) {
             JFileChooser fileChooser = new JFileChooser();

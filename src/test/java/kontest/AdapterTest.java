@@ -1,6 +1,5 @@
 package kontest;
 
-import ken.backend.Vars;
 import ken.backend.controller.holder.*;
 import ken.backend.controller.Controller;
 import ken.backend.controller.holder.*;
@@ -56,8 +55,8 @@ public class AdapterTest {
         BillHolder.instance().load(getClass().getResource("/database/bill.json").toURI(),adapter);
         Assertions.assertEquals(2, BillHolder.instance().getBanyakBill());
 
-//        BillItem bi = new BillItem("Shampo", 10,1000);
-//        BillHolder.instance().getBillById(0).addBarang(bi);
+        BillItem bi = new BillItem("Shampo", 10,1000);
+        BillHolder.instance().getBillById(0).addBarang(bi);
         BillHolder.instance().write(getClass().getResource("/database/bill.json").toURI(),adapter);
     }
 
@@ -67,8 +66,8 @@ public class AdapterTest {
         FixedBillHolder.instance().load(getClass().getResource("/database/billFixed.json").toURI(),adapter);
         Assertions.assertEquals(2, FixedBillHolder.instance().getBanyakBill());
 
-//        BillItem bi = new BillItem("Shampo", 10,1000);
-//        FixedBillHolder.instance().getBillById(0).removeBarang(1);
+        BillItem bi = new BillItem("Shampo", 10,1000);
+        FixedBillHolder.instance().getBillById(0).removeBarang(1);
         FixedBillHolder.instance().write(getClass().getResource("/database/billFixed2.json").toURI(),adapter);
     }
 
@@ -117,6 +116,13 @@ public class AdapterTest {
         VIPHolder.instance().write(getClass().getResource("/database/vip2.json").toURI(),adapter);
     }
     @Test
+    public void testControllerCustomer() throws IOException, URISyntaxException {
+        Controller.instance().fetchData(MemberHolder.instance(),"member");
+        Member nm = new Member("Nama", "098123",12425135);
+        MemberHolder.instance().addMember(nm);
+        Controller.instance().writeData(MemberHolder.instance(),"member");
+    }
+
     public void testAdapterXML2() throws IOException, URISyntaxException {
         AdapterXML adapter = new AdapterXML();;
         AdapterJSON adapter2 = new AdapterJSON();

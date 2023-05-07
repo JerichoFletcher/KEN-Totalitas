@@ -114,6 +114,47 @@
       "idBill": 1120690037,
       "idCustomer": 7,
       "totalHarga": 6000
+      "totalHarga": {
+        "IDR": 6000
+      }
+    },
+    "572657121": {
+      "listBarang": {
+        "0": {
+          "namaBarang": "Buku Tulis",
+          "jumlahDibeli": 7,
+          "hargaBarang": 5000
+        },
+        "1": {
+          "namaBarang": "Pensil",
+          "jumlahDibeli": 3,
+          "hargaBarang": 1000
+        }
+      },
+      "idBill": 572657121,
+      "idCustomer": 0,
+      "totalHarga": {
+        "IDR": 38000
+      }
+    },
+    "827941309": {
+      "listBarang": {
+        "0": {
+          "namaBarang": "Buku Tulis",
+          "jumlahDibeli": 7,
+          "hargaBarang": 5000
+        },
+        "1": {
+          "namaBarang": "Pensil",
+          "jumlahDibeli": 3,
+          "hargaBarang": 1000
+        }
+      },
+      "idBill": 827941309,
+      "idCustomer": 9,
+      "totalHarga": {
+        "IDR": 38000
+      }
     }
   }
 }
