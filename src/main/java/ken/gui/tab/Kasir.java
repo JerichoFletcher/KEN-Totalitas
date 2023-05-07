@@ -2,6 +2,7 @@ package ken.gui.tab;
 
 import ken.backend.Vars;
 import ken.backend.controller.Controller;
+import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.controller.holder.BillHolder;
 import ken.backend.kelas.barang.Barang;
@@ -301,7 +302,29 @@ public class Kasir extends KENTab implements ActionListener {
             Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarCheckout);
         } else if (e.getSource()==saveBillButton) {
-            System.out.println("save bill");
+//            System.out.println("save bill");
+            try {
+                Controller.instance().fetchData(BillHolder.instance(), "bill");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            Bill billTemp = new Bill(0, price);
+            for(int i = 0; i < listOfCartItem.size() ; i++){
+                int idt = listOfCartItem.get(i).getID();
+                String namaBarang = listOfCartItem.get(i).getName();
+                int jumlah = listOfCartItem.get(i).getCounter();
+                float harga = listOfCartItem.get(i).getHarga();
+                BillItem billItem = new BillItem(idt, namaBarang, jumlah, harga);
+//                Barang barang = InventoryHolder.instance().getBarangById(listOfCartItem.get(i).getID());
+//                barang.setStok(barang.getStok() - listOfCartItem.get(i).getCounter());
+                billTemp.addBarang(billItem);
+            }
+            BillHolder.instance().addBill(billTemp);
+            try {
+                Controller.instance().writeData(BillHolder.instance(), "bill");
+            } catch (URISyntaxException  | IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } else if (e.getSource()==getHistoryButton) {
             selectedHistory = (String) pilihHistory.getSelectedItem();
             if (selectedHistory.length() != 0) {

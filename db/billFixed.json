@@ -183,6 +183,102 @@
       "idBill": 578313978,
       "idCustomer": 392261423,
       "totalHarga": 500.0
+    },
+    "681348987": {
+      "listBarang": {
+        "3": {
+          "id": 3,
+          "jumlahDibeli": 5,
+          "hargaBarang": 2000.0
+        }
+      },
+      "idBill": 681348987,
+      "idCustomer": 800440399,
+      "totalHarga": 10000.0
+    },
+    "1574640796": {
+      "listBarang": {
+        "3": {
+          "id": 3,
+          "jumlahDibeli": 5,
+          "hargaBarang": 2000.0
+        }
+      },
+      "idBill": 1574640796,
+      "idCustomer": 1612778672,
+      "totalHarga": 10000.0
+    },
+    "926843894": {
+      "listBarang": {
+        "4": {
+          "id": 4,
+          "jumlahDibeli": 5,
+          "hargaBarang": 5000.0
+        }
+      },
+      "idBill": 926843894,
+      "idCustomer": 1485041224,
+      "totalHarga": 25000.0
+    },
+    "1435546522": {
+      "listBarang": {
+        "3": {
+          "id": 3,
+          "jumlahDibeli": 5,
+          "hargaBarang": 2000.0
+        }
+      },
+      "idBill": 1435546522,
+      "idCustomer": 908331600,
+      "totalHarga": 10000.0
+    },
+    "1073347669": {
+      "listBarang": {
+        "4": {
+          "id": 4,
+          "jumlahDibeli": 5,
+          "hargaBarang": 5000.0
+        }
+      },
+      "idBill": 1073347669,
+      "idCustomer": 729901885,
+      "totalHarga": 25000.0
+    },
+    "1136980469": {
+      "listBarang": {
+        "3": {
+          "id": 3,
+          "jumlahDibeli": 5,
+          "hargaBarang": 2000.0
+        }
+      },
+      "idBill": 1136980469,
+      "idCustomer": 1386178994,
+      "totalHarga": 10000.0
+    },
+    "1348015792": {
+      "listBarang": {
+        "2": {
+          "id": 2,
+          "jumlahDibeli": 4,
+          "hargaBarang": 500.0
+        }
+      },
+      "idBill": 1348015792,
+      "idCustomer": 109424320,
+      "totalHarga": 2000.0
+    },
+    "176143200": {
+      "listBarang": {
+        "1115337708": {
+          "id": 1115337708,
+          "jumlahDibeli": 10,
+          "hargaBarang": 1000000.0
+        }
+      },
+      "idBill": 176143200,
+      "idCustomer": 174891683,
+      "totalHarga": 1.0E7
     }
   }
 }
