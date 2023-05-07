@@ -1,5 +1,6 @@
 package ken.backend.kelas.anggota;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +8,7 @@ import java.io.Serializable;
 
 public class Member extends Customer implements Serializable {
     @Getter
-    private String name;
+    protected String name;
     @Getter
     @Setter
     private String phoneNumber;
