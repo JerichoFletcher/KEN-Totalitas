@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.gui.tab.Kasir;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,15 +15,19 @@ public class CartItem extends JPanel implements ActionListener {
     private int harga;
     private int id;
     private int counter; // added counter variable
+    private Kasir kasir;
+    private MenuItem correspondingMI;
     private JLabel counterLabel; // added counter label
 
-    public CartItem(int id, String judul, int harga, JPanel cart){
+    public CartItem(int id, String judul, int harga, JPanel cart, Kasir kasir, MenuItem menuItem){
         super();
         this.judul = judul;
         this.harga = harga;
         this.cart = cart;
         this.counter = 1; // initialize counter to 0
         this.id = id;
+        this.kasir = kasir;
+        this.correspondingMI = menuItem;
         JLabel title = new JLabel(judul);
         JLabel price = new JLabel("Rp" + harga +"000");
         addButton = new JButton("+");
@@ -87,9 +93,11 @@ public class CartItem extends JPanel implements ActionListener {
             counterLabel.setText(Integer.toString(counter)); // update counter label text
         }
         if(e.getSource() == minusButton){
+            correspondingMI.addBackQuantity();
             if(counter == 1) {
                 // remove this panel from the parent panel
                 cart.remove(this);
+                kasir.eraseItemFromCart(this);
                 // update the parent panel
                 cart.revalidate();
                 cart.repaint();
