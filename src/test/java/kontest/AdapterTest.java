@@ -1,5 +1,6 @@
 package kontest;
 
+import ken.backend.Vars;
 import ken.backend.controller.holder.*;
 import ken.backend.controller.Controller;
 import ken.backend.controller.holder.*;
@@ -55,8 +56,8 @@ public class AdapterTest {
         BillHolder.instance().load(getClass().getResource("/database/bill.json").toURI(),adapter);
         Assertions.assertEquals(2, BillHolder.instance().getBanyakBill());
 
-        BillItem bi = new BillItem("Shampo", 10,1000);
-        BillHolder.instance().getBillById(0).addBarang(bi);
+//        BillItem bi = new BillItem("Shampo", 10,1000);
+//        BillHolder.instance().getBillById(0).addBarang(bi);
         BillHolder.instance().write(getClass().getResource("/database/bill.json").toURI(),adapter);
     }
 
@@ -66,8 +67,8 @@ public class AdapterTest {
         FixedBillHolder.instance().load(getClass().getResource("/database/billFixed.json").toURI(),adapter);
         Assertions.assertEquals(2, FixedBillHolder.instance().getBanyakBill());
 
-        BillItem bi = new BillItem("Shampo", 10,1000);
-        FixedBillHolder.instance().getBillById(0).removeBarang(1);
+//        BillItem bi = new BillItem("Shampo", 10,1000);
+//        FixedBillHolder.instance().getBillById(0).removeBarang(1);
         FixedBillHolder.instance().write(getClass().getResource("/database/billFixed2.json").toURI(),adapter);
     }
 
@@ -157,13 +158,35 @@ public class AdapterTest {
 
     @Test
     public void changeAllSERtofollowJSON() throws URISyntaxException, IOException {
-        Vars.setExtension("json");
+        Vars.extension = "json";
         Controller.instance().fetchData(InventoryHolder.instance(),"barang");
         Controller.instance().fetchData(BillHolder.instance(),"bill");
         Controller.instance().fetchData(FixedBillHolder.instance(),"billFixed");
         Controller.instance().fetchData(MemberHolder.instance(),"member");
         Controller.instance().fetchData(CustomerHolder.instance(),"customer");
         Controller.instance().fetchData(VIPHolder.instance(),"vip");
+        Vars.extension = "ser";
+        Controller.instance().writeData(InventoryHolder.instance(),"barang");
+        Controller.instance().writeData(BillHolder.instance(),"bill");
+        Controller.instance().writeData(FixedBillHolder.instance(),"billFixed");
+        Controller.instance().writeData(MemberHolder.instance(),"member");
+        Controller.instance().writeData(CustomerHolder.instance(),"customer");
+        Controller.instance().writeData(VIPHolder.instance(),"vip");
+    }
+
+    @Test
+    public void populateBarangJSON() throws URISyntaxException, IOException {
+        Vars.extension = "json";
+        Controller.instance().fetchData(InventoryHolder.instance(),"barang");
+        Barang barang1 = new Barang("Kucing Emas",500,500000,20000,"Aksesoris","./assets/kucingEmas.png");
+        Barang barang2 = new Barang("Action Figure",10,1000000,25000,"Aksesoris","./assets/actionPigur.png");
+        Barang barang3 = new Barang("VibraThor",100,1000000,250000,"Aksesoris","./assets/vibraThor.png");
+        Barang barang4 = new Barang("Deal Down",16,50000,25000,"Aksesoris","./assets/dealDown.png");
+        InventoryHolder.instance().addBarang(barang1);
+        InventoryHolder.instance().addBarang(barang2);
+        InventoryHolder.instance().addBarang(barang3);
+        InventoryHolder.instance().addBarang(barang4);
+        Controller.instance().writeData(InventoryHolder.instance(),"barang");
     }
 
 }
