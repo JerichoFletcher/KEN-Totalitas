@@ -1,0 +1,32 @@
+{
+  "listMember": {
+    "3": {
+      "name": "Udin Petot",
+      "phoneNumber": "69696969",
+      "points": 420,
+      "active": true,
+      "id": 3
+    },
+    "5": {
+      "name": "Udin Metot",
+      "phoneNumber": "79696969",
+      "points": 422,
+      "active": true,
+      "id": 5
+    },
+    "6": {
+      "name": "Udin Getot",
+      "phoneNumber": "42069",
+      "points": 421,
+      "active": false,
+      "id": 6
+    },
+    "1": {
+      "name": "Asu Meme",
+      "phoneNumber": "09988776",
+      "points": 0,
+      "active": true,
+      "id": 1
+    }
+  }
+}

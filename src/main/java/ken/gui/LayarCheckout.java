@@ -7,6 +7,7 @@ import ken.backend.controller.holder.VIPHolder;
 import ken.backend.kelas.anggota.Customer;
 import ken.backend.kelas.anggota.Member;
 import ken.backend.kelas.anggota.VIP;
+import ken.backend.Vars;
 import ken.backend.kelas.bill.Bill;
 import ken.backend.kelas.bill.BillItem;
 
@@ -54,7 +55,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
 
     public void makePanelLC() throws URISyntaxException, IOException {
         JLabel checkoutText = new JLabel("Checkout");
-        JLabel totalPrice = new JLabel("Total: Rp." + total);
+        JLabel totalPrice = new JLabel("Total: " + Vars.mataUang + " " + total);
         checkoutText.setFont(new Font("Poppins", Font.BOLD,40));
         checkoutText.setForeground(Color.white);
         checkoutText.setBounds(550,30,500,100);
@@ -197,31 +198,47 @@ public class LayarCheckout extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == fixBill){
-            System.out.println("Fixed Bill Created");
-            System.out.println("Name : " + inputField.getText());
-            System.out.println("ID : " + id);
-            String selectedItem = (String) inputField.getText();
-//            Bill fixedBill = new Bill(id);
-//            List<BillItem> listOfBillItem;
-//            for(int i = 0; i < listOfCartItem.size() ; i++){
-//                String namaBarang = listOfCartItem.get(i).getName();
-//                int jumlah = listOfCartItem.get(i).getCounter();
-//                int harga = listOfCartItem.get(i).getHarga();
-//                BillItem billItem = new BillItem(namaBarang, jumlah, harga);
-//                listOfBillItem.add(billItem);
-//            }
-//            Bill fixedBill = new Bill();
-            if(inputField.getText().length() ==  0){
-                Customer newCustomer = new Customer();
-                int idNew = newCustomer.getId();
-                LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, idNew);
-                Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
-                Tabs.tabs.setSelectedComponent(layarFB);
-            }
-            else{
-                LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, id);
-                Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
-                Tabs.tabs.setSelectedComponent(layarFB);
+            try{
+                System.out.println("Fixed Bill Created");
+                System.out.println("Name : " + inputField.getText());
+                System.out.println("ID : " + id);
+                String selectedItem = (String) inputField.getText();
+                Controller.instance().fetchData(FixedBillHolder.instance(), "billFixed");
+                if(inputField.getText().length() ==  0){
+                    Customer newCustomer = new Customer();
+                    int idNew = newCustomer.getId();
+                    LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, idNew);
+                    Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
+                    Tabs.tabs.setSelectedComponent(layarFB);
+                    Bill fixedBill = new Bill(idNew, "IDR", total);
+                    for(int i = 0; i < listOfCartItem.size() ; i++){
+                        String namaBarang = listOfCartItem.get(i).getName();
+                        int jumlah = listOfCartItem.get(i).getCounter();
+                        int harga = listOfCartItem.get(i).getHarga();
+                        BillItem billItem = new BillItem(namaBarang, jumlah, harga);
+                        fixedBill.addBarang(billItem);
+                    }
+                    FixedBillHolder.instance().addBill(fixedBill);
+                    Controller.instance().writeData(FixedBillHolder.instance(), "billFixed");
+                }
+                else{
+                    LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, id);
+                    Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
+                    Tabs.tabs.setSelectedComponent(layarFB);
+                    Bill fixedBill = new Bill(id, "IDR", total);
+                    for(int i = 0; i < listOfCartItem.size() ; i++){
+                        String namaBarang = listOfCartItem.get(i).getName();
+                        int jumlah = listOfCartItem.get(i).getCounter();
+                        int harga = listOfCartItem.get(i).getHarga();
+                        BillItem billItem = new BillItem(namaBarang, jumlah, harga);
+                        fixedBill.addBarang(billItem);
+                    }
+                    FixedBillHolder.instance().addBill(fixedBill);
+                    Controller.instance().writeData(FixedBillHolder.instance(), "billFixed");
+                }
+
+            }catch (IOException | URISyntaxException ex){
+                ex.printStackTrace();
             }
         }
     }

@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.backend.Vars;
+import ken.backend.kelas.bill.BillItem;
 import ken.gui.tab.Kasir;
 
 import javax.swing.*;
@@ -7,8 +9,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Image;
+import java.util.HashMap;
 import java.util.List;
 import java.io.File;
+import java.util.Map;
 
 public class MenuItem extends JPanel implements ActionListener {
     private JButton addButton;
@@ -48,7 +52,7 @@ public class MenuItem extends JPanel implements ActionListener {
         }
 
 
-        JLabel price = new JLabel("Rp" + harga);
+        JLabel price = new JLabel(Vars.mataUang + " " + harga);
         counterLabel = new JLabel(""+ quantity);
         addButton = new JButton("+");
         this.setLayout(null);
@@ -101,9 +105,6 @@ public class MenuItem extends JPanel implements ActionListener {
         boolean found = false;
         if (e.getSource() == addButton) {
             if(quantity != 0){
-                priceHolder = kasir.getPriceText();
-                priceHolder += harga;
-                kasir.setPriceText(priceHolder);
                 quantity--;
                 CartItem cartItem = new CartItem(id, judul, harga, cart, kasir, priceHolder, this);
                 for (CartItem item : kasir.getCart()) {
@@ -121,6 +122,7 @@ public class MenuItem extends JPanel implements ActionListener {
                 cart.repaint();
                 counterLabel.setText(Integer.toString(quantity));
             }
+            kasir.updatePriceText();
         }
     }
 }

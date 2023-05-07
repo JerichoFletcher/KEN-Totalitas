@@ -35,5 +35,8 @@ public class FixedBillHolder implements Holder {
     public Bill getBillById(int id){
         return listBill.get(id);
     }
+    public void addBill(Bill bb){
+        this.listBill.put(bb.getIdBill(),bb);
+    }
 
 }

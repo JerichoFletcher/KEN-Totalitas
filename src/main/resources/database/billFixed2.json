@@ -6,11 +6,6 @@
           "namaBarang": "Pensil",
           "jumlahDibeli": 10,
           "hargaBarang": 1000
-        },
-        "1": {
-          "namaBarang": "Penghapus",
-          "jumlahDibeli": 2,
-          "hargaBarang": 2000
         }
       },
       "idBill": 0,

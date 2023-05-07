@@ -1,11 +1,15 @@
 package ken.gui;
 
+import ken.backend.Vars;
+import ken.backend.kelas.bill.BillItem;
 import ken.gui.tab.Kasir;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CartItem extends JPanel implements ActionListener {
     private JButton addButton;
@@ -31,7 +35,7 @@ public class CartItem extends JPanel implements ActionListener {
         this.kasir = kasir;
         this.correspondingMI = menuItem;
         JLabel title = new JLabel(judul);
-        JLabel price = new JLabel("Rp" + harga);
+        JLabel price = new JLabel(Vars.mataUang + harga);
         addButton = new JButton("+");
         minusButton = new JButton("-");
         this.setLayout(null);
@@ -94,9 +98,9 @@ public class CartItem extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == addButton){
             if(correspondingMI.getQuantity() > 0){
-                priceHolder = kasir.getPriceText();
-                priceHolder += harga;
-                kasir.setPriceText(priceHolder);
+//                priceHolder = kasir.getPriceText();
+//                priceHolder += harga;
+//                kasir.setPriceText(priceHolder);
                 counter++; // increment counter
                 counterLabel.setText(Integer.toString(counter));
                 correspondingMI.decrementQuantity(counter);// update counter label text
@@ -104,9 +108,9 @@ public class CartItem extends JPanel implements ActionListener {
         }
         if(e.getSource() == minusButton){
             correspondingMI.addBackQuantity();
-            priceHolder = kasir.getPriceText();
-            priceHolder -= harga;
-            kasir.setPriceText(priceHolder);
+//            priceHolder = kasir.getPriceText();
+//            priceHolder -= harga;
+//            kasir.setPriceText(priceHolder);
             if(counter == 1) {
                 // remove this panel from the parent panel
                 cart.remove(this);
@@ -119,6 +123,10 @@ public class CartItem extends JPanel implements ActionListener {
                 counterLabel.setText(Integer.toString(counter));
             }
         }
+        kasir.updatePriceText();
+    }
 
+    public BillItem toBillItem(){
+        return new BillItem(judul, counter, harga);
     }
 }

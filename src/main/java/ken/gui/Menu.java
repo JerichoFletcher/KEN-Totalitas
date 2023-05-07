@@ -33,10 +33,6 @@ public class Menu extends JLabel {
             Class<? extends KENTab> clazz = entry.getValue();
             try {
                 String judulMenuItem = (String) clazz.getMethod("tabName").invoke(clazz.getConstructor().newInstance());
-                // String judulMenuItem = ((KENTab)contentPanel).tabName(); // gets the String
-                // key
-                // Class<? extends JPanel> value = entry.getValue(); // gets the Class<? extends
-                // JPanel> value
                 JMenuItem menuItem = new JMenuItem(judulMenuItem);
                 menuPop.add(menuItem);
                 System.out.printf("Added item %s -> %s to menu%n", judulMenuItem, entry.getKey());

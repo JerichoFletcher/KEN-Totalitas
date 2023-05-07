@@ -19,24 +19,23 @@ public class Bill {
     @Setter
     private int idCustomer;
     @Getter
-    @Setter
-    private int totalHarga;
+    private final Map<String, Integer> totalHarga = new HashMap<>();
     private static Random rand = new Random();
 
-    public Bill(int idCustomer, int totalHarga) {
+    public Bill(int idCustomer, String mataUang, int totalHarga) {
         BillHolder bh = BillHolder.instance();
         int id = rand.nextInt(Integer.MAX_VALUE);
         for(; bh.getBillById(id) != null; id = rand.nextInt(Integer.MAX_VALUE));
         this.listBarang = new HashMap<>();
         this.idBill = id;
         this.idCustomer = idCustomer;
-        this.totalHarga = totalHarga;
+        this.totalHarga.put(mataUang, totalHarga);
     }
 
-    public Bill(int idBill, int idCustomer, int totalHarga, Map<Integer,BillItem> listBarang){
+    public Bill(int idBill, int idCustomer, String mataUang, int totalHarga, Map<Integer,BillItem> listBarang){
         this.idBill = idBill;
         this.idCustomer = idCustomer;
-        this.totalHarga = totalHarga;
+        this.totalHarga.put(mataUang, totalHarga);
         this.listBarang = listBarang;
 
     }
@@ -44,8 +43,13 @@ public class Bill {
         return listBarang.size();
     }
     public void addBarang(BillItem b) {
-        int maxId = Collections.max(listBarang.keySet());
-        this.listBarang.put(maxId+1, b);
+        if(this.listBarang.isEmpty()){
+            this.listBarang.put(0, b);
+        }else{
+            int maxId = Collections.max(listBarang.keySet());
+            this.listBarang.put(maxId+1, b);
+        }
+
     }
     public BillItem getBillItemById(int id){
         return listBarang.get(id);
