@@ -18,11 +18,11 @@ public class LayarFixedBill extends JPanel implements ActionListener {
     private List<CartItem> listOfCartItem;
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
-    private int total;
+    private float total;
     private int idNewCust;
 
 
-    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, int total, int idNewCust) {
+    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, float total, int idNewCust) {
         super();
         this.listOfCartItem = listOfCartItem;
         this.customer = customer;

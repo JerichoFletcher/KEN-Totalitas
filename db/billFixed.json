@@ -114,9 +114,6 @@
       "idBill": 1120690037,
       "idCustomer": 7,
       "totalHarga": 6000
-      "totalHarga": {
-        "IDR": 6000
-      }
     },
     "572657121": {
       "listBarang": {
@@ -133,9 +130,7 @@
       },
       "idBill": 572657121,
       "idCustomer": 0,
-      "totalHarga": {
-        "IDR": 38000
-      }
+      "totalHarga": 38000
     },
     "827941309": {
       "listBarang": {
@@ -152,9 +147,7 @@
       },
       "idBill": 827941309,
       "idCustomer": 9,
-      "totalHarga": {
-        "IDR": 38000
-      }
+      "totalHarga": 38000
     }
   }
 }

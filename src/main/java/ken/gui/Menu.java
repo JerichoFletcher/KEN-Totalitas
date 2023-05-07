@@ -29,36 +29,37 @@ public class Menu extends JLabel {
         this.panels = TabManager.getPanels();
         // this.contentClasses = contentClasses;
         menuPop = new JPopupMenu();
-        for (Map.Entry<UID, Class<? extends KENTab>> entry : this.panels.entrySet()) {
-            Class<? extends KENTab> clazz = entry.getValue();
-            try {
-                String judulMenuItem = (String) clazz.getMethod("tabName").invoke(clazz.getConstructor().newInstance());
-                JMenuItem menuItem = new JMenuItem(judulMenuItem);
-                menuPop.add(menuItem);
-                System.out.printf("Added item %s -> %s to menu%n", judulMenuItem, entry.getKey());
-                menuItem.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            Class<? extends JPanel> contentClass = entry.getValue();
-                            JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
-                            Tabs.tabs.addCustomTab(judulMenuItem, contentPanel, tabs.getTabCount());
-                            Tabs.tabCount = tabs.getTabCount();
-                            Tabs.tabs.setSelectedComponent(contentPanel);
-                        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException
-                                | InvocationTargetException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                });
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException
-                    | InstantiationException ex) {
-                ex.printStackTrace();
-            }
-        }
 
         this.setVisible(true);
         this.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                menuPop.removeAll();
+                for (Map.Entry<UID, Class<? extends KENTab>> entry : panels.entrySet()) {
+                    Class<? extends KENTab> clazz = entry.getValue();
+                    try {
+                        String judulMenuItem = (String) clazz.getMethod("tabName").invoke(clazz.getConstructor().newInstance());
+                        JMenuItem menuItem = new JMenuItem(judulMenuItem);
+                        menuPop.add(menuItem);
+                        System.out.printf("Added item %s -> %s to menu%n", judulMenuItem, entry.getKey());
+                        menuItem.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                try {
+                                    Class<? extends JPanel> contentClass = entry.getValue();
+                                    JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
+                                    Tabs.tabs.addCustomTab(judulMenuItem, contentPanel, tabs.getTabCount());
+                                    Tabs.tabCount = tabs.getTabCount();
+                                    Tabs.tabs.setSelectedComponent(contentPanel);
+                                } catch (InstantiationException | IllegalAccessException | NoSuchMethodException
+                                    | InvocationTargetException ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        });
+                    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException
+                        | InstantiationException ex) {
+                        ex.printStackTrace();
+                    }
+                }
                 menuPop.show(Menu.this, 0, Menu.this.getHeight());
             }
         });
