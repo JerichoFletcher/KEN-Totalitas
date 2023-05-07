@@ -71,9 +71,9 @@ public class PluginManager{
                     if(method.isAnnotationPresent(CallOnLoad.class)){
                         System.out.printf("Scanning method %s...%n", method.getName());
                         if(method.getParameterCount() != 0){
-                            System.out.printf("Reject method %s because it accepts arguments%n", method.getName());
+                            System.out.printf("Reject method %s as it accepts arguments%n", method.getName());
                         }else if(!Modifier.isStatic(method.getModifiers())){
-                            System.out.printf("Reject method %s because it is not a static method%n", method.getName());
+                            System.out.printf("Reject method %s as it is not a static method%n", method.getName());
                         }else{
                             System.out.printf("Registering method %s for post-load call%n", method.getName());
                             pluginCalls.add(method);
