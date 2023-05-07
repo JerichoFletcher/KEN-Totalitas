@@ -89,6 +89,24 @@
       "hargaBeliBarang": 25000.0,
       "kategori": "Aksesoris",
       "gambar": "./assets/dealDown.png"
+    },
+    "1372871775": {
+      "id": 1372871775,
+      "stok": 1,
+      "namaBarang": "air",
+      "hargaBarang": 5000.0,
+      "hargaBeliBarang": 2000.0,
+      "kategori": "minuman",
+      "gambar": ""
+    },
+    "7318871": {
+      "id": 7318871,
+      "stok": 10,
+      "namaBarang": "Nama Barang",
+      "hargaBarang": 10000.0,
+      "hargaBeliBarang": 1000.0,
+      "kategori": "apa",
+      "gambar": ""
     }
   }
 }

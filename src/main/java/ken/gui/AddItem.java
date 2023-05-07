@@ -1,5 +1,14 @@
 package ken.gui;
 
+import ken.backend.controller.Controller;
+import ken.backend.controller.holder.CustomerHolder;
+import ken.backend.controller.holder.InventoryHolder;
+import ken.backend.controller.holder.MemberHolder;
+import ken.backend.controller.holder.VIPHolder;
+import ken.backend.kelas.anggota.Member;
+import ken.backend.kelas.anggota.VIP;
+import ken.backend.kelas.barang.Barang;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -7,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class AddItem extends JPanel implements ActionListener{
     private JPanel panelEdit;
@@ -56,14 +67,14 @@ public class AddItem extends JPanel implements ActionListener{
         textField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField.getText().equals("Nama Barang")) {
+                if (textField.getText().trim().equals("Nama Barang")) {
                     textField.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField.getText().equals("")) {
+                if (textField.getText().trim().equals("")) {
                     textField.setText("Nama Barang");
                 }
             }
@@ -77,14 +88,14 @@ public class AddItem extends JPanel implements ActionListener{
         textField2.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField2.getText().equals("Stok")) {
+                if (textField2.getText().trim().equals("Stok")) {
                     textField2.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField2.getText().equals("")) {
+                if (textField2.getText().trim().equals("")) {
                     textField2.setText("Stok");
                 }
             }
@@ -99,14 +110,14 @@ public class AddItem extends JPanel implements ActionListener{
         textField3.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField3.getText().equals("Harga")) {
+                if (textField3.getText().trim().equals("Harga")) {
                     textField3.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField3.getText().equals("")) {
+                if (textField3.getText().trim().equals("")) {
                     textField3.setText("Harga");
                 }
             }
@@ -121,14 +132,14 @@ public class AddItem extends JPanel implements ActionListener{
         textField4.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField4.getText().equals("Harga Beli")) {
+                if (textField4.getText().trim().equals("Harga Beli")) {
                     textField4.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField4.getText().equals("")) {
+                if (textField4.getText().trim().equals("")) {
                     textField4.setText("Harga Beli");
                 }
             }
@@ -143,14 +154,14 @@ public class AddItem extends JPanel implements ActionListener{
         textField5.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField5.getText().equals("Kategori")) {
+                if (textField5.getText().trim().equals("Kategori")) {
                     textField5.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField5.getText().equals("")) {
+                if (textField5.getText().trim().equals("")) {
                     textField5.setText("Kategori");
                 }
             }
@@ -205,13 +216,35 @@ public class AddItem extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == editButton){
-            System.out.println("Adding Item...");
-            System.out.println("Nama : " + textField.getText());
-            System.out.println("Stok : " + textField2.getText());
-            System.out.println("Harga : " + textField3.getText());
-            System.out.println("Harga Beli : " + textField4.getText());
-            System.out.println("Kategori : " + textField5.getText());
-            System.out.println("Image URL : " + imgurl);
+            try {
+                System.out.println("Adding Item...");
+                System.out.println("Nama : " + textField.getText());
+                System.out.println("Stok : " + textField2.getText());
+                System.out.println("Harga : " + textField3.getText());
+                System.out.println("Harga Beli : " + textField4.getText());
+                System.out.println("Kategori : " + textField5.getText());
+                System.out.println("Image URL : " + imgurl);
+                Controller.instance().fetchData(InventoryHolder.instance(), "barang");
+                String addName = textField.getText();
+                String addStok = textField2.getText();
+                String addHarga = textField3.getText();
+                String addHargaBeli = textField4.getText();
+                String addKategori = textField5.getText();
+                if (addName != "Nama Barang" || addName.length() != 0
+                        || addStok != "Stok" || addStok.length() != 0 ||
+                        addHarga != "Harga" || addHarga.length() != 0 ||
+                        addHargaBeli != "Harga Beli" || addHargaBeli.length() != 0||
+                        addKategori != "Kategori" || addKategori.length() != 0)  {
+                    Barang newBarang = new Barang(addName, Integer.parseInt(addStok), Float.parseFloat(addHarga),
+                            Float.parseFloat(addHargaBeli), addKategori, imgurl);
+                    InventoryHolder.instance().addBarang(newBarang);
+                    Controller.instance().writeData(InventoryHolder.instance() , "barang");
+//                    Controller.instance().writeData(MemberHolder.instance() , "member");
+//                    Controller.instance().writeData(VIPHolder.instance() , "vip");
+                }
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } else if (e.getSource() == imageButton) {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
