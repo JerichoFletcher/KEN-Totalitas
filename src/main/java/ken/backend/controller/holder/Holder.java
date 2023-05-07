@@ -1,4 +1,4 @@
-package ken.backend.kelas.holder;
+package ken.backend.controller.holder;
 
 import ken.backend.dataStore.AdapterData;
 

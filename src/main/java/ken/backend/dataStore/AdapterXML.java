@@ -1,7 +1,7 @@
 package ken.backend.dataStore;
 
 import ken.backend.kelas.barang.Barang;
-import ken.backend.kelas.holder.InventoryHolder;
+import ken.backend.controller.holder.InventoryHolder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

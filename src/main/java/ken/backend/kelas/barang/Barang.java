@@ -1,6 +1,6 @@
 package ken.backend.kelas.barang;
 
-import ken.backend.kelas.holder.InventoryHolder;
+import ken.backend.controller.holder.InventoryHolder;
 import lombok.*;
 
 import java.util.Random;

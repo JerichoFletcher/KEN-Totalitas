@@ -1,9 +1,18 @@
 package ken.gui.tab;
 
+import ken.backend.dataStore.AdapterJSON;
+import ken.backend.kelas.anggota.Member;
+import ken.backend.kelas.bill.Bill;
+import ken.backend.kelas.holder.FixedBillHolder;
+import ken.backend.kelas.holder.MemberHolder;
+import ken.gui.HistoryPanel;
 import ken.gui.MemberPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Map;
 
 public class Members extends KENTab {
     private JPanel members;
@@ -12,7 +21,11 @@ public class Members extends KENTab {
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
-        makePanelMembers();
+        try {
+            makePanelMembers();;
+        }catch (IOException | URISyntaxException ex){
+            ex.printStackTrace();
+        }
         this.setBounds(0,0,500,500);
     }
 
@@ -21,7 +34,7 @@ public class Members extends KENTab {
         return "Members";
     }
 
-    public void makePanelMembers(){
+    public void makePanelMembers() throws URISyntaxException, IOException{
         members = new JPanel();
         JPanel headerMember = new JPanel();
         headerMember.setLayout(null);
@@ -35,9 +48,25 @@ public class Members extends KENTab {
         this.add(headerMember);
         members.setBackground(new Color(0xFFFFFF));
         members.setLayout(new BoxLayout(members, BoxLayout.Y_AXIS));
-        for (int i = 1; i <= 20; i++) {
-            MemberPanel memberPanel = new MemberPanel("nama " + i);
-            members.add(memberPanel);
+//        for (int i = 1; i <= 20; i++) {
+//            MemberPanel memberPanel = new MemberPanel("nama " + i);
+//            members.add(memberPanel);
+//        }
+        AdapterJSON adapter = new AdapterJSON();;
+        MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
+        for (Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()) {
+            Integer key = entry.getKey();
+            Member value = entry.getValue();
+            // Do something with the key and value...
+            if(value.isActive()){
+                MemberPanel memberPanel = new MemberPanel(key + "      " + value.getName() + "      " + "Aktif");
+                members.add(memberPanel);
+            }
+            else{
+                MemberPanel memberPanel = new MemberPanel(key + "      " + value.getName() + "      " + "Tidak Aktif");
+                members.add(memberPanel);
+
+            }
         }
         JScrollPane scrollPane = new JScrollPane(members);
         scrollPane.setBounds(0, 50, 1260, 520);
