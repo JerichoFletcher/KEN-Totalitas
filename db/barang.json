@@ -2,18 +2,18 @@
   "listBarang": {
     "1": {
       "id": 1,
-      "stok": 50,
-      "namaBarang": "Buku Tulis",
-      "hargaBarang": 5000.0,
-      "hargaBeliBarang": 3500.0,
-      "kategori": "Alat Tulis",
+      "stok": 1,
+      "namaBarang": "jovan",
+      "hargaBarang": 1.0E15,
+      "hargaBeliBarang": 1.0E16,
+      "kategori": "orang",
       "gambar": "./asset/buku_tulis.jpg"
     },
     "2": {
       "id": 2,
-      "stok": 100,
-      "namaBarang": "Pensil",
-      "hargaBarang": 1000.0,
+      "stok": 1000,
+      "namaBarang": "pencil",
+      "hargaBarang": 500.0,
       "hargaBeliBarang": 700.0,
       "kategori": "Alat Tulis",
       "gambar": "./asset/pensil.jpg"

@@ -363,9 +363,9 @@ public class Kasir extends KENTab implements ActionListener {
             }
         } else if (e.getSource()==searchButton) {
             float searchHarga= -1;
-            String searchNama = (String) inputFieldNama.getText();
+            String searchNama = (String) inputFieldNama.getText().trim();
             String searchHargaString = (String) inputFieldHarga.getText().trim();
-            String searchCat = (String) inputFieldKategori.getText();
+            String searchCat = (String) inputFieldKategori.getText().trim();
             if (searchHargaString.length() !=0 ) {
                 try {
                     searchHarga = Integer.parseInt(searchHargaString);

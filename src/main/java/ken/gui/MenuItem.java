@@ -28,7 +28,7 @@ public class MenuItem extends JPanel implements ActionListener {
     private String kategori;
 
 
-    public MenuItem(int id, String judul, float harga, int quantity, String path, int priceHolder, JPanel cart, Kasir kasir, String ikat){
+    public MenuItem(int id, String judul, float harga, int quantity, String path, float priceHolder, JPanel cart, Kasir kasir, String ikat){
 
         super();
         this.priceHolder = priceHolder;

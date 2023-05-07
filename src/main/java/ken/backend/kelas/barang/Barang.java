@@ -10,10 +10,13 @@ public class Barang implements Serializable {
     @Getter
     private int id;
     @Getter
+    @Setter
     private int stok;
     @Getter
+    @Setter
     private String namaBarang;
     @Getter
+    @Setter
     private float hargaBarang;
     @Getter
     @Setter
