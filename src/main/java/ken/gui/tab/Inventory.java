@@ -4,6 +4,8 @@ import ken.gui.InventoryPanel;
 
 import ken.backend.kelas.inventory.InventoryHolder;
 
+import ken.backend.kelas.inventory.InventoryHolder;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,5 +1,5 @@
 {
-  "bill": {
+  "listBill": {
     "0":{
       "idBill": 2,
       "idCustomer": 1,

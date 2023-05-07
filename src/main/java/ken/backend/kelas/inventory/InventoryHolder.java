@@ -1,6 +1,7 @@
 package ken.backend.kelas.inventory;
 
 import ken.backend.dataStore.AdapterData;
+import ken.backend.kelas.Holder;
 import ken.backend.kelas.barang.*;
 
 import java.io.IOException;
@@ -8,7 +9,7 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InventoryHolder {
+public class InventoryHolder implements Holder {
     private static InventoryHolder _instance = null;
     public static InventoryHolder instance() {
         if (_instance == null) {
