@@ -1,5 +1,7 @@
 package ken.gui.tab;
 
+import ken.backend.controller.Controller;
+import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.barang.Barang;
@@ -52,9 +54,7 @@ public class Inventory extends KENTab implements ActionListener {
         inventory.setBackground(new Color(0xFFFFFF));
         inventory.setLayout(new BoxLayout(inventory, BoxLayout.Y_AXIS));
 
-        AdapterJSON adapter = new AdapterJSON();;
-        InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
-
+        Controller.instance().fetchData(InventoryHolder.instance(), "barang");
         for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
             Integer key = entry.getKey();
             Barang value = entry.getValue();

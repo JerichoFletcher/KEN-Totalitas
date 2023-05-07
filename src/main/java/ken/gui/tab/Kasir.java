@@ -119,7 +119,7 @@ public class Kasir extends KENTab implements ActionListener {
         inventory.setLayout(new BoxLayout(inventory, BoxLayout.Y_AXIS));
         inventory.setLocation(0,0);
         cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
-        Controller.instance().fetchData("barang");
+        Controller.instance().fetchData(InventoryHolder.instance(), "barang");
         for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
             Integer key = entry.getKey();
             Barang value = entry.getValue();

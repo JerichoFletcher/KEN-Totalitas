@@ -51,7 +51,7 @@ public class Members extends KENTab {
 //            MemberPanel memberPanel = new MemberPanel("nama " + i);
 //            members.add(memberPanel);
 //        }
-        Controller.instance().fetchData("member");
+        Controller.instance().fetchData(MemberHolder.instance(),"member");
         for (Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()) {
             Integer key = entry.getKey();
             Member value = entry.getValue();

@@ -1,6 +1,8 @@
 package ken.gui.tab;
 
+import ken.backend.controller.Controller;
 import ken.backend.controller.holder.FixedBillHolder;
+import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.bill.Bill;
 import ken.gui.HistoryPanel;
@@ -67,8 +69,7 @@ public class History extends KENTab implements ActionListener {
         this.add(headerMember);
         history.setBackground(new Color(0xFFFFFF));
         history.setLayout(new BoxLayout(history, BoxLayout.Y_AXIS));
-        AdapterJSON adapter = new AdapterJSON();;
-        FixedBillHolder.instance().load(getClass().getResource("/database/billFixed.json").toURI(),adapter);
+        Controller.instance().fetchData(FixedBillHolder.instance(), "bill");
         for (Map.Entry<Integer, Bill> entry : FixedBillHolder.instance().getListBill().entrySet()) {
             Integer key = entry.getKey();
             Bill value = entry.getValue();
