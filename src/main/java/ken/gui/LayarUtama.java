@@ -105,7 +105,6 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
             System.out.println("run main program");
             this.setVisible(false);
             DefaultLayar defLay = new DefaultLayar();
-            TabManager.init();
             Tabs tabs = new Tabs();
             Menu menu = new Menu(tabs);
 

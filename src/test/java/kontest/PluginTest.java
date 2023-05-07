@@ -2,6 +2,7 @@ package kontest;
 
 import ken.backend.Vars;
 import ken.backend.plugin.PluginManager;
+import ken.gui.Main;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

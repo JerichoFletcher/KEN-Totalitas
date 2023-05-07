@@ -1,6 +1,7 @@
 package ken.backend.plugin;
 
 import ken.backend.Vars;
+import ken.util.UID;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -62,20 +63,22 @@ public class PluginManager{
                     Plugin p = pluginClazz.getConstructor().newInstance();
 
                     if(plugins.containsKey(p.namespace()))System.out.printf("Plugin %s (%s) already exists%n", p.namespace(), p.displayName());
-                    System.out.printf("Loading plugin %s (%s)%n", p.namespace(), p.displayName());
-                    plugins.put(p.namespace(), p);
+                    System.out.printf("Collecting plugin %s (%s)%n", p.namespace(), p.displayName());
+                    pluginInstances.add(p);
                 }
 
                 // Collect function calls
                 for(Method method : clazz.getMethods()){
                     if(method.isAnnotationPresent(CallOnLoad.class)){
-                        System.out.printf("Scanning method %s...%n", method.getName());
+                        String namespace = method.getAnnotation(CallOnLoad.class).namespace();
+
+                        System.out.printf("Scanning method %s...%n", UID.of(namespace, method.getName()));
                         if(method.getParameterCount() != 0){
-                            System.out.printf("Reject method %s as it accepts arguments%n", method.getName());
+                            System.out.printf("Reject method %s as it accepts arguments%n", UID.of(namespace, method.getName()));
                         }else if(!Modifier.isStatic(method.getModifiers())){
-                            System.out.printf("Reject method %s as it is not a static method%n", method.getName());
+                            System.out.printf("Reject method %s as it is not a static method%n", UID.of(namespace, method.getName()));
                         }else{
-                            System.out.printf("Registering method %s for post-load call%n", method.getName());
+                            System.out.printf("Collecting method %s for post-load call%n", UID.of(namespace, method.getName()));
                             pluginCalls.add(method);
                         }
                     }
@@ -83,12 +86,21 @@ public class PluginManager{
             }
         }
 
-        System.out.println("Invoking post-load methods...");
-        for(Method method : pluginCalls){
-            System.out.printf("Invoking %s%n", method.getName());
-            method.invoke(null);
+        System.out.println("Loading plugins...");
+        for(Plugin p : pluginInstances){
+            System.out.printf("Loading plugin %s (%s)%n", p.namespace(), p.displayName());
+            plugins.put(p.namespace(), p);
+
+            System.out.printf("Invoking post-load methods in %s...%n", p.namespace());
+            for(Method method : pluginCalls){
+                String methodNamespace = method.getAnnotation(CallOnLoad.class).namespace();
+                if(!methodNamespace.equals(p.namespace()))continue;
+
+                System.out.printf("Invoking %s%n", UID.of(p.namespace(), method.getName()));
+                method.invoke(null);
+            }
         }
 
-        System.out.printf("Plugins from %s%n successfully loaded", jar.getName());
+        System.out.printf("Plugins from %s successfully loaded%n", jar.getName());
     }
 }
