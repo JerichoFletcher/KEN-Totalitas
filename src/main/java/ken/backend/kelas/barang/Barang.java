@@ -3,7 +3,6 @@ package ken.backend.kelas.barang;
 import ken.backend.kelas.inventory.InventoryHolder;
 import lombok.*;
 
-import java.util.Optional;
 import java.util.Random;
 
 public class Barang {
