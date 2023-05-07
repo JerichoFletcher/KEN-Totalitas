@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class LayarFixedBill extends JPanel implements ActionListener {
+    private  int idBill;
     private JPanel panelBarang;
     private JButton daftarButton;
     private JButton cetakButton;
@@ -22,8 +23,9 @@ public class LayarFixedBill extends JPanel implements ActionListener {
     private int idNewCust;
 
 
-    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, float total, int idNewCust) {
+    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, float total, int idNewCust, int idBill) {
         super();
+        this.idBill = idBill;
         this.listOfCartItem = listOfCartItem;
         this.customer = customer;
         this.idNewCust = idNewCust;
@@ -109,7 +111,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         if(e.getSource() == cetakButton) {
             this.total = 1000;
             System.out.println("cetak dummy");
-            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total);
+            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total, idNewCust);
             Thread cetakBill = new Thread(unduhDetil);
             cetakBill.run();
 

@@ -207,10 +207,10 @@ public class LayarCheckout extends JPanel implements ActionListener{
                 if(inputField.getText().length() ==  0){
                     Customer newCustomer = new Customer();
                     int idNew = newCustomer.getId();
-                    LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, idNew);
+                    Bill fixedBill = new Bill(idNew, total);
+                    LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, idNew, fixedBill.getIdBill());
                     Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
                     Tabs.tabs.setSelectedComponent(layarFB);
-                    Bill fixedBill = new Bill(idNew, total);
                     for(int i = 0; i < listOfCartItem.size() ; i++){
                         int idt = listOfCartItem.get(i).getID();
                         String namaBarang = listOfCartItem.get(i).getName();
@@ -223,10 +223,10 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     Controller.instance().writeData(FixedBillHolder.instance(), "billFixed");
                 }
                 else{
-                    LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, id);
+                    Bill fixedBill = new Bill(id, total);
+                    LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, id, fixedBill.getIdBill());
                     Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
                     Tabs.tabs.setSelectedComponent(layarFB);
-                    Bill fixedBill = new Bill(id, total);
                     for(int i = 0; i < listOfCartItem.size() ; i++){
 //                        System.out.println();
                         int idt = listOfCartItem.get(i).getID();

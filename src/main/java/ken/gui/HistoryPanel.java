@@ -23,7 +23,9 @@ public class HistoryPanel extends JPanel implements ActionListener {
     public HistoryPanel(int idBill, int idCust, float price, Map<Integer, BillItem> listItemBill){
         super();
         JLabel title = new JLabel("" + idBill + "    " + idCust);
+        this.idBill = idBill;
         this.total = price;
+        this.idCust = idCust;
         priceLabel = new JLabel("" + price);
         this.listOfBarang = new ArrayList<>(listItemBill.values());
         this.setLayout(null);
@@ -55,7 +57,7 @@ public class HistoryPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == showDetailBUtton) {
-            ShowDetail showDetail = new ShowDetail("" + idCust, listOfBarang, total);
+            ShowDetail showDetail = new ShowDetail(idCust, listOfBarang, total, idBill);
             Tabs.tabs.addCustomTab("Detil Transaksi", showDetail, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(showDetail);
         }
