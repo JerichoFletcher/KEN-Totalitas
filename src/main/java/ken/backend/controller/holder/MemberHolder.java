@@ -43,7 +43,7 @@ public class MemberHolder implements Holder {
     public void removeMember(int id) {
         this.listMember.remove(id);
     }
-    public Customer getMemberById(int id) {
+    public Member getMemberById(int id) {
         return listMember.get(id);
     }
 }

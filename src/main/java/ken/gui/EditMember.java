@@ -1,11 +1,20 @@
 package ken.gui;
 
+import ken.backend.controller.Controller;
+import ken.backend.controller.holder.CustomerHolder;
+import ken.backend.controller.holder.MemberHolder;
+import ken.backend.controller.holder.VIPHolder;
+import ken.backend.kelas.anggota.Member;
+import ken.backend.kelas.anggota.VIP;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class EditMember extends JPanel implements ActionListener{
     private JPanel panelEdit;
@@ -59,14 +68,14 @@ public class EditMember extends JPanel implements ActionListener{
         textField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField.getText().equals(nama)) {
+                if (textField.getText().trim().equals(nama)) {
                     textField.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField.getText().equals("")) {
+                if (textField.getText().trim().equals("")) {
                     textField.setText(nama);
                 }
             }
@@ -80,14 +89,14 @@ public class EditMember extends JPanel implements ActionListener{
         textField2.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField2.getText().equals(phone)) {
+                if (textField2.getText().trim().equals(phone)) {
                     textField2.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField2.getText().equals("")) {
+                if (textField2.getText().trim().equals("")) {
                     textField2.setText(phone);
                 }
             }
@@ -136,18 +145,50 @@ public class EditMember extends JPanel implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == editButton){
-            String editNama = (String) textField.getText().trim();
-            String editTelpString = (String) textField2.getText().trim();
-            String editType = (String) pilihMember.getSelectedItem();
-            String editStatus = (String) pilihStateMember.getSelectedItem();
-            if (editTelpString != "Nomor Telfon" || editTelpString.length() != 0) {
-                System.out.println("Editing Member...");
-                System.out.println("Nama: " + editNama);
-                System.out.println("Telp: " + editTelpString);
-                System.out.println("Tipe: " + editType);
-                System.out.println("Status: " + editStatus);
+        try{
+            if(e.getSource() == editButton){
+                String editNama = (String) textField.getText().trim();
+                String editTelpString = (String) textField2.getText().trim();
+                String editType = (String) pilihMember.getSelectedItem();
+                String editStatus = (String) pilihStateMember.getSelectedItem();
+                if (editNama.length() == 0) {
+                    editNama = nama;
+                }
+                if (editTelpString.length() ==0 ) {
+                    editTelpString = phone;
+                }
+                if (editTelpString != "Nomor Telfon" || editTelpString.length() != 0) {
+                    System.out.println("Editing Member...");
+                    System.out.println("Nama: " + editNama);
+                    System.out.println("Telp: " + editTelpString);
+                    System.out.println("Tipe: " + editType);
+                    System.out.println("Status: " + editStatus);
+                    Controller.instance().fetchData(VIPHolder.instance(), "vip");
+                    Controller.instance().fetchData(MemberHolder.instance(), "member");
+                    if(editType.equals("VIP")){
+                        System.out.println("masuk");
+//                    Member memberHolder =  MemberHolder.instance().getMemberById(id);
+                        VIP newVIP = new VIP(editNama, editTelpString, id);
+                        newVIP.setActive(editStatus.equals("Aktif"));
+                        MemberHolder.instance().removeMember(id);
+                        VIPHolder.instance().addVIP(newVIP);
+                        Controller.instance().writeData(MemberHolder.instance(), "member");
+                        Controller.instance().writeData(VIPHolder.instance(), "vip");
+                    }else{
+                        System.out.println("masuk2");
+//                    VIP VIPHolder =  MemberHolder.instance().getMemberById(id);
+                        Member newMember = new Member(editNama, editTelpString, id);
+                        newMember.setActive(editStatus.equals("Aktif"));
+                        VIPHolder.instance().removeVIP(id);
+                        MemberHolder.instance().addMember(newMember);
+                        Controller.instance().writeData(MemberHolder.instance(), "member");
+                        Controller.instance().writeData(VIPHolder.instance(), "vip");
+                    }
+                }
+
             }
+        }catch (URISyntaxException | IOException ex) {
+            throw new RuntimeException(ex);
         }
     }
 }
