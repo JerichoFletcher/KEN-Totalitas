@@ -1,5 +1,6 @@
 package ken.backend.controller;
 
+import ken.backend.controller.holder.Holder;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.dataStore.AdapterData;
 import ken.backend.dataStore.AdapterJSON;
@@ -38,11 +39,11 @@ public class Controller {
 
     }
 
-    public void fetchData(String whatData) throws URISyntaxException, IOException {
-        InventoryHolder.instance().load(getClass().getResource(path+whatData+"."+type).toURI(),adapterList.get(type));
+    public void fetchData(Holder obj, String whatData) throws URISyntaxException, IOException {
+        obj.load(getClass().getResource(path+whatData+"."+type).toURI(),adapterList.get(type));
     }
-    public void writeData(String whatData) throws URISyntaxException, IOException {
-        InventoryHolder.instance().write(getClass().getResource(path+whatData+"."+type).toURI(),adapterList.get(type));
+    public void writeData(Holder obj, String whatData) throws URISyntaxException, IOException {
+        obj.write(getClass().getResource(path+whatData+"."+type).toURI(),adapterList.get(type));
     }
 
 
