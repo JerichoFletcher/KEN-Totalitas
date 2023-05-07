@@ -183,6 +183,19 @@
       "idBill": 578313978,
       "idCustomer": 392261423,
       "totalHarga": 500.0
+    },
+    "414227599": {
+      "listBarang": {
+        "6": {
+          "id": 6,
+          "namaBarang": "Pisau",
+          "jumlahDibeli": 6,
+          "hargaBarang": 15000.0
+        }
+      },
+      "idBill": 414227599,
+      "idCustomer": 6,
+      "totalHarga": 108000.0
     }
   }
 }
