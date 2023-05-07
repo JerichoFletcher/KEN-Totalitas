@@ -62,6 +62,11 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(scrollPane);
         if (customer.length() == 0) {
+            JLabel namaCustomer = new JLabel("Pembelian customer berhasil dicatat!");
+            namaCustomer.setFont(new Font("Poppins", Font.BOLD, 30));
+            namaCustomer.setForeground(Color.white);
+            namaCustomer.setBounds(650, 120, 1000, 100);
+            this.add(namaCustomer);
             daftarButton = new JButton("Daftar Member/VIP");
             daftarButton.addActionListener(this);
             daftarButton.setBackground(new Color(0xD9D9D9));
@@ -72,7 +77,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
             this.add(daftarButton);
         }
         else{
-            JLabel namaCustomer = new JLabel("Pembelian " + customer + " berhasil di catat!");
+            JLabel namaCustomer = new JLabel("Pembelian " + customer + " berhasil dicatat!");
             namaCustomer.setFont(new Font("Poppins", Font.BOLD, 30));
             namaCustomer.setForeground(Color.white);
             namaCustomer.setBounds(650, 120, 1000, 100);

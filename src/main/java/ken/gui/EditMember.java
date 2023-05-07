@@ -10,6 +10,9 @@ import java.awt.event.FocusListener;
 public class EditMember extends JPanel implements ActionListener{
     private JPanel panelEdit;
     private JButton editButton;
+    private JTextField textField;
+    private JTextField textField2;
+    private JComboBox pilihMember;
     public EditMember(){
         panelEdit = new JPanel();
         this.setSize(500,500);
@@ -36,7 +39,7 @@ public class EditMember extends JPanel implements ActionListener{
         label.setForeground(new Color(0x395B64));
         panelEdit.add(label);
         label.setBounds(400,30,500,100);
-        JTextField textField = new JTextField();
+        textField = new JTextField();
         textField.setBounds(310,130,590,65);
         textField.setText("Nama");
         textField.setFont(new Font("Poppins", Font.BOLD,20));
@@ -57,7 +60,7 @@ public class EditMember extends JPanel implements ActionListener{
                 }
             }
         });
-        JTextField textField2 = new JTextField();
+        textField2 = new JTextField();
         textField2.setBounds(310,215,590,65);
         textField2.setText("Nomor Telfon");
         textField2.setFont(new Font("Poppins", Font.BOLD,20));
@@ -78,8 +81,8 @@ public class EditMember extends JPanel implements ActionListener{
                 }
             }
         });
-        String[] tipeMember = new String[]{"Member", "VIP", "Menonaktifkan"};
-        JComboBox pilihMember = new JComboBox(tipeMember);
+        String[] tipeMember = new String[]{"Member", "VIP"};
+        pilihMember = new JComboBox(tipeMember);
         pilihMember.setBackground(new Color(0xD9D9D9));
         pilihMember.setBounds(310,300,590,65);
         pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
@@ -103,7 +106,15 @@ public class EditMember extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == editButton){
-            System.out.println("edit dummy");
+            String editNama = (String) textField.getText().trim();
+            String editTelpString = (String) textField2.getText().trim();
+            String editType = (String) pilihMember.getSelectedItem();
+            if (editTelpString != "Nomor Telfon" || editTelpString.length() != 0) {
+                System.out.println("Editing Member...");
+                System.out.println("Nama: " + editNama);
+                System.out.println("Harga: " + editTelpString);
+                System.out.println("Kategori: " + editType);
+            }
         }
     }
 }
