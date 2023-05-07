@@ -1,0 +1,29 @@
+{
+  "listMember" : {
+    "3" : {
+      "id" : 3,
+      "name": "Udin Petot",
+      "phoneNumber": "69696969",
+      "points": 420,
+      "active": true
+    },
+    "5" : {
+      "id" : 5,
+      "name": "Udin Metot",
+      "phoneNumber": "79696969",
+      "points": 422,
+      "active": true
+    },
+    "6" : {
+      "id" : 6,
+      "name": "Udin Getot",
+      "phoneNumber": "42069",
+      "points": 421,
+<<<<<<< Updated upstream
+      "active": false
+=======
+      "active": true
+>>>>>>> Stashed changes
+    }
+  }
+}

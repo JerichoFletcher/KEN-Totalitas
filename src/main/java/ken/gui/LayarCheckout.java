@@ -227,7 +227,8 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     Tabs.tabs.setSelectedComponent(layarFB);
                     Bill fixedBill = new Bill(id, "IDR", total);
                     for(int i = 0; i < listOfCartItem.size() ; i++){
-                        String namaBarang = listOfCartItem.get(i).getName();
+//                        System.out.println();
+                        String namaBarang = listOfCartItem.get(i).getJudul();
                         int jumlah = listOfCartItem.get(i).getCounter();
                         int harga = listOfCartItem.get(i).getHarga();
                         BillItem billItem = new BillItem(namaBarang, jumlah, harga);

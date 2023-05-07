@@ -1,26 +1,25 @@
 {
   "listBill": {
-    "0":{
-      "idBill": 0,
-      "idCustomer": 2,
-      "totalHarga": 14000,
+    "0": {
       "listBarang": {
-        "0":{
+        "0": {
           "namaBarang": "Pensil",
           "jumlahDibeli": 10,
           "hargaBarang": 1000
         },
-        "1":{
+        "1": {
           "namaBarang": "Penghapus",
           "jumlahDibeli": 2,
           "hargaBarang": 2000
         }
+      },
+      "idBill": 0,
+      "idCustomer": 1,
+      "totalHarga": {
+        "Rp": 14000
       }
     },
-    "1":{
-      "idBill": 1,
-      "idCustomer": 3,
-      "totalHarga": 8000,
+    "1": {
       "listBarang": {
         "0": {
           "namaBarang": "Pensil",
@@ -32,6 +31,11 @@
           "jumlahDibeli": 3,
           "hargaBarang": 2000
         }
+      },
+      "idBill": 1,
+      "idCustomer": 2,
+      "totalHarga": {
+        "Rp": 8000
       }
     }
   }

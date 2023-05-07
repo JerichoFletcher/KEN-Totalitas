@@ -16,7 +16,7 @@
       "idBill": 0,
       "idCustomer": 2,
       "totalHarga": {
-        "Rp": 14000
+        "IDR": 14000
       }
     },
     "1": {
@@ -35,7 +35,7 @@
       "idBill": 1,
       "idCustomer": 3,
       "totalHarga": {
-        "Rp": 8000
+        "IDR": 8000
       }
     },
     "844554853": {

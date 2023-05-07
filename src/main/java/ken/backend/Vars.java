@@ -12,7 +12,7 @@ public class Vars{
     public static String path = "./db/";
     public static String extension = "json";
 
-    public static String mataUang = "Rp";
+    public static String mataUang = "IDR";
 
     public static BillProcessor billProcessor = BillProcessor
         .builder(listBarang -> {

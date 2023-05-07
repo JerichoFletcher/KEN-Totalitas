@@ -4,9 +4,15 @@ import ken.backend.controller.holder.*;
 import ken.backend.controller.Controller;
 import ken.backend.controller.holder.*;
 import ken.backend.dataStore.AdapterJSON;
+import ken.backend.dataStore.AdapterObject;
+import ken.backend.dataStore.AdapterXML;
 import ken.backend.kelas.anggota.*;
 import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.BillItem;
+<<<<<<< Updated upstream
+=======
+import ken.backend.controller.holder.*;
+>>>>>>> Stashed changes
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -114,10 +120,46 @@ public class AdapterTest {
         VIPHolder.instance().write(getClass().getResource("/database/vip2.json").toURI(),adapter);
     }
     @Test
+<<<<<<< Updated upstream
     public void testControllerCustomer() throws IOException, URISyntaxException {
         Controller.instance().fetchData(MemberHolder.instance(),"member");
         Member nm = new Member("Nama", "098123",12425135);
         MemberHolder.instance().addMember(nm);
         Controller.instance().writeData(MemberHolder.instance(),"member");
     }
+=======
+    public void testAdapterXML2() throws IOException, URISyntaxException {
+        AdapterXML adapter = new AdapterXML();;
+        AdapterJSON adapter2 = new AdapterJSON();
+        InventoryHolder.instance().load(getClass().getResource("/database/barang.xml").toURI(),adapter);
+        System.out.println(InventoryHolder.instance().getBanyakBarang());
+        Assertions.assertEquals(5, InventoryHolder.instance().getBanyakBarang());
+    }
+
+    @Test
+    public void testAdapterObject() throws IOException, URISyntaxException {
+        AdapterObject adapter = new AdapterObject();;
+        AdapterJSON adapter2 = new AdapterJSON();
+        InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter2);
+        InventoryHolder.instance().write(getClass().getResource("/database/barang.ser").toURI(),adapter);
+    }
+
+    @Test
+    public void testAdapterObject2() throws IOException, URISyntaxException {
+        AdapterObject adapter = new AdapterObject();;
+        AdapterJSON adapter2 = new AdapterJSON();
+        InventoryHolder.instance().load(getClass().getResource("/database/barang.ser").toURI(),adapter);
+        System.out.println(InventoryHolder.instance().getBanyakBarang());
+    }
+
+    @Test
+    public void testAdapterObject3() throws IOException, URISyntaxException {
+        AdapterObject adapter = new AdapterObject();;
+        AdapterJSON adapter2 = new AdapterJSON();
+        InventoryHolder.instance().load(getClass().getResource("/database/barang.ser").toURI(),adapter);
+        InventoryHolder.instance().write(getClass().getResource("/database/barangtes.json").toURI(),adapter2);
+    }
+
+
+>>>>>>> Stashed changes
 }

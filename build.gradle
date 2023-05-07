@@ -23,6 +23,12 @@ dependencies {
     implementation 'junit:junit:4.12'
     implementation 'junit:junit:4.12'
     implementation 'org.projectlombok:lombok:1.18.26'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.12.4'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.4'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.15'
+//    implementation 'org.gnu:libbfd:2.31.1'
 }
 
 test {
