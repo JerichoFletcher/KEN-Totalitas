@@ -14,7 +14,7 @@ public class Member extends Customer implements Serializable {
     private String phoneNumber;
     @Getter
     @Setter
-    private int points;
+    protected float points;
     @Getter
     @Setter
     private boolean active;
@@ -32,8 +32,8 @@ public class Member extends Customer implements Serializable {
         points += newPoints;
     }
 
-    public int usePoints(int amount) {
-        int usedPoints = Math.min(amount, points);
+    public float usePoints(int amount) {
+        float usedPoints = Math.min(amount, points);
         points -= usedPoints;
         return usedPoints;
     }

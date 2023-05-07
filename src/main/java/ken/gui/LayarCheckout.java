@@ -36,6 +36,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
     private JComboBox pilihMember;
     private JPanel panelMember;
     private JTextField inputField;
+    private JTextField pointField;
     private List<CartItem> listOfCartItem;
     private int id;
     private float total;
@@ -127,6 +128,12 @@ public class LayarCheckout extends JPanel implements ActionListener{
         inputField.setBounds(920, 100, 300, 50);
         inputField.setFont(new Font("Poppins", Font.PLAIN, 20));
 
+        pointField = new JTextField();
+        pointField.setBounds(920, 25, 300, 50);
+        pointField.setFont(new Font("Poppins", Font.PLAIN, 20));
+
+        this.add(pointField);
+        pointField.setVisible(false);
         panelMember = new JPanel();
         panelMember.setBackground(new Color(0x2C3333));
         panelMember.setLayout(new BoxLayout(panelMember, BoxLayout.Y_AXIS));
@@ -135,7 +142,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
 
         for (Map.Entry<Integer, String> member: allMember) {
             if (member.getKey()!=-1) {
-                MemberCheckoutPanel panelNama = new MemberCheckoutPanel(member.getValue(),member.getKey(),this, inputField);
+                MemberCheckoutPanel panelNama = new MemberCheckoutPanel(member.getValue(),member.getKey(),this, inputField, pointField);
                 panelMember.add(panelNama);
             }
 
@@ -169,7 +176,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
                 for (Map.Entry<Integer, String> member : allMember) {
                     if (member.getValue().toLowerCase().startsWith(enteredText)) {
                         if (member.getKey() != -1) {
-                            MemberCheckoutPanel panelNama = new MemberCheckoutPanel(member.getValue(), member.getKey(), layar, inputField);
+                            MemberCheckoutPanel panelNama = new MemberCheckoutPanel(member.getValue(), member.getKey(), layar, inputField,pointField);
                             panelMember.add(panelNama);
                         }
                     }

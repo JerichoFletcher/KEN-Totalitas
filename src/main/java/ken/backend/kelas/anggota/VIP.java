@@ -9,6 +9,7 @@ public class VIP extends Member implements Serializable {
         super(name, phoneNumber,id);
     }
 
+
     public double getDiscountRate() {
         return DISCOUNT_RATE;
     }
