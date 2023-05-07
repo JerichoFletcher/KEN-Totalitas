@@ -6,15 +6,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.AbstractMap.SimpleEntry;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 
 public class LayarCheckout extends JPanel implements ActionListener{
     private JPanel panelBarang;
     private JButton fixBill;
     private JComboBox pilihMember;
+    private JPanel panelMember;
     private JTextField inputField;
     private List<CartItem> listOfCartItem;
+    private int id;
     private int total;
 
     public LayarCheckout(List<CartItem> listOfCartItem, int total){
@@ -53,44 +61,88 @@ public class LayarCheckout extends JPanel implements ActionListener{
         }
         JScrollPane scrollPane = new JScrollPane(panelBarang);
         scrollPane.setBackground(new Color(0, 0, 0, 0));
-        scrollPane.setBounds(500, 150, 500, 350);
+        scrollPane.setBounds(450, 150, 200, 350);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        String[] tipeMember = new String[]{"", "jovan", "farhan", "shidqi", "alek", "jericho"};
-        pilihMember = new JComboBox(tipeMember);
-        pilihMember.setBackground(new Color(0xD9D9D9));
-        pilihMember.setBounds(920,400,250,50);
-        pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
-        pilihMember.setForeground(new Color(0x395B64));
-        pilihMember.setFocusable(false);
-        this.add(pilihMember);
 
+        List<Map.Entry<Integer, String>> allMember = new ArrayList<>();
+        allMember.add(new AbstractMap.SimpleEntry<>(-1, ""));
+        allMember.add(new AbstractMap.SimpleEntry<>(1, "Alek"));
+        allMember.add(new AbstractMap.SimpleEntry<>(2, "Farhan"));
+        allMember.add(new AbstractMap.SimpleEntry<>(3, "Jericho"));
+        allMember.add(new AbstractMap.SimpleEntry<>(4, "Jovan"));
+        allMember.add(new AbstractMap.SimpleEntry<>(5, "Shidqi"));
+        allMember.add(new AbstractMap.SimpleEntry<>(6, "Obama"));
+        allMember.add(new AbstractMap.SimpleEntry<>(7, "Trump"));
+        allMember.add(new AbstractMap.SimpleEntry<>(8, "Putin"));
+        allMember.add(new AbstractMap.SimpleEntry<>(9, "Jokowi"));
+        allMember.add(new AbstractMap.SimpleEntry<>(10, "Xi Jinping"));
+
+//        pilihMember = new JComboBox(tipeMember);
+//        pilihMember.setBackground(new Color(0xD9D9D9));
+//        pilihMember.setBounds(920,400,250,50);
+//        pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
+//        pilihMember.setForeground(new Color(0x395B64));
+//        pilihMember.setFocusable(false);
+//        this.add(pilihMember);
         inputField = new JTextField();
-        inputField.setBounds(920, 400, 250, 50);
+        inputField.setBounds(920, 100, 300, 50);
         inputField.setFont(new Font("Poppins", Font.PLAIN, 20));
-        inputField.addKeyListener(new KeyListener() {
+
+        panelMember = new JPanel();
+        panelMember.setBackground(new Color(0x2C3333));
+        panelMember.setLayout(new BoxLayout(panelMember, BoxLayout.Y_AXIS));
+        panelMember.setBorder(BorderFactory.createEmptyBorder());
+
+
+        for (Map.Entry<Integer, String> member: allMember) {
+            if (member.getKey()!=-1) {
+                MemberCheckoutPanel panelNama = new MemberCheckoutPanel(member.getValue(),member.getKey(),this, inputField);
+                panelMember.add(panelNama);
+            }
+
+        }
+
+        JScrollPane scrollMember = new JScrollPane(panelMember);
+        scrollMember.setBackground(new Color(0, 0, 0, 0));
+        scrollMember.setBounds(830, 150, 500, 350);
+        scrollMember.setBorder(BorderFactory.createEmptyBorder());
+
+        LayarCheckout layar = this;
+        inputField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void insertUpdate(DocumentEvent e) {
+                handleTextChanged();
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void removeUpdate(DocumentEvent e) {
+                handleTextChanged();
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void changedUpdate(DocumentEvent e) {
+                handleTextChanged();
+            }
+
+            private void handleTextChanged() {
                 String enteredText = inputField.getText().toLowerCase();
-                DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-                for (String member : tipeMember) {
-                    if (member.toLowerCase().startsWith(enteredText)) {
-                        model.addElement(member);
+                panelMember.removeAll();
+                for (Map.Entry<Integer, String> member : allMember) {
+                    if (member.getValue().toLowerCase().startsWith(enteredText)) {
+                        if (member.getKey() != -1) {
+                            MemberCheckoutPanel panelNama = new MemberCheckoutPanel(member.getValue(), member.getKey(), layar, inputField);
+                            panelMember.add(panelNama);
+                        }
                     }
                 }
-                pilihMember.setModel(model);
-                pilihMember.setPopupVisible(model.getSize() > 0);
+                panelMember.revalidate();
+                panelMember.repaint();
             }
         });
         this.add(inputField);
         this.add(scrollPane);
+        this.add(scrollMember);
+
         fixBill = new JButton();
         fixBill.addActionListener(this);
         fixBill.setFocusable(false);
@@ -105,11 +157,17 @@ public class LayarCheckout extends JPanel implements ActionListener{
 
     }
 
+    public void setId(int newID) {
+        this.id = newID;
+    }
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == fixBill){
-            System.out.println("tix dummy");
-            String selectedItem = (String) pilihMember.getSelectedItem();
-            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total);
+            System.out.println("Fixed Bill Created");
+            System.out.println("Name : " + inputField.getText());
+            System.out.println("ID : " + id);
+            String selectedItem = (String) inputField.getText();
+            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem,total);
             Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarFB);
         }
