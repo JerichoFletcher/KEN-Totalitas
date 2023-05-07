@@ -16,7 +16,7 @@ public class CartItem extends JPanel implements ActionListener {
     private JButton minusButton;
     private JPanel cart;
     private String judul;
-    private int harga;
+    private float harga;
     private int id;
     private int counter; // added counter variable
     private int priceHolder;
@@ -24,7 +24,7 @@ public class CartItem extends JPanel implements ActionListener {
     private MenuItem correspondingMI;
     private JLabel counterLabel; // added counter label
 
-    public CartItem(int id, String judul, int harga, JPanel cart, Kasir kasir, int priceHolder, MenuItem menuItem){
+    public CartItem(int id, String judul, float harga, JPanel cart, Kasir kasir, int priceHolder, MenuItem menuItem){
         super();
         this.priceHolder = priceHolder;
         this.judul = judul;
@@ -93,7 +93,7 @@ public class CartItem extends JPanel implements ActionListener {
     public int getCounter() {
         return this.counter;
     }
-    public int getHarga(){ return this.harga; }
+    public float getHarga(){ return this.harga; }
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == addButton){

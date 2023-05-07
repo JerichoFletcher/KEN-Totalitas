@@ -14,8 +14,8 @@ import java.util.List;
 
 public class UnduhHistory implements Runnable{
     private List<String> listOfName;
-    private List<Integer> listOfPrice;
-    public UnduhHistory(List<String> listOfName, List<Integer> listOfPrice){
+    private List<Float> listOfPrice;
+    public UnduhHistory(List<String> listOfName, List<Float> listOfPrice){
         this.listOfName = listOfName;
         this.listOfPrice = listOfPrice;
     }

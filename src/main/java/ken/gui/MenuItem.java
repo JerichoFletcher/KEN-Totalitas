@@ -18,7 +18,7 @@ public class MenuItem extends JPanel implements ActionListener {
     private JButton addButton;
     private JPanel cart;
     private String judul;
-    private int harga;
+    private float harga;
     private int id;
     private int quantity;
     private int priceHolder;
@@ -27,7 +27,7 @@ public class MenuItem extends JPanel implements ActionListener {
     private Kasir kasir;
 
 
-    public MenuItem(int id, String judul, int harga, int quantity, String path, int priceHolder, JPanel cart, Kasir kasir){
+    public MenuItem(int id, String judul, float harga, int quantity, String path, int priceHolder, JPanel cart, Kasir kasir){
         super();
         this.priceHolder = priceHolder;
         this.judul = judul;

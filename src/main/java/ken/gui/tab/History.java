@@ -24,10 +24,10 @@ public class History extends KENTab implements ActionListener {
     private JPanel history;
     private JButton unduhButton;
     private List<String> listOfName;
-    private List<Integer>  listOfPrice;
+    private List<Float>  listOfPrice;
     public History(){
         super();
-        listOfPrice = new ArrayList<Integer>();
+        listOfPrice = new ArrayList<Float>();
         listOfName = new ArrayList<String>();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -76,10 +76,10 @@ public class History extends KENTab implements ActionListener {
             Bill value = entry.getValue();
             // Do something with the key and value...
 
-            HistoryPanel historyPanel = new HistoryPanel(key, value.getIdCustomer(), value.getTotalHarga().get(Vars.mataUang), value.getListBarang());
+            HistoryPanel historyPanel = new HistoryPanel(key, value.getIdCustomer(), value.getTotalHarga(), value.getListBarang());
             history.add(historyPanel);
             listOfName.add(key + "   " + value.getIdCustomer());
-            listOfPrice.add(value.getTotalHarga().get(Vars.mataUang));
+            listOfPrice.add(value.getTotalHarga());
         }
         JScrollPane scrollPane = new JScrollPane(history);
         scrollPane.setBounds(0, 50, 1260, 520);

@@ -18,9 +18,9 @@ public class HistoryPanel extends JPanel implements ActionListener {
     private int idBill;
     private int idCust;
     private List<BillItem> listOfBarang;
-    private int total;
+    private float total;
 
-    public HistoryPanel(int idBill, int idCust, int price, Map<Integer, BillItem> listItemBill){
+    public HistoryPanel(int idBill, int idCust, float price, Map<Integer, BillItem> listItemBill){
         super();
         JLabel title = new JLabel("" + idBill + "    " + idCust);
         this.total = price;

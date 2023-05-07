@@ -19,10 +19,10 @@ public class ShowDetail extends JPanel implements ActionListener {
     private List<BillItem> listOfBillItem;
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
-    private int total;
+    private float total;
 
 
-    public ShowDetail(String customer, List<BillItem> listOfBillItem, int total) {
+    public ShowDetail(String customer, List<BillItem> listOfBillItem, float total) {
         super();
         this.total = total;
         this.listOfBillItem = listOfBillItem;

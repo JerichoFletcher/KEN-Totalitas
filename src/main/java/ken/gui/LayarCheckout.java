@@ -210,12 +210,12 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, idNew);
                     Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
                     Tabs.tabs.setSelectedComponent(layarFB);
-                    Bill fixedBill = new Bill(idNew, "IDR", total);
+                    Bill fixedBill = new Bill(idNew, total);
                     for(int i = 0; i < listOfCartItem.size() ; i++){
                         int idt = listOfCartItem.get(i).getID();
                         String namaBarang = listOfCartItem.get(i).getName();
                         int jumlah = listOfCartItem.get(i).getCounter();
-                        int harga = listOfCartItem.get(i).getHarga();
+                        float harga = listOfCartItem.get(i).getHarga();
                         BillItem billItem = new BillItem(idt, namaBarang, jumlah, harga);
                         fixedBill.addBarang(billItem);
                     }
@@ -226,13 +226,13 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, id);
                     Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
                     Tabs.tabs.setSelectedComponent(layarFB);
-                    Bill fixedBill = new Bill(id, "IDR", total);
+                    Bill fixedBill = new Bill(id, total);
                     for(int i = 0; i < listOfCartItem.size() ; i++){
 //                        System.out.println();
                         int idt = listOfCartItem.get(i).getID();
                         String namaBarang = listOfCartItem.get(i).getJudul();
                         int jumlah = listOfCartItem.get(i).getCounter();
-                        int harga = listOfCartItem.get(i).getHarga();
+                        float harga = listOfCartItem.get(i).getHarga();
                         BillItem billItem = new BillItem(id, namaBarang, jumlah, harga);
                         fixedBill.addBarang(billItem);
                     }

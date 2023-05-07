@@ -23,12 +23,12 @@ public class EditInventoryItem extends JPanel implements ActionListener{
 
     private int id;
     private String judul;
-    private int harga;
-    private int hargaBeli;
+    private float harga;
+    private float hargaBeli;
     private int quantity;
     private String path;
     private String kategori;
-    public EditInventoryItem(int iid, String ijudul, int iharga,int ihargaBeli, int iquantity, String ikategori, String ipath){
+    public EditInventoryItem(int iid, String ijudul, float iharga,float ihargaBeli, int iquantity, String ikategori, String ipath){
         panelEdit = new JPanel();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -106,14 +106,14 @@ public class EditInventoryItem extends JPanel implements ActionListener{
 
         textField3 = new JTextField();
         textField3.setBounds(50,250,550,50);
-        textField3.setText(Integer.toString(harga));
+        textField3.setText(Float.toString(harga));
         textField3.setFont(new Font("Poppins", Font.BOLD,18));
         textField3.setForeground(new Color(0x395B64));
         textField3.setBackground(new Color(0xD9D9D9));
         textField3.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField3.getText().trim().equals(Integer.toString(harga))) {
+                if (textField3.getText().trim().equals(Float.toString(harga))) {
                     textField3.setText("");
                 }
             }
@@ -121,21 +121,21 @@ public class EditInventoryItem extends JPanel implements ActionListener{
             @Override
             public void focusLost(FocusEvent e) {
                 if (textField3.getText().trim().equals("")) {
-                    textField3.setText(Integer.toString(harga));
+                    textField3.setText(Float.toString(harga));
                 }
             }
         });
 
         textField4 = new JTextField();
         textField4.setBounds(650,130,550,50);
-        textField4.setText(Integer.toString(hargaBeli));
+        textField4.setText(Float.toString(hargaBeli));
         textField4.setFont(new Font("Poppins", Font.BOLD,18));
         textField4.setForeground(new Color(0x395B64));
         textField4.setBackground(new Color(0xD9D9D9));
         textField4.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField4.getText().trim().equals(Integer.toString(hargaBeli))) {
+                if (textField4.getText().trim().equals(Float.toString(hargaBeli))) {
                     textField4.setText("");
                 }
             }
@@ -143,7 +143,7 @@ public class EditInventoryItem extends JPanel implements ActionListener{
             @Override
             public void focusLost(FocusEvent e) {
                 if (textField4.getText().trim().equals("")) {
-                    textField4.setText(Integer.toString(hargaBeli));
+                    textField4.setText(Float.toString(hargaBeli));
                 }
             }
         });
@@ -232,10 +232,10 @@ public class EditInventoryItem extends JPanel implements ActionListener{
                 editStok = Integer.toString(quantity);
             }
             if (editHarga.length() == 0) {
-                editHarga = Integer.toString(harga);
+                editHarga = Float.toString(harga);
             }
             if (editHargaBeli.length() == 0) {
-                editHargaBeli = Integer.toString(hargaBeli);
+                editHargaBeli = Float.toString(hargaBeli);
             }
             if (editKategori.length() == 0) {
                 editKategori= kategori;

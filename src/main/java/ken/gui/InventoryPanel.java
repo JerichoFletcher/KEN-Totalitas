@@ -12,13 +12,13 @@ public class InventoryPanel extends JPanel implements ActionListener {
     private JButton editButton;
     private int id;
     private String judul;
-    private int harga;
-    private int hargaBeli;
+    private float harga;
+    private float hargaBeli;
     private int quantity;
     private String path;
     private String kategori;
 
-    public InventoryPanel(int iid, String ijudul, int iharga,int ihargaBeli, int iquantity, String ipath, String ikategori){
+    public InventoryPanel(int iid, String ijudul, float iharga,float ihargaBeli, int iquantity, String ipath, String ikategori){
         super();
         this.id = iid;
         this.judul = ijudul;

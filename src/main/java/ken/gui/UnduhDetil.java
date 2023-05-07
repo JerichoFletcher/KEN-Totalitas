@@ -14,8 +14,8 @@ import java.util.List;
 public class UnduhDetil implements Runnable{
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
-    private int total;
-    UnduhDetil(List<String> listOfName, ArrayList<Integer> listOfAMount, int total){
+    private float total;
+    UnduhDetil(List<String> listOfName, ArrayList<Integer> listOfAMount, float total){
         this.listOfName = listOfName;
         this.listOfAmount = listOfAMount;
         this.total = total;
