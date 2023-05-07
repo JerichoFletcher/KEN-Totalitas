@@ -1,6 +1,7 @@
 package ken.backend.controller.holder;
 import ken.backend.dataStore.AdapterData;
 import ken.backend.kelas.bill.Bill;
+import ken.backend.kelas.bill.BillItem;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -33,6 +34,9 @@ public class BillHolder implements Holder {
     }
     public Bill getBillById(int id){
         return listBill.get(id);
+    }
+    public void addBill(Bill bb){
+        this.listBill.put(bb.getIdBill(),bb);
     }
 
 }
