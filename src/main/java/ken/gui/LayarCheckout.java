@@ -1,11 +1,14 @@
 package ken.gui;
 
 import ken.backend.controller.Controller;
+import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.controller.holder.MemberHolder;
 import ken.backend.controller.holder.VIPHolder;
 import ken.backend.kelas.anggota.Customer;
 import ken.backend.kelas.anggota.Member;
 import ken.backend.kelas.anggota.VIP;
+import ken.backend.kelas.bill.Bill;
+import ken.backend.kelas.bill.BillItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -198,11 +201,26 @@ public class LayarCheckout extends JPanel implements ActionListener{
             System.out.println("Name : " + inputField.getText());
             System.out.println("ID : " + id);
             String selectedItem = (String) inputField.getText();
-            Customer newCustomer = new Customer();
-            int idNew = newCustomer.getId();
-            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem,total, idNew);
-            Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarFB);
+            Bill fixedBill = new Bill(id);
+//            List<BillItem> listOfBillItem;
+//            for(int i = 0; i < listOfCartItem.size() ; i++){
+//                String namaBarang = listOfCartItem.get(i).getName();
+//                int jumlah = listOfCartItem.get(i).getCounter();
+//                int harga = listOfCartItem.get(i).getHarga();
+//                BillItem billItem = new BillItem(namaBarang, jumlah, harga);
+//                listOfBillItem.add(billItem);
+//            }
+//            Bill fixedBill = new Bill();
+            if(inputField.getText().length() ==  0){
+                Customer newCustomer = new Customer();
+                int idNew = newCustomer.getId();
+                LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, idNew);
+                Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
+                Tabs.tabs.setSelectedComponent(layarFB);
+            }
+            else{
+
+            }
         }
     }
 }
