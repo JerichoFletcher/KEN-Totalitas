@@ -127,6 +127,6 @@ public class CartItem extends JPanel implements ActionListener {
     }
 
     public BillItem toBillItem(){
-        return new BillItem(judul, counter, harga);
+        return new BillItem(id, judul, counter, harga);
     }
 }

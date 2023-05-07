@@ -101,6 +101,7 @@ public class MenuItem extends JPanel implements ActionListener {
     }
 
 
+
     public void actionPerformed(ActionEvent e) {
         boolean found = false;
         if (e.getSource() == addButton) {
@@ -108,6 +109,7 @@ public class MenuItem extends JPanel implements ActionListener {
                 quantity--;
                 CartItem cartItem = new CartItem(id, judul, harga, cart, kasir, priceHolder, this);
                 for (CartItem item : kasir.getCart()) {
+                    System.out.println(item.getID());
                     if (item.getID() == id) {
                         item.incrementCounter();
                         found = true;
@@ -118,6 +120,7 @@ public class MenuItem extends JPanel implements ActionListener {
                     kasir.addCartItem(cartItem);
                     cart.add(cartItem);
                 }
+                System.out.println(found);
                 cart.revalidate();
                 cart.repaint();
                 counterLabel.setText(Integer.toString(quantity));

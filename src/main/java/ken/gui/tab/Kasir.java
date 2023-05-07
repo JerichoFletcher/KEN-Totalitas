@@ -136,7 +136,7 @@ public class Kasir extends KENTab implements ActionListener {
             Barang value = entry.getValue();
             // Do something with the key and value...
 
-            ken.gui.MenuItem menuItem = new MenuItem(key, value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this);
+            ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this);
             inventory.add(menuItem);
         }
 
@@ -253,6 +253,10 @@ public class Kasir extends KENTab implements ActionListener {
     public void addCartItem(CartItem cartItem){
         listOfCartItem.add(cartItem);
     }
+
+    public void deleteAllCartItem() {
+        listOfCartItem.clear();
+    }
     public void eraseItemFromCart(CartItem cartItem){
         listOfCartItem.remove(cartItem);
     }
@@ -285,6 +289,7 @@ public class Kasir extends KENTab implements ActionListener {
         this.scrollPane.repaint();
     }
 
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == checkoutButton){
             System.out.println("redirect ke checkout menu");
@@ -298,6 +303,44 @@ public class Kasir extends KENTab implements ActionListener {
             selectedHistory = (String) pilihHistory.getSelectedItem();
             if (selectedHistory.length() != 0) {
                 System.out.println("get history" + selectedHistory);
+                inventory.removeAll();
+                listOfCartItem.clear();
+                cart.removeAll();
+                cart.revalidate();
+                cart.repaint();
+                for (Map.Entry<Integer, Barang> entry2 : InventoryHolder.instance().getListBarang().entrySet()) {
+                    Integer key = entry2.getKey();
+                    Barang value2 = entry2.getValue();
+                    boolean found = false;
+                    for (Map.Entry<Integer, BillItem> entry : BillHolder.instance().getBillById(Integer.parseInt(selectedHistory)).getListBarang().entrySet()) {
+                        BillItem value = entry.getValue();
+                        int amount = value.getJumlahDibeli();
+                        int id = value.getId();
+                        if (id == value2.getId()) {
+                            ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok()-amount, value2.getGambar(), price, cart, this);
+                            inventory.add(menuItem);
+                            found = true;
+                            CartItem cartItem = new CartItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), cart, this, price, menuItem);
+                            this.addCartItem(cartItem);
+                            cart.add(cartItem);
+                            for (int i = 0; i<amount-1;i++) {
+                                cartItem.incrementCounter();
+                            }
+                            cart.revalidate();
+                            cart.repaint();
+                            this.updatePriceText();
+                            System.out.println(value2.getId());
+                            System.out.println(cartItem.getID());
+                        }
+                    }
+                    if (!found) {
+                        ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok(), value2.getGambar(), price, cart, this);
+                        inventory.add(menuItem);
+                    }
+                }
+
+
+                setScrollPane(getScrollPane());
             } else {
                 System.out.println("Tidak memilih history");
             }

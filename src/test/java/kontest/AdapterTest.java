@@ -154,4 +154,16 @@ public class AdapterTest {
         InventoryHolder.instance().load(getClass().getResource("/database/barang.ser").toURI(),adapter);
         InventoryHolder.instance().write(getClass().getResource("/database/barangtes.json").toURI(),adapter2);
     }
+
+    @Test
+    public void changeAllSERtofollowJSON() throws URISyntaxException, IOException {
+        Vars.setExtension("json");
+        Controller.instance().fetchData(InventoryHolder.instance(),"barang");
+        Controller.instance().fetchData(BillHolder.instance(),"bill");
+        Controller.instance().fetchData(FixedBillHolder.instance(),"billFixed");
+        Controller.instance().fetchData(MemberHolder.instance(),"member");
+        Controller.instance().fetchData(CustomerHolder.instance(),"customer");
+        Controller.instance().fetchData(VIPHolder.instance(),"vip");
+    }
+
 }
