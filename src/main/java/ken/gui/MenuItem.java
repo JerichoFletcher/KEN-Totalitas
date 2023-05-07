@@ -25,9 +25,10 @@ public class MenuItem extends JPanel implements ActionListener {
     private JLabel counterLabel;
     private String imagePath;
     private Kasir kasir;
+    private String kategori;
 
 
-    public MenuItem(int id, String judul, float harga, int quantity, String path, int priceHolder, JPanel cart, Kasir kasir){
+    public MenuItem(int id, String judul, float harga, int quantity, String path, int priceHolder, JPanel cart, Kasir kasir, String ikat){
         super();
         this.priceHolder = priceHolder;
         this.judul = judul;
@@ -36,6 +37,7 @@ public class MenuItem extends JPanel implements ActionListener {
         this.id = id;
         this.kasir = kasir;
         this.quantity = quantity;
+        this.kategori = ikat;
         JLabel title = new JLabel(judul);
         this.harga = harga;
         imagePath = path;
@@ -49,12 +51,20 @@ public class MenuItem extends JPanel implements ActionListener {
             title.setIcon(scaledImageIcon);
         } else {
             System.out.println("Image file not found: " + imagePath);
+            imagePath = "./asset/no-image-replacement.jpg";
+            ImageIcon image = new ImageIcon(imagePath);
+            Image scaledImage = image.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+
+
+            title.setIcon(scaledImageIcon);
         }
 
 
         JLabel price = new JLabel(Vars.mataUang + " " + harga);
         counterLabel = new JLabel(""+ quantity);
         addButton = new JButton("+");
+        JLabel kat = new JLabel(kategori);
         this.setLayout(null);
         this.setBackground(new Color(0xF2F2F2));
         this.setPreferredSize(new Dimension(720, 100));
@@ -78,11 +88,14 @@ public class MenuItem extends JPanel implements ActionListener {
         counterLabel.setBounds(600, 0, 200, 100);
         counterLabel.setForeground(new Color(0x395B64));
         counterLabel.setFont(new Font("Poppins", Font.BOLD, 20));
+        kat.setBounds(250, 0, 300, 100);
+        kat.setForeground(new Color(0x395B64));
+        kat.setFont(new Font("Poppins", Font.BOLD, 20));
         this.add(counterLabel);
         this.add(price);
         this.add(title);
         this.add(addButton);
-
+        this.add(kat);
     }
     public int getQuantity(){
         return quantity;
