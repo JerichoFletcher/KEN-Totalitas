@@ -1,6 +1,7 @@
-package ken.backend.kelas.bill;
+package ken.backend.controller.holder;
 import ken.backend.dataStore.AdapterData;
-import ken.backend.controller.holder.Holder;
+import ken.backend.kelas.bill.Bill;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,6 +16,7 @@ public class BillHolder implements Holder {
         }
         return _instance;
     }
+    @Getter
     private Map<Integer, Bill> listBill;
     
     public BillHolder() {

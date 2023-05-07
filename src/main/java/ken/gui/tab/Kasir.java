@@ -2,8 +2,10 @@ package ken.gui.tab;
 
 import ken.backend.controller.Controller;
 import ken.backend.controller.holder.InventoryHolder;
+import ken.backend.controller.holder.BillHolder;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.barang.Barang;
+import ken.backend.kelas.bill.Bill;
 import ken.gui.CartItem;
 import ken.gui.LayarCheckout;
 import ken.gui.MenuItem;
@@ -38,6 +40,7 @@ public class Kasir extends KENTab implements ActionListener {
     private JTextField inputFieldNama;
     private JTextField inputFieldHarga;
     private JTextField inputFieldKategori;
+    private List<Map.Entry<Integer, String>> allBill = new ArrayList<>();
     private int price;
     private JLabel priceText;
 //    private JPanel pricePanel;
@@ -93,10 +96,16 @@ public class Kasir extends KENTab implements ActionListener {
         pricePanel.setBackground(new Color(0xD9D9D9));
         pricePanel.setBounds(760,475,490, 40);
 
+        Controller.instance().fetchData(BillHolder.instance(),"bill");
+        List<String> historyList = new ArrayList<>();
+        historyList.add("");
 
-        String[] historyList = new String[]{"","History1", "History2"};
+        for (Map.Entry<Integer, Bill> entry : BillHolder.instance().getListBill().entrySet()) {
+            Bill value = entry.getValue();
+            historyList.add(Integer.toString(value.getIdBill()));
+        }
 
-        pilihHistory = new JComboBox(historyList);
+        pilihHistory = new JComboBox(historyList.toArray());
         pilihHistory.setBackground(new Color(0xD9D9D9));
         pilihHistory.setBounds(760,55,350,50);
         pilihHistory.setFont(new Font("Poppins", Font.BOLD,20));

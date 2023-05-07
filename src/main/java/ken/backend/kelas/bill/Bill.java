@@ -1,5 +1,5 @@
 package ken.backend.kelas.bill;
-import ken.backend.kelas.barang.*;
+import ken.backend.controller.holder.BillHolder;
 import lombok.Getter;
 import lombok.Setter;
 
