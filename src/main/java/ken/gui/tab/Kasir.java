@@ -1,5 +1,8 @@
 package ken.gui.tab;
 
+import ken.backend.dataStore.AdapterJSON;
+import ken.backend.kelas.barang.Barang;
+import ken.backend.kelas.inventory.InventoryHolder;
 import ken.gui.CartItem;
 import ken.gui.LayarCheckout;
 import ken.gui.MenuItem;
@@ -11,8 +14,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Kasir extends KENTab implements ActionListener {
     private JPanel inventory;
@@ -24,6 +30,7 @@ public class Kasir extends KENTab implements ActionListener {
     private JTabbedPane tabbedPane;
     private Tabs tabs;
     private JComboBox pilihHistory;
+    private JScrollPane scrollPane;
 
     private JButton getHistoryButton;
     private String selectedHistory;
@@ -36,7 +43,12 @@ public class Kasir extends KENTab implements ActionListener {
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
-        makePanelKasir();
+        try {
+            makePanelKasir();
+        }catch (IOException | URISyntaxException ex){
+            ex.printStackTrace();
+        }
+
         this.setBounds(0,0,500,500);
     }
 
@@ -45,7 +57,7 @@ public class Kasir extends KENTab implements ActionListener {
         return "Kasir";
     }
 
-    public void makePanelKasir() {
+    public void makePanelKasir() throws URISyntaxException, IOException {
 
         JPanel headerInv = new JPanel();
         JPanel headerCart = new JPanel();
@@ -99,8 +111,15 @@ public class Kasir extends KENTab implements ActionListener {
         inventory.setLayout(new BoxLayout(inventory, BoxLayout.Y_AXIS));
         inventory.setLocation(0,0);
         cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
-        for (int i = 1; i <= 15; i++) {
-            ken.gui.MenuItem menuItem = new MenuItem(i, "Barang ke " + i, i, cart, this);
+        AdapterJSON adapter = new AdapterJSON();;
+        InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
+
+            for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
+                Integer key = entry.getKey();
+                Barang value = entry.getValue();
+                // Do something with the key and value...
+
+            ken.gui.MenuItem menuItem = new MenuItem(key, value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), cart, this);
             inventory.add(menuItem);
         }
 
@@ -167,7 +186,7 @@ public class Kasir extends KENTab implements ActionListener {
         this.add(searchButton);
 
 
-        JScrollPane scrollPane = new JScrollPane(inventory);
+        scrollPane = new JScrollPane(inventory);
         JScrollPane scrollPane1 = new JScrollPane(cart);
         scrollPane.setBounds(10, 95, 740, 480);
         scrollPane1.setBounds(760, 105, 490, 370);
@@ -204,6 +223,16 @@ public class Kasir extends KENTab implements ActionListener {
 
     public void addCartItem(CartItem cartItem){
         listOfCartItem.add(cartItem);
+    }
+
+    public JScrollPane getScrollPane(){
+        return scrollPane;
+    }
+
+    public void setScrollPane(JScrollPane scrollPane){
+        this.scrollPane = scrollPane;
+        this.scrollPane.revalidate();
+        this.scrollPane.repaint();
     }
 
     public void actionPerformed(ActionEvent e){

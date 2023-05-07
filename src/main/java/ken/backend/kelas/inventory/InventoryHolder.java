@@ -3,6 +3,8 @@ package ken.backend.kelas.inventory;
 import ken.backend.dataStore.AdapterData;
 import ken.backend.kelas.Holder;
 import ken.backend.kelas.barang.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.net.URI;
@@ -18,6 +20,8 @@ public class InventoryHolder implements Holder {
         return _instance;
     }
 
+    @Getter
+    @Setter
     private Map<Integer, Barang> listBarang;
 
     private InventoryHolder() {

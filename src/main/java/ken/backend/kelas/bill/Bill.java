@@ -25,8 +25,8 @@ public class Bill {
 
     public Bill(int idCustomer, int totalHarga) {
         BillHolder bh = BillHolder.instance();
-        int id = rand.nextInt(0, Integer.MAX_VALUE);
-        for(; bh.getBillById(id) != null; id = rand.nextInt(0, Integer.MAX_VALUE));
+        int id = rand.nextInt(Integer.MAX_VALUE);
+        for(; bh.getBillById(id) != null; id = rand.nextInt(Integer.MAX_VALUE));
         this.listBarang = new HashMap<>();
         this.idBill = id;
         this.idCustomer = idCustomer;
