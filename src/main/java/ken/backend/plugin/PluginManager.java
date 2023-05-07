@@ -37,6 +37,10 @@ public class PluginManager{
         return plugins.get(namespace);
     }
 
+    public static Collection<Plugin> getAllPlugins(){
+        return plugins.values();
+    }
+
     @SuppressWarnings("unchecked")
     public static void addFromArchive(JarFile jar) throws Exception{
         System.out.printf("Loading plugin from %s%n", jar.getName());
@@ -88,10 +92,10 @@ public class PluginManager{
             if(entry.getName().endsWith(".class")){
                 String className = entry.getName().replace("/", ".").substring(0, entry.getName().length() - 6);
                 Class<?> clazz = cl.loadClass(className);
-                System.out.printf("  Scanning class %s...%n", clazz.getName());
 
                 // Load annotated content classes
                 if(clazz.isAnnotationPresent(AddMenuTab.class)){
+                    System.out.printf("  Scanning class %s...%n", clazz.getName());
                     String[] path = clazz.getAnnotation(AddMenuTab.class).path().split("/");
                     UID id = UID.of(namespace, path);
 

@@ -3,6 +3,7 @@ package ken.gui;
 
 
 import ken.backend.plugin.PluginManager;
+import ken.backend.settings.Settings;
 import ken.util.UID;
 
 import java.nio.file.Paths;
@@ -10,6 +11,7 @@ import java.util.jar.JarFile;
 
 public class Main{
     public static void main(String[] args) {
+        Settings.init();
         TabManager.init();
         try{
             PluginManager.init();
