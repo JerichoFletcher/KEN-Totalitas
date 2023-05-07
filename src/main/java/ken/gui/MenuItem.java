@@ -79,13 +79,18 @@ public class MenuItem extends JPanel implements ActionListener {
 
     }
 
+    public void addBackQuantity(){
+        quantity++;
+        counterLabel.setText(Integer.toString(quantity));
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         boolean found = false;
         if (e.getSource() == addButton) {
             if(quantity != 0){
                 quantity--;
-                CartItem cartItem = new CartItem(id, judul, harga, cart);
+                CartItem cartItem = new CartItem(id, judul, harga, cart, kasir, this);
                 for (CartItem item : kasir.getCart()) {
                     if (item.getID() == id) {
                         item.incrementCounter();
