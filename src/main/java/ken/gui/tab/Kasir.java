@@ -37,6 +37,9 @@ public class Kasir extends KENTab implements ActionListener {
     private JTextField inputFieldNama;
     private JTextField inputFieldHarga;
     private JTextField inputFieldKategori;
+    private int price;
+    private JLabel priceText;
+//    private JPanel pricePanel;
     private List<CartItem> listOfCartItem = new ArrayList<>();
 
     public Kasir(){
@@ -62,6 +65,7 @@ public class Kasir extends KENTab implements ActionListener {
         JPanel headerInv = new JPanel();
         JPanel headerCart = new JPanel();
         JPanel pricePanel = new JPanel();
+        priceText = new JLabel("Rp. " + 0);
         headerInv.setLayout(null);
         headerCart.setLayout(null);
         cart = new JPanel();
@@ -74,9 +78,12 @@ public class Kasir extends KENTab implements ActionListener {
         menuText.setForeground(Color.black);
         cartText.setFont(new Font("Poppins", Font.BOLD,15));
         cartText.setForeground(Color.black);
+        priceText.setFont(new Font("Poppins", Font.BOLD,15));
+        priceText.setForeground(Color.black);
         headerInv.add(menuText);
         menuText.setBounds(360,0,100,50);
         cartText.setBounds(240,0,100,50);
+        priceText.setBounds(240,0,100,50);pricePanel.add(priceText);
         headerInv.setBackground(new Color(0xD9D9D9));
         headerInv.setBounds(10,5,740, 50);
         headerCart.setBackground(new Color(0xD9D9D9));
@@ -119,7 +126,7 @@ public class Kasir extends KENTab implements ActionListener {
             Barang value = entry.getValue();
             // Do something with the key and value...
 
-            ken.gui.MenuItem menuItem = new MenuItem(key, value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), cart, this);
+            ken.gui.MenuItem menuItem = new MenuItem(key, value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this);
             inventory.add(menuItem);
         }
 
@@ -238,6 +245,14 @@ public class Kasir extends KENTab implements ActionListener {
     }
     public void eraseItemFromCart(CartItem cartItem){
         listOfCartItem.remove(cartItem);
+    }
+
+    public void setPriceText(int price){
+        this.price = price;
+        priceText.setText("Rp. " + price);
+    }
+    public int getPriceText(){
+        return this.price;
     }
 
     public JScrollPane getScrollPane(){

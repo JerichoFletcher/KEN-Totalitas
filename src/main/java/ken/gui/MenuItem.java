@@ -17,13 +17,15 @@ public class MenuItem extends JPanel implements ActionListener {
     private int harga;
     private int id;
     private int quantity;
+    private int priceHolder;
     private JLabel counterLabel;
     private String imagePath;
     private Kasir kasir;
 
 
-    public MenuItem(int id, String judul, int harga, int quantity, String path, JPanel cart, Kasir kasir){
+    public MenuItem(int id, String judul, int harga, int quantity, String path, int priceHolder, JPanel cart, Kasir kasir){
         super();
+        this.priceHolder = priceHolder;
         this.judul = judul;
         this.harga = harga;
         this.cart = cart;
@@ -89,8 +91,11 @@ public class MenuItem extends JPanel implements ActionListener {
         boolean found = false;
         if (e.getSource() == addButton) {
             if(quantity != 0){
+                priceHolder = kasir.getPriceText();
+                priceHolder += harga;
+                kasir.setPriceText(priceHolder);
                 quantity--;
-                CartItem cartItem = new CartItem(id, judul, harga, cart, kasir, this);
+                CartItem cartItem = new CartItem(id, judul, harga, cart, kasir, priceHolder, this);
                 for (CartItem item : kasir.getCart()) {
                     if (item.getID() == id) {
                         item.incrementCounter();
