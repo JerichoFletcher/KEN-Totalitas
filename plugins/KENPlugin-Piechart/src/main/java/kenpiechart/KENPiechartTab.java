@@ -3,13 +3,10 @@ import ken.backend.plugin.AddMenuTab;
 import ken.gui.tab.KENTab;
 
 import ken.backend.controller.Controller;
-import ken.backend.controller.holder.BillHolder;
 import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.controller.holder.MemberHolder;
 import ken.backend.controller.holder.VIPHolder;
-import ken.backend.kelas.anggota.VIP;
 import ken.backend.kelas.bill.Bill;
-import ken.backend.plugin.AddMenuTab;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -22,17 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.*;
 
-@AddMenuTab(path = "tabs/dummy")
-public class KenPiechartTab extends KENTab{
+@AddMenuTab(path = "tabs/piechart")
+public class KENPiechartTab extends KENTab{
     @Override
     public String tabName(){
-        return "Dummy";
+        return "KEN-Piechart";
     }
 
 
-    public KenPiechartTab() {
+    public KENPiechartTab() {
         try{
             Controller.instance().fetchData(FixedBillHolder.instance(), "billFixed");
             List<String> listOfNames = new ArrayList<>();
@@ -40,13 +36,9 @@ public class KenPiechartTab extends KENTab{
             for (Map.Entry<Integer, Bill> entry : FixedBillHolder.instance().getListBill().entrySet()) {
                 Bill value = entry.getValue();
                 Integer id = value.getIdCustomer();
-                if(listOfAmount.get(id) != null){
-                    listOfAmount.put(id, listOfAmount.get(id) + 1);
-                }else{
-                    listOfAmount.put(id, 1);
-                }
+                listOfAmount.merge(id, 1, Integer::sum);
             }
-            DefaultPieDataset dataset = new DefaultPieDataset();
+            DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
             for (Map.Entry<Integer, Integer> entry : listOfAmount.entrySet()) {
                 Integer key = entry.getKey();
                 if(MemberHolder.instance().getMemberById(key) != null){
