@@ -18,22 +18,15 @@
       "name": "Udin Getot",
       "phoneNumber": "42069",
       "points": 421,
-      "active": true,
+      "active": false,
       "id": 6
     },
-    "699580479": {
-      "name": "lkjasdfj",
-      "phoneNumber": "29302340932",
+    "1": {
+      "name": "Asu Meme",
+      "phoneNumber": "09988776",
       "points": 0,
       "active": true,
-      "id": 699580479
-    },
-    "12425135": {
-      "name": "Nama",
-      "phoneNumber": "098123",
-      "points": 0,
-      "active": true,
-      "id": 12425135
+      "id": 1
     }
   }
 }

@@ -3,7 +3,9 @@
     "0":{
       "idBill": 0,
       "idCustomer": 1,
-      "totalHarga": 14000,
+      "totalHarga": {
+          "Rp": 14000
+      },
       "listBarang": {
         "0":{
           "namaBarang": "Pensil",
@@ -20,7 +22,9 @@
     "1":{
       "idBill": 1,
       "idCustomer": 2,
-      "totalHarga": 8000,
+      "totalHarga": {
+          "Rp": 8000
+      },
       "listBarang": {
         "0": {
           "namaBarang": "Pensil",
