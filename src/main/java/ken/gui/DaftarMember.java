@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.backend.kelas.anggota.Member;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -101,12 +103,12 @@ public class DaftarMember extends JPanel implements ActionListener{
         panelEdit.add(textField);
         panelEdit.add(textField2);
         panelEdit.add(pilihMember);
-        panelEdit.add(editButton);
+        panelEdit.add(daftarButton);
 
     }
 
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == editButton){
+        if(e.getSource() == daftarButton){
             String editNama = (String) textField.getText().trim();
             String editTelpString = (String) textField2.getText().trim();
             String editType = (String) pilihMember.getSelectedItem();
@@ -115,6 +117,11 @@ public class DaftarMember extends JPanel implements ActionListener{
                 System.out.println("Nama: " + editNama);
                 System.out.println("Harga: " + editTelpString);
                 System.out.println("Kategori: " + editType);
+//                if(editType.equals("Member")){
+//                    Member newMember = new Member(editNama, editTelpString, idNewCust);
+//                }else{
+//
+//                }
             }
         }
     }
