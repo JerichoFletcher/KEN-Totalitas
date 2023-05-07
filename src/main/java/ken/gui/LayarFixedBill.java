@@ -19,12 +19,13 @@ public class LayarFixedBill extends JPanel implements ActionListener {
     private int total;
 
 
-    public LayarFixedBill(String customer, List<CartItem> listOfCartItem) {
+    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, int total) {
         super();
         this.listOfCartItem = listOfCartItem;
         this.customer = customer;
         listOfAmount = new ArrayList<Integer>();
         listOfName = new ArrayList<String>();
+        this.total = total;
         this.setVisible(true);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
@@ -34,7 +35,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
 
     public void makePanelLC() {
         JLabel fixedBill = new JLabel("Fixed Bill");
-        JLabel totalPrice = new JLabel("Total: Rp." + 1000);
+        JLabel totalPrice = new JLabel("Total: Rp." + total);
         fixedBill.setFont(new Font("Poppins", Font.BOLD, 40));
         fixedBill.setForeground(Color.white);
         fixedBill.setBounds(160, 10, 500, 100);

@@ -15,20 +15,22 @@ public class LayarCheckout extends JPanel implements ActionListener{
     private JComboBox pilihMember;
     private JTextField inputField;
     private List<CartItem> listOfCartItem;
+    private int total;
 
-    public LayarCheckout(List<CartItem> listOfCartItem){
+    public LayarCheckout(List<CartItem> listOfCartItem, int total){
         super();
         this.listOfCartItem = listOfCartItem;
         this.setVisible(true);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
+        this.total = total;
         makePanelLC();
         this.setBounds(0,0,500,500);
     }
 
     public void makePanelLC(){
         JLabel checkoutText = new JLabel("Checkout");
-        JLabel totalPrice = new JLabel("Total: Rp." + 1000);
+        JLabel totalPrice = new JLabel("Total: Rp." + total);
         checkoutText.setFont(new Font("Poppins", Font.BOLD,40));
         checkoutText.setForeground(Color.white);
         checkoutText.setBounds(550,30,500,100);
@@ -107,7 +109,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
         if(e.getSource() == fixBill){
             System.out.println("tix dummy");
             String selectedItem = (String) pilihMember.getSelectedItem();
-            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem);
+            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total);
             Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarFB);
         }

@@ -269,7 +269,7 @@ public class Kasir extends KENTab implements ActionListener {
         if(e.getSource() == checkoutButton){
             System.out.println("redirect ke checkout menu");
             System.out.println(listOfCartItem.size());
-            LayarCheckout layarCheckout = new LayarCheckout(listOfCartItem);
+            LayarCheckout layarCheckout = new LayarCheckout(listOfCartItem, price);
             Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarCheckout);
         } else if (e.getSource()==saveBillButton) {
