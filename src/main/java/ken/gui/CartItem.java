@@ -15,12 +15,14 @@ public class CartItem extends JPanel implements ActionListener {
     private int harga;
     private int id;
     private int counter; // added counter variable
+    private int priceHolder;
     private Kasir kasir;
     private MenuItem correspondingMI;
     private JLabel counterLabel; // added counter label
 
-    public CartItem(int id, String judul, int harga, JPanel cart, Kasir kasir, MenuItem menuItem){
+    public CartItem(int id, String judul, int harga, JPanel cart, Kasir kasir, int priceHolder, MenuItem menuItem){
         super();
+        this.priceHolder = priceHolder;
         this.judul = judul;
         this.harga = harga;
         this.cart = cart;
@@ -29,7 +31,7 @@ public class CartItem extends JPanel implements ActionListener {
         this.kasir = kasir;
         this.correspondingMI = menuItem;
         JLabel title = new JLabel(judul);
-        JLabel price = new JLabel("Rp" + harga +"000");
+        JLabel price = new JLabel("Rp" + harga);
         addButton = new JButton("+");
         minusButton = new JButton("-");
         this.setLayout(null);
@@ -89,11 +91,17 @@ public class CartItem extends JPanel implements ActionListener {
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == addButton){
+            priceHolder = kasir.getPriceText();
+            priceHolder += harga;
+            kasir.setPriceText(priceHolder);
             counter++; // increment counter
             counterLabel.setText(Integer.toString(counter)); // update counter label text
         }
         if(e.getSource() == minusButton){
             correspondingMI.addBackQuantity();
+            priceHolder = kasir.getPriceText();
+            priceHolder -= harga;
+            kasir.setPriceText(priceHolder);
             if(counter == 1) {
                 // remove this panel from the parent panel
                 cart.remove(this);
