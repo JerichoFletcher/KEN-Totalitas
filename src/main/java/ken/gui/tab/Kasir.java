@@ -114,10 +114,10 @@ public class Kasir extends KENTab implements ActionListener {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
 
-            for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
-                Integer key = entry.getKey();
-                Barang value = entry.getValue();
-                // Do something with the key and value...
+        for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
+            Integer key = entry.getKey();
+            Barang value = entry.getValue();
+            // Do something with the key and value...
 
             ken.gui.MenuItem menuItem = new MenuItem(key, value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), cart, this);
             inventory.add(menuItem);
@@ -223,6 +223,9 @@ public class Kasir extends KENTab implements ActionListener {
 
     public void addCartItem(CartItem cartItem){
         listOfCartItem.add(cartItem);
+    }
+    public void eraseItemFromCart(CartItem cartItem){
+        listOfCartItem.remove(cartItem);
     }
 
     public JScrollPane getScrollPane(){
