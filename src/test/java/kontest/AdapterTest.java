@@ -20,13 +20,15 @@ public class AdapterTest {
     public void testAdapterJSON() throws IOException, URISyntaxException {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
+
         Assertions.assertEquals(5, InventoryHolder.instance().getBanyakBarang());
-        System.out.println("jumlah " + InventoryHolder.instance().getBanyakBarang());
     }
+
     @Test
     public void testWriteJSON() throws IOException, URISyntaxException {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
+
         System.out.println("jumlah " + InventoryHolder.instance().getBanyakBarang());
         InventoryHolder.instance().write(getClass().getResource("/database/barang3.json").toURI(),adapter);
     }

@@ -16,20 +16,23 @@ public class MenuItem extends JPanel implements ActionListener {
     private String judul;
     private int harga;
     private int id;
+    private int quantity;
+    private JLabel counterLabel;
     private String imagePath;
     private Kasir kasir;
 
 
-    public MenuItem(int id, String judul, int harga, JPanel cart, Kasir kasir){
+    public MenuItem(int id, String judul, int harga, int quantity, String path, JPanel cart, Kasir kasir){
         super();
         this.judul = judul;
         this.harga = harga;
         this.cart = cart;
         this.id = id;
         this.kasir = kasir;
+        this.quantity = quantity;
         JLabel title = new JLabel(judul);
         this.harga = harga;
-        imagePath = "./src/main/java/ken/gui/test2.jpg";
+        imagePath = path;
         File imageFile = new File(imagePath);
         if (imageFile.exists()) {
             ImageIcon image = new ImageIcon(imagePath);
@@ -43,7 +46,8 @@ public class MenuItem extends JPanel implements ActionListener {
         }
 
 
-        JLabel price = new JLabel("Rp" + harga + "000");
+        JLabel price = new JLabel("Rp" + harga);
+        counterLabel = new JLabel(""+ quantity);
         addButton = new JButton("+");
         this.setLayout(null);
         this.setBackground(new Color(0xF2F2F2));
@@ -59,39 +63,49 @@ public class MenuItem extends JPanel implements ActionListener {
         addButton.setForeground(new Color(0x395B64));
         addButton.setBorder(BorderFactory.createEmptyBorder());
         addButton.setBounds(640, 20, 50, 50);
-        title.setBounds(10, 0, 200, 100);
+        title.setBounds(10, 0, 300, 100);
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD, 20));
-        price.setBounds(500, 0, 200, 100);
+        price.setBounds(400, 0, 200, 100);
         price.setForeground(new Color(0x395B64));
         price.setFont(new Font("Poppins", Font.BOLD, 20));
+        counterLabel.setBounds(600, 0, 200, 100);
+        counterLabel.setForeground(new Color(0x395B64));
+        counterLabel.setFont(new Font("Poppins", Font.BOLD, 20));
+        this.add(counterLabel);
         this.add(price);
         this.add(title);
         this.add(addButton);
 
     }
 
+    public void addBackQuantity(){
+        quantity++;
+        counterLabel.setText(Integer.toString(quantity));
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         boolean found = false;
         if (e.getSource() == addButton) {
-            System.out.println(harga);
-            CartItem cartItem = new CartItem(id, judul, harga, cart);
-            System.out.println(cartItem.getID());
-            System.out.println(id);
-            for (CartItem item : kasir.getCart()) {
-                if (item.getID() == id) {
-                    item.incrementCounter();
-                    found = true;
-                    break;
+            if(quantity != 0){
+                quantity--;
+                CartItem cartItem = new CartItem(id, judul, harga, cart, kasir, this);
+                for (CartItem item : kasir.getCart()) {
+                    if (item.getID() == id) {
+                        item.incrementCounter();
+                        found = true;
+                        break;
+                    }
                 }
+                if (!found) {
+                    kasir.addCartItem(cartItem);
+                    cart.add(cartItem);
+                }
+                cart.revalidate();
+                cart.repaint();
+                counterLabel.setText(Integer.toString(quantity));
             }
-            if (!found) {
-                kasir.addCartItem(cartItem);
-                cart.add(cartItem);
-            }
-            cart.revalidate();
-            cart.repaint();
         }
     }
 }

@@ -27,7 +27,7 @@ public class Setting extends KENTab implements ActionListener {
 
     public void makePanelSetting() {
         buttonPlugin = new JButton("Add Plugin");
-        buttonPlugin.setBounds(510, 80,  300, 100);
+        buttonPlugin.setBounds(50, 80,  300, 100);
         buttonPlugin.setBackground(new Color(0xD9D9D9));
         buttonPlugin.setForeground(Color.black);
         buttonPlugin.setFont(new Font("Poppins", Font.BOLD,25));
@@ -35,7 +35,7 @@ public class Setting extends KENTab implements ActionListener {
         buttonPlugin.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
         buttonFile = new JButton("Choose Database File");
-        buttonFile.setBounds(510, 230,  300, 100);
+        buttonFile.setBounds(50, 230,  300, 100);
         buttonFile.setBackground(new Color(0xD9D9D9));
         buttonFile.setForeground(Color.black);
         buttonFile.setFont(new Font("Poppins", Font.BOLD,25));
@@ -43,26 +43,26 @@ public class Setting extends KENTab implements ActionListener {
         buttonFile.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 
-        dataTypeText = new JLabel("Database file format :");
-        dataTypeText.setFont(new Font("Poppins", Font.BOLD,30));
-        dataTypeText.setForeground(Color.white);
-        dataTypeText.setBounds(320,380,350,100);
+//        dataTypeText = new JLabel("Database file format :");
+//        dataTypeText.setFont(new Font("Poppins", Font.BOLD,30));
+//        dataTypeText.setForeground(Color.white);
+//        dataTypeText.setBounds(320,380,350,100);
         this.add(buttonPlugin);
         this.add(buttonFile);
-        this.add(dataTypeText);
+//        this.add(dataTypeText);
 
         String[] dataTypeList = new String[]{"JSON", "XML","OBJ"};
 
         dataType = new JComboBox(dataTypeList);
         dataType.setBackground(new Color(0xD9D9D9));
-        dataType.setBounds(650,400,250,70);
+        dataType.setBounds(50,400,230,70);
         dataType.setFont(new Font("Poppins", Font.BOLD,20));
         dataType.setForeground(new Color(0x395B64));
         dataType.setFocusable(false);
         this.add(dataType);
 
         dataTypeButton = new JButton("SET");
-        dataTypeButton.setBounds(900, 400, 70 , 70);
+        dataTypeButton.setBounds(280, 400, 70 , 70);
         dataTypeButton.setBackground(new Color(0xD9D9D9));
         dataTypeButton.setForeground(Color.black);
         dataTypeButton.setFont(new Font("Poppins", Font.BOLD,25));

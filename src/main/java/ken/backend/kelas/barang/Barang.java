@@ -3,7 +3,6 @@ package ken.backend.kelas.barang;
 import ken.backend.kelas.inventory.InventoryHolder;
 import lombok.*;
 
-import java.util.Optional;
 import java.util.Random;
 
 public class Barang {
@@ -29,8 +28,8 @@ public class Barang {
 
     public Barang(String n, int s, int hj, int hb, String k, String g){
         InventoryHolder inv = InventoryHolder.instance();
-        int id = rand.nextInt(0, Integer.MAX_VALUE);
-        for(; inv.getBarangById(id) != null; id = rand.nextInt(0, Integer.MAX_VALUE));
+        int id = rand.nextInt(Integer.MAX_VALUE);
+        for(; inv.getBarangById(id) != null; id = rand.nextInt(Integer.MAX_VALUE));
         this.stok = s;
         this.namaBarang = n;
         this.hargaBarang = hj;
