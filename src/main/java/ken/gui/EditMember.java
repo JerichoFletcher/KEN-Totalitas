@@ -98,7 +98,11 @@ public class EditMember extends JPanel implements ActionListener{
         pilihMember.setBounds(310,270,590,50);
         pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
         pilihMember.setForeground(new Color(0x395B64));
-        pilihMember.setSelectedItem(memberType);
+        if (memberType == "ken.backend.kelas.anggota.Member") {
+            pilihMember.setSelectedItem("Member");
+        }else {
+            pilihMember.setSelectedItem("VIP");
+        }
 
         String[] tipeStateMember = new String[]{"Aktif", "Non-Aktif"};
         pilihStateMember = new JComboBox(tipeStateMember);
