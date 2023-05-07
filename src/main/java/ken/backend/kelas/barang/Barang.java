@@ -14,10 +14,10 @@ public class Barang implements Serializable {
     @Getter
     private String namaBarang;
     @Getter
-    private int hargaBarang;
+    private float hargaBarang;
     @Getter
     @Setter
-    private int hargaBeliBarang;
+    private float hargaBeliBarang;
     @Getter
     @Setter
     private String kategori;
@@ -27,7 +27,7 @@ public class Barang implements Serializable {
 
     private static Random rand = new Random();
 
-    public Barang(String n, int s, int hj, int hb, String k, String g){
+    public Barang(String n, int s, float hj, float hb, String k, String g){
         InventoryHolder inv = InventoryHolder.instance();
         int id = rand.nextInt(Integer.MAX_VALUE);
         for(; inv.getBarangById(id) != null; id = rand.nextInt(Integer.MAX_VALUE));
@@ -40,7 +40,7 @@ public class Barang implements Serializable {
         this.id = id;
     }
 
-    public Barang(String n, int s, int hj, int hb, String k, String g, int id){
+    public Barang(String n, int s, float hj, float hb, String k, String g, int id){
         this.stok = s;
         this.namaBarang = n;
         this.hargaBarang = hj;

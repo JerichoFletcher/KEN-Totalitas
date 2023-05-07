@@ -20,23 +20,23 @@ public class Bill implements Serializable {
     @Setter
     private int idCustomer;
     @Getter
-    private final Map<String, Integer> totalHarga = new HashMap<>();
+    private float totalHarga;
     private static Random rand = new Random();
 
-    public Bill(int idCustomer, String mataUang, int totalHarga) {
+    public Bill(int idCustomer, float totalHarga) {
         BillHolder bh = BillHolder.instance();
         int id = rand.nextInt(Integer.MAX_VALUE);
         for(; bh.getBillById(id) != null; id = rand.nextInt(Integer.MAX_VALUE));
         this.listBarang = new HashMap<>();
         this.idBill = id;
         this.idCustomer = idCustomer;
-        this.totalHarga.put(mataUang, totalHarga);
+        this.totalHarga = totalHarga;
     }
 
-    public Bill(int idBill, int idCustomer, String mataUang, int totalHarga, Map<Integer,BillItem> listBarang){
+    public Bill(int idBill, int idCustomer, float totalHarga, Map<Integer,BillItem> listBarang){
         this.idBill = idBill;
         this.idCustomer = idCustomer;
-        this.totalHarga.put(mataUang, totalHarga);
+        this.totalHarga = totalHarga;
         this.listBarang = listBarang;
 
     }
@@ -44,12 +44,7 @@ public class Bill implements Serializable {
         return listBarang.size();
     }
     public void addBarang(BillItem b) {
-        if(this.listBarang.isEmpty()){
-            this.listBarang.put(0, b);
-        }else{
-            int maxId = Collections.max(listBarang.keySet());
-            this.listBarang.put(maxId+1, b);
-        }
+        this.listBarang.put(b.getId(),b);
 
     }
     public BillItem getBillItemById(int id){

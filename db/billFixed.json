@@ -15,9 +15,7 @@
       },
       "idBill": 0,
       "idCustomer": 2,
-      "totalHarga": {
-        "IDR": 14000
-      }
+      "totalHarga": 14000
     },
     "1": {
       "listBarang": {
@@ -34,9 +32,7 @@
       },
       "idBill": 1,
       "idCustomer": 3,
-      "totalHarga": {
-        "IDR": 8000
-      }
+      "totalHarga": 8000
     },
     "844554853": {
       "listBarang": {
@@ -51,17 +47,13 @@
       },
       "idBill": 844554853,
       "idCustomer": 1954465773,
-      "totalHarga": {
-        "IDR": 55000
-      }
+      "totalHarga": 5500
     },
     "1197991212": {
       "listBarang": {},
       "idBill": 1197991212,
       "idCustomer": 1052839679,
-      "totalHarga": {
-        "IDR": 0
-      }
+      "totalHarga": 0
     },
     "912155221": {
       "listBarang": {
@@ -76,9 +68,7 @@
       },
       "idBill": 912155221,
       "idCustomer": 1280272821,
-      "totalHarga": {
-        "IDR": 95000
-      }
+      "totalHarga": 95000
     },
     "1858364027": {
       "listBarang": {
@@ -89,9 +79,7 @@
       },
       "idBill": 1858364027,
       "idCustomer": 1814622782,
-      "totalHarga": {
-        "IDR": 75000
-      }
+      "totalHarga": 75000
     },
     "467219941": {
       "listBarang": {
@@ -102,9 +90,7 @@
       },
       "idBill": 467219941,
       "idCustomer": 5483280,
-      "totalHarga": {
-        "IDR": 20000
-      }
+      "totalHarga": 20000
     },
     "1429884164": {
       "listBarang": {
@@ -115,9 +101,7 @@
       },
       "idBill": 1429884164,
       "idCustomer": 9,
-      "totalHarga": {
-        "IDR": 3000
-      }
+      "totalHarga": 3000
     },
     "1120690037": {
       "listBarang": {
@@ -129,9 +113,7 @@
       },
       "idBill": 1120690037,
       "idCustomer": 7,
-      "totalHarga": {
-        "IDR": 6000
-      }
+      "totalHarga": 6000
     }
   }
 }

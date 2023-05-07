@@ -6,7 +6,8 @@ import lombok.Setter;
 import java.io.Serializable;
 
 public class BillItem implements Serializable {
-    
+    @Getter
+    private int id;
     @Getter
     private String namaBarang;
     @Getter
@@ -14,8 +15,9 @@ public class BillItem implements Serializable {
     private int jumlahDibeli;
     @Getter
     @Setter
-    private int hargaBarang;
-    public BillItem(String s, int jd, int hb){
+    private float hargaBarang;
+    public BillItem(String s, int jd, float hb, int id){
+        this.id = id;
         this.namaBarang = s;
         this.jumlahDibeli = jd;
         this.hargaBarang = hb;
