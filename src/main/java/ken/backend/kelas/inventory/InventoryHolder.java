@@ -8,23 +8,27 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Inventory {
-    private static Inventory _instance = null;
-    public static Inventory instance() {
+public class InventoryHolder {
+    private static InventoryHolder _instance = null;
+    public static InventoryHolder instance() {
         if (_instance == null) {
-            _instance = new Inventory();
+            _instance = new InventoryHolder();
         }
         return _instance;
     }
 
     private Map<Integer, Barang> listBarang;
 
-    private Inventory() {
+    private InventoryHolder() {
         this.listBarang = new HashMap<>();
     }
 
     public void load(URI uri, AdapterData data) throws IOException {
-        _instance = data.get(uri, Inventory.class);
+        _instance = data.get(uri, InventoryHolder.class);
+    }
+
+    public void write(URI uri, AdapterData data) throws IOException {
+        data.write(uri, InventoryHolder.instance());
     }
 
     public int getBanyakBarang() {
@@ -37,5 +41,9 @@ public class Inventory {
 
     public Barang getBarangById(int id){
         return listBarang.get(id);
+    }
+
+    public void setListBarang(Map <Integer, Barang> listBarang){
+        this.listBarang = listBarang;
     }
 }

@@ -1,48 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<barang>
-    <item>
-        <id>1</id>
-        <namaBarang>Buku Tulis</namaBarang>
-        <stok>50</stok>
-        <hargaBarang>5000</hargaBarang>
-        <hargaBeliBarang>3500</hargaBeliBarang>
-        <kategori>Alat Tulis</kategori>
-        <gambar>./asset/buku_tulis.jpg</gambar>
-    </item>
-    <item>
-        <id>2</id>
-        <namaBarang>Pensil</namaBarang>
-        <stok>100</stok>
-        <hargaBarang>1000</hargaBarang>
-        <hargaBeliBarang>700</hargaBeliBarang>
-        <kategori>Alat Tulis</kategori>
-        <gambar>./asset/pensil.jpg</gambar>
-    </item>
-    <item>
-        <id>3</id>
-        <namaBarang>Penghapus</namaBarang>
-        <stok>75</stok>
-        <hargaBarang>2000</hargaBarang>
-        <hargaBeliBarang>1500</hargaBeliBarang>
-        <kategori>Alat Tulis</kategori>
-        <gambar>./asset/penghapus.jpg</gambar>
-    </item>
-    <item>
-        <id>4</id>
-        <namaBarang>Gunting</namaBarang>
-        <stok>30</stok>
-        <hargaBarang>5000</hargaBarang>
-        <hargaBeliBarang>3500</hargaBeliBarang>
-        <kategori>Alat Potong</kategori>
-        <gambar>./asset/gunting.jpg</gambar>
-    </item>
-    <item>
-        <id>5</id>
-        <namaBarang>Pisau</namaBarang>
-        <stok>20</stok>
-        <hargaBarang>15000</hargaBarang>
-        <hargaBeliBarang>10000</hargaBeliBarang>
-        <kategori>Alat Potong</kategori>
-        <gambar>./asset/pisau.jpg</gambar>
-    </item>
-</barang>
+<listBarang>
+    <entry>
+        <key>1</key>
+        <value>
+            <id>1</id>
+            <namaBarang>Buku Tulis</namaBarang>
+            <stok>50</stok>
+            <hargaBarang>5000</hargaBarang>
+            <hargaBeliBarang>3500</hargaBeliBarang>
+            <kategori>Alat Tulis</kategori>
+            <gambar>./asset/buku_tulis.jpg</gambar>
+        </value>
+    </entry>
+    <entry>
+        <key>2</key>
+        <value>
+            <id>2</id>
+            <namaBarang>Pensil</namaBarang>
+            <stok>100</stok>
+            <hargaBarang>1000</hargaBarang>
+            <hargaBeliBarang>700</hargaBeliBarang>
+            <kategori>Alat Tulis</kategori>
+            <gambar>./asset/pensil.jpg</gambar>
+        </value>
+    </entry>
+    <entry>
+        <key>3</key>
+        <value>
+            <id>3</id>
+            <namaBarang>Penghapus</namaBarang>
+            <stok>75</stok>
+            <hargaBarang>2000</hargaBarang>
+            <hargaBeliBarang>1500</hargaBeliBarang>
+            <kategori>Alat Tulis</kategori>
+            <gambar>./asset/penghapus.jpg</gambar>
+        </value>
+    </entry>
+    <entry>
+        <key>4</key>
+        <value>
+            <id>4</id>
+            <namaBarang>Gunting</namaBarang>
+            <stok>30</stok>
+            <hargaBarang>5000</hargaBarang>
+            <hargaBeliBarang>3500</hargaBeliBarang>
+            <kategori>Alat Potong</kategori>
+            <gambar>./asset/gunting.jpg</gambar>
+        </value>
+    </entry>
+    <entry>
+        <key>5</key>
+        <value>
+            <id>5</id>
+            <namaBarang>Pisau</namaBarang>
+            <stok>20</stok>
+            <hargaBarang>15000</hargaBarang>
+            <hargaBeliBarang>10000</hargaBeliBarang>
+            <kategori>Alat Potong</kategori>
+            <gambar>./asset/pisau.jpg</gambar>
+        </value>
+    </entry>
+</listBarang>

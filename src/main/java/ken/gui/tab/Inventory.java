@@ -2,6 +2,8 @@ package ken.gui.tab;
 
 import ken.gui.InventoryPanel;
 
+import ken.backend.kelas.inventory.InventoryHolder;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,6 +24,7 @@ public class Inventory extends KENTab implements ActionListener {
         this.setLayout(null);
         makePanelInventory();
         this.setBounds(0,0,500,500);
+//        this.inventoryHolder = InventoryHolder.instance();
     }
 
     @Override

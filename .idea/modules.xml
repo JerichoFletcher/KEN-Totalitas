@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-        <module fileurl="file://$PROJECT_DIR$/.idea/KEN-Totalitas.iml" filepath="$PROJECT_DIR$/.idea/KEN-Totalitas.iml" />
-        <module fileurl="file://$PROJECT_DIR$/.idea/modules/KEN-Totalitas.main.iml" filepath="$PROJECT_DIR$/.idea/modules/KEN-Totalitas.main.iml" />
-        <module fileurl="file://$PROJECT_DIR$/.idea/modules/KEN-Totalitas.test.iml" filepath="$PROJECT_DIR$/.idea/modules/KEN-Totalitas.test.iml" />
-        <module fileurl="file://$PROJECT_DIR$/src/main/java/ken/gui/layarUtama/layarUtama.iml" filepath="$PROJECT_DIR$/src/main/java/ken/gui/layarUtama/layarUtama.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KEN-Totalitas.main.iml" filepath="$PROJECT_DIR$/.idea/modules/KEN-Totalitas.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KEN-Totalitas.test.iml" filepath="$PROJECT_DIR$/.idea/modules/KEN-Totalitas.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/ken/gui/layarUtama/layarUtama.iml" filepath="$PROJECT_DIR$/src/main/java/ken/gui/layarUtama/layarUtama.iml" />
     </modules>
   </component>
 </project>

@@ -1,40 +1,38 @@
 {
-  "bill": [
-    {
-      "idBill": 0,
+  "bill": {
+    "0":{
+      "idBill": 2,
       "idCustomer": 1,
-      "isFixed": true,
       "totalHarga": 14000,
-      "listBarang": [
-        {
+      "listBarang": {
+        "0":{
           "namaBarang": "Pensil",
           "jumlahDibeli": 10,
           "hargaBarang": 1000
         },
-        {
+        "1":{
           "namaBarang": "Penghapus",
           "jumlahDibeli": 2,
           "hargaBarang": 2000
         }
-      ]
+      }
     },
-    {
-      "idBill": 1,
+    "1":{
+      "idBill": 3,
       "idCustomer": 2,
-      "isFixed": true,
       "totalHarga": 8000,
-      "listBarang": [
-        {
+      "listBarang": {
+        "0": {
           "namaBarang": "Pensil",
           "jumlahDibeli": 2,
           "hargaBarang": 1000
         },
-        {
+        "1": {
           "namaBarang": "Penghapus",
           "jumlahDibeli": 3,
           "hargaBarang": 2000
         }
-      ]
+      }
     }
-  ]
+  }
 }
