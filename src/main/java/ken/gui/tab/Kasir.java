@@ -1,5 +1,6 @@
 package ken.gui.tab;
 
+import ken.backend.Vars;
 import ken.backend.controller.Controller;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.controller.holder.BillHolder;
