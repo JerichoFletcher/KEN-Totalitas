@@ -28,7 +28,7 @@ public class EditInventoryItem extends JPanel implements ActionListener{
     private int quantity;
     private String path;
     private String kategori;
-    public EditInventoryItem(int iid, String ijudul, int iharga,int ihargaBeli, int iquantity, String ikategori){
+    public EditInventoryItem(int iid, String ijudul, int iharga,int ihargaBeli, int iquantity, String ikategori, String ipath){
         panelEdit = new JPanel();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -38,7 +38,7 @@ public class EditInventoryItem extends JPanel implements ActionListener{
         this.harga = iharga;
         this.hargaBeli= ihargaBeli;
         this.quantity = iquantity;
-        this.path = "";
+        this.path = ipath;
         this.kategori = ikategori;
 
         // Calculate the position of the center panel
@@ -70,14 +70,14 @@ public class EditInventoryItem extends JPanel implements ActionListener{
         textField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField.getText().equals(judul)) {
+                if (textField.getText().trim().equals(judul)) {
                     textField.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField.getText().equals("")) {
+                if (textField.getText().trim().equals("")) {
                     textField.setText(judul);
                 }
             }
@@ -91,14 +91,14 @@ public class EditInventoryItem extends JPanel implements ActionListener{
         textField2.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField2.getText().equals(Integer.toString(quantity))) {
+                if (textField2.getText().trim().equals(Integer.toString(quantity))) {
                     textField2.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField2.getText().equals("")) {
+                if (textField2.getText().trim().equals("")) {
                     textField2.setText(Integer.toString(quantity));
                 }
             }
@@ -113,14 +113,14 @@ public class EditInventoryItem extends JPanel implements ActionListener{
         textField3.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField3.getText().equals(Integer.toString(harga))) {
+                if (textField3.getText().trim().equals(Integer.toString(harga))) {
                     textField3.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField3.getText().equals("")) {
+                if (textField3.getText().trim().equals("")) {
                     textField3.setText(Integer.toString(harga));
                 }
             }
@@ -135,14 +135,14 @@ public class EditInventoryItem extends JPanel implements ActionListener{
         textField4.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField4.getText().equals(Integer.toString(hargaBeli))) {
+                if (textField4.getText().trim().equals(Integer.toString(hargaBeli))) {
                     textField4.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField4.getText().equals("")) {
+                if (textField4.getText().trim().equals("")) {
                     textField4.setText(Integer.toString(hargaBeli));
                 }
             }
@@ -157,14 +157,14 @@ public class EditInventoryItem extends JPanel implements ActionListener{
         textField5.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField5.getText().equals(kategori)) {
+                if (textField5.getText().trim().equals(kategori)) {
                     textField5.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField5.getText().equals("")) {
+                if (textField5.getText().trim().equals("")) {
                     textField5.setText(kategori);
                 }
             }
@@ -219,6 +219,31 @@ public class EditInventoryItem extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == editButton){
+            String editName = textField.getText();
+            String editStok = textField.getText();
+            String editHarga = textField.getText();
+            String editHargaBeli = textField.getText();
+            String editKategori = textField.getText();
+
+            if (editName.length() == 0) {
+                editName = judul;
+            }
+            if (editStok.length() == 0) {
+                editStok = Integer.toString(quantity);
+            }
+            if (editHarga.length() == 0) {
+                editHarga = Integer.toString(harga);
+            }
+            if (editHargaBeli.length() == 0) {
+                editHargaBeli = Integer.toString(hargaBeli);
+            }
+            if (editKategori.length() == 0) {
+                editKategori= kategori;
+            }
+            if (imgurl.length() == 0) {
+                imgurl = path;
+            }
+
             System.out.println("Editing Item...");
             System.out.println("Nama : " + textField.getText());
             System.out.println("Stok : " + textField2.getText());
