@@ -1,5 +1,6 @@
 package ken.gui;
 
+import ken.backend.Vars;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -38,7 +39,7 @@ public class UnduhHistory implements Runnable{
             for (int i = 0; i < listOfName.size(); i++) {
                 contentStream.beginText();
                 contentStream.newLineAtOffset(x, y - i*lineHeight);
-                contentStream.showText(listOfName.get(i) + "    " + "Rp " + listOfPrice.get(i));
+                contentStream.showText(listOfName.get(i) + "    " + Vars.mataUang + " " + listOfPrice.get(i));
                 contentStream.endText();
             }
             contentStream.close();

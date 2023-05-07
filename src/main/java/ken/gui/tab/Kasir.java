@@ -3,9 +3,9 @@ package ken.gui.tab;
 import ken.backend.controller.Controller;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.controller.holder.BillHolder;
-import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.Bill;
+import ken.backend.kelas.bill.BillItem;
 import ken.gui.CartItem;
 import ken.gui.LayarCheckout;
 import ken.gui.MenuItem;
@@ -20,6 +20,7 @@ import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,7 +70,7 @@ public class Kasir extends KENTab implements ActionListener {
         JPanel headerInv = new JPanel();
         JPanel headerCart = new JPanel();
         JPanel pricePanel = new JPanel();
-        priceText = new JLabel("Rp. " + 0);
+        priceText = new JLabel(Vars.mataUang + " " + 0);
         headerInv.setLayout(null);
         headerCart.setLayout(null);
         cart = new JPanel();
@@ -257,10 +258,20 @@ public class Kasir extends KENTab implements ActionListener {
 
     public void setPriceText(int price){
         this.price = price;
-        priceText.setText("Rp. " + price);
+        priceText.setText(Vars.mataUang + " " + price);
     }
     public int getPriceText(){
         return this.price;
+    }
+
+    public void updatePriceText(){
+        // Build a map of items and refresh price text
+        Map<Integer, BillItem> map = new HashMap<>();
+        for(int i = 0, n = 0; i < cart.getComponentCount(); i++){
+            Component comp = cart.getComponent(i);
+            if(comp instanceof CartItem)map.put(n++, ((CartItem)comp).toBillItem());
+        }
+        setPriceText(Vars.billProcessor.get(map));
     }
 
     public JScrollPane getScrollPane(){

@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.backend.Vars;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -37,7 +39,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
 
     public void makePanelLC() {
         JLabel fixedBill = new JLabel("Fixed Bill");
-        JLabel totalPrice = new JLabel("Total: Rp." + total);
+        JLabel totalPrice = new JLabel(String.format("Total: %s.%d", Vars.mataUang, total));
         fixedBill.setFont(new Font("Poppins", Font.BOLD, 40));
         fixedBill.setForeground(Color.white);
         fixedBill.setBounds(160, 10, 500, 100);

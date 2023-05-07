@@ -6,6 +6,7 @@ import ken.backend.controller.holder.VIPHolder;
 import ken.backend.kelas.anggota.Customer;
 import ken.backend.kelas.anggota.Member;
 import ken.backend.kelas.anggota.VIP;
+import ken.backend.Vars;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
 
     public void makePanelLC() throws URISyntaxException, IOException {
         JLabel checkoutText = new JLabel("Checkout");
-        JLabel totalPrice = new JLabel("Total: Rp." + total);
+        JLabel totalPrice = new JLabel("Total: " + Vars.mataUang + " " + total);
         checkoutText.setFont(new Font("Poppins", Font.BOLD,40));
         checkoutText.setForeground(Color.white);
         checkoutText.setBounds(550,30,500,100);

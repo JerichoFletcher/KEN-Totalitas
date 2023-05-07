@@ -1,5 +1,6 @@
 package ken.gui.tab;
 
+import ken.backend.Vars;
 import ken.backend.controller.Controller;
 import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.controller.holder.InventoryHolder;
@@ -75,10 +76,10 @@ public class History extends KENTab implements ActionListener {
             Bill value = entry.getValue();
             // Do something with the key and value...
 
-            HistoryPanel historyPanel = new HistoryPanel(key, value.getIdCustomer(), value.getTotalHarga(), value.getListBarang());
+            HistoryPanel historyPanel = new HistoryPanel(key, value.getIdCustomer(), value.getTotalHarga().get(Vars.mataUang), value.getListBarang());
             history.add(historyPanel);
             listOfName.add(key + "   " + value.getIdCustomer());
-            listOfPrice.add(value.getTotalHarga());
+            listOfPrice.add(value.getTotalHarga().get(Vars.mataUang));
         }
         JScrollPane scrollPane = new JScrollPane(history);
         scrollPane.setBounds(0, 50, 1260, 520);
