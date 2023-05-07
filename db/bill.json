@@ -14,9 +14,9 @@
         }
       },
       "idBill": 0,
-      "idCustomer": 1,
+      "idCustomer": 2,
       "totalHarga": {
-        "Rp": 14000
+        "IDR": 14000
       }
     },
     "1": {
@@ -33,9 +33,39 @@
         }
       },
       "idBill": 1,
-      "idCustomer": 2,
+      "idCustomer": 3,
       "totalHarga": {
-        "Rp": 8000
+        "IDR": 8000
+      }
+    },
+    "844554853": {
+      "listBarang": {
+        "0": {
+          "jumlahDibeli": 3,
+          "hargaBarang": 15000
+        },
+        "1": {
+          "jumlahDibeli": 2,
+          "hargaBarang": 5000
+        }
+      },
+      "idBill": 844554853,
+      "idCustomer": 1954465773,
+      "totalHarga": {
+        "IDR": 55000
+      }
+    },
+    "804966222": {
+      "listBarang": {
+        "0": {
+          "jumlahDibeli": 5,
+          "hargaBarang": 15000
+        }
+      },
+      "idBill": 804966222,
+      "idCustomer": 8,
+      "totalHarga": {
+        "IDR": 75000
       }
     }
   }

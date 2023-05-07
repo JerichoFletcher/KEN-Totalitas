@@ -44,8 +44,13 @@ public class Bill implements Serializable {
         return listBarang.size();
     }
     public void addBarang(BillItem b) {
-        int maxId = Collections.max(listBarang.keySet());
-        this.listBarang.put(maxId+1, b);
+        if(this.listBarang.isEmpty()){
+            this.listBarang.put(0, b);
+        }else{
+            int maxId = Collections.max(listBarang.keySet());
+            this.listBarang.put(maxId+1, b);
+        }
+
     }
     public BillItem getBillItemById(int id){
         return listBarang.get(id);

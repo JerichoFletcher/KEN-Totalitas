@@ -93,6 +93,8 @@ public class CartItem extends JPanel implements ActionListener {
     public int getCounter() {
         return this.counter;
     }
+    public int getHarga(){ return this.harga; }
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == addButton){
             if(correspondingMI.getQuantity() > 0){

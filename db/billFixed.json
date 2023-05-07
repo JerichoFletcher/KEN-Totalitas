@@ -16,7 +16,7 @@
       "idBill": 0,
       "idCustomer": 2,
       "totalHarga": {
-        "Rp": 14000
+        "IDR": 14000
       }
     },
     "1": {
@@ -35,7 +35,102 @@
       "idBill": 1,
       "idCustomer": 3,
       "totalHarga": {
-        "Rp": 8000
+        "IDR": 8000
+      }
+    },
+    "844554853": {
+      "listBarang": {
+        "0": {
+          "jumlahDibeli": 3,
+          "hargaBarang": 15000
+        },
+        "1": {
+          "jumlahDibeli": 2,
+          "hargaBarang": 5000
+        }
+      },
+      "idBill": 844554853,
+      "idCustomer": 1954465773,
+      "totalHarga": {
+        "IDR": 55000
+      }
+    },
+    "1197991212": {
+      "listBarang": {},
+      "idBill": 1197991212,
+      "idCustomer": 1052839679,
+      "totalHarga": {
+        "IDR": 0
+      }
+    },
+    "912155221": {
+      "listBarang": {
+        "0": {
+          "jumlahDibeli": 5,
+          "hargaBarang": 15000
+        },
+        "1": {
+          "jumlahDibeli": 4,
+          "hargaBarang": 5000
+        }
+      },
+      "idBill": 912155221,
+      "idCustomer": 1280272821,
+      "totalHarga": {
+        "IDR": 95000
+      }
+    },
+    "1858364027": {
+      "listBarang": {
+        "0": {
+          "jumlahDibeli": 5,
+          "hargaBarang": 15000
+        }
+      },
+      "idBill": 1858364027,
+      "idCustomer": 1814622782,
+      "totalHarga": {
+        "IDR": 75000
+      }
+    },
+    "467219941": {
+      "listBarang": {
+        "0": {
+          "jumlahDibeli": 4,
+          "hargaBarang": 5000
+        }
+      },
+      "idBill": 467219941,
+      "idCustomer": 5483280,
+      "totalHarga": {
+        "IDR": 20000
+      }
+    },
+    "1429884164": {
+      "listBarang": {
+        "0": {
+          "jumlahDibeli": 3,
+          "hargaBarang": 1000
+        }
+      },
+      "idBill": 1429884164,
+      "idCustomer": 9,
+      "totalHarga": {
+        "IDR": 3000
+      }
+    },
+    "1120690037": {
+      "listBarang": {
+        "0": {
+          "namaBarang": "Pensil",
+          "jumlahDibeli": 6,
+          "hargaBarang": 1000
+        }
+      },
+      "idBill": 1120690037,
+      "idCustomer": 7,
+      "totalHarga": {
+        "IDR": 6000
       }
     }
   }

@@ -70,7 +70,7 @@ public class History extends KENTab implements ActionListener {
         this.add(headerMember);
         history.setBackground(new Color(0xFFFFFF));
         history.setLayout(new BoxLayout(history, BoxLayout.Y_AXIS));
-        Controller.instance().fetchData(FixedBillHolder.instance(), "bill");
+        Controller.instance().fetchData(FixedBillHolder.instance(), "billFixed");
         for (Map.Entry<Integer, Bill> entry : FixedBillHolder.instance().getListBill().entrySet()) {
             Integer key = entry.getKey();
             Bill value = entry.getValue();

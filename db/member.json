@@ -28,12 +28,19 @@
       "active": true,
       "id": 699580479
     },
-    "12425135": {
-      "name": "Nama",
-      "phoneNumber": "098123",
+    "7": {
+      "name": "jovan",
+      "phoneNumber": "081245671234",
       "points": 0,
       "active": true,
-      "id": 12425135
+      "id": 7
+    },
+    "8": {
+      "name": "mohammad benar",
+      "phoneNumber": "0811111111",
+      "points": 0,
+      "active": true,
+      "id": 8
     }
   }
 }

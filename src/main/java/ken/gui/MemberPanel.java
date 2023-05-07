@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.backend.kelas.anggota.Member;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

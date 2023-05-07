@@ -36,7 +36,7 @@ public class HistoryPanel extends JPanel implements ActionListener {
         priceLabel.setForeground(new Color(0x395B64));
         priceLabel.setBorder(BorderFactory.createEmptyBorder());
         priceLabel.setBounds(1020,0,100,50);
-        title.setBounds(10,0,200,50);
+        title.setBounds(10,0,500,50);
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD,20));
         showDetailBUtton = new JButton("DETIL");
@@ -56,7 +56,7 @@ public class HistoryPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == showDetailBUtton) {
             ShowDetail showDetail = new ShowDetail("" + idCust, listOfBarang, total);
-            Tabs.tabs.addCustomTab("Detatil Transaksi", showDetail, Tabs.tabCount);
+            Tabs.tabs.addCustomTab("Detil Transaksi", showDetail, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(showDetail);
         }
     }
