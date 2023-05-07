@@ -146,14 +146,14 @@ public class Kasir extends KENTab implements ActionListener {
         inputFieldNama.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (inputFieldNama.getText().equals("Nama Barang")) {
+                if (inputFieldNama.getText().trim().equals("Nama Barang")) {
                     inputFieldNama.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (inputFieldNama.getText().equals("")) {
+                if (inputFieldNama.getText().trim().equals("")) {
                     inputFieldNama.setText("Nama Barang");
                 }
             }
@@ -167,14 +167,14 @@ public class Kasir extends KENTab implements ActionListener {
         inputFieldHarga.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (inputFieldHarga.getText().equals("Harga Barang")) {
+                if (inputFieldHarga.getText().trim().equals("Harga Barang")) {
                     inputFieldHarga.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (inputFieldHarga.getText().equals("")) {
+                if (inputFieldHarga.getText().trim().equals("")) {
                     inputFieldHarga.setText("Harga Barang");
                 }
             }
@@ -189,14 +189,14 @@ public class Kasir extends KENTab implements ActionListener {
         inputFieldKategori.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (inputFieldKategori.getText().equals("Kategori")) {
+                if (inputFieldKategori.getText().trim().equals("Kategori")) {
                     inputFieldKategori.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (inputFieldKategori.getText().equals("")) {
+                if (inputFieldKategori.getText().trim().equals("")) {
                     inputFieldKategori.setText("Kategori");
                 }
             }

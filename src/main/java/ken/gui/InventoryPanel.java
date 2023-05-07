@@ -65,7 +65,7 @@ public class InventoryPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == editButton){
             System.out.println("edit dummy");
-            EditInventoryItem layarEI = new EditInventoryItem(id,judul,harga,hargaBeli,quantity,kategori);
+            EditInventoryItem layarEI = new EditInventoryItem(id,judul,harga,hargaBeli,quantity,kategori,path);
             Tabs.tabs.addCustomTab("Edit Inventory", layarEI, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarEI);
         }
