@@ -4,11 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import ken.gui.tab.Kasir;
 
 public class InventoryPanel extends JPanel implements ActionListener {
     private JButton editButton;
-    public InventoryPanel(String judul){
+    private int id;
+    private String judul;
+    private int harga;
+    private int hargaBeli;
+    private int quantity;
+    private String path;
+    private String kategori;
+
+    public InventoryPanel(int iid, String ijudul, int iharga,int ihargaBeli, int iquantity, String ipath, String ikategori){
         super();
+        this.id = iid;
+        this.judul = ijudul;
+        this.harga = iharga;
+        this.hargaBeli= ihargaBeli;
+        this.quantity = iquantity;
+        this.path = ipath;
+        this.kategori=ikategori;
         JLabel title = new JLabel(judul);
         editButton = new JButton("EDIT");
         this.setLayout(null);
@@ -32,10 +48,11 @@ public class InventoryPanel extends JPanel implements ActionListener {
         this.add(editButton);
     }
 
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == editButton){
             System.out.println("edit dummy");
-            EditInventoryItem layarEI = new EditInventoryItem();
+            EditInventoryItem layarEI = new EditInventoryItem(id,judul,harga,hargaBeli,quantity,kategori);
             Tabs.tabs.addCustomTab("Edit Inventory", layarEI, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarEI);
         }

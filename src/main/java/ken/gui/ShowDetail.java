@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.backend.kelas.bill.BillItem;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,20 +10,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class LayarFixedBill extends JPanel implements ActionListener {
+public class ShowDetail extends JPanel implements ActionListener {
     private JPanel panelBarang;
     private JButton daftarButton;
     private JButton cetakButton;
     private String customer;
-    private List<CartItem> listOfCartItem;
+    private List<BillItem> listOfBillItem;
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
     private int total;
 
 
-    public LayarFixedBill(String customer, List<CartItem> listOfCartItem) {
+    public ShowDetail(String customer, List<BillItem> listOfBillItem, int total) {
         super();
-        this.listOfCartItem = listOfCartItem;
+        this.total = total;
+        this.listOfBillItem = listOfBillItem;
         this.customer = customer;
         listOfAmount = new ArrayList<Integer>();
         listOfName = new ArrayList<String>();
@@ -34,7 +37,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
 
     public void makePanelLC() {
         JLabel fixedBill = new JLabel("Fixed Bill");
-        JLabel totalPrice = new JLabel("Total: Rp." + 1000);
+        JLabel totalPrice = new JLabel("Total: Rp." + total);
         fixedBill.setFont(new Font("Poppins", Font.BOLD, 40));
         fixedBill.setForeground(Color.white);
         fixedBill.setBounds(160, 10, 500, 100);
@@ -47,9 +50,9 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         panelBarang.setBackground(new Color(0x2C3333));
         panelBarang.setLayout(new BoxLayout(panelBarang, BoxLayout.Y_AXIS));
         panelBarang.setBorder(BorderFactory.createEmptyBorder());
-        for (int i = 0; i <= listOfCartItem.size() - 1; i++) {
-            String judulBarang = listOfCartItem.get(i).getJudul();
-            int jmlhBarang = listOfCartItem.get(i).getCounter();
+        for(int i = 0; i <= listOfBillItem.size() - 1; i++){
+            String judulBarang = listOfBillItem.get(i).getNamaBarang();
+            int jmlhBarang = listOfBillItem.get(i).getJumlahDibeli();
             listOfName.add(judulBarang);
             listOfAmount.add(jmlhBarang);
             JLabel item = new JLabel(judulBarang + "    " + jmlhBarang + 'x');
@@ -62,28 +65,11 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         scrollPane.setBounds(100, 110, 500, 400);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         this.add(scrollPane);
-        if (customer.length() == 0) {
-            JLabel namaCustomer = new JLabel("Pembelian customer berhasil dicatat!");
-            namaCustomer.setFont(new Font("Poppins", Font.BOLD, 30));
-            namaCustomer.setForeground(Color.white);
-            namaCustomer.setBounds(650, 120, 1000, 100);
-            this.add(namaCustomer);
-            daftarButton = new JButton("Daftar Member/VIP");
-            daftarButton.addActionListener(this);
-            daftarButton.setBackground(new Color(0xD9D9D9));
-            daftarButton.setBounds(775, 250, 230, 100);
-            daftarButton.setFont(new Font("Poppins", Font.BOLD, 20));
-            daftarButton.setForeground(new Color(0x395B64));
-            daftarButton.setFocusable(false);
-            this.add(daftarButton);
-        }
-        else{
-            JLabel namaCustomer = new JLabel("Pembelian " + customer + " berhasil dicatat!");
-            namaCustomer.setFont(new Font("Poppins", Font.BOLD, 30));
-            namaCustomer.setForeground(Color.white);
-            namaCustomer.setBounds(650, 120, 1000, 100);
-            this.add(namaCustomer);
-        }
+        JLabel namaCustomer = new JLabel("Pembelian " + customer + " berhasil dicatat!");
+        namaCustomer.setFont(new Font("Poppins", Font.BOLD, 30));
+        namaCustomer.setForeground(Color.white);
+        namaCustomer.setBounds(650, 120, 1000, 100);
+        this.add(namaCustomer);
         cetakButton = new JButton("Cetak Bill");
         cetakButton.addActionListener(this);
         cetakButton.setBackground(new Color(0xD9D9D9));
@@ -96,13 +82,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == daftarButton) {
-            DaftarMember layarDM = new DaftarMember();
-            Tabs.tabs.addCustomTab("Daftar Member", layarDM, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarDM);
-        }
         if(e.getSource() == cetakButton) {
-            this.total = 1000;
             System.out.println("cetak dummy");
             UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total);
             Thread cetakBill = new Thread(unduhDetil);

@@ -1,10 +1,11 @@
 package ken.gui.tab;
 
+import ken.backend.dataStore.AdapterJSON;
+import ken.backend.kelas.barang.Barang;
 import ken.gui.InventoryPanel;
 
 import ken.backend.kelas.inventory.InventoryHolder;
 
-import ken.backend.kelas.inventory.InventoryHolder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Map;
+
 
 public class Inventory extends KENTab implements ActionListener {
     private JPanel inventory;
@@ -19,7 +24,7 @@ public class Inventory extends KENTab implements ActionListener {
     private JTextField inputFieldHarga;
     private JTextField inputFieldKategori;
     private JButton searchButton;
-    public Inventory(){
+    public Inventory() throws URISyntaxException, IOException {
         super();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -34,7 +39,7 @@ public class Inventory extends KENTab implements ActionListener {
         return "Inventory";
     }
 
-    public void makePanelInventory(){
+    public void makePanelInventory() throws URISyntaxException, IOException {
         inventory = new JPanel();
         JPanel headerInventory = new JPanel();
         headerInventory.setLayout(null);
@@ -48,8 +53,16 @@ public class Inventory extends KENTab implements ActionListener {
         this.add(headerInventory);
         inventory.setBackground(new Color(0xFFFFFF));
         inventory.setLayout(new BoxLayout(inventory, BoxLayout.Y_AXIS));
-        for (int i = 1; i <= 20; i++) {
-            InventoryPanel invPanel = new InventoryPanel("item " + i);
+
+        AdapterJSON adapter = new AdapterJSON();;
+        InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
+
+        for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
+            Integer key = entry.getKey();
+            Barang value = entry.getValue();
+            // Do something with the key and value...
+
+            ken.gui.InventoryPanel invPanel = new InventoryPanel(key, value.getNamaBarang(), value.getHargaBarang(), value.getHargaBeliBarang(), value.getStok(), value.getGambar(), value.getKategori());
             inventory.add(invPanel);
         }
         JScrollPane scrollPane = new JScrollPane(inventory);

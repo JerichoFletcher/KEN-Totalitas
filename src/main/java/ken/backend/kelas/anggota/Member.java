@@ -12,6 +12,9 @@ public class Member extends Customer {
     @Getter
     @Setter
     private int points;
+    @Getter
+    @Setter
+    private boolean active;
 
     public Member(String name, String phoneNumber) {
         super();
