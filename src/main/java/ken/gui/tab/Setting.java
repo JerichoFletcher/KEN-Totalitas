@@ -1,5 +1,6 @@
 package ken.gui.tab;
 
+import ken.backend.Vars;
 import ken.backend.plugin.PluginManager;
 
 import javax.swing.*;
@@ -54,7 +55,7 @@ public class Setting extends KENTab implements ActionListener {
         this.add(buttonFile);
 //        this.add(dataTypeText);
 
-        String[] dataTypeList = new String[]{"JSON", "XML","OBJ"};
+        String[] dataTypeList = new String[]{"json", "xml","ser"};
 
         dataType = new JComboBox(dataTypeList);
         dataType.setBackground(new Color(0xD9D9D9));
@@ -96,16 +97,29 @@ public class Setting extends KENTab implements ActionListener {
             }
         } else if (e.getSource() == buttonFile) {
             JFileChooser fileChooser = new JFileChooser();
-            int returnValue = fileChooser.showOpenDialog(this);
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int returnValue = fileChooser.showDialog(null, "Select Folder");
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                // File selected by the user
-                String filePath = fileChooser.getSelectedFile().getPath();
-                // Perform any necessary operations with the selected file
-                System.out.println("Selected file: " + filePath);
+                // Folder selected by the user
+                String folderPath = fileChooser.getSelectedFile().getPath();
+                // Perform any necessary operations with the selected folder
+                System.out.println("Selected folder: " + Vars.path);
+                Vars.path = folderPath;
+                System.out.println("Selected folder: " + Vars.path);
             }
+
+//            JFileChooser fileChooser = new JFileChooser();
+//            int returnValue = fileChooser.showOpenDialog(this);
+//            if (returnValue == JFileChooser.APPROVE_OPTION) {
+//                // File selected by the user
+//                String filePath = fileChooser.getSelectedFile().getPath();
+//                // Perform any necessary operations with the selected file
+//                System.out.println("Selected file: " + filePath);
+//            }
         } else if (e.getSource() == dataTypeButton) {
             String selectedType = (String) dataType.getSelectedItem();
-            System.out.println("Selected Format: " + selectedType );
+//            System.out.println("Selected Format: " + selectedType );
+            Vars.extension = selectedType;
         }
     }
 
