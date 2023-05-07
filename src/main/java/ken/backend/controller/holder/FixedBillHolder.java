@@ -4,11 +4,12 @@ import ken.backend.kelas.bill.Bill;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FixedBillHolder implements Holder {
+public class FixedBillHolder implements Holder, Serializable {
     private static FixedBillHolder _instance = null;
     public static FixedBillHolder instance() {
         if (_instance == null) {

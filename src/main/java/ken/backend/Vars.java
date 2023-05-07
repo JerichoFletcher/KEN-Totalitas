@@ -2,6 +2,8 @@ package ken.backend;
 
 import ken.backend.algoritma.BillProcessor;
 import ken.backend.kelas.bill.BillItem;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +12,9 @@ import java.util.Map;
 public class Vars{
     public static final String defaultNamespace = "ken";
     public static String path = "./db/";
+    @Getter
+    @Setter
     public static String extension = "json";
-
     public static String mataUang = "Rp";
 
     public static BillProcessor billProcessor = BillProcessor

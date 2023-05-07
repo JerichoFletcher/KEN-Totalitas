@@ -3,7 +3,9 @@ package ken.backend.kelas.anggota;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Member extends Customer {
+import java.io.Serializable;
+
+public class Member extends Customer implements Serializable {
     @Getter
     private String name;
     @Getter

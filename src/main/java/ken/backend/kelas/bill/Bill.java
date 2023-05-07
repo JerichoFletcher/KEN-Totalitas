@@ -3,12 +3,13 @@ import ken.backend.controller.holder.BillHolder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Bill {
+public class Bill implements Serializable {
     @Getter
     @Setter
     private Map<Integer,BillItem> listBarang;

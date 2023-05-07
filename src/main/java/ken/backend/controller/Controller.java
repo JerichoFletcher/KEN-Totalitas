@@ -5,6 +5,7 @@ import ken.backend.controller.holder.Holder;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.dataStore.AdapterData;
 import ken.backend.dataStore.AdapterJSON;
+import ken.backend.dataStore.AdapterObject;
 import ken.backend.dataStore.AdapterXML;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,10 +33,10 @@ public class Controller {
         this.adapterList = new HashMap<>();
         AdapterData json = new AdapterJSON();
         AdapterData xml = new AdapterXML();
-//        AdapterData obj = new AdapterOBJ();
+        AdapterData ser = new AdapterObject();
         adapterList.put("json",json);
         adapterList.put("xml",xml);
-//        adapterList.put("obj",xml);;
+        adapterList.put("ser",ser);;
 
     }
 

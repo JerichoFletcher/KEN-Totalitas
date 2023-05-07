@@ -4,9 +4,10 @@ import ken.backend.controller.holder.MemberHolder;
 import ken.backend.controller.holder.VIPHolder;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Customer {
+public class Customer implements Serializable {
     @Getter
     private int id;
     private static Random rand = new Random();

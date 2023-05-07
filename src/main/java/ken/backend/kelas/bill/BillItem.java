@@ -3,7 +3,9 @@ package ken.backend.kelas.bill;
 import lombok.Getter;
 import lombok.Setter;
 
-public class BillItem {
+import java.io.Serializable;
+
+public class BillItem implements Serializable {
     
     @Getter
     private String namaBarang;

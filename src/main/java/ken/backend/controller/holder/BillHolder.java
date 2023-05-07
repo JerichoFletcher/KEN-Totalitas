@@ -5,11 +5,12 @@ import ken.backend.kelas.bill.BillItem;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BillHolder implements Holder {
+public class BillHolder implements Holder, Serializable {
     private static BillHolder _instance = null;
     public static BillHolder instance() {
         if (_instance == null) {

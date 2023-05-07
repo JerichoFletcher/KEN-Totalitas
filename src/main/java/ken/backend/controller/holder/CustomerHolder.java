@@ -6,11 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CustomerHolder implements Holder {
+public class CustomerHolder implements Holder, Serializable {
     private static CustomerHolder _instance = null;
     public static CustomerHolder instance(){
         if(_instance == null){

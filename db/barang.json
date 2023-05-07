@@ -1,49 +1,67 @@
 {
-  "listBarang" : {
+  "listBarang": {
     "1": {
       "id": 1,
-      "namaBarang": "Buku Tulis",
       "stok": 50,
+      "namaBarang": "Buku Tulis",
       "hargaBarang": 5000,
       "hargaBeliBarang": 3500,
       "kategori": "Alat Tulis",
       "gambar": "./asset/buku_tulis.jpg"
     },
-    "2":{
+    "2": {
       "id": 2,
-      "namaBarang": "Pensil",
       "stok": 100,
+      "namaBarang": "Pensil",
       "hargaBarang": 1000,
       "hargaBeliBarang": 700,
       "kategori": "Alat Tulis",
       "gambar": "./asset/pensil.jpg"
     },
-    "3":{
+    "3": {
       "id": 3,
-      "namaBarang": "Penghapus",
       "stok": 75,
+      "namaBarang": "Penghapus",
       "hargaBarang": 2000,
       "hargaBeliBarang": 1500,
       "kategori": "Alat Tulis",
       "gambar": "./asset/penghapus.jpg"
     },
-    "4":{
+    "4": {
       "id": 4,
-      "namaBarang": "Gunting",
       "stok": 30,
+      "namaBarang": "Gunting",
       "hargaBarang": 5000,
       "hargaBeliBarang": 3500,
       "kategori": "Alat Potong",
       "gambar": "./asset/gunting.jpg"
     },
-    "5":{
+    "5": {
       "id": 5,
-      "namaBarang": "Pisau",
       "stok": 20,
+      "namaBarang": "Pisau",
       "hargaBarang": 15000,
       "hargaBeliBarang": 10000,
       "kategori": "Alat Potong",
       "gambar": "./asset/pisau.jpg"
+    },
+    "1545764559": {
+      "id": 1545764559,
+      "stok": 200,
+      "namaBarang": "Spatule",
+      "hargaBarang": 20000,
+      "hargaBeliBarang": 15000,
+      "kategori": "Alat Masak",
+      "gambar": "./asset/spatule.png"
+    },
+    "2031297721": {
+      "id": 2031297721,
+      "stok": 200,
+      "namaBarang": "Spatulee",
+      "hargaBarang": 20000,
+      "hargaBeliBarang": 15000,
+      "kategori": "Alat Masak",
+      "gambar": "./asset/spatule.png"
     }
   }
 }

@@ -7,11 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VIPHolder implements Holder {
+public class VIPHolder implements Holder, Serializable {
     private static VIPHolder _instance = null;
     public static VIPHolder instance(){
         if(_instance == null){

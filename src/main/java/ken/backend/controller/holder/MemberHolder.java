@@ -7,11 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MemberHolder implements Holder {
+public class MemberHolder implements Holder , Serializable {
     private static MemberHolder _instance = null;
     public static MemberHolder instance(){
         if(_instance == null){
