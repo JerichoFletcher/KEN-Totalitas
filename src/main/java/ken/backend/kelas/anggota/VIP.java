@@ -12,4 +12,8 @@ public class VIP extends Member implements Serializable {
     public double getDiscountRate() {
         return DISCOUNT_RATE;
     }
+
+    public String getName(){
+        return this.name;
+    }
 }
