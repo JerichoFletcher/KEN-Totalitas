@@ -8,6 +8,4 @@ public interface AdapterData {
 
     public <T> void write(URI uri,T obj) throws IOException;
 
-//    public Bill[] getFixedBill();
-//    public Bill[] getBill();
 }

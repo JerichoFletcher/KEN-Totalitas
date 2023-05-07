@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import ken.gui.tab.Kasir;
 
 public class InventoryPanel extends JPanel implements ActionListener {
@@ -40,10 +42,21 @@ public class InventoryPanel extends JPanel implements ActionListener {
         editButton.setBackground(new Color(0, 0, 0, 0));
         editButton.setForeground(new Color(0x395B64));
         editButton.setBorder(BorderFactory.createEmptyBorder());
-        editButton.setBounds(1020,0,100,50);
-        title.setBounds(10,0,200,50);
+        editButton.setBounds(1020,25,100,50);
+        title.setBounds(10, 0, 300, 100);
         title.setForeground(new Color(0x395B64));
-        title.setFont(new Font("Poppins", Font.BOLD,20));
+        title.setFont(new Font("Poppins", Font.BOLD, 20));
+        File imageFile = new File(path);
+        if (imageFile.exists()) {
+            ImageIcon image = new ImageIcon(path);
+            Image scaledImage = image.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+
+
+            title.setIcon(scaledImageIcon);
+        } else {
+            System.out.println("Image file not found: " + path);
+        }
         this.add(title);
         this.add(editButton);
     }

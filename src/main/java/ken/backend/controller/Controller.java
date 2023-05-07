@@ -1,5 +1,6 @@
 package ken.backend.controller;
 
+import ken.backend.Vars;
 import ken.backend.controller.holder.Holder;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.dataStore.AdapterData;
@@ -8,7 +9,9 @@ import ken.backend.dataStore.AdapterXML;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,9 +28,6 @@ public class Controller {
     @Setter
     private Map<String, AdapterData> adapterList;
 
-    private String path = "/database/";
-    private String type = "json";
-
     public Controller(){
         this.adapterList = new HashMap<>();
         AdapterData json = new AdapterJSON();
@@ -40,10 +40,13 @@ public class Controller {
     }
 
     public void fetchData(Holder obj, String whatData) throws URISyntaxException, IOException {
-        obj.load(getClass().getResource(path+whatData+"."+type).toURI(),adapterList.get(type));
+//        URI uri = URI.create("file://" + "D:/Coding/java/KEN-Totalitas/db");
+//        URI uri = URI.create("file://" + "D:/Coding/java/KEN-Totalitas/db");
+
+        obj.load(new File(Vars.path+whatData+"."+Vars.extension).toURI(),adapterList.get(Vars.extension));
     }
     public void writeData(Holder obj, String whatData) throws URISyntaxException, IOException {
-        obj.write(getClass().getResource(path+whatData+"."+type).toURI(),adapterList.get(type));
+        obj.write(new File(Vars.path+whatData+"."+Vars.extension).toURI(),adapterList.get(Vars.extension));
     }
 
 

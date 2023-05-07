@@ -1,6 +1,11 @@
 package ken.gui;
 
+import ken.backend.controller.Controller;
+import ken.backend.controller.holder.MemberHolder;
+import ken.backend.controller.holder.VIPHolder;
 import ken.backend.kelas.anggota.Customer;
+import ken.backend.kelas.anggota.Member;
+import ken.backend.kelas.anggota.VIP;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +41,15 @@ public class LayarCheckout extends JPanel implements ActionListener{
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
         this.total = total;
-        makePanelLC();
+        try {
+            makePanelLC();
+        }catch (IOException | URISyntaxException ex){
+            ex.printStackTrace();
+        }
         this.setBounds(0,0,500,500);
     }
 
-    public void makePanelLC(){
+    public void makePanelLC() throws URISyntaxException, IOException {
         JLabel checkoutText = new JLabel("Checkout");
         JLabel totalPrice = new JLabel("Total: Rp." + total);
         checkoutText.setFont(new Font("Poppins", Font.BOLD,40));
@@ -67,17 +78,35 @@ public class LayarCheckout extends JPanel implements ActionListener{
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
 
         List<Map.Entry<Integer, String>> allMember = new ArrayList<>();
-        allMember.add(new AbstractMap.SimpleEntry<>(-1, ""));
-        allMember.add(new AbstractMap.SimpleEntry<>(1, "Alek"));
-        allMember.add(new AbstractMap.SimpleEntry<>(2, "Farhan"));
-        allMember.add(new AbstractMap.SimpleEntry<>(3, "Jericho"));
-        allMember.add(new AbstractMap.SimpleEntry<>(4, "Jovan"));
-        allMember.add(new AbstractMap.SimpleEntry<>(5, "Shidqi"));
-        allMember.add(new AbstractMap.SimpleEntry<>(6, "Obama"));
-        allMember.add(new AbstractMap.SimpleEntry<>(7, "Trump"));
-        allMember.add(new AbstractMap.SimpleEntry<>(8, "Putin"));
-        allMember.add(new AbstractMap.SimpleEntry<>(9, "Jokowi"));
-        allMember.add(new AbstractMap.SimpleEntry<>(10, "Xi Jinping"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(-1, ""));
+//        allMember.add(new AbstractMap.SimpleEntry<>(1, "Alek"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(2, "Farhan"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(3, "Jericho"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(4, "Jovan"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(5, "Shidqi"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(6, "Obama"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(7, "Trump"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(8, "Putin"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(9, "Jokowi"));
+//        allMember.add(new AbstractMap.SimpleEntry<>(10, "Xi Jinping"));
+
+        Controller.instance().fetchData(VIPHolder.instance(),"vip");
+        for (Map.Entry<Integer, VIP> entry : VIPHolder.instance().getListVIP().entrySet()) {
+            Integer key = entry.getKey();
+            Member value = entry.getValue();
+            // Do something with the key and value...
+            allMember.add(new AbstractMap.SimpleEntry<>(key, value.getName()));
+
+        }
+
+        Controller.instance().fetchData(MemberHolder.instance(),"member");
+        for (Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()) {
+            Integer key = entry.getKey();
+            Member value = entry.getValue();
+            // Do something with the key and value...
+            allMember.add(new AbstractMap.SimpleEntry<>(key, value.getName()));
+
+        }
 
 //        pilihMember = new JComboBox(tipeMember);
 //        pilihMember.setBackground(new Color(0xD9D9D9));

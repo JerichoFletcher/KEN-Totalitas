@@ -14,11 +14,21 @@ public class EditMember extends JPanel implements ActionListener{
     private JTextField textField2;
     private JComboBox pilihMember;
     private JComboBox pilihStateMember;
-    public EditMember(){
+    private int id;
+    private String nama;
+    private String phone;
+    private String memberType;
+    private boolean activeType;
+    public EditMember(int iid, String inama, String iphone, String imemberType, boolean iactiveType){
         panelEdit = new JPanel();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
+        this.id = iid;
+        this.nama = inama;
+        this.phone = iphone;
+        this.memberType = imemberType;
+        this.activeType = iactiveType;
 
 
         // Calculate the position of the center panel
@@ -42,14 +52,14 @@ public class EditMember extends JPanel implements ActionListener{
         label.setBounds(400,30,500,100);
         textField = new JTextField();
         textField.setBounds(310,130,590,50);
-        textField.setText("Nama");
+        textField.setText(nama);
         textField.setFont(new Font("Poppins", Font.BOLD,20));
         textField.setForeground(new Color(0x395B64));
         textField.setBackground(new Color(0xD9D9D9));
         textField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField.getText().equals("Nama")) {
+                if (textField.getText().equals(nama)) {
                     textField.setText("");
                 }
             }
@@ -57,20 +67,20 @@ public class EditMember extends JPanel implements ActionListener{
             @Override
             public void focusLost(FocusEvent e) {
                 if (textField.getText().equals("")) {
-                    textField.setText("Nama");
+                    textField.setText(nama);
                 }
             }
         });
         textField2 = new JTextField();
         textField2.setBounds(310,200,590,50);
-        textField2.setText("Nomor Telfon");
+        textField2.setText(phone);
         textField2.setFont(new Font("Poppins", Font.BOLD,20));
         textField2.setForeground(new Color(0x395B64));
         textField2.setBackground(new Color(0xD9D9D9));
         textField2.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (textField2.getText().equals("Nomor Telfon")) {
+                if (textField2.getText().equals(phone)) {
                     textField2.setText("");
                 }
             }
@@ -78,7 +88,7 @@ public class EditMember extends JPanel implements ActionListener{
             @Override
             public void focusLost(FocusEvent e) {
                 if (textField2.getText().equals("")) {
-                    textField2.setText("Nomor Telfon");
+                    textField2.setText(phone);
                 }
             }
         });
@@ -88,7 +98,11 @@ public class EditMember extends JPanel implements ActionListener{
         pilihMember.setBounds(310,270,590,50);
         pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
         pilihMember.setForeground(new Color(0x395B64));
-//        pilihMember.setSelectedItem("VIP"); // GANTI STATE AWAL DISINI
+        if (memberType == "ken.backend.kelas.anggota.Member") {
+            pilihMember.setSelectedItem("Member");
+        }else {
+            pilihMember.setSelectedItem("VIP");
+        }
 
         String[] tipeStateMember = new String[]{"Aktif", "Non-Aktif"};
         pilihStateMember = new JComboBox(tipeStateMember);
@@ -96,7 +110,11 @@ public class EditMember extends JPanel implements ActionListener{
         pilihStateMember.setBounds(310,340,590,50);
         pilihStateMember.setFont(new Font("Poppins", Font.BOLD,20));
         pilihStateMember.setForeground(new Color(0x395B64));
-//        pilihStateMember.setSelectedItem("Non-Aktif"); // GANTI STATE AWAL DISINI
+        if (activeType) {
+            pilihStateMember.setSelectedItem("Aktif");
+        } else {
+            pilihStateMember.setSelectedItem("Non-Aktif");
+        }
 
 
         editButton = new JButton();
