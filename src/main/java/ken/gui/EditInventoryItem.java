@@ -164,8 +164,8 @@ public class EditInventoryItem extends JPanel implements ActionListener{
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (textField4.getText().equals("")) {
-                    textField4.setText(kategori);
+                if (textField5.getText().equals("")) {
+                    textField5.setText(kategori);
                 }
             }
         });
