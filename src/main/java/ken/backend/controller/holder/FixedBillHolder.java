@@ -1,12 +1,17 @@
 package ken.backend.controller.holder;
 import ken.backend.dataStore.AdapterData;
+import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.Bill;
+import ken.backend.kelas.bill.BillItem;
+import ken.gui.MenuItem;
 import lombok.Getter;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FixedBillHolder implements Holder, Serializable {
@@ -38,6 +43,18 @@ public class FixedBillHolder implements Holder, Serializable {
     }
     public void addBill(Bill bb){
         this.listBill.put(bb.getIdBill(),bb);
+    }
+
+    public List<Bill> getBillPerCustomer(int id){
+        List<Bill> listBillCust = new ArrayList<Bill>();
+        for (Map.Entry<Integer, Bill> entry : this.listBill.entrySet()) {
+            Integer key = entry.getKey();
+            Bill value = entry.getValue();
+            if(value.getIdCustomer()==id){
+                listBillCust.add(value);
+            }
+        }
+        return listBillCust;
     }
 
 }
