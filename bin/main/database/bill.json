@@ -1,6 +1,13 @@
 {
   "listBill": {
+<<<<<<< Updated upstream
     "0": {
+=======
+    "0":{
+      "idBill": 0,
+      "idCustomer": 1,
+      "totalHarga": 14000,
+>>>>>>> Stashed changes
       "listBarang": {
         "0": {
           "namaBarang": "Pensil",
@@ -24,7 +31,14 @@
         "Rp": 14000
       }
     },
+<<<<<<< Updated upstream
     "1": {
+=======
+    "1":{
+      "idBill": 1,
+      "idCustomer": 2,
+      "totalHarga": 8000,
+>>>>>>> Stashed changes
       "listBarang": {
         "0": {
           "namaBarang": "Pensil",

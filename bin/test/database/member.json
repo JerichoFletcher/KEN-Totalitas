@@ -19,7 +19,11 @@
       "name": "Udin Getot",
       "phoneNumber": "42069",
       "points": 421,
+<<<<<<< Updated upstream
       "active": false
+=======
+      "active": true
+>>>>>>> Stashed changes
     }
   }
 }

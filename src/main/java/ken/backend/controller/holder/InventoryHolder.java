@@ -6,11 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InventoryHolder implements Holder {
+public class InventoryHolder implements Holder, Serializable {
     private static InventoryHolder _instance = null;
     public static InventoryHolder instance() {
         if (_instance == null) {

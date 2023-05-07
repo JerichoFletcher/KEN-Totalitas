@@ -3,9 +3,10 @@ package ken.backend.kelas.barang;
 import ken.backend.controller.holder.InventoryHolder;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Barang {
+public class Barang implements Serializable {
     @Getter
     private int id;
     @Getter
