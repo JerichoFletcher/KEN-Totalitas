@@ -15,7 +15,7 @@ public class BillProcessor{
         this.process = process;
     }
 
-    public int get(Map<Integer, BillItem> listBarang){
+    public float get(Map<Integer, BillItem> listBarang){
         return process.process(listBarang);
     }
 
