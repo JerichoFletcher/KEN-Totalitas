@@ -1,6 +1,7 @@
 package ken.gui;
 
 import ken.gui.tab.KENTab;
+import ken.util.UID;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class Menu extends JLabel {
     private Tabs tabs;
     private JPanel[] panelList;
     private Class<? extends JPanel>[] contentClasses;
-    private Map<String, Class<? extends KENTab>> panels;
+    private Map<UID, Class<? extends KENTab>> panels;
 
     Menu(Tabs tabs) {
         super("MENU");
@@ -28,7 +29,7 @@ public class Menu extends JLabel {
         this.panels = TabManager.getPanels();
         // this.contentClasses = contentClasses;
         menuPop = new JPopupMenu();
-        for (Map.Entry<String, Class<? extends KENTab>> entry : this.panels.entrySet()) {
+        for (Map.Entry<UID, Class<? extends KENTab>> entry : this.panels.entrySet()) {
             Class<? extends KENTab> clazz = entry.getValue();
             try {
                 String judulMenuItem = (String) clazz.getMethod("tabName").invoke(clazz.getConstructor().newInstance());
