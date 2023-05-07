@@ -15,7 +15,7 @@ public class Inventory extends KENTab implements ActionListener {
     private JPanel inventory;
     private JTextField inputFieldNama;
     private JTextField inputFieldHarga;
-    private JComboBox catDrop;
+    private JTextField inputFieldKategori;
     private JButton searchButton;
     public Inventory(){
         super();
@@ -97,15 +97,27 @@ public class Inventory extends KENTab implements ActionListener {
         });
         this.add(inputFieldHarga);
 
-        String[] catList = new String[]{"","Makanan","Minuman"};
+        inputFieldKategori = new JTextField();
+        inputFieldKategori.setBounds(800, 50, 400, 40);
+        inputFieldKategori.setFont(new Font("Poppins", Font.PLAIN, 20));
+        inputFieldKategori.setText("Kategori");
+        inputFieldKategori.setForeground(new Color(0x395B64));
+        inputFieldKategori.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (inputFieldKategori.getText().equals("Kategori")) {
+                    inputFieldKategori.setText("");
+                }
+            }
 
-        catDrop = new JComboBox(catList);
-        catDrop.setBackground(new Color(0xD9D9D9));
-        catDrop.setBounds(800,50,400,40);
-        catDrop.setFont(new Font("Poppins", Font.BOLD,15));
-        catDrop.setForeground(new Color(0x395B64));
-        catDrop.setFocusable(false);
-        this.add(catDrop);
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (inputFieldKategori.getText().equals("")) {
+                    inputFieldKategori.setText("Kategori");
+                }
+            }
+        });
+        this.add(inputFieldKategori);
 
         searchButton = new JButton("Search");
         searchButton.setBounds(1200, 50,  60, 40);
@@ -122,7 +134,7 @@ public class Inventory extends KENTab implements ActionListener {
             int searchHarga= -1;
             String searchNama = (String) inputFieldNama.getText().trim();
             String searchHargaString = (String) inputFieldHarga.getText().trim();
-            String searchCat = (String) catDrop.getSelectedItem();
+            String searchCat = (String) inputFieldKategori.getText().trim();
             if (searchHargaString.length() !=0 ) {
                 try {
                     searchHarga = Integer.parseInt(searchHargaString);
