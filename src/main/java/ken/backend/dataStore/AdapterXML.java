@@ -1,8 +1,7 @@
 package ken.backend.dataStore;
 
-import com.google.gson.Gson;
 import ken.backend.kelas.barang.Barang;
-import ken.backend.kelas.inventory.InventoryHolder;
+import ken.backend.kelas.holder.InventoryHolder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,8 +14,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 

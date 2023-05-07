@@ -1,6 +1,6 @@
-package ken.backend.kelas.bill;
+package ken.backend.kelas.holder;
 import ken.backend.dataStore.AdapterData;
-import ken.backend.kelas.Holder;
+import ken.backend.kelas.bill.Bill;
 import lombok.Getter;
 
 import java.io.IOException;

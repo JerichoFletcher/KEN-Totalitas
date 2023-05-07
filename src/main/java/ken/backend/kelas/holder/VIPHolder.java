@@ -1,7 +1,8 @@
-package ken.backend.kelas.anggota;
+package ken.backend.kelas.holder;
 
 import ken.backend.dataStore.AdapterData;
-import ken.backend.kelas.Holder;
+import ken.backend.kelas.anggota.Customer;
+import ken.backend.kelas.anggota.VIP;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +21,7 @@ public class VIPHolder implements Holder {
     }
     @Getter
     @Setter
-    private Map<Integer,VIP> listVIP;
+    private Map<Integer, VIP> listVIP;
 
     private VIPHolder(){
         this.listVIP = new HashMap<>();

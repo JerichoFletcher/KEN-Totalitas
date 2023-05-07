@@ -1,13 +1,9 @@
 package ken.gui.tab;
 
 import ken.backend.dataStore.AdapterJSON;
-import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.Bill;
-import ken.backend.kelas.bill.FixedBillHolder;
-import ken.backend.kelas.inventory.InventoryHolder;
+import ken.backend.kelas.holder.FixedBillHolder;
 import ken.gui.HistoryPanel;
-import ken.gui.MenuItem;
-import ken.gui.UnduhDetil;
 import ken.gui.UnduhHistory;
 
 

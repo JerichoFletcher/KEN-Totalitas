@@ -4,7 +4,7 @@ import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.barang.Barang;
 import ken.gui.InventoryPanel;
 
-import ken.backend.kelas.inventory.InventoryHolder;
+import ken.backend.kelas.holder.InventoryHolder;
 
 
 import javax.swing.*;

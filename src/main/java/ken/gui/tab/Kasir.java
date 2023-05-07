@@ -2,7 +2,7 @@ package ken.gui.tab;
 
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.barang.Barang;
-import ken.backend.kelas.inventory.InventoryHolder;
+import ken.backend.kelas.holder.InventoryHolder;
 import ken.gui.CartItem;
 import ken.gui.LayarCheckout;
 import ken.gui.MenuItem;

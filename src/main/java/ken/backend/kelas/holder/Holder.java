@@ -1,7 +1,6 @@
-package ken.backend.kelas;
+package ken.backend.kelas.holder;
 
 import ken.backend.dataStore.AdapterData;
-import ken.backend.kelas.inventory.InventoryHolder;
 
 import java.io.IOException;
 import java.net.URI;

@@ -1,4 +1,7 @@
 package ken.backend.kelas.anggota;
+import ken.backend.kelas.holder.CustomerHolder;
+import ken.backend.kelas.holder.MemberHolder;
+import ken.backend.kelas.holder.VIPHolder;
 import lombok.*;
 
 import java.util.Random;

@@ -13,7 +13,6 @@ public class AdapterJSON implements AdapterData{
     public <T> T get(URI uri, Class<T> clazz) throws IOException{
         Gson gson = new Gson();
         String json = new String(Files.readAllBytes(Paths.get(uri)));
-        System.out.println(json);
 //        System.out.println(json);
         return gson.fromJson(json, clazz);
     }
@@ -24,7 +23,6 @@ public class AdapterJSON implements AdapterData{
 
         // Convert the InventoryHolder object to a JSON string
         String json = gson.toJson(obj);
-        System.out.println(json);
 
         // Print the JSON string
 //        System.out.println(Paths.get(uri).toString());
