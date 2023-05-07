@@ -91,11 +91,14 @@ public class CartItem extends JPanel implements ActionListener {
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == addButton){
-            priceHolder = kasir.getPriceText();
-            priceHolder += harga;
-            kasir.setPriceText(priceHolder);
-            counter++; // increment counter
-            counterLabel.setText(Integer.toString(counter)); // update counter label text
+            if(correspondingMI.getQuantity() > 0){
+                priceHolder = kasir.getPriceText();
+                priceHolder += harga;
+                kasir.setPriceText(priceHolder);
+                counter++; // increment counter
+                counterLabel.setText(Integer.toString(counter));
+                correspondingMI.decrementQuantity(counter);// update counter label text
+            }
         }
         if(e.getSource() == minusButton){
             correspondingMI.addBackQuantity();

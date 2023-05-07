@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_15" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../plugins/KENPlug-Dummy">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../plugins/KENPlug-Dummy/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../plugins/KENPlug-Dummy/build" />
+    </content>
+    <orderEntry type="jdk" jdkName="openjdk-20" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

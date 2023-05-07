@@ -80,10 +80,20 @@ public class MenuItem extends JPanel implements ActionListener {
         this.add(addButton);
 
     }
+    public int getQuantity(){
+        return quantity;
+    }
 
     public void addBackQuantity(){
         quantity++;
         counterLabel.setText(Integer.toString(quantity));
+    }
+
+    public void decrementQuantity(int quantityNow){
+        if(quantity != 0 ){
+            quantity--;
+            counterLabel.setText(Integer.toString(quantity));
+        }
     }
 
 
