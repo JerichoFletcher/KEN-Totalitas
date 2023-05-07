@@ -1,7 +1,7 @@
 {
   "listBill": {
     "0":{
-      "idBill": 2,
+      "idBill": 0,
       "idCustomer": 1,
       "totalHarga": 14000,
       "listBarang": {
@@ -18,7 +18,7 @@
       }
     },
     "1":{
-      "idBill": 3,
+      "idBill": 1,
       "idCustomer": 2,
       "totalHarga": 8000,
       "listBarang": {

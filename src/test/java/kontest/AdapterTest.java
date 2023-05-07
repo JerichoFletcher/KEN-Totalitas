@@ -1,17 +1,14 @@
 package kontest;
 
 import ken.backend.dataStore.AdapterJSON;
-import ken.backend.dataStore.AdapterXML;
+import ken.backend.kelas.anggota.*;
 import ken.backend.kelas.barang.Barang;
-import ken.backend.kelas.bill.Bill;
 import ken.backend.kelas.bill.BillHolder;
 import ken.backend.kelas.bill.BillItem;
-import ken.backend.kelas.bill.FixedBillHolder;
-import ken.backend.kelas.inventory.InventoryHolder;
+import ken.backend.kelas.holder.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.Console;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -79,5 +76,40 @@ public class AdapterTest {
         Barang barang = new Barang("Spatule",200,20000,15000,"Alat Masak","spatule.png");
         InventoryHolder.instance().addBarang(barang);
         InventoryHolder.instance().write(getClass().getResource("/database/barang3.json").toURI(),adapter);
+    }
+
+    @Test
+    public void testRWCustomerJSON() throws IOException, URISyntaxException {
+        AdapterJSON adapter = new AdapterJSON();;
+        CustomerHolder.instance().load(getClass().getResource("/database/customer.json").toURI(),adapter);
+        System.out.println("jumlah " + CustomerHolder.instance().getBanyakCustomer());
+        Customer newCust = new Customer();
+        CustomerHolder.instance().addCustomer(newCust);
+        CustomerHolder.instance().write(getClass().getResource("/database/customer2.json").toURI(),adapter);
+    }
+
+    @Test
+    public void testRWMemberJSON() throws IOException, URISyntaxException {
+        AdapterJSON adapter = new AdapterJSON();;
+        MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
+        System.out.println("jumlah " + MemberHolder.instance().getBanyakMember());
+        Member newMember = new Member("Asu Meme","09988776");
+        MemberHolder.instance().addMember(newMember);
+        MemberHolder.instance().write(getClass().getResource("/database/member2.json").toURI(),adapter);
+    }
+    @Test
+    public void testRWVIPJSON() throws IOException, URISyntaxException {
+        AdapterJSON adapter = new AdapterJSON();
+        CustomerHolder.instance().load(getClass().getResource("/database/customer.json").toURI(),adapter);
+        MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
+        VIPHolder.instance().load(getClass().getResource("/database/vip.json").toURI(),adapter);
+        System.out.println("jumlah " + VIPHolder.instance().getBanyakVIP());
+        VIP newVIP = new VIP("Asu Meme","09988776");
+        VIP newVIP2 = new VIP("VEVEVE","09988776");
+        VIP newVIP3 = new VIP("BUBU","09988776");
+        VIPHolder.instance().addVIP(newVIP);
+        VIPHolder.instance().addVIP(newVIP2);
+        VIPHolder.instance().addVIP(newVIP3);
+        VIPHolder.instance().write(getClass().getResource("/database/vip2.json").toURI(),adapter);
     }
 }

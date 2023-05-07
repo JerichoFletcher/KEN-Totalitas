@@ -1,7 +1,6 @@
-package ken.backend.kelas.inventory;
+package ken.backend.kelas.holder;
 
 import ken.backend.dataStore.AdapterData;
-import ken.backend.kelas.Holder;
 import ken.backend.kelas.barang.*;
 import lombok.Getter;
 import lombok.Setter;

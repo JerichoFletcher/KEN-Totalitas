@@ -1,7 +1,7 @@
-package ken.backend.kelas.anggota;
+package ken.backend.kelas.holder;
 
 import ken.backend.dataStore.AdapterData;
-import ken.backend.kelas.Holder;
+import ken.backend.kelas.anggota.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +20,7 @@ public class CustomerHolder implements Holder {
     }
     @Getter
     @Setter
-    private Map<Integer,Customer> listCustomer;
+    private Map<Integer, Customer> listCustomer;
 
     private CustomerHolder(){
         this.listCustomer = new HashMap<>();

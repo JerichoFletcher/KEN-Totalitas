@@ -21,6 +21,7 @@ public class Member extends Customer {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.points = 0;
+        this.active = true;
     }
 
     public void addPoints(double price) {
