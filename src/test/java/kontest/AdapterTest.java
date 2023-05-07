@@ -1,11 +1,12 @@
 package kontest;
 
+import ken.backend.controller.Controller;
+import ken.backend.controller.holder.*;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.anggota.*;
 import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.BillHolder;
 import ken.backend.kelas.bill.BillItem;
-import ken.backend.kelas.holder.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -93,8 +94,8 @@ public class AdapterTest {
         AdapterJSON adapter = new AdapterJSON();;
         MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
         System.out.println("jumlah " + MemberHolder.instance().getBanyakMember());
-        Member newMember = new Member("Asu Meme","09988776");
-        MemberHolder.instance().addMember(newMember);
+//        Member newMember = new Member("Asu Meme","09988776");
+//        MemberHolder.instance().addMember(newMember);
         MemberHolder.instance().write(getClass().getResource("/database/member2.json").toURI(),adapter);
     }
     @Test
@@ -104,12 +105,19 @@ public class AdapterTest {
         MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
         VIPHolder.instance().load(getClass().getResource("/database/vip.json").toURI(),adapter);
         System.out.println("jumlah " + VIPHolder.instance().getBanyakVIP());
-        VIP newVIP = new VIP("Asu Meme","09988776");
-        VIP newVIP2 = new VIP("VEVEVE","09988776");
-        VIP newVIP3 = new VIP("BUBU","09988776");
-        VIPHolder.instance().addVIP(newVIP);
-        VIPHolder.instance().addVIP(newVIP2);
-        VIPHolder.instance().addVIP(newVIP3);
+//        VIP newVIP = new VIP("Asu Meme","09988776");
+//        VIP newVIP2 = new VIP("VEVEVE","09988776");
+//        VIP newVIP3 = new VIP("BUBU","09988776");
+//        VIPHolder.instance().addVIP(newVIP);
+//        VIPHolder.instance().addVIP(newVIP2);
+//        VIPHolder.instance().addVIP(newVIP3);
         VIPHolder.instance().write(getClass().getResource("/database/vip2.json").toURI(),adapter);
+    }
+    @Test
+    public void testControllerCustomer() throws IOException, URISyntaxException {
+        Controller.instance().fetchData(MemberHolder.instance(),"member");
+        Member nm = new Member("Nama", "098123",12425135);
+        MemberHolder.instance().addMember(nm);
+        Controller.instance().writeData(MemberHolder.instance(),"member");
     }
 }
