@@ -98,6 +98,15 @@
       "hargaBeliBarang": 1234.0,
       "kategori": "orang",
       "gambar": ""
+    },
+    "998928125": {
+      "id": 998928125,
+      "stok": 1000,
+      "namaBarang": "rafia",
+      "hargaBarang": 1.0,
+      "hargaBeliBarang": 0.5,
+      "kategori": "Sampah",
+      "gambar": ""
     }
   }
 }

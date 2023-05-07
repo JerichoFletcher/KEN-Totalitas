@@ -22,7 +22,7 @@
       "id": 6
     },
     "699580479": {
-      "name": "lkjasdfj",
+      "name": "potus",
       "phoneNumber": "29302340932",
       "points": 0,
       "active": true,
@@ -34,6 +34,13 @@
       "points": 0,
       "active": true,
       "id": 392261423
+    },
+    "7": {
+      "name": "Farhan Kebab",
+      "phoneNumber": "081245671234",
+      "points": 0,
+      "active": true,
+      "id": 7
     }
   }
 }
