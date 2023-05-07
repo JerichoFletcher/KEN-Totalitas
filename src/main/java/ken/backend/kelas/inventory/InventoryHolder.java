@@ -43,12 +43,15 @@ public class InventoryHolder implements Holder {
     public void addBarang(Barang b) {
         this.listBarang.put(b.getId(), b);
     }
+    public void removeBarang(int id) {
+        this.listBarang.remove(id);
+    }
 
     public Barang getBarangById(int id){
         return listBarang.get(id);
     }
 
-    public void setListBarang(Map <Integer, Barang> listBarang){
-        this.listBarang = listBarang;
-    }
+//    public void setListBarang(Map <Integer, Barang> listBarang){
+//        this.listBarang = listBarang;
+//    }
 }
