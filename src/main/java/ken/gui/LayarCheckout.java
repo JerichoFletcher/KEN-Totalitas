@@ -201,7 +201,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
             System.out.println("Name : " + inputField.getText());
             System.out.println("ID : " + id);
             String selectedItem = (String) inputField.getText();
-            Bill fixedBill = new Bill(id);
+//            Bill fixedBill = new Bill(id);
 //            List<BillItem> listOfBillItem;
 //            for(int i = 0; i < listOfCartItem.size() ; i++){
 //                String namaBarang = listOfCartItem.get(i).getName();
@@ -219,7 +219,9 @@ public class LayarCheckout extends JPanel implements ActionListener{
                 Tabs.tabs.setSelectedComponent(layarFB);
             }
             else{
-
+                LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, id);
+                Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
+                Tabs.tabs.setSelectedComponent(layarFB);
             }
         }
     }
