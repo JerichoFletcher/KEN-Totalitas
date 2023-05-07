@@ -9,11 +9,12 @@ import java.awt.event.FocusListener;
 
 public class DaftarMember extends JPanel implements ActionListener{
     private JPanel panelEdit;
-    private JButton editButton;
+    private JButton daftarButton;
     private JTextField textField;
     private JTextField textField2;
     private JComboBox pilihMember;
-    public DaftarMember(){
+    private int idNewCust;
+    public DaftarMember(int idNewCust){
         panelEdit = new JPanel();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -87,16 +88,16 @@ public class DaftarMember extends JPanel implements ActionListener{
         pilihMember.setBounds(310,300,590,65);
         pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
         pilihMember.setForeground(new Color(0x395B64));
-        editButton = new JButton();
-        editButton.addActionListener(this);
-        editButton.setFocusable(false);
-        editButton.setContentAreaFilled( false );
-        editButton.setText("DAFTAR");
-        editButton.setFont(new Font("Poppins", Font.BOLD,40));
-        editButton.setBackground(new Color(0, 0, 0, 0));
-        editButton.setForeground(new Color(0x395B64));
-        editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        editButton.setBounds(950,440,200,90);
+        daftarButton = new JButton();
+        daftarButton.addActionListener(this);
+        daftarButton.setFocusable(false);
+        daftarButton.setContentAreaFilled( false );
+        daftarButton.setText("DAFTAR");
+        daftarButton.setFont(new Font("Poppins", Font.BOLD,40));
+        daftarButton.setBackground(new Color(0, 0, 0, 0));
+        daftarButton.setForeground(new Color(0x395B64));
+        daftarButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        daftarButton.setBounds(950,440,200,90);
         panelEdit.add(textField);
         panelEdit.add(textField2);
         panelEdit.add(pilihMember);

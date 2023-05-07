@@ -17,12 +17,14 @@ public class LayarFixedBill extends JPanel implements ActionListener {
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
     private int total;
+    private int idNewCust;
 
 
-    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, int total) {
+    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, int total, int idNewCust) {
         super();
         this.listOfCartItem = listOfCartItem;
         this.customer = customer;
+        this.idNewCust = idNewCust;
         listOfAmount = new ArrayList<Integer>();
         listOfName = new ArrayList<String>();
         this.total = total;
@@ -98,7 +100,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == daftarButton) {
-            DaftarMember layarDM = new DaftarMember();
+            DaftarMember layarDM = new DaftarMember(idNewCust);
             Tabs.tabs.addCustomTab("Daftar Member", layarDM, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarDM);
         }

@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.backend.kelas.anggota.Customer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -167,7 +169,9 @@ public class LayarCheckout extends JPanel implements ActionListener{
             System.out.println("Name : " + inputField.getText());
             System.out.println("ID : " + id);
             String selectedItem = (String) inputField.getText();
-            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem,total);
+            Customer newCustomer = new Customer();
+            int idNew = newCustomer.getId();
+            LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem,total, idNew);
             Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarFB);
         }
