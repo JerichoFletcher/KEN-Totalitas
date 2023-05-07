@@ -20,5 +20,6 @@ public class PluginTest{
         PluginManager.init();
         JarFile jar = new JarFile(Paths.get(getClass().getResource("/plugins/KENPlugin-Dummy-1.0-SNAPSHOT.jar").toURI()).toString());
         PluginManager.addFromArchive(jar);
+        Assertions.assertNotNull(PluginManager.get("ken_dummy"));
     }
 }
