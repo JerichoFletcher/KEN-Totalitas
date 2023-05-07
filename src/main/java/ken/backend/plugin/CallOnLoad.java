@@ -7,4 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface CallOnLoad{ }
+public @interface CallOnLoad{
+    String namespace();
+}

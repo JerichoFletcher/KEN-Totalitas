@@ -27,6 +27,7 @@ public class TabManager{
 
     public static void add(UID id, Class<? extends KENTab> panelClass) throws Exception {
         if(panels.containsKey(id))throw new Exception(String.format("ID already exists: %s", id));
+        System.out.printf("Added tab %s%n", id);
         panels.put(id, panelClass);
     }
 

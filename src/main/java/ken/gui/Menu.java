@@ -39,6 +39,7 @@ public class Menu extends JLabel {
                 // JPanel> value
                 JMenuItem menuItem = new JMenuItem(judulMenuItem);
                 menuPop.add(menuItem);
+                System.out.printf("Added item %s -> %s to menu%n", judulMenuItem, entry.getKey());
                 menuItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         try {

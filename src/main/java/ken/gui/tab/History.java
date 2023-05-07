@@ -1,8 +1,8 @@
 package ken.gui.tab;
 
+import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.bill.Bill;
-import ken.backend.kelas.holder.FixedBillHolder;
 import ken.gui.HistoryPanel;
 import ken.gui.UnduhHistory;
 

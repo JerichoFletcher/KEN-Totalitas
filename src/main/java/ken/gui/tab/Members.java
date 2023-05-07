@@ -1,11 +1,10 @@
 package ken.gui.tab;
 
+import ken.backend.controller.Controller;
+import ken.backend.controller.holder.FixedBillHolder;
+import ken.backend.controller.holder.MemberHolder;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.anggota.Member;
-import ken.backend.kelas.bill.Bill;
-import ken.backend.kelas.holder.FixedBillHolder;
-import ken.backend.kelas.holder.MemberHolder;
-import ken.gui.HistoryPanel;
 import ken.gui.MemberPanel;
 
 import javax.swing.*;
@@ -52,8 +51,7 @@ public class Members extends KENTab {
 //            MemberPanel memberPanel = new MemberPanel("nama " + i);
 //            members.add(memberPanel);
 //        }
-        AdapterJSON adapter = new AdapterJSON();;
-        MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
+        Controller.instance().fetchData("member");
         for (Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()) {
             Integer key = entry.getKey();
             Member value = entry.getValue();
