@@ -4,8 +4,8 @@
       "id": 1,
       "stok": 50,
       "namaBarang": "Buku Tulis",
-      "hargaBarang": 5000,
-      "hargaBeliBarang": 3500,
+      "hargaBarang": 5000.0,
+      "hargaBeliBarang": 3500.0,
       "kategori": "Alat Tulis",
       "gambar": "./asset/buku_tulis.jpg"
     },
@@ -13,8 +13,8 @@
       "id": 2,
       "stok": 100,
       "namaBarang": "Pensil",
-      "hargaBarang": 1000,
-      "hargaBeliBarang": 700,
+      "hargaBarang": 1000.0,
+      "hargaBeliBarang": 700.0,
       "kategori": "Alat Tulis",
       "gambar": "./asset/pensil.jpg"
     },
@@ -22,8 +22,8 @@
       "id": 3,
       "stok": 75,
       "namaBarang": "Penghapus",
-      "hargaBarang": 2000,
-      "hargaBeliBarang": 1500,
+      "hargaBarang": 2000.0,
+      "hargaBeliBarang": 1500.0,
       "kategori": "Alat Tulis",
       "gambar": "./asset/penghapus.jpg"
     },
@@ -31,8 +31,8 @@
       "id": 4,
       "stok": 30,
       "namaBarang": "Gunting",
-      "hargaBarang": 5000,
-      "hargaBeliBarang": 3500,
+      "hargaBarang": 5000.0,
+      "hargaBeliBarang": 3500.0,
       "kategori": "Alat Potong",
       "gambar": "./asset/gunting.jpg"
     },
@@ -40,8 +40,8 @@
       "id": 5,
       "stok": 20,
       "namaBarang": "Pisau",
-      "hargaBarang": 15000,
-      "hargaBeliBarang": 10000,
+      "hargaBarang": 15000.0,
+      "hargaBeliBarang": 10000.0,
       "kategori": "Alat Potong",
       "gambar": "./asset/pisau.jpg"
     },
@@ -49,19 +49,46 @@
       "id": 1545764559,
       "stok": 200,
       "namaBarang": "Spatule",
-      "hargaBarang": 20000,
-      "hargaBeliBarang": 15000,
+      "hargaBarang": 20000.0,
+      "hargaBeliBarang": 15000.0,
       "kategori": "Alat Masak",
       "gambar": "./asset/spatule.png"
     },
-    "2031297721": {
-      "id": 2031297721,
-      "stok": 200,
-      "namaBarang": "Spatulee",
-      "hargaBarang": 20000,
-      "hargaBeliBarang": 15000,
-      "kategori": "Alat Masak",
-      "gambar": "./asset/spatule.png"
+    "685179280": {
+      "id": 685179280,
+      "stok": 500,
+      "namaBarang": "Kucing Emas",
+      "hargaBarang": 500000.0,
+      "hargaBeliBarang": 20000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/kucingEmas.png"
+    },
+    "1115337708": {
+      "id": 1115337708,
+      "stok": 10,
+      "namaBarang": "Action Figure",
+      "hargaBarang": 1000000.0,
+      "hargaBeliBarang": 25000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/actionPigur.png"
+    },
+    "1745045450": {
+      "id": 1745045450,
+      "stok": 100,
+      "namaBarang": "VibraThor",
+      "hargaBarang": 1000000.0,
+      "hargaBeliBarang": 250000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/vibraThor.png"
+    },
+    "1660604318": {
+      "id": 1660604318,
+      "stok": 16,
+      "namaBarang": "Deal Down",
+      "hargaBarang": 50000.0,
+      "hargaBeliBarang": 25000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/dealDown.png"
     }
   }
 }
