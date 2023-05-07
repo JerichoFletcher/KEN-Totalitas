@@ -1,6 +1,12 @@
 package ken.gui.tab;
 
+import ken.backend.dataStore.AdapterJSON;
+import ken.backend.kelas.barang.Barang;
+import ken.backend.kelas.bill.Bill;
+import ken.backend.kelas.bill.FixedBillHolder;
+import ken.backend.kelas.inventory.InventoryHolder;
 import ken.gui.HistoryPanel;
+import ken.gui.MenuItem;
 import ken.gui.UnduhDetil;
 import ken.gui.UnduhHistory;
 
@@ -9,8 +15,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class History extends KENTab implements ActionListener {
     private JPanel history;
@@ -24,7 +33,11 @@ public class History extends KENTab implements ActionListener {
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
         this.setLayout(null);
-        makePanelMembers();
+        try {
+            makePanelMembers();
+        }catch (IOException | URISyntaxException ex){
+            ex.printStackTrace();
+        }
         this.setBounds(0,0,500,500);
     }
 
@@ -33,7 +46,7 @@ public class History extends KENTab implements ActionListener {
         return "History";
     }
 
-    public void makePanelMembers(){
+    public void makePanelMembers() throws URISyntaxException, IOException{
         history = new JPanel();
         JPanel headerMember = new JPanel();
         headerMember.setLayout(null);
@@ -58,11 +71,17 @@ public class History extends KENTab implements ActionListener {
         this.add(headerMember);
         history.setBackground(new Color(0xFFFFFF));
         history.setLayout(new BoxLayout(history, BoxLayout.Y_AXIS));
-        for (int i = 1; i <= 20; i++) {
-            HistoryPanel historyPanel = new HistoryPanel("nama " + i);
+        AdapterJSON adapter = new AdapterJSON();;
+        FixedBillHolder.instance().load(getClass().getResource("/database/billFixed.json").toURI(),adapter);
+        for (Map.Entry<Integer, Bill> entry : FixedBillHolder.instance().getListBill().entrySet()) {
+            Integer key = entry.getKey();
+            Bill value = entry.getValue();
+            // Do something with the key and value...
+
+            HistoryPanel historyPanel = new HistoryPanel(key, value.getIdCustomer(), value.getTotalHarga(), value.getListBarang());
             history.add(historyPanel);
-            listOfName.add("nama " + i);
-            listOfPrice.add(1000);
+            listOfName.add(key + "   " + value.getIdCustomer());
+            listOfPrice.add(value.getTotalHarga());
         }
         JScrollPane scrollPane = new JScrollPane(history);
         scrollPane.setBounds(0, 50, 1260, 520);
@@ -71,7 +90,6 @@ public class History extends KENTab implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == unduhButton){
-            System.out.println("unduh dummy");
             UnduhHistory unduhHistory = new UnduhHistory(listOfName, listOfPrice);
             Thread cetakBill = new Thread(unduhHistory);
             cetakBill.run();

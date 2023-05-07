@@ -1,5 +1,5 @@
 {
-  "billFixed": {
+  "listBill": {
     "0":{
       "idBill": 0,
       "idCustomer": 2,

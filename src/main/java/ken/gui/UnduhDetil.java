@@ -14,9 +14,11 @@ import java.util.List;
 public class UnduhDetil implements Runnable{
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
-    UnduhDetil(List<String> listOfName, ArrayList<Integer> listOfAMount){
+    private int total;
+    UnduhDetil(List<String> listOfName, ArrayList<Integer> listOfAMount, int total){
         this.listOfName = listOfName;
         this.listOfAmount = listOfAMount;
+        this.total = total;
     }
 
     @Override
@@ -41,6 +43,10 @@ public class UnduhDetil implements Runnable{
                 contentStream.showText(listOfName.get(i) + "    " + listOfAmount.get(i) + 'x');
                 contentStream.endText();
             }
+            contentStream.beginText();
+            contentStream.newLineAtOffset(x, y - listOfName.size()*lineHeight);
+            contentStream.showText("" + total);
+            contentStream.endText();
             contentStream.close();
             document.save("/home/arieljovananda/Documents/KEN-Totalitas/test/output.pdf");
             document.close();
