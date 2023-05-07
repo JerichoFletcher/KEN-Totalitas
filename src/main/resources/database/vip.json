@@ -1,0 +1,25 @@
+{
+  "listVIP" : {
+    "7" : {
+      "id" : 7,
+      "name": "Farhan Kebab",
+      "phoneNumber": "081245671234",
+      "points": 1000000,
+      "active": true
+    },
+    "8" : {
+      "id" : 8,
+      "name": "Salahudin al ayyubi",
+      "phoneNumber": "21345326",
+      "points": 0,
+      "active": false
+    },
+    "9" : {
+      "id" : 9,
+      "name": "KEN-TOTalitas",
+      "phoneNumber": "4206942069",
+      "points": 0,
+      "active": true
+    }
+  }
+}

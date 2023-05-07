@@ -3,8 +3,10 @@ package ken.gui.tab;
 import ken.backend.controller.Controller;
 import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.controller.holder.MemberHolder;
+import ken.backend.controller.holder.VIPHolder;
 import ken.backend.dataStore.AdapterJSON;
 import ken.backend.kelas.anggota.Member;
+import ken.backend.kelas.anggota.VIP;
 import ken.gui.MemberPanel;
 
 import javax.swing.*;
@@ -51,21 +53,31 @@ public class Members extends KENTab {
 //            MemberPanel memberPanel = new MemberPanel("nama " + i);
 //            members.add(memberPanel);
 //        }
+        Controller.instance().fetchData(VIPHolder.instance(),"vip");
+        for (Map.Entry<Integer, VIP> entry : VIPHolder.instance().getListVIP().entrySet()) {
+            Integer key = entry.getKey();
+            Member value = entry.getValue();
+            // Do something with the key and value...
+
+            MemberPanel memberPanel = new MemberPanel(key, value.getName(),value.getPhoneNumber(),value.getClass().getName(), value.isActive());
+            members.add(memberPanel);
+
+        }
+
         Controller.instance().fetchData(MemberHolder.instance(),"member");
         for (Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()) {
             Integer key = entry.getKey();
             Member value = entry.getValue();
             // Do something with the key and value...
-            if(value.isActive()){
-                MemberPanel memberPanel = new MemberPanel(key + "      " + value.getName() + "      " + "Aktif");
-                members.add(memberPanel);
-            }
-            else{
-                MemberPanel memberPanel = new MemberPanel(key + "      " + value.getName() + "      " + "Tidak Aktif");
-                members.add(memberPanel);
 
-            }
+            MemberPanel memberPanel = new MemberPanel(key, value.getName(),value.getPhoneNumber(),value.getClass().getName(), value.isActive());
+            members.add(memberPanel);
+
         }
+
+
+
+
         JScrollPane scrollPane = new JScrollPane(members);
         scrollPane.setBounds(0, 50, 1260, 520);
         this.add(scrollPane);
