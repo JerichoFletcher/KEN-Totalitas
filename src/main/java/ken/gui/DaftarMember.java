@@ -1,19 +1,31 @@
 package ken.gui;
 
+import ken.backend.controller.Controller;
+import ken.backend.controller.holder.CustomerHolder;
+import ken.backend.controller.holder.InventoryHolder;
+import ken.backend.controller.holder.MemberHolder;
+import ken.backend.controller.holder.VIPHolder;
+import ken.backend.kelas.anggota.Member;
+import ken.backend.kelas.anggota.VIP;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class DaftarMember extends JPanel implements ActionListener{
     private JPanel panelEdit;
-    private JButton editButton;
+    private JButton daftarButton;
     private JTextField textField;
     private JTextField textField2;
     private JComboBox pilihMember;
-    public DaftarMember(){
+    private int idNewCust;
+    public DaftarMember(int idNewCust){
+        this.idNewCust = idNewCust;
         panelEdit = new JPanel();
         this.setSize(500,500);
         this.setBackground(new Color(0x2C3333));
@@ -87,33 +99,54 @@ public class DaftarMember extends JPanel implements ActionListener{
         pilihMember.setBounds(310,300,590,65);
         pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
         pilihMember.setForeground(new Color(0x395B64));
-        editButton = new JButton();
-        editButton.addActionListener(this);
-        editButton.setFocusable(false);
-        editButton.setContentAreaFilled( false );
-        editButton.setText("DAFTAR");
-        editButton.setFont(new Font("Poppins", Font.BOLD,40));
-        editButton.setBackground(new Color(0, 0, 0, 0));
-        editButton.setForeground(new Color(0x395B64));
-        editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        editButton.setBounds(950,440,200,90);
+        daftarButton = new JButton();
+        daftarButton.addActionListener(this);
+        daftarButton.setFocusable(false);
+        daftarButton.setContentAreaFilled( false );
+        daftarButton.setText("DAFTAR");
+        daftarButton.setFont(new Font("Poppins", Font.BOLD,40));
+        daftarButton.setBackground(new Color(0, 0, 0, 0));
+        daftarButton.setForeground(new Color(0x395B64));
+        daftarButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        daftarButton.setBounds(950,440,200,90);
         panelEdit.add(textField);
         panelEdit.add(textField2);
         panelEdit.add(pilihMember);
-        panelEdit.add(editButton);
+        panelEdit.add(daftarButton);
 
     }
 
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == editButton){
-            String editNama = (String) textField.getText().trim();
-            String editTelpString = (String) textField2.getText().trim();
-            String editType = (String) pilihMember.getSelectedItem();
-            if (editTelpString != "Nomor Telfon" || editTelpString.length() != 0) {
-                System.out.println("Adding Member...");
-                System.out.println("Nama: " + editNama);
-                System.out.println("Harga: " + editTelpString);
-                System.out.println("Kategori: " + editType);
+        if(e.getSource() == daftarButton){
+            try {
+                Controller.instance().fetchData(CustomerHolder.instance(), "customer");
+                Controller.instance().fetchData(MemberHolder.instance(), "member");
+                Controller.instance().fetchData(VIPHolder.instance(), "vip");
+                String editNama = (String) textField.getText().trim();
+                String editTelpString = (String) textField2.getText().trim();
+                String editType = (String) pilihMember.getSelectedItem();
+                if (editTelpString != "Nomor Telfon" || editTelpString.length() != 0) {
+                    System.out.println("Adding Member...");
+                    System.out.println("Nama: " + editNama);
+                    System.out.println("Harga: " + editTelpString);
+                    System.out.println("Kategori: " + editType);
+                    if (editType.equals("Member")) {
+                        Member newMember = new Member(editNama, editTelpString, idNewCust);
+                        MemberHolder.instance().addMember(newMember);
+                        Controller.instance().writeData(MemberHolder.instance() , "member");
+                    } else {
+                        VIP newVIP = new VIP(editNama, editTelpString, idNewCust);
+                        VIPHolder.instance().addVIP(newVIP);
+                        Controller.instance().writeData(VIPHolder.instance() , "vip");
+                    }
+                    CustomerHolder.instance().removeCustomer(idNewCust);
+                    Controller.instance().writeData(CustomerHolder.instance() , "customer");
+//                    Controller.instance().writeData(MemberHolder.instance() , "member");
+//                    Controller.instance().writeData(VIPHolder.instance() , "vip");
+
+                }
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
             }
         }
     }

@@ -1,5 +1,7 @@
 package ken.gui;
 
+import ken.backend.Vars;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,12 +19,14 @@ public class LayarFixedBill extends JPanel implements ActionListener {
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
     private int total;
+    private int idNewCust;
 
 
-    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, int total) {
+    public LayarFixedBill(String customer, List<CartItem> listOfCartItem, int total, int idNewCust) {
         super();
         this.listOfCartItem = listOfCartItem;
         this.customer = customer;
+        this.idNewCust = idNewCust;
         listOfAmount = new ArrayList<Integer>();
         listOfName = new ArrayList<String>();
         this.total = total;
@@ -35,7 +39,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
 
     public void makePanelLC() {
         JLabel fixedBill = new JLabel("Fixed Bill");
-        JLabel totalPrice = new JLabel("Total: Rp." + total);
+        JLabel totalPrice = new JLabel(String.format("Total: %s.%d", Vars.mataUang, total));
         fixedBill.setFont(new Font("Poppins", Font.BOLD, 40));
         fixedBill.setForeground(Color.white);
         fixedBill.setBounds(160, 10, 500, 100);
@@ -98,7 +102,7 @@ public class LayarFixedBill extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == daftarButton) {
-            DaftarMember layarDM = new DaftarMember();
+            DaftarMember layarDM = new DaftarMember(idNewCust);
             Tabs.tabs.addCustomTab("Daftar Member", layarDM, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarDM);
         }

@@ -20,10 +20,10 @@ public class PluginManager{
         plugins.clear();
 
         // Add builtin
-        plugins.put(Vars.DEFAULT_NAMESPACE, new Plugin(){
+        plugins.put(Vars.defaultNamespace, new Plugin(){
             @Override
             public String namespace(){
-                return Vars.DEFAULT_NAMESPACE;
+                return Vars.defaultNamespace;
             }
 
             @Override
