@@ -26,7 +26,7 @@ public class UnduhDetil implements Runnable{
     @Override
     public void run(){
         try{
-            File myFont = new File("/home/arieljovananda/Downloads/OpenSans-Light.ttf");
+            File myFont = new File("./asset/OpenSans-Light.ttf");
             PDDocument document = new PDDocument();
             PDPage page = new PDPage();
             document.addPage(page);
