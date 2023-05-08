@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vipHolder>
+    <listVIP>
+        <entry>
+            <key>7</key>
+            <value>
+                <id>7</id>
+                <active>true</active>
+                <name>Farhan Kebab</name>
+                <phoneNumber>081245671234</phoneNumber>
+                <points>1000000</points>
+            </value>
+        </entry>
+        <entry>
+            <key>8</key>
+            <value>
+                <id>8</id>
+                <active>true</active>
+                <name>Salahudin al ayyubi</name>
+                <phoneNumber>21345326</phoneNumber>
+                <points>0</points>
+            </value>
+        </entry>
+        <entry>
+            <key>9</key>
+            <value>
+                <id>9</id>
+                <active>true</active>
+                <name>KEN-TOTalitas</name>
+                <phoneNumber>4206942069</phoneNumber>
+                <points>0</points>
+            </value>
+        </entry>
+    </listVIP>
+</vipHolder>
