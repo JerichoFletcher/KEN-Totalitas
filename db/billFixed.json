@@ -196,6 +196,38 @@
       "idBill": 1541991409,
       "idCustomer": 7,
       "totalHarga": 5.859089
+    },
+    "244266357": {
+      "listBarang": {
+        "2": {
+          "id": 2,
+          "namaBarang": "pencil",
+          "jumlahDibeli": 3,
+          "hargaBarang": 500.0
+        },
+        "3": {
+          "id": 3,
+          "namaBarang": "Penghapus",
+          "jumlahDibeli": 5,
+          "hargaBarang": 2000.0
+        }
+      },
+      "idBill": 244266357,
+      "idCustomer": 8,
+      "totalHarga": 10350.0
+    },
+    "1418272938": {
+      "listBarang": {
+        "3": {
+          "id": 3,
+          "namaBarang": "Penghapus",
+          "jumlahDibeli": 5,
+          "hargaBarang": 2000.0
+        }
+      },
+      "idBill": 1418272938,
+      "idCustomer": 8,
+      "totalHarga": 8896.5
     }
   }
 }

@@ -255,34 +255,40 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     }
                     else{
                         Float point = Float.parseFloat(pointField.getText());
-//                        if(MemberHolder.instance().getMemberById(id) != null){
-//                            float memberPoint = MemberHolder.instance().getMemberById(id).getPoints();
-//                            if(point >= memberPoint){
-//                                point = memberPoint;
-//                            }
-//                            if(this.total <= memberPoint){
-//                                MemberHolder.instance().getMemberById(id).setPoints(memberPoint - this.total);
-//                                this.total = 0;
-//                            }else{
-//                                this.total -= point;
-//                                MemberHolder.instance().getMemberById(id).setPoints(memberPoint - point);
-//                            }
-//                        }else{
-//                            this.total *= 0.9;
-//                            float VIPPoint = MemberHolder.instance().getMemberById(id).getPoints();
-//                            if(point >= VIPPoint){
-//                                point = VIPPoint;
-//                            }
-//                            if(this.total <= VIPPoint){
-//                                MemberHolder.instance().getMemberById(id).setPoints(VIPPoint - this.total);
-//                                this.total = 0;
-//                            }else{
-//                                this.total -= point;
-//                                MemberHolder.instance().getMemberById(id).setPoints(VIPPoint - point);
-//                            }
-//                            MemberHolder.instance().getMemberById(id).setPoints( - point);
-//
-//                        }
+                        if(MemberHolder.instance().getMemberById(id) != null){
+                            float memberPoint = MemberHolder.instance().getMemberById(id).getPoints();
+                            if(point >= memberPoint){
+                                point = memberPoint;
+                            }
+                            if(this.total <= memberPoint){
+                                MemberHolder.instance().getMemberById(id).setPoints(memberPoint - this.total);
+                                this.total = 0;
+                            }else{
+                                this.total -= point;
+                                MemberHolder.instance().getMemberById(id).setPoints(memberPoint - point);
+                            }
+                            double setAdd = this.total * 0.01;
+                            float fsetAdd = (float) setAdd;
+                            float setPoint = MemberHolder.instance().getMemberById(id).getPoints() + fsetAdd;
+                            MemberHolder.instance().getMemberById(id).setPoints(setPoint);
+                        }else{
+                            this.total *= 0.9;
+                            float VIPPoint = VIPHolder.instance().getVIPById(id).getPoints();
+                            if(point >= VIPPoint){
+                                point = VIPPoint;
+                            }
+                            if(this.total <= VIPPoint){
+                                VIPHolder.instance().getVIPById(id).setPoints(VIPPoint - this.total);
+                                this.total = 0;
+                            }else{
+                                this.total -= point;
+                                VIPHolder.instance().getVIPById(id).setPoints(VIPPoint - point);
+                            }
+                            double setAdd = this.total * 0.01;
+                            float fsetAdd = (float) setAdd;
+                            float setPoint = VIPHolder.instance().getVIPById(id).getPoints() + fsetAdd;
+                            VIPHolder.instance().getVIPById(id).setPoints(setPoint);
+                        }
                         Bill fixedBill = new Bill(id, total);
                         LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, id, fixedBill.getIdBill());
                         Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
@@ -304,6 +310,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
                         Controller.instance().writeData(InventoryHolder.instance(), "barang");
                     }
                     Controller.instance().writeData(MemberHolder.instance(), "member");
+                    Controller.instance().writeData(VIPHolder.instance(), "vip");
                     this.clickCounter++;
                 }
 
