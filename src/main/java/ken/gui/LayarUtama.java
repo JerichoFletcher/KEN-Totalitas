@@ -12,6 +12,12 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
     private JLabel clockLabel;
     private JLabel dayLabel;
     private JLabel dateLabel;
+    private JLabel groupLabel;
+    private JLabel nameLabel1;
+    private JLabel nameLabel2;
+    private JLabel nameLabel3;
+    private JLabel nameLabel4;
+    private JLabel nameLabel5;
     private SimpleDateFormat timeFormat;
     private SimpleDateFormat dayFormat;
     private SimpleDateFormat dateFormat;
@@ -40,10 +46,16 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
         startButton.setForeground(Color.white);
         startButton.setBorder(BorderFactory.createEmptyBorder());
         createLabels();
+        this.add(groupLabel);
         this.add(dayLabel);
         this.add(dateLabel);
         this.add(clockLabel);
         this.add(startButton);
+        this.add(nameLabel1);
+        this.add(nameLabel2);
+        this.add(nameLabel3);
+        this.add(nameLabel4);
+        this.add(nameLabel5);
         this.setVisible(true);
 
         Thread clockThread = new Thread(this::setTime);
@@ -89,6 +101,12 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
         clockLabel = new JLabel();
         dayLabel = new JLabel();
         dateLabel = new JLabel();
+        groupLabel = new JLabel( " KEN - TOTALITAS ");
+        nameLabel1 = new JLabel("13521061 - Alex Sander");
+        nameLabel2 = new JLabel("13521086 - Ariel Jovananda");
+        nameLabel3 = new JLabel("13521097 - Shidqi Indy Izhari");
+        nameLabel4 = new JLabel("13521106 - Mohammad Farhan Fahrezy");
+        nameLabel5 = new JLabel("13521107 - Jericho Russel Sebastian");
         clockLabel.setFont(new Font("Poppins", Font.BOLD,100));
         clockLabel.setForeground(new Color(0xFFFFFF));
         clockLabel.setBounds(420,80,1000,250);
@@ -98,6 +116,24 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
         dateLabel.setFont(new Font("Poppins", Font.BOLD,30));
         dateLabel.setBounds(620,0,400,250);
         dateLabel.setForeground(new Color(0xFFFFFF));
+        groupLabel.setFont(new Font("Poppins", Font.BOLD,30));
+        groupLabel.setBounds(480,160,400,250);
+        groupLabel.setForeground(new Color(0xFFFFFF));
+        nameLabel1.setFont(new Font("Poppins", Font.BOLD,20));
+        nameLabel1.setBounds(510,200,400,250);
+        nameLabel1.setForeground(new Color(0xFFFFFF));
+        nameLabel2.setFont(new Font("Poppins", Font.BOLD,20));
+        nameLabel2.setBounds(490,230,400,250);
+        nameLabel2.setForeground(new Color(0xFFFFFF));
+        nameLabel3.setFont(new Font("Poppins", Font.BOLD,20));
+        nameLabel3.setBounds(485,260,400,250);
+        nameLabel3.setForeground(new Color(0xFFFFFF));
+        nameLabel4.setFont(new Font("Poppins", Font.BOLD,20));
+        nameLabel4.setBounds(435,290,400,250);
+        nameLabel4.setForeground(new Color(0xFFFFFF));
+        nameLabel5.setFont(new Font("Poppins", Font.BOLD,20));
+        nameLabel5.setBounds(445,320,400,250);
+        nameLabel5.setForeground(new Color(0xFFFFFF));
     }
 
     public void actionPerformed(ActionEvent e){
