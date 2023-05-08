@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<memberHolder>
+    <listMember>
+        <entry>
+            <key>3</key>
+            <value>
+                <id>3</id>
+                <active>true</active>
+                <name>Udin Petot</name>
+                <phoneNumber>69696969</phoneNumber>
+                <points>420</points>
+            </value>
+        </entry>
+        <entry>
+            <key>5</key>
+            <value>
+                <id>5</id>
+                <active>true</active>
+                <name>Udin Metot</name>
+                <phoneNumber>79696969</phoneNumber>
+                <points>422</points>
+            </value>
+        </entry>
+        <entry>
+            <key>6</key>
+            <value>
+                <id>6</id>
+                <active>true</active>
+                <name>Udin Getot</name>
+                <phoneNumber>42069</phoneNumber>
+                <points>421</points>
+            </value>
+        </entry>
+        <entry>
+            <key>699580479</key>
+            <value>
+                <id>699580479</id>
+                <active>true</active>
+                <name>lkjasdfj</name>
+                <phoneNumber>29302340932</phoneNumber>
+                <points>0</points>
+            </value>
+        </entry>
+    </listMember>
+</memberHolder>

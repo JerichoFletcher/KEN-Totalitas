@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<billHolder>
+    <listBill>
+        <entry>
+            <key>844554853</key>
+            <value>
+                <idBill>844554853</idBill>
+                <idCustomer>1954465773</idCustomer>
+                <listBarang>
+                    <entry>
+                        <key>0</key>
+                        <value>
+                            <hargaBarang>15000.0</hargaBarang>
+                            <id>0</id>
+                            <jumlahDibeli>3</jumlahDibeli>
+                            <namaBarang>Buku Tulis</namaBarang>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>1</key>
+                        <value>
+                            <hargaBarang>5000.0</hargaBarang>
+                            <id>1</id>
+                            <jumlahDibeli>2</jumlahDibeli>
+                            <namaBarang>Pensil</namaBarang>
+                        </value>
+                    </entry>
+                </listBarang>
+                <totalHarga>55000.0</totalHarga>
+            </value>
+        </entry>
+        <entry>
+            <key>804966222</key>
+            <value>
+                <idBill>804966222</idBill>
+                <idCustomer>8</idCustomer>
+                <listBarang>
+                    <entry>
+                        <key>0</key>
+                        <value>
+                            <hargaBarang>15000.0</hargaBarang>
+                            <id>0</id>
+                            <jumlahDibeli>5</jumlahDibeli>
+                            <namaBarang>Buku Tulis</namaBarang>
+                        </value>
+                    </entry>
+                </listBarang>
+                <totalHarga>75000.0</totalHarga>
+            </value>
+        </entry>
+    </listBill>
+</billHolder>
