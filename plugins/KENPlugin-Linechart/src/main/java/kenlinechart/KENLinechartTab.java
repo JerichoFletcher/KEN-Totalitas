@@ -1,4 +1,6 @@
-package kenpiechart;
+package kenlinechart;
+import ken.backend.controller.holder.InventoryHolder;
+import ken.backend.kelas.barang.Barang;
 import ken.backend.plugin.AddMenuTab;
 import ken.gui.tab.KENTab;
 
@@ -10,6 +12,8 @@ import ken.backend.kelas.bill.Bill;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 import java.awt.*;
@@ -21,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AddMenuTab(path = "tabs/linechart")
-public class KENLinecharttTab extends KENTab{
+public class KENLinechartTab extends KENTab{
     @Override
     public String tabName(){
         return "KEN-Linechart";
@@ -41,7 +45,7 @@ public class KENLinecharttTab extends KENTab{
             }
             JFreeChart chart = ChartFactory.createBarChart(
                     "Bought vs Sell Price Comparison",
-                    "Item", "Price", dataset,
+                    "Item", "Price", barDataset,
                     PlotOrientation.VERTICAL, true, true, false);
 
             // set color for the bars
@@ -54,9 +58,9 @@ public class KENLinecharttTab extends KENTab{
             this.setBackground(new Color(0x2C3333));
             this.setLayout(new BorderLayout());
 //            this.setBounds(0,0,500,500);
-            this.add(chartPanel, BorderLayout.CENTER);
-
-        }catch (IOException | URISyntaxException ex){
+            this.add(panel, BorderLayout.CENTER);
+            this.setLayout(new FlowLayout());
+        }catch (Exception ex){
             ex.printStackTrace();
         }
 

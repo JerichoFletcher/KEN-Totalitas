@@ -34,11 +34,11 @@ public class InventoryHolder implements Holder, Serializable {
         this.listBarang = new HashMap<>();
     }
 
-    public void load(URI uri, AdapterData data) throws IOException, JAXBException {
+    public void load(URI uri, AdapterData data) throws Exception {
         _instance = data.get(uri, InventoryHolder.class);
     }
 
-    public void write(URI uri, AdapterData data) throws IOException, JAXBException {
+    public void write(URI uri, AdapterData data) throws Exception {
         data.write(uri, InventoryHolder.instance());
     }
 

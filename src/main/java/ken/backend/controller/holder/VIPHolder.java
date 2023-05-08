@@ -31,11 +31,11 @@ public class VIPHolder implements Holder, Serializable {
         this.listVIP = new HashMap<>();
     }
 
-    public void load(URI uri, AdapterData data) throws IOException, JAXBException {
+    public void load(URI uri, AdapterData data) throws Exception {
         _instance = data.get(uri, VIPHolder.class);
     }
 
-    public void write(URI uri, AdapterData data) throws IOException, JAXBException {
+    public void write(URI uri, AdapterData data) throws Exception {
         data.write(uri, VIPHolder.instance());
     }
     public int getBanyakVIP(){

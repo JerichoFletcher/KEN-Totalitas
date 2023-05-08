@@ -1,10 +1,13 @@
 package kencurrency;
 
+import ken.backend.Vars;
+import ken.backend.controller.Controller;
 import ken.backend.controller.holder.Holder;
 import ken.backend.dataStore.AdapterData;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +27,13 @@ public class KENCurrencyHolder implements Holder{
         return conversions;
     }
 
+    public void loadConfig() throws Exception{
+        _instance = Controller.instance().getAdapterList().get(Vars.extension).get(
+            KENCurrencyConverter.class.getResource("/kencurrency/converter." + Vars.extension).toURI(),
+            KENCurrencyHolder.class
+        );
+    }
+
     public float convert(float amount, String from, String to){
         if(!conversions.containsKey(from))throw new IllegalArgumentException(String.format("Unknown currency %s", from));
         if(!conversions.containsKey(to))throw new IllegalArgumentException(String.format("Unknown currency %s", to));
@@ -32,12 +42,12 @@ public class KENCurrencyHolder implements Holder{
     }
 
     @Override
-    public void load(URI uri, AdapterData data) throws IOException{
+    public void load(URI uri, AdapterData data) throws Exception{
         _instance = data.get(uri, getClass());
     }
 
     @Override
-    public void write(URI uri, AdapterData data) throws IOException{
+    public void write(URI uri, AdapterData data) throws Exception{
         data.write(uri, instance());
     }
 }

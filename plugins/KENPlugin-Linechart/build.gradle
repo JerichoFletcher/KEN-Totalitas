@@ -12,10 +12,23 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    extraLibs
+    implementation.extendsFrom extraLibs
+}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     implementation files('../../build/libs/KEN-Totalitas-1.0-SNAPSHOT.jar')
+    extraLibs 'javax.servlet:javax.servlet-api:3.1.0'
+    extraLibs 'org.jfree:jfreechart:1.5.3'
+}
+
+jar {
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 test {

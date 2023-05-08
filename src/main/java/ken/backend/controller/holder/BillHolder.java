@@ -32,10 +32,10 @@ public class BillHolder implements Holder, Serializable {
     public int getBanyakBill() {
         return listBill.size();
     }
-    public void load(URI uri, AdapterData data) throws IOException, JAXBException {
+    public void load(URI uri, AdapterData data) throws Exception {
         _instance = data.get(uri, BillHolder.class);
     }
-    public void write(URI uri, AdapterData data) throws IOException, JAXBException {
+    public void write(URI uri, AdapterData data) throws Exception {
         data.write(uri, BillHolder.instance());
     }
     public Bill getBillById(int id){

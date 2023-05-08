@@ -19,7 +19,7 @@ import java.net.URISyntaxException;
 
 public class AdapterTest {
     @Test
-    public void testAdapterJSON() throws IOException, URISyntaxException, JAXBException {
+    public void testAdapterJSON() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
 
@@ -27,7 +27,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testWriteJSON() throws IOException, URISyntaxException, JAXBException {
+    public void testWriteJSON() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
 
@@ -36,7 +36,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testReadBillJSON() throws IOException, URISyntaxException, JAXBException {
+    public void testReadBillJSON() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         BillHolder.instance().load(getClass().getResource("/database/bill.json").toURI(),adapter);
         Assertions.assertEquals(2, BillHolder.instance().getBanyakBill());
@@ -44,7 +44,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testWriteBillJSON() throws IOException, URISyntaxException, JAXBException {
+    public void testWriteBillJSON() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         BillHolder.instance().load(getClass().getResource("/database/bill.json").toURI(),adapter);
         Assertions.assertEquals(2, BillHolder.instance().getBanyakBill());
@@ -52,7 +52,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAddingBillItem() throws IOException, URISyntaxException, JAXBException {
+    public void testAddingBillItem() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         BillHolder.instance().load(getClass().getResource("/database/bill.json").toURI(),adapter);
         Assertions.assertEquals(2, BillHolder.instance().getBanyakBill());
@@ -63,7 +63,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAddingFixedBillItem() throws IOException, URISyntaxException, JAXBException {
+    public void testAddingFixedBillItem() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         FixedBillHolder.instance().load(getClass().getResource("/database/billFixed.json").toURI(),adapter);
         Assertions.assertEquals(2, FixedBillHolder.instance().getBanyakBill());
@@ -74,7 +74,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testWriteInventoryJSON() throws IOException, URISyntaxException, JAXBException {
+    public void testWriteInventoryJSON() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
         System.out.println("jumlah " + InventoryHolder.instance().getBanyakBarang());
@@ -84,7 +84,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testRWCustomerJSON() throws IOException, URISyntaxException, JAXBException {
+    public void testRWCustomerJSON() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         CustomerHolder.instance().load(getClass().getResource("/database/customer.json").toURI(),adapter);
         System.out.println("jumlah " + CustomerHolder.instance().getBanyakCustomer());
@@ -94,7 +94,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testRWMemberJSON() throws IOException, URISyntaxException, JAXBException {
+    public void testRWMemberJSON() throws Exception {
         AdapterJSON adapter = new AdapterJSON();;
         MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
         System.out.println("jumlah " + MemberHolder.instance().getBanyakMember());
@@ -103,7 +103,7 @@ public class AdapterTest {
         MemberHolder.instance().write(getClass().getResource("/database/member2.json").toURI(),adapter);
     }
     @Test
-    public void testRWVIPJSON() throws IOException, URISyntaxException, JAXBException {
+    public void testRWVIPJSON() throws Exception {
         AdapterJSON adapter = new AdapterJSON();
         CustomerHolder.instance().load(getClass().getResource("/database/customer.json").toURI(),adapter);
         MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);

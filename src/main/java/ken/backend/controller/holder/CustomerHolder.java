@@ -30,11 +30,11 @@ public class CustomerHolder implements Holder, Serializable {
         this.listCustomer = new HashMap<>();
     }
 
-    public void load(URI uri, AdapterData data) throws IOException, JAXBException {
+    public void load(URI uri, AdapterData data) throws Exception {
         _instance = data.get(uri, CustomerHolder.class);
     }
 
-    public void write(URI uri, AdapterData data) throws IOException, JAXBException {
+    public void write(URI uri, AdapterData data) throws Exception {
         data.write(uri, CustomerHolder.instance());
     }
     public int getBanyakCustomer(){
