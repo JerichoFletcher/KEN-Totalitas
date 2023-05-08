@@ -2,7 +2,7 @@
   "listBarang": {
     "2": {
       "id": 2,
-      "stok": 988,
+      "stok": 985,
       "namaBarang": "pencil",
       "hargaBarang": 500.0,
       "hargaBeliBarang": 700.0,
@@ -11,7 +11,7 @@
     },
     "3": {
       "id": 3,
-      "stok": 59,
+      "stok": 49,
       "namaBarang": "Penghapus",
       "hargaBarang": 2000.0,
       "hargaBeliBarang": 1500.0,

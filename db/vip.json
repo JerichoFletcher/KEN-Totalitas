@@ -3,21 +3,21 @@
     "8": {
       "name": "Salahudin al ayyubi",
       "phoneNumber": "21345326",
-      "points": 0,
+      "points": 88.965,
       "active": true,
       "id": 8
     },
     "9": {
       "name": "KEN-TOTalitas",
       "phoneNumber": "4206942069",
-      "points": 100000,
+      "points": 100000.0,
       "active": true,
       "id": 9
     },
     "453500019": {
       "name": "Putu",
       "phoneNumber": "01231231231",
-      "points": 0,
+      "points": 0.0,
       "active": true,
       "id": 453500019
     }
