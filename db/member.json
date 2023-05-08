@@ -3,42 +3,42 @@
     "3": {
       "name": "Udin Petot",
       "phoneNumber": "69696969",
-      "points": 420,
+      "points": 5000.0,
       "active": true,
       "id": 3
     },
     "5": {
       "name": "Udin Metot",
       "phoneNumber": "79696969",
-      "points": 422,
+      "points": 200.0,
       "active": true,
       "id": 5
     },
     "6": {
       "name": "Udin Getot",
       "phoneNumber": "42069",
-      "points": 421,
+      "points": 421.0,
       "active": true,
       "id": 6
     },
     "699580479": {
       "name": "potus",
       "phoneNumber": "29302340932",
-      "points": 0,
+      "points": 0.0,
       "active": true,
       "id": 699580479
     },
     "392261423": {
       "name": "jovan",
       "phoneNumber": "9123098102934018",
-      "points": 0,
+      "points": 0.0,
       "active": true,
       "id": 392261423
     },
     "7": {
       "name": "Farhan Kebab",
       "phoneNumber": "081245671234",
-      "points": 0,
+      "points": 0.0,
       "active": true,
       "id": 7
     }

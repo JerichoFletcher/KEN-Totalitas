@@ -218,11 +218,19 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     String selectedItem = (String) inputField.getText();
                     Controller.instance().fetchData(FixedBillHolder.instance(), "billFixed");
                     Controller.instance().fetchData(InventoryHolder.instance(), "barang");
-                    if(inputField.getText().length() ==  0){
+                    Controller.instance().fetchData(MemberHolder.instance(), "member");
+                    Controller.instance().fetchData(VIPHolder.instance(), "vip");
+                    boolean notMember = false;
+                    try{
+                        notMember = !MemberHolder.instance().getMemberById(id).getName().equals(inputField.getText());
+                    }catch(NullPointerException ex){
+                        notMember = !VIPHolder.instance().getVIPById(id).getName().equals(inputField.getText());
+                    }
+                    if(inputField.getText().length() ==  0 || notMember){
                         Customer newCustomer = new Customer();
                         int idNew = newCustomer.getId();
                         Bill fixedBill = new Bill(idNew, total);
-                        LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, idNew, fixedBill.getIdBill());
+                        LayarFixedBill layarFB = new LayarFixedBill("", listOfCartItem, total, idNew, fixedBill.getIdBill());
                         Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
                         Tabs.tabs.setSelectedComponent(layarFB);
                         for(int i = 0; i < listOfCartItem.size() ; i++){
@@ -240,6 +248,35 @@ public class LayarCheckout extends JPanel implements ActionListener{
                         Controller.instance().writeData(InventoryHolder.instance(), "barang");
                     }
                     else{
+                        Float point = Float.parseFloat(pointField.getText());
+//                        if(MemberHolder.instance().getMemberById(id) != null){
+//                            float memberPoint = MemberHolder.instance().getMemberById(id).getPoints();
+//                            if(point >= memberPoint){
+//                                point = memberPoint;
+//                            }
+//                            if(this.total <= memberPoint){
+//                                MemberHolder.instance().getMemberById(id).setPoints(memberPoint - this.total);
+//                                this.total = 0;
+//                            }else{
+//                                this.total -= point;
+//                                MemberHolder.instance().getMemberById(id).setPoints(memberPoint - point);
+//                            }
+//                        }else{
+//                            this.total *= 0.9;
+//                            float VIPPoint = MemberHolder.instance().getMemberById(id).getPoints();
+//                            if(point >= VIPPoint){
+//                                point = VIPPoint;
+//                            }
+//                            if(this.total <= VIPPoint){
+//                                MemberHolder.instance().getMemberById(id).setPoints(VIPPoint - this.total);
+//                                this.total = 0;
+//                            }else{
+//                                this.total -= point;
+//                                MemberHolder.instance().getMemberById(id).setPoints(VIPPoint - point);
+//                            }
+//                            MemberHolder.instance().getMemberById(id).setPoints( - point);
+//
+//                        }
                         Bill fixedBill = new Bill(id, total);
                         LayarFixedBill layarFB = new LayarFixedBill(selectedItem, listOfCartItem, total, id, fixedBill.getIdBill());
                         Tabs.tabs.addCustomTab("Layar Fixed Bill", layarFB, Tabs.tabCount);
@@ -250,7 +287,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
                             String namaBarang = listOfCartItem.get(i).getJudul();
                             int jumlah = listOfCartItem.get(i).getCounter();
                             float harga = listOfCartItem.get(i).getHarga();
-                            BillItem billItem = new BillItem(id, namaBarang, jumlah, harga);
+                            BillItem billItem = new BillItem(idt, namaBarang, jumlah, harga);
                             Barang barang = InventoryHolder.instance().getBarangById(listOfCartItem.get(i).getID());
                             System.out.println(listOfCartItem.get(i).getID());
                             barang.setStok(barang.getStok() - listOfCartItem.get(i).getCounter());
@@ -260,6 +297,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
                         Controller.instance().writeData(FixedBillHolder.instance(), "billFixed");
                         Controller.instance().writeData(InventoryHolder.instance(), "barang");
                     }
+                    Controller.instance().writeData(MemberHolder.instance(), "member");
                     this.clickCounter++;
                 }
 
