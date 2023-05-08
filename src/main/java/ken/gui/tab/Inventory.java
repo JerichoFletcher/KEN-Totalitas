@@ -66,14 +66,18 @@ public class Inventory extends KENTab implements ActionListener {
         inventory.setBackground(new Color(0xFFFFFF));
         inventory.setLayout(new BoxLayout(inventory, BoxLayout.Y_AXIS));
 
-        Controller.instance().fetchData(InventoryHolder.instance(), "barang");
-        for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
-            Integer key = entry.getKey();
-            Barang value = entry.getValue();
-            // Do something with the key and value...
+        try{
+            Controller.instance().fetchData(InventoryHolder.instance(), "barang");
+            for(Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()){
+                Integer key = entry.getKey();
+                Barang value = entry.getValue();
+                // Do something with the key and value...
 
-            ken.gui.InventoryPanel invPanel = new InventoryPanel(key, value.getNamaBarang(), value.getHargaBarang(), value.getHargaBeliBarang(), value.getStok(), value.getGambar(), value.getKategori());
-            inventory.add(invPanel);
+                ken.gui.InventoryPanel invPanel = new InventoryPanel(key, value.getNamaBarang(), value.getHargaBarang(), value.getHargaBeliBarang(), value.getStok(), value.getGambar(), value.getKategori());
+                inventory.add(invPanel);
+            }
+        }catch(Exception ex){
+            throw new RuntimeException(ex);
         }
         JScrollPane scrollPane = new JScrollPane(inventory);
         scrollPane.setBounds(0, 90, 1260, 480);

@@ -225,9 +225,7 @@ public class AddItem extends JPanel implements ActionListener{
 //                    Controller.instance().writeData(MemberHolder.instance() , "member");
 //                    Controller.instance().writeData(VIPHolder.instance() , "vip");
                 }
-            } catch (URISyntaxException | IOException ex) {
-                throw new RuntimeException(ex);
-            } catch (JAXBException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         } else if (e.getSource() == imageButton) {

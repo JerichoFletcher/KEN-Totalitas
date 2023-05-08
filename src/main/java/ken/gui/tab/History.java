@@ -71,16 +71,20 @@ public class History extends KENTab implements ActionListener {
         this.add(headerMember);
         history.setBackground(new Color(0xFFFFFF));
         history.setLayout(new BoxLayout(history, BoxLayout.Y_AXIS));
-        Controller.instance().fetchData(FixedBillHolder.instance(), "billFixed");
-        for (Map.Entry<Integer, Bill> entry : FixedBillHolder.instance().getListBill().entrySet()) {
-            Integer key = entry.getKey();
-            Bill value = entry.getValue();
-            // Do something with the key and value...
+        try{
+            Controller.instance().fetchData(FixedBillHolder.instance(), "billFixed");
+            for(Map.Entry<Integer, Bill> entry : FixedBillHolder.instance().getListBill().entrySet()){
+                Integer key = entry.getKey();
+                Bill value = entry.getValue();
+                // Do something with the key and value...
 
-            HistoryPanel historyPanel = new HistoryPanel(key, value.getIdCustomer(), value.getTotalHarga(), value.getListBarang());
-            history.add(historyPanel);
-            listOfName.add(key + "   " + value.getIdCustomer());
-            listOfPrice.add(value.getTotalHarga());
+                HistoryPanel historyPanel = new HistoryPanel(key, value.getIdCustomer(), value.getTotalHarga(), value.getListBarang());
+                history.add(historyPanel);
+                listOfName.add(key + "   " + value.getIdCustomer());
+                listOfPrice.add(value.getTotalHarga());
+            }
+        }catch(Exception ex){
+            throw new RuntimeException(ex);
         }
         JScrollPane scrollPane = new JScrollPane(history);
         scrollPane.setBounds(0, 50, 1260, 520);

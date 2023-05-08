@@ -102,22 +102,26 @@ public class LayarCheckout extends JPanel implements ActionListener{
 //        allMember.add(new AbstractMap.SimpleEntry<>(9, "Jokowi"));
 //        allMember.add(new AbstractMap.SimpleEntry<>(10, "Xi Jinping"));
 
-        Controller.instance().fetchData(VIPHolder.instance(),"vip");
-        for (Map.Entry<Integer, VIP> entry : VIPHolder.instance().getListVIP().entrySet()) {
-            Integer key = entry.getKey();
-            Member value = entry.getValue();
-            // Do something with the key and value...
-            allMember.add(new AbstractMap.SimpleEntry<>(key, value.getName()));
+        try{
+            Controller.instance().fetchData(VIPHolder.instance(), "vip");
+            for(Map.Entry<Integer, VIP> entry : VIPHolder.instance().getListVIP().entrySet()){
+                Integer key = entry.getKey();
+                Member value = entry.getValue();
+                // Do something with the key and value...
+                allMember.add(new AbstractMap.SimpleEntry<>(key, value.getName()));
 
-        }
+            }
 
-        Controller.instance().fetchData(MemberHolder.instance(),"member");
-        for (Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()) {
-            Integer key = entry.getKey();
-            Member value = entry.getValue();
-            // Do something with the key and value...
-            allMember.add(new AbstractMap.SimpleEntry<>(key, value.getName()));
+            Controller.instance().fetchData(MemberHolder.instance(), "member");
+            for(Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()){
+                Integer key = entry.getKey();
+                Member value = entry.getValue();
+                // Do something with the key and value...
+                allMember.add(new AbstractMap.SimpleEntry<>(key, value.getName()));
 
+            }
+        }catch(Exception ex){
+            throw new RuntimeException(ex);
         }
 
 //        pilihMember = new JComboBox(tipeMember);
@@ -303,7 +307,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     this.clickCounter++;
                 }
 
-            }catch (IOException | URISyntaxException | JAXBException ex){
+            }catch (Exception ex){
                 ex.printStackTrace();
             }
         }

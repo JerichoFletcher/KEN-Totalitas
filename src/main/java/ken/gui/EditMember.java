@@ -188,7 +188,7 @@ public class EditMember extends JPanel implements ActionListener{
                 }
 
             }
-        }catch (URISyntaxException | IOException | JAXBException ex) {
+        }catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }

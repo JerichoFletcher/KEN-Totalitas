@@ -54,26 +54,30 @@ public class Members extends KENTab {
 //            MemberPanel memberPanel = new MemberPanel("nama " + i);
 //            members.add(memberPanel);
 //        }
-        Controller.instance().fetchData(VIPHolder.instance(),"vip");
-        for (Map.Entry<Integer, VIP> entry : VIPHolder.instance().getListVIP().entrySet()) {
-            Integer key = entry.getKey();
-            Member value = entry.getValue();
-            // Do something with the key and value...
+        try{
+            Controller.instance().fetchData(VIPHolder.instance(), "vip");
+            for(Map.Entry<Integer, VIP> entry : VIPHolder.instance().getListVIP().entrySet()){
+                Integer key = entry.getKey();
+                Member value = entry.getValue();
+                // Do something with the key and value...
 
-            MemberPanel memberPanel = new MemberPanel(key, value.getName(),value.getPhoneNumber(),value.getClass().getName(), value.isActive());
-            members.add(memberPanel);
+                MemberPanel memberPanel = new MemberPanel(key, value.getName(), value.getPhoneNumber(), value.getClass().getName(), value.isActive());
+                members.add(memberPanel);
 
-        }
+            }
 
-        Controller.instance().fetchData(MemberHolder.instance(),"member");
-        for (Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()) {
-            Integer key = entry.getKey();
-            Member value = entry.getValue();
-            // Do something with the key and value...
+            Controller.instance().fetchData(MemberHolder.instance(), "member");
+            for(Map.Entry<Integer, Member> entry : MemberHolder.instance().getListMember().entrySet()){
+                Integer key = entry.getKey();
+                Member value = entry.getValue();
+                // Do something with the key and value...
 
-            MemberPanel memberPanel = new MemberPanel(key, value.getName(),value.getPhoneNumber(),value.getClass().getName(), value.isActive());
-            members.add(memberPanel);
+                MemberPanel memberPanel = new MemberPanel(key, value.getName(), value.getPhoneNumber(), value.getClass().getName(), value.isActive());
+                members.add(memberPanel);
 
+            }
+        }catch(Exception ex){
+            throw new RuntimeException();
         }
 
 

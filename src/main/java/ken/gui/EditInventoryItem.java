@@ -260,7 +260,7 @@ public class EditInventoryItem extends JPanel implements ActionListener{
             System.out.println("Image URL : " + imgurl);
             try {
                 Controller.instance().fetchData(InventoryHolder.instance(), "barang");
-            } catch (URISyntaxException | IOException | JAXBException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
             Barang barang = InventoryHolder.instance().getBarangById(id);
@@ -272,7 +272,7 @@ public class EditInventoryItem extends JPanel implements ActionListener{
             barang.setGambar(imgurl);
             try {
                 Controller.instance().writeData(InventoryHolder.instance(), "barang");
-            } catch (URISyntaxException | IOException |JAXBException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
 
@@ -293,13 +293,13 @@ public class EditInventoryItem extends JPanel implements ActionListener{
         } else if (e.getSource() == deleteButton) {
             try {
                 Controller.instance().fetchData(InventoryHolder.instance(), "barang");
-            } catch (URISyntaxException | IOException | JAXBException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
             InventoryHolder.instance().removeBarang(id);
             try {
                 Controller.instance().writeData(InventoryHolder.instance(), "barang");
-            } catch (URISyntaxException | IOException |JAXBException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         }

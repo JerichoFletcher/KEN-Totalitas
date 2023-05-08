@@ -118,14 +118,14 @@ public class AdapterTest {
         VIPHolder.instance().write(getClass().getResource("/database/vip2.json").toURI(),adapter);
     }
     @Test
-    public void testControllerCustomer() throws IOException, URISyntaxException, JAXBException {
+    public void testControllerCustomer() throws Exception {
         Controller.instance().fetchData(MemberHolder.instance(),"member");
         Member nm = new Member("Nama", "098123",12425135);
         MemberHolder.instance().addMember(nm);
         Controller.instance().writeData(MemberHolder.instance(),"member");
     }
 
-    public void testAdapterXML2() throws IOException, URISyntaxException, JAXBException {
+    public void testAdapterXML2() throws Exception {
         AdapterXML adapter = new AdapterXML();;
         AdapterJSON adapter2 = new AdapterJSON();
         InventoryHolder.instance().load(getClass().getResource("/database/barang.xml").toURI(),adapter);
@@ -134,7 +134,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAdapterObject() throws IOException, URISyntaxException, JAXBException {
+    public void testAdapterObject() throws Exception {
         AdapterObject adapter = new AdapterObject();;
         AdapterJSON adapter2 = new AdapterJSON();
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter2);
@@ -142,7 +142,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAdapterObject2() throws IOException, URISyntaxException, JAXBException {
+    public void testAdapterObject2() throws Exception {
         AdapterObject adapter = new AdapterObject();;
         AdapterJSON adapter2 = new AdapterJSON();
         InventoryHolder.instance().load(getClass().getResource("/database/barang.ser").toURI(),adapter);
@@ -150,7 +150,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAdapterObject3() throws IOException, URISyntaxException, JAXBException {
+    public void testAdapterObject3() throws Exception {
         AdapterObject adapter = new AdapterObject();;
         AdapterJSON adapter2 = new AdapterJSON();
         InventoryHolder.instance().load(getClass().getResource("/database/barang.ser").toURI(),adapter);
@@ -158,7 +158,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void changeAllSERtofollowJSON() throws URISyntaxException, IOException, JAXBException {
+    public void changeAllSERtofollowJSON() throws Exception {
         Vars.extension = "json";
         Controller.instance().fetchData(InventoryHolder.instance(),"barang");
         Controller.instance().fetchData(BillHolder.instance(),"bill");
@@ -175,7 +175,7 @@ public class AdapterTest {
         Controller.instance().writeData(VIPHolder.instance(),"vip");
     }
     @Test
-    public void changeAllXMLtofollowJSON() throws URISyntaxException, IOException, JAXBException {
+    public void changeAllXMLtofollowJSON() throws Exception {
         Vars.extension = "json";
         Controller.instance().fetchData(InventoryHolder.instance(),"barang");
         Controller.instance().fetchData(BillHolder.instance(),"bill");
@@ -193,7 +193,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void populateBarangJSON() throws URISyntaxException, IOException, JAXBException {
+    public void populateBarangJSON() throws Exception {
         Vars.extension = "json";
         Controller.instance().fetchData(InventoryHolder.instance(),"barang");
         Barang barang1 = new Barang("Kucing Emas",500,500000,20000,"Aksesoris","./assets/kucingEmas.png");
@@ -208,7 +208,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void mencobaXML() throws URISyntaxException, IOException, JAXBException {
+    public void mencobaXML() throws Exception {
         Vars.extension = "xml";
         Controller.instance().fetchData(InventoryHolder.instance(),"barang2");
         Vars.extension = "json";
@@ -216,7 +216,7 @@ public class AdapterTest {
 
     }
     @Test
-    public void matchAllToJSON() throws JAXBException, URISyntaxException, IOException {
+    public void matchAllToJSON() throws Exception {
         Vars.extension = "json";
         Controller.instance().fetchData(InventoryHolder.instance(),"barang");
         Controller.instance().fetchData(BillHolder.instance(),"bill");

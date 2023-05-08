@@ -8,7 +8,7 @@
                 <active>true</active>
                 <name>Udin Petot</name>
                 <phoneNumber>69696969</phoneNumber>
-                <points>420.0</points>
+                <points>5000.0</points>
             </value>
         </entry>
         <entry>
@@ -18,7 +18,7 @@
                 <active>true</active>
                 <name>Udin Metot</name>
                 <phoneNumber>79696969</phoneNumber>
-                <points>422.0</points>
+                <points>200.0</points>
             </value>
         </entry>
         <entry>
@@ -52,12 +52,12 @@
             </value>
         </entry>
         <entry>
-            <key>7</key>
+            <key>12425135</key>
             <value>
-                <id>7</id>
+                <id>12425135</id>
                 <active>true</active>
-                <name>Farhan Kebab</name>
-                <phoneNumber>081245671234</phoneNumber>
+                <name>Nama</name>
+                <phoneNumber>098123</phoneNumber>
                 <points>0.0</points>
             </value>
         </entry>

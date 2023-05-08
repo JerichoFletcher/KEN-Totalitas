@@ -10,7 +10,7 @@
                 <id>2</id>
                 <kategori>Alat Tulis</kategori>
                 <namaBarang>pencil</namaBarang>
-                <stok>996</stok>
+                <stok>988</stok>
             </value>
         </entry>
         <entry>
@@ -22,7 +22,7 @@
                 <id>3</id>
                 <kategori>Alat Tulis</kategori>
                 <namaBarang>Penghapus</namaBarang>
-                <stok>65</stok>
+                <stok>59</stok>
             </value>
         </entry>
         <entry>
@@ -34,7 +34,7 @@
                 <id>4</id>
                 <kategori>Alat Potong</kategori>
                 <namaBarang>Gunting</namaBarang>
-                <stok>25</stok>
+                <stok>22</stok>
             </value>
         </entry>
         <entry>
@@ -122,36 +122,300 @@
             </value>
         </entry>
         <entry>
-            <key>793144894</key>
+            <key>2086956640</key>
+            <value>
+                <gambar></gambar>
+                <hargaBarang>123.0</hargaBarang>
+                <hargaBeliBarang>1234.0</hargaBeliBarang>
+                <id>2086956640</id>
+                <kategori>orang</kategori>
+                <namaBarang>jovan</namaBarang>
+                <stok>1</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1451734401</key>
+            <value>
+                <gambar>./assets/kucingEmas.png</gambar>
+                <hargaBarang>500000.0</hargaBarang>
+                <hargaBeliBarang>20000.0</hargaBeliBarang>
+                <id>1451734401</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Kucing Emas</namaBarang>
+                <stok>500</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1704228136</key>
             <value>
                 <gambar>./assets/actionPigur.png</gambar>
                 <hargaBarang>1000000.0</hargaBarang>
                 <hargaBeliBarang>25000.0</hargaBeliBarang>
-                <id>793144894</id>
+                <id>1704228136</id>
                 <kategori>Aksesoris</kategori>
                 <namaBarang>Action Figure</namaBarang>
                 <stok>10</stok>
             </value>
         </entry>
         <entry>
-            <key>346727836</key>
+            <key>729068731</key>
             <value>
                 <gambar>./assets/vibraThor.png</gambar>
                 <hargaBarang>1000000.0</hargaBarang>
                 <hargaBeliBarang>250000.0</hargaBeliBarang>
-                <id>346727836</id>
+                <id>729068731</id>
                 <kategori>Aksesoris</kategori>
                 <namaBarang>VibraThor</namaBarang>
                 <stok>100</stok>
             </value>
         </entry>
         <entry>
-            <key>1574012500</key>
+            <key>570162407</key>
             <value>
                 <gambar>./assets/dealDown.png</gambar>
                 <hargaBarang>50000.0</hargaBarang>
                 <hargaBeliBarang>25000.0</hargaBeliBarang>
-                <id>1574012500</id>
+                <id>570162407</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Deal Down</namaBarang>
+                <stok>16</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>830377518</key>
+            <value>
+                <gambar>./assets/kucingEmas.png</gambar>
+                <hargaBarang>500000.0</hargaBarang>
+                <hargaBeliBarang>20000.0</hargaBeliBarang>
+                <id>830377518</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Kucing Emas</namaBarang>
+                <stok>500</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1044086660</key>
+            <value>
+                <gambar>./assets/actionPigur.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>1044086660</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Action Figure</namaBarang>
+                <stok>10</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1137360997</key>
+            <value>
+                <gambar>./assets/vibraThor.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>250000.0</hargaBeliBarang>
+                <id>1137360997</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>VibraThor</namaBarang>
+                <stok>100</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1985796297</key>
+            <value>
+                <gambar>./assets/dealDown.png</gambar>
+                <hargaBarang>50000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>1985796297</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Deal Down</namaBarang>
+                <stok>16</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>236270009</key>
+            <value>
+                <gambar>./assets/kucingEmas.png</gambar>
+                <hargaBarang>500000.0</hargaBarang>
+                <hargaBeliBarang>20000.0</hargaBeliBarang>
+                <id>236270009</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Kucing Emas</namaBarang>
+                <stok>500</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1994670872</key>
+            <value>
+                <gambar>./assets/actionPigur.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>1994670872</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Action Figure</namaBarang>
+                <stok>10</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1570797538</key>
+            <value>
+                <gambar>./assets/vibraThor.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>250000.0</hargaBeliBarang>
+                <id>1570797538</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>VibraThor</namaBarang>
+                <stok>100</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1715633482</key>
+            <value>
+                <gambar>./assets/dealDown.png</gambar>
+                <hargaBarang>50000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>1715633482</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Deal Down</namaBarang>
+                <stok>16</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>769084960</key>
+            <value>
+                <gambar>./assets/kucingEmas.png</gambar>
+                <hargaBarang>500000.0</hargaBarang>
+                <hargaBeliBarang>20000.0</hargaBeliBarang>
+                <id>769084960</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Kucing Emas</namaBarang>
+                <stok>500</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>311011866</key>
+            <value>
+                <gambar>./assets/actionPigur.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>311011866</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Action Figure</namaBarang>
+                <stok>10</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>275847026</key>
+            <value>
+                <gambar>./assets/vibraThor.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>250000.0</hargaBeliBarang>
+                <id>275847026</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>VibraThor</namaBarang>
+                <stok>100</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>2118280426</key>
+            <value>
+                <gambar>./assets/dealDown.png</gambar>
+                <hargaBarang>50000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>2118280426</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Deal Down</namaBarang>
+                <stok>16</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1690665025</key>
+            <value>
+                <gambar>./assets/kucingEmas.png</gambar>
+                <hargaBarang>500000.0</hargaBarang>
+                <hargaBeliBarang>20000.0</hargaBeliBarang>
+                <id>1690665025</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Kucing Emas</namaBarang>
+                <stok>500</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>803544072</key>
+            <value>
+                <gambar>./assets/actionPigur.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>803544072</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Action Figure</namaBarang>
+                <stok>10</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>954911369</key>
+            <value>
+                <gambar>./assets/vibraThor.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>250000.0</hargaBeliBarang>
+                <id>954911369</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>VibraThor</namaBarang>
+                <stok>100</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1777673004</key>
+            <value>
+                <gambar>./assets/dealDown.png</gambar>
+                <hargaBarang>50000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>1777673004</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Deal Down</namaBarang>
+                <stok>16</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>2018313281</key>
+            <value>
+                <gambar>./assets/kucingEmas.png</gambar>
+                <hargaBarang>500000.0</hargaBarang>
+                <hargaBeliBarang>20000.0</hargaBeliBarang>
+                <id>2018313281</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Kucing Emas</namaBarang>
+                <stok>500</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>2135473458</key>
+            <value>
+                <gambar>./assets/actionPigur.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>2135473458</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>Action Figure</namaBarang>
+                <stok>10</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>1842361197</key>
+            <value>
+                <gambar>./assets/vibraThor.png</gambar>
+                <hargaBarang>1000000.0</hargaBarang>
+                <hargaBeliBarang>250000.0</hargaBeliBarang>
+                <id>1842361197</id>
+                <kategori>Aksesoris</kategori>
+                <namaBarang>VibraThor</namaBarang>
+                <stok>100</stok>
+            </value>
+        </entry>
+        <entry>
+            <key>564645262</key>
+            <value>
+                <gambar>./assets/dealDown.png</gambar>
+                <hargaBarang>50000.0</hargaBarang>
+                <hargaBeliBarang>25000.0</hargaBeliBarang>
+                <id>564645262</id>
                 <kategori>Aksesoris</kategori>
                 <namaBarang>Deal Down</namaBarang>
                 <stok>16</stok>

@@ -146,7 +146,7 @@ public class DaftarMember extends JPanel implements ActionListener{
 //                    Controller.instance().writeData(VIPHolder.instance() , "vip");
 
                 }
-            } catch (URISyntaxException | IOException | JAXBException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         }

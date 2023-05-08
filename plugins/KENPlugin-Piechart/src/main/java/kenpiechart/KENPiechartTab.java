@@ -69,7 +69,7 @@ public class KENPiechartTab extends KENTab{
 //            label.setBounds(300,100,1000,250);
 //            label.setText("Hello dummy");
 //            this.add(label);
-        }catch (IOException | URISyntaxException ex){
+        }catch (Exception ex){
             ex.printStackTrace();
         }
 

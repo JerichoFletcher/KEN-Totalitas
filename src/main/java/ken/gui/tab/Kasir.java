@@ -102,22 +102,26 @@ public class Kasir extends KENTab implements ActionListener {
         pricePanel.setBackground(new Color(0xD9D9D9));
         pricePanel.setBounds(760,475,490, 40);
 
-        Controller.instance().fetchData(BillHolder.instance(),"bill");
-        List<String> historyList = new ArrayList<>();
-        historyList.add("");
+        try{
+            Controller.instance().fetchData(BillHolder.instance(), "bill");
+            List<String> historyList = new ArrayList<>();
+            historyList.add("");
 
-        for (Map.Entry<Integer, Bill> entry : BillHolder.instance().getListBill().entrySet()) {
-            Bill value = entry.getValue();
-            historyList.add(Integer.toString(value.getIdBill()));
+            for(Map.Entry<Integer, Bill> entry : BillHolder.instance().getListBill().entrySet()){
+                Bill value = entry.getValue();
+                historyList.add(Integer.toString(value.getIdBill()));
+            }
+
+            pilihHistory = new JComboBox(historyList.toArray());
+            pilihHistory.setBackground(new Color(0xD9D9D9));
+            pilihHistory.setBounds(760, 55, 350, 50);
+            pilihHistory.setFont(new Font("Poppins", Font.BOLD, 20));
+            pilihHistory.setForeground(new Color(0x395B64));
+            pilihHistory.setFocusable(false);
+            this.add(pilihHistory);
+        }catch(Exception ex){
+            throw new RuntimeException();
         }
-
-        pilihHistory = new JComboBox(historyList.toArray());
-        pilihHistory.setBackground(new Color(0xD9D9D9));
-        pilihHistory.setBounds(760,55,350,50);
-        pilihHistory.setFont(new Font("Poppins", Font.BOLD,20));
-        pilihHistory.setForeground(new Color(0x395B64));
-        pilihHistory.setFocusable(false);
-        this.add(pilihHistory);
 
         selectedHistory = (String) pilihHistory.getSelectedItem();
 
@@ -137,14 +141,18 @@ public class Kasir extends KENTab implements ActionListener {
         inventory2.setLayout(new BoxLayout(inventory2, BoxLayout.Y_AXIS));
         inventory2.setLocation(0,0);
         cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
-        Controller.instance().fetchData(InventoryHolder.instance(), "barang");
-        for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
-            Integer key = entry.getKey();
-            Barang value = entry.getValue();
-            // Do something with the key and value...
+        try{
+            Controller.instance().fetchData(InventoryHolder.instance(), "barang");
+            for(Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()){
+                Integer key = entry.getKey();
+                Barang value = entry.getValue();
+                // Do something with the key and value...
 
-            ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this, value.getKategori());
-            inventory.add(menuItem);
+                ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this, value.getKategori());
+                inventory.add(menuItem);
+            }
+        }catch(Exception ex){
+            throw new RuntimeException();
         }
 
         inputFieldNama = new JTextField();
@@ -308,15 +316,15 @@ public class Kasir extends KENTab implements ActionListener {
 //            System.out.println("save bill");
             try {
                 Controller.instance().fetchData(BillHolder.instance(), "bill");
-            } catch (URISyntaxException | IOException | JAXBException ex) {
-                throw new RuntimeException(ex);
+            }catch(Exception ex){
+                throw new RuntimeException();
             }
             Bill billTemp = new Bill(0, price);
-            for(int i = 0; i < listOfCartItem.size() ; i++){
-                int idt = listOfCartItem.get(i).getID();
-                String namaBarang = listOfCartItem.get(i).getName();
-                int jumlah = listOfCartItem.get(i).getCounter();
-                float harga = listOfCartItem.get(i).getHarga();
+            for(CartItem cartItem : listOfCartItem){
+                int idt = cartItem.getID();
+                String namaBarang = cartItem.getName();
+                int jumlah = cartItem.getCounter();
+                float harga = cartItem.getHarga();
                 BillItem billItem = new BillItem(idt, namaBarang, jumlah, harga);
 //                Barang barang = InventoryHolder.instance().getBarangById(listOfCartItem.get(i).getID());
 //                barang.setStok(barang.getStok() - listOfCartItem.get(i).getCounter());
@@ -325,7 +333,7 @@ public class Kasir extends KENTab implements ActionListener {
             BillHolder.instance().addBill(billTemp);
             try {
                 Controller.instance().writeData(BillHolder.instance(), "bill");
-            } catch (URISyntaxException  | IOException | JAXBException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         } else if (e.getSource()==getHistoryButton) {
