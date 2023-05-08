@@ -30,16 +30,17 @@ public class Settings{
         }else throw new IllegalArgumentException(String.format("Unknown settings entry %s", id));
     }
 
-    public static <T> void add(UID id, Class<T> clazz, T initialValue){
+    public static <T> void add(UID id, String name, Class<T> clazz, T initialValue){
         if(settingsMap.containsKey(id)) throw new IllegalArgumentException(String.format("Settings entry %s already exists", id));
-        settingsMap.put(id, new SettingsEntry(id, initialValue, clazz));
+        settingsMap.put(id, new SettingsEntry(id, name, initialValue, clazz));
     }
 
     public static void init(){
         settingsMap.clear();
 
         // Add builtin settings
-        add(UID.of(Vars.defaultNamespace, "settings", "number"), Integer.class, 7);
-        add(UID.of(Vars.defaultNamespace, "settings", "text"), String.class, "Hello");
+        add(UID.of(Vars.defaultNamespace, "settings", "dummy", "number"), "Test number", Integer.class, 7);
+        add(UID.of(Vars.defaultNamespace, "settings", "dummy", "text"), "Test string", String.class, "Hello");
+        add(UID.of(Vars.defaultNamespace, "settings", "currency"), "Currency", String.class, "IDR");
     }
 }

@@ -8,8 +8,10 @@ import ken.backend.controller.holder.BillHolder;
 import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.Bill;
 import ken.backend.kelas.bill.BillItem;
+import ken.backend.settings.Settings;
 import ken.gui.*;
 import ken.gui.MenuItem;
+import ken.util.UID;
 
 import javax.swing.*;
 import javax.xml.bind.JAXBException;
@@ -72,7 +74,7 @@ public class Kasir extends KENTab implements ActionListener {
         JPanel headerInv = new JPanel();
         JPanel headerCart = new JPanel();
         JPanel pricePanel = new JPanel();
-        priceText = new JLabel(Vars.mataUang + " " + 0);
+        priceText = new JLabel((String) Settings.get(UID.of(Vars.defaultNamespace, "settings", "currency")) + " " + 0);
         headerInv.setLayout(null);
         headerCart.setLayout(null);
         cart = new JPanel();
@@ -268,7 +270,7 @@ public class Kasir extends KENTab implements ActionListener {
 
     public void setPriceText(float price){
         this.price = price;
-        priceText.setText(Vars.mataUang + " " + price);
+        priceText.setText((String)Settings.get(UID.of(Vars.defaultNamespace, "settings", "currency")) + " " + price);
     }
     public float getPriceText(){
         return this.price;

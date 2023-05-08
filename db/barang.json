@@ -90,8 +90,26 @@
       "kategori": "Aksesoris",
       "gambar": "./assets/kucingEmas.png"
     },
-    "793144894": {
-      "id": 793144894,
+    "2086956640": {
+      "id": 2086956640,
+      "stok": 1,
+      "namaBarang": "jovan",
+      "hargaBarang": 123.0,
+      "hargaBeliBarang": 1234.0,
+      "kategori": "orang",
+      "gambar": ""
+    },
+    "1451734401": {
+      "id": 1451734401,
+      "stok": 500,
+      "namaBarang": "Kucing Emas",
+      "hargaBarang": 500000.0,
+      "hargaBeliBarang": 20000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/kucingEmas.png"
+    },
+    "1704228136": {
+      "id": 1704228136,
       "stok": 10,
       "namaBarang": "Action Figure",
       "hargaBarang": 1000000.0,
@@ -99,8 +117,8 @@
       "kategori": "Aksesoris",
       "gambar": "./assets/actionPigur.png"
     },
-    "346727836": {
-      "id": 346727836,
+    "729068731": {
+      "id": 729068731,
       "stok": 100,
       "namaBarang": "VibraThor",
       "hargaBarang": 1000000.0,
@@ -108,8 +126,80 @@
       "kategori": "Aksesoris",
       "gambar": "./assets/vibraThor.png"
     },
-    "1574012500": {
-      "id": 1574012500,
+    "570162407": {
+      "id": 570162407,
+      "stok": 16,
+      "namaBarang": "Deal Down",
+      "hargaBarang": 50000.0,
+      "hargaBeliBarang": 25000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/dealDown.png"
+    },
+    "830377518": {
+      "id": 830377518,
+      "stok": 500,
+      "namaBarang": "Kucing Emas",
+      "hargaBarang": 500000.0,
+      "hargaBeliBarang": 20000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/kucingEmas.png"
+    },
+    "1044086660": {
+      "id": 1044086660,
+      "stok": 10,
+      "namaBarang": "Action Figure",
+      "hargaBarang": 1000000.0,
+      "hargaBeliBarang": 25000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/actionPigur.png"
+    },
+    "1137360997": {
+      "id": 1137360997,
+      "stok": 100,
+      "namaBarang": "VibraThor",
+      "hargaBarang": 1000000.0,
+      "hargaBeliBarang": 250000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/vibraThor.png"
+    },
+    "1985796297": {
+      "id": 1985796297,
+      "stok": 16,
+      "namaBarang": "Deal Down",
+      "hargaBarang": 50000.0,
+      "hargaBeliBarang": 25000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/dealDown.png"
+    },
+    "236270009": {
+      "id": 236270009,
+      "stok": 500,
+      "namaBarang": "Kucing Emas",
+      "hargaBarang": 500000.0,
+      "hargaBeliBarang": 20000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/kucingEmas.png"
+    },
+    "1994670872": {
+      "id": 1994670872,
+      "stok": 10,
+      "namaBarang": "Action Figure",
+      "hargaBarang": 1000000.0,
+      "hargaBeliBarang": 25000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/actionPigur.png"
+    },
+    "1570797538": {
+      "id": 1570797538,
+      "stok": 100,
+      "namaBarang": "VibraThor",
+      "hargaBarang": 1000000.0,
+      "hargaBeliBarang": 250000.0,
+      "kategori": "Aksesoris",
+      "gambar": "./assets/vibraThor.png"
+    },
+    "1715633482": {
+      "id": 1715633482,
       "stok": 16,
       "namaBarang": "Deal Down",
       "hargaBarang": 50000.0,

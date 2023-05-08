@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 8
+targetCompatibility = 8
+
+group 'com.github.JerichoFletcher'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    extraLibs
+    testImplementation.extendsFrom extraLibs
+    implementation.extendsFrom extraLibs
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testImplementation 'com.google.code.gson:gson:2.8.9'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation files('../../build/libs/KEN-Totalitas-1.0-SNAPSHOT.jar')
+    extraLibs files('../KENPlugin-Base/build/libs/KENPlugin-Base-1.0-SNAPSHOT.jar')
+}
+
+jar {
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

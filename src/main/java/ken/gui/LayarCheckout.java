@@ -12,6 +12,8 @@ import ken.backend.Vars;
 import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.Bill;
 import ken.backend.kelas.bill.BillItem;
+import ken.backend.settings.Settings;
+import ken.util.UID;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,7 +63,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
 
     public void makePanelLC() throws URISyntaxException, IOException, JAXBException {
         JLabel checkoutText = new JLabel("Checkout");
-        JLabel totalPrice = new JLabel("Total: " + Vars.mataUang + " " + total);
+        JLabel totalPrice = new JLabel("Total: " + (String) Settings.get(UID.of(Vars.defaultNamespace, "settings", "currency")) + " " + total);
         checkoutText.setFont(new Font("Poppins", Font.BOLD,40));
         checkoutText.setForeground(Color.white);
         checkoutText.setBounds(550,30,500,100);

@@ -2,7 +2,9 @@ package ken.gui;
 
 import ken.backend.Vars;
 import ken.backend.kelas.bill.BillItem;
+import ken.backend.settings.Settings;
 import ken.gui.tab.Kasir;
+import ken.util.UID;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,7 +64,7 @@ public class MenuItem extends JPanel implements ActionListener {
         }
 
 
-        JLabel price = new JLabel(Vars.mataUang + " " + harga);
+        JLabel price = new JLabel((String) Settings.get(UID.of(Vars.defaultNamespace, "settings", "currency")) + " " + harga);
         counterLabel = new JLabel(""+ quantity);
         addButton = new JButton("+");
         JLabel kat = new JLabel(kategori);

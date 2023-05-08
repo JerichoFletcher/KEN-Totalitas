@@ -28,7 +28,7 @@ public class PluginManager{
 
             @Override
             public String displayName(){
-                return "KEN-Totalitas Base";
+                return "KEN-Totalitas Builtin";
             }
         });
     }

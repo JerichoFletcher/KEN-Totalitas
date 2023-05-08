@@ -10,8 +10,8 @@ public class DollarProcessor extends BillProcessDecorator{
     }
 
     @Override
-    public int process(Map<Integer, BillItem> listBarang){
-        int sum = super.process(listBarang);
-        return (int)(sum * 0.000068);
+    public float process(Map<Integer, BillItem> listBarang){
+        float sum = super.process(listBarang);
+        return (float)(sum * 0.000068);
     }
 }

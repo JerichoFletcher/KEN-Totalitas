@@ -7,7 +7,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import ken.backend.Vars;
+import ken.backend.settings.Settings;
 import ken.gui.tab.Kasir;
+import ken.util.UID;
 
 public class InventoryPanel extends JPanel implements ActionListener {
     private JButton editButton;
@@ -32,7 +34,7 @@ public class InventoryPanel extends JPanel implements ActionListener {
         }
         this.kategori=ikategori;
         JLabel title = new JLabel(judul);
-        JLabel price = new JLabel(Vars.mataUang + " " + harga);
+        JLabel price = new JLabel((String) Settings.get(UID.of(Vars.defaultNamespace, "settings", "currency")) + " " + harga);
         JLabel katLabel = new JLabel(kategori);
         JLabel stokLabel = new JLabel(quantity + " x");
         editButton = new JButton("EDIT");
