@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.jar.JarFile;
 
-public class Setting extends KENTab implements ActionListener{
+public class Setting extends KENTab{
     private JButton buttonPlugin;
     private JButton buttonFile;
     private JLabel dataTypeText;
@@ -44,61 +44,7 @@ public class Setting extends KENTab implements ActionListener{
         buttonPlugin.setBackground(new Color(0xD9D9D9));
         buttonPlugin.setForeground(Color.black);
         buttonPlugin.setFont(new Font("Poppins", Font.BOLD, 25));
-        buttonPlugin.addActionListener(this);
-        buttonPlugin.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        this.add(buttonPlugin);
-
-//        buttonFile = new JButton("Choose Database File");
-//        buttonFile.setBounds(50, 230,  300, 100);
-//        buttonFile.setBackground(new Color(0xD9D9D9));
-//        buttonFile.setForeground(Color.black);
-//        buttonFile.setFont(new Font("Poppins", Font.BOLD,25));
-//        buttonFile.addActionListener(this);
-//        buttonFile.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-//
-//
-////        dataTypeText = new JLabel("Database file format :");
-////        dataTypeText.setFont(new Font("Poppins", Font.BOLD,30));
-////        dataTypeText.setForeground(Color.white);
-////        dataTypeText.setBounds(320,380,350,100);
-//        this.add(buttonPlugin);
-//        this.add(buttonFile);
-////        this.add(dataTypeText);
-//
-//        String[] dataTypeList = Controller.instance().getAdapterList().keySet().toArray(new String[0]);
-//
-//        dataType = new JComboBox(dataTypeList);
-//        dataType.setBackground(new Color(0xD9D9D9));
-//        dataType.setBounds(50,400,230,70);
-//        dataType.setFont(new Font("Poppins", Font.BOLD,20));
-//        dataType.setForeground(new Color(0x395B64));
-//        dataType.setFocusable(false);
-//        this.add(dataType);
-//
-//        dataTypeButton = new JButton("SET");
-//        dataTypeButton.setBounds(280, 400, 70 , 70);
-//        dataTypeButton.setBackground(new Color(0xD9D9D9));
-//        dataTypeButton.setForeground(Color.black);
-//        dataTypeButton.setFont(new Font("Poppins", Font.BOLD,25));
-//        dataTypeButton.addActionListener(this);
-//        dataTypeButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-//        this.add(dataTypeButton);
-
-        listPlugins = new JList<>(PluginManager.getAllPlugins().stream().map(p -> new PluginEntry(p.namespace(), p)).toArray(PluginEntry[]::new));
-        listPlugins.setBounds(50, 150, 300, 370);
-        listPlugins.setBackground(new Color(0xD9D9D9));
-        listPlugins.setForeground(Color.black);
-        listPlugins.setFont(new Font("Poppins", Font.PLAIN, 15));
-        listPlugins.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listPlugins.addListSelectionListener(event -> {
-            System.out.println(listPlugins.getSelectedValue());
-        });
-        listPlugins.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        this.add(listPlugins);
-    }
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == buttonPlugin){
+        buttonPlugin.addActionListener(event -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             FileNameExtensionFilter jarFilter = new FileNameExtensionFilter("JAR FILES", "jar");
@@ -117,7 +63,16 @@ public class Setting extends KENTab implements ActionListener{
                     ex.printStackTrace();
                 }
             }
-        }else if(e.getSource() == buttonFile){
+        });
+        buttonPlugin.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.add(buttonPlugin);
+
+        buttonFile = new JButton("Choose Database File");
+        buttonFile.setBounds(400, 50, 300, 70);
+        buttonFile.setBackground(new Color(0xD9D9D9));
+        buttonFile.setForeground(Color.black);
+        buttonFile.setFont(new Font("Poppins", Font.BOLD, 25));
+        buttonFile.addActionListener(event -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int returnValue = fileChooser.showDialog(null, "Select Folder");
@@ -129,19 +84,51 @@ public class Setting extends KENTab implements ActionListener{
                 Vars.path = folderPath;
                 System.out.println("Selected folder: " + Vars.path);
             }
+        });
+        buttonFile.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
-//            JFileChooser fileChooser = new JFileChooser();
-//            int returnValue = fileChooser.showOpenDialog(this);
-//            if (returnValue == JFileChooser.APPROVE_OPTION) {
-//                // File selected by the user
-//                String filePath = fileChooser.getSelectedFile().getPath();
-//                // Perform any necessary operations with the selected file
-//                System.out.println("Selected file: " + filePath);
-//            }
-        }else if(e.getSource() == dataTypeButton){
-            //            System.out.println("Selected Format: " + selectedType );
-            Vars.extension = (String) dataType.getSelectedItem();
-        }
+
+//        dataTypeText = new JLabel("Database file format :");
+//        dataTypeText.setFont(new Font("Poppins", Font.BOLD,30));
+//        dataTypeText.setForeground(Color.white);
+//        dataTypeText.setBounds(320,380,350,100);
+        this.add(buttonPlugin);
+        this.add(buttonFile);
+//        this.add(dataTypeText);
+
+        String[] dataTypeList = Controller.instance().getAdapterList().keySet().toArray(new String[0]);
+
+        dataType = new JComboBox(dataTypeList);
+        dataType.setBackground(new Color(0xD9D9D9));
+        dataType.setBounds(750, 50, 200, 70);
+        dataType.setFont(new Font("Poppins", Font.BOLD, 20));
+        dataType.setForeground(new Color(0x395B64));
+        dataType.setFocusable(false);
+        this.add(dataType);
+
+        dataTypeButton = new JButton("SET");
+        dataTypeButton.setBounds(950, 50, 100, 70);
+        dataTypeButton.setBackground(new Color(0xD9D9D9));
+        dataTypeButton.setForeground(Color.black);
+        dataTypeButton.setFont(new Font("Poppins", Font.BOLD, 25));
+        dataTypeButton.addActionListener(event -> {
+            System.out.printf("Changed extension to %s%n", dataType.getSelectedItem().toString());
+            Vars.extension = dataType.getSelectedItem().toString();
+        });
+        dataTypeButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.add(dataTypeButton);
+
+        listPlugins = new JList<>(PluginManager.getAllPlugins().stream().map(p -> new PluginEntry(p.namespace(), p)).toArray(PluginEntry[]::new));
+        listPlugins.setBounds(50, 150, 300, 370);
+        listPlugins.setBackground(new Color(0xD9D9D9));
+        listPlugins.setForeground(Color.black);
+        listPlugins.setFont(new Font("Poppins", Font.PLAIN, 15));
+        listPlugins.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listPlugins.addListSelectionListener(event -> {
+            System.out.println(listPlugins.getSelectedValue());
+        });
+        listPlugins.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.add(listPlugins);
     }
 
     @AllArgsConstructor

@@ -18,7 +18,7 @@ import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class DaftarMember extends JPanel implements ActionListener{
+public class DaftarMember extends JPanel {
     private JPanel panelEdit;
     private JButton daftarButton;
     private JTextField textField;
@@ -101,24 +101,7 @@ public class DaftarMember extends JPanel implements ActionListener{
         pilihMember.setFont(new Font("Poppins", Font.BOLD,20));
         pilihMember.setForeground(new Color(0x395B64));
         daftarButton = new JButton();
-        daftarButton.addActionListener(this);
-        daftarButton.setFocusable(false);
-        daftarButton.setContentAreaFilled( false );
-        daftarButton.setText("DAFTAR");
-        daftarButton.setFont(new Font("Poppins", Font.BOLD,40));
-        daftarButton.setBackground(new Color(0, 0, 0, 0));
-        daftarButton.setForeground(new Color(0x395B64));
-        daftarButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        daftarButton.setBounds(950,440,200,90);
-        panelEdit.add(textField);
-        panelEdit.add(textField2);
-        panelEdit.add(pilihMember);
-        panelEdit.add(daftarButton);
-
-    }
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == daftarButton){
+        daftarButton.addActionListener(event -> {
             try {
                 Controller.instance().fetchData(CustomerHolder.instance(), "customer");
                 Controller.instance().fetchData(MemberHolder.instance(), "member");
@@ -149,6 +132,19 @@ public class DaftarMember extends JPanel implements ActionListener{
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-        }
+        });
+        daftarButton.setFocusable(false);
+        daftarButton.setContentAreaFilled( false );
+        daftarButton.setText("DAFTAR");
+        daftarButton.setFont(new Font("Poppins", Font.BOLD,40));
+        daftarButton.setBackground(new Color(0, 0, 0, 0));
+        daftarButton.setForeground(new Color(0x395B64));
+        daftarButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        daftarButton.setBounds(950,440,200,90);
+        panelEdit.add(textField);
+        panelEdit.add(textField2);
+        panelEdit.add(pilihMember);
+        panelEdit.add(daftarButton);
+
     }
 }

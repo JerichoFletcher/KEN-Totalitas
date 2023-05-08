@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CartItem extends JPanel implements ActionListener {
+public class CartItem extends JPanel {
     private JButton addButton;
     private JButton minusButton;
     private JPanel cart;
@@ -46,7 +46,17 @@ public class CartItem extends JPanel implements ActionListener {
         this.setMaximumSize(new Dimension(800,50)); // set maximum size to fixed value
         this.setMinimumSize(new Dimension(800,50));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        addButton.addActionListener(this);
+        addButton.addActionListener(event -> {
+            if(correspondingMI.getQuantity() > 0){
+//                priceHolder = kasir.getPriceText();
+//                priceHolder += harga;
+//                kasir.setPriceText(priceHolder);
+                counter++; // increment counter
+                counterLabel.setText(Integer.toString(counter));
+                correspondingMI.decrementQuantity(counter);// update counter label text
+            }
+            kasir.updatePriceText();
+        });
         addButton.setFocusable(false);
         addButton.setContentAreaFilled( false );
         addButton.setFont(new Font("Poppins", Font.BOLD,15));
@@ -54,7 +64,24 @@ public class CartItem extends JPanel implements ActionListener {
         addButton.setForeground(new Color(0x395B64));
         addButton.setBorder(BorderFactory.createEmptyBorder());
         addButton.setBounds(300,0,50,50);
-        minusButton.addActionListener(this);
+        minusButton.addActionListener(event -> {
+            correspondingMI.addBackQuantity();
+//            priceHolder = kasir.getPriceText();
+//            priceHolder -= harga;
+//            kasir.setPriceText(priceHolder);
+            if(counter == 1) {
+                // remove this panel from the parent panel
+                cart.remove(this);
+                kasir.eraseItemFromCart(this);
+                // update the parent panel
+                cart.revalidate();
+                cart.repaint();
+            } else {
+                counter--;
+                counterLabel.setText(Integer.toString(counter));
+            }
+            kasir.updatePriceText();
+        });
         minusButton.setFocusable(false);
         minusButton.setContentAreaFilled( false );
         minusButton.setFont(new Font("Poppins", Font.BOLD,15));
@@ -96,37 +123,6 @@ public class CartItem extends JPanel implements ActionListener {
         return this.counter;
     }
     public float getHarga(){ return this.harga; }
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == addButton){
-            if(correspondingMI.getQuantity() > 0){
-//                priceHolder = kasir.getPriceText();
-//                priceHolder += harga;
-//                kasir.setPriceText(priceHolder);
-                counter++; // increment counter
-                counterLabel.setText(Integer.toString(counter));
-                correspondingMI.decrementQuantity(counter);// update counter label text
-            }
-        }
-        if(e.getSource() == minusButton){
-            correspondingMI.addBackQuantity();
-//            priceHolder = kasir.getPriceText();
-//            priceHolder -= harga;
-//            kasir.setPriceText(priceHolder);
-            if(counter == 1) {
-                // remove this panel from the parent panel
-                cart.remove(this);
-                kasir.eraseItemFromCart(this);
-                // update the parent panel
-                cart.revalidate();
-                cart.repaint();
-            } else {
-                counter--;
-                counterLabel.setText(Integer.toString(counter));
-            }
-        }
-        kasir.updatePriceText();
-    }
 
     public BillItem toBillItem(){
         return new BillItem(id, judul, counter, harga);

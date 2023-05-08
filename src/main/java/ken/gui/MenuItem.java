@@ -119,8 +119,8 @@ public class MenuItem extends JPanel implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-        boolean found = false;
         if (e.getSource() == addButton) {
+            boolean found = false;
             if(quantity != 0){
                 quantity--;
                 CartItem cartItem = new CartItem(id, judul, harga, cart, kasir, priceHolder, this);

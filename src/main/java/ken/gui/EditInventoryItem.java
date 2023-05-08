@@ -15,7 +15,7 @@ import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class EditInventoryItem extends JPanel implements ActionListener{
+public class EditInventoryItem extends JPanel {
     private JPanel panelEdit;
     private JButton editButton;
     private JButton deleteButton;
@@ -178,54 +178,7 @@ public class EditInventoryItem extends JPanel implements ActionListener{
         });
 
         editButton = new JButton();
-        editButton.addActionListener(this);
-        editButton.setFocusable(false);
-        editButton.setContentAreaFilled( false );
-        editButton.setText("SAVE");
-        editButton.setFont(new Font("Poppins", Font.BOLD,40));
-        editButton.setBackground(new Color(0, 0, 0, 0));
-        editButton.setForeground(new Color(0x395B64));
-        editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        editButton.setBounds(950,440,200,90);
-
-        deleteButton = new JButton();
-        deleteButton.addActionListener(this);
-        deleteButton.setFocusable(false);
-        deleteButton.setContentAreaFilled( false );
-        deleteButton.setText("DELETE");
-        deleteButton.setFont(new Font("Poppins", Font.BOLD,40));
-        deleteButton.setBackground(new Color(0, 0, 0, 0));
-        deleteButton.setForeground(new Color(0x395B64));
-        deleteButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        deleteButton.setBounds(100,440,200,90);
-
-        imageButton = new JButton("Choose Image");
-        imageButton.setBounds(650, 250,  550, 50);
-        imageButton.setBackground(new Color(0xD9D9D9));
-        imageButton.setForeground(Color.black);
-        imageButton.setFont(new Font("Poppins", Font.BOLD,18));
-        imageButton.addActionListener(this);
-        imageButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
-        imagelinkLabel= new JLabel("");
-        imagelinkLabel.setFont(new Font("Poppins", Font.BOLD,18));
-        imagelinkLabel.setForeground(new Color(0x395B64));
-        imagelinkLabel.setBounds(650,310,550,50);
-
-        panelEdit.add(textField);
-        panelEdit.add(textField2);
-        panelEdit.add(textField3);
-        panelEdit.add(textField4);
-        panelEdit.add(textField5);
-        panelEdit.add(editButton);
-        panelEdit.add(deleteButton);
-        panelEdit.add(imageButton);
-        panelEdit.add(imagelinkLabel);
-
-    }
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == editButton){
+        editButton.addActionListener(event -> {
             String editName = textField.getText();
             String editStok = textField2.getText();
             String editHarga = textField3.getText();
@@ -275,8 +228,45 @@ public class EditInventoryItem extends JPanel implements ActionListener{
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
+        });
+        editButton.setFocusable(false);
+        editButton.setContentAreaFilled( false );
+        editButton.setText("SAVE");
+        editButton.setFont(new Font("Poppins", Font.BOLD,40));
+        editButton.setBackground(new Color(0, 0, 0, 0));
+        editButton.setForeground(new Color(0x395B64));
+        editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        editButton.setBounds(950,440,200,90);
 
-        } else if (e.getSource() == imageButton) {
+        deleteButton = new JButton();
+        deleteButton.addActionListener(event -> {
+            try {
+                Controller.instance().fetchData(InventoryHolder.instance(), "barang");
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+            InventoryHolder.instance().removeBarang(id);
+            try {
+                Controller.instance().writeData(InventoryHolder.instance(), "barang");
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        deleteButton.setFocusable(false);
+        deleteButton.setContentAreaFilled( false );
+        deleteButton.setText("DELETE");
+        deleteButton.setFont(new Font("Poppins", Font.BOLD,40));
+        deleteButton.setBackground(new Color(0, 0, 0, 0));
+        deleteButton.setForeground(new Color(0x395B64));
+        deleteButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        deleteButton.setBounds(100,440,200,90);
+
+        imageButton = new JButton("Choose Image");
+        imageButton.setBounds(650, 250,  550, 50);
+        imageButton.setBackground(new Color(0xD9D9D9));
+        imageButton.setForeground(Color.black);
+        imageButton.setFont(new Font("Poppins", Font.BOLD,18));
+        imageButton.addActionListener(event -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             FileNameExtensionFilter jpgFilter = new FileNameExtensionFilter("JPG Files", "jpg");
@@ -290,18 +280,23 @@ public class EditInventoryItem extends JPanel implements ActionListener{
                 System.out.println("Selected file: " + imgurl);
                 imagelinkLabel.setText("Selected file: " + imgurl);
             }
-        } else if (e.getSource() == deleteButton) {
-            try {
-                Controller.instance().fetchData(InventoryHolder.instance(), "barang");
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-            InventoryHolder.instance().removeBarang(id);
-            try {
-                Controller.instance().writeData(InventoryHolder.instance(), "barang");
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-        }
+        });
+        imageButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+        imagelinkLabel= new JLabel("");
+        imagelinkLabel.setFont(new Font("Poppins", Font.BOLD,18));
+        imagelinkLabel.setForeground(new Color(0x395B64));
+        imagelinkLabel.setBounds(650,310,550,50);
+
+        panelEdit.add(textField);
+        panelEdit.add(textField2);
+        panelEdit.add(textField3);
+        panelEdit.add(textField4);
+        panelEdit.add(textField5);
+        panelEdit.add(editButton);
+        panelEdit.add(deleteButton);
+        panelEdit.add(imageButton);
+        panelEdit.add(imagelinkLabel);
+
     }
 }

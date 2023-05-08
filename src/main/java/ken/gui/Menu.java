@@ -41,18 +41,16 @@ public class Menu extends JLabel {
                         JMenuItem menuItem = new JMenuItem(judulMenuItem);
                         menuPop.add(menuItem);
                         System.out.printf("Added item %s -> %s to menu%n", judulMenuItem, entry.getKey());
-                        menuItem.addActionListener(new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
-                                try {
-                                    Class<? extends JPanel> contentClass = entry.getValue();
-                                    JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
-                                    Tabs.tabs.addCustomTab(judulMenuItem, contentPanel, tabs.getTabCount());
-                                    Tabs.tabCount = tabs.getTabCount();
-                                    Tabs.tabs.setSelectedComponent(contentPanel);
-                                } catch (InstantiationException | IllegalAccessException | NoSuchMethodException
-                                    | InvocationTargetException ex) {
-                                    ex.printStackTrace();
-                                }
+                        menuItem.addActionListener(event -> {
+                            try {
+                                Class<? extends JPanel> contentClass = entry.getValue();
+                                JPanel contentPanel = contentClass.getDeclaredConstructor().newInstance();
+                                Tabs.tabs.addCustomTab(judulMenuItem, contentPanel, tabs.getTabCount());
+                                Tabs.tabCount = tabs.getTabCount();
+                                Tabs.tabs.setSelectedComponent(contentPanel);
+                            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException
+                                | InvocationTargetException ex) {
+                                ex.printStackTrace();
                             }
                         });
                     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException

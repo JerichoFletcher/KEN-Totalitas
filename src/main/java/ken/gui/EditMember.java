@@ -17,7 +17,7 @@ import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class EditMember extends JPanel implements ActionListener{
+public class EditMember extends JPanel {
     private JPanel panelEdit;
     private JButton editButton;
     private JTextField textField;
@@ -128,37 +128,19 @@ public class EditMember extends JPanel implements ActionListener{
 
 
         editButton = new JButton();
-        editButton.addActionListener(this);
-        editButton.setFocusable(false);
-        editButton.setContentAreaFilled( false );
-        editButton.setText("SAVE");
-        editButton.setFont(new Font("Poppins", Font.BOLD,40));
-        editButton.setBackground(new Color(0, 0, 0, 0));
-        editButton.setForeground(new Color(0x395B64));
-        editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        editButton.setBounds(950,440,200,90);
-        panelEdit.add(textField);
-        panelEdit.add(textField2);
-        panelEdit.add(pilihMember);
-        panelEdit.add(editButton);
-        panelEdit.add(pilihStateMember);
-
-    }
-
-    public void actionPerformed(ActionEvent e){
-        try{
-            if(e.getSource() == editButton){
+        editButton.addActionListener(event -> {
+            try{
                 String editNama = (String) textField.getText().trim();
                 String editTelpString = (String) textField2.getText().trim();
                 String editType = (String) pilihMember.getSelectedItem();
                 String editStatus = (String) pilihStateMember.getSelectedItem();
-                if (editNama.length() == 0) {
+                if(editNama.length() == 0){
                     editNama = nama;
                 }
-                if (editTelpString.length() ==0 ) {
+                if(editTelpString.length() == 0){
                     editTelpString = phone;
                 }
-                if (editTelpString != "Nomor Telfon" || editTelpString.length() != 0) {
+                if(editTelpString != "Nomor Telfon" || editTelpString.length() != 0){
                     System.out.println("Editing Member...");
                     System.out.println("Nama: " + editNama);
                     System.out.println("Telp: " + editTelpString);
@@ -186,10 +168,23 @@ public class EditMember extends JPanel implements ActionListener{
                         Controller.instance().writeData(VIPHolder.instance(), "vip");
                     }
                 }
-
+            }catch(Exception ex){
+                throw new RuntimeException(ex);
             }
-        }catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+        });
+        editButton.setFocusable(false);
+        editButton.setContentAreaFilled( false );
+        editButton.setText("SAVE");
+        editButton.setFont(new Font("Poppins", Font.BOLD,40));
+        editButton.setBackground(new Color(0, 0, 0, 0));
+        editButton.setForeground(new Color(0x395B64));
+        editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        editButton.setBounds(950,440,200,90);
+        panelEdit.add(textField);
+        panelEdit.add(textField2);
+        panelEdit.add(pilihMember);
+        panelEdit.add(editButton);
+        panelEdit.add(pilihStateMember);
+
     }
 }

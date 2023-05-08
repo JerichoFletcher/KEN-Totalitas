@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class HistoryMember extends JPanel implements ActionListener {
+public class HistoryMember extends JPanel {
     private JPanel history;
     private JButton unduhButton;
     private List<String> listOfName;
@@ -54,7 +54,11 @@ public class HistoryMember extends JPanel implements ActionListener {
         headerText.setFont(new Font("Poppins", Font.BOLD,15));
         headerText.setForeground(Color.black);
         unduhButton = new JButton();
-        unduhButton.addActionListener(this);
+        unduhButton.addActionListener(event -> {
+            UnduhHistory unduhHistory = new UnduhHistory(listOfName, listOfPrice);
+            Thread cetakBill = new Thread(unduhHistory);
+            cetakBill.run();
+        });
         unduhButton.setFocusable(false);
         unduhButton.setContentAreaFilled( false );
         unduhButton.setText("UNDUH HISTORY");
@@ -89,13 +93,5 @@ public class HistoryMember extends JPanel implements ActionListener {
         JScrollPane scrollPane = new JScrollPane(history);
         scrollPane.setBounds(0, 50, 1260, 520);
         this.add(scrollPane);
-    }
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == unduhButton){
-            UnduhHistory unduhHistory = new UnduhHistory(listOfName, listOfPrice);
-            Thread cetakBill = new Thread(unduhHistory);
-            cetakBill.run();
-        }
     }
 }

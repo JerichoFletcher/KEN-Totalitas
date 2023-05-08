@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class LayarFixedBill extends JPanel implements ActionListener {
+public class LayarFixedBill extends JPanel {
     private  int idBill;
     private JPanel panelBarang;
     private JButton daftarButton;
@@ -78,7 +78,11 @@ public class LayarFixedBill extends JPanel implements ActionListener {
             namaCustomer.setBounds(650, 120, 1000, 100);
             this.add(namaCustomer);
             daftarButton = new JButton("Daftar Member/VIP");
-            daftarButton.addActionListener(this);
+            daftarButton.addActionListener(event -> {
+                DaftarMember layarDM = new DaftarMember(idNewCust);
+                Tabs.tabs.addCustomTab("Daftar Member", layarDM, Tabs.tabCount);
+                Tabs.tabs.setSelectedComponent(layarDM);
+            });
             daftarButton.setBackground(new Color(0xD9D9D9));
             daftarButton.setBounds(775, 250, 230, 100);
             daftarButton.setFont(new Font("Poppins", Font.BOLD, 20));
@@ -94,7 +98,13 @@ public class LayarFixedBill extends JPanel implements ActionListener {
             this.add(namaCustomer);
         }
         cetakButton = new JButton("Cetak Bill");
-        cetakButton.addActionListener(this);
+        cetakButton.addActionListener(event -> {
+            this.total = 1000;
+            System.out.println("cetak dummy");
+            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total, idNewCust);
+            Thread cetakBill = new Thread(unduhDetil);
+            cetakBill.start();
+        });
         cetakButton.setBackground(new Color(0xD9D9D9));
         cetakButton.setBounds(775, 400, 230, 50);
         cetakButton.setFont(new Font("Poppins", Font.BOLD, 20));
@@ -103,23 +113,4 @@ public class LayarFixedBill extends JPanel implements ActionListener {
         this.add(cetakButton);
 
     }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == daftarButton) {
-            DaftarMember layarDM = new DaftarMember(idNewCust);
-            Tabs.tabs.addCustomTab("Daftar Member", layarDM, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarDM);
-        }
-        if(e.getSource() == cetakButton) {
-            this.total = 1000;
-            System.out.println("cetak dummy");
-            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total, idNewCust);
-            Thread cetakBill = new Thread(unduhDetil);
-            cetakBill.run();
-
-        }
-    }
-
-
-
 }

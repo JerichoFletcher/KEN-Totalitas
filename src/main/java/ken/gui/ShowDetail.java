@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ShowDetail extends JPanel implements ActionListener {
+public class ShowDetail extends JPanel {
     private  int idBill;
     private JPanel panelBarang;
     private JButton daftarButton;
@@ -77,26 +77,17 @@ public class ShowDetail extends JPanel implements ActionListener {
         namaCustomer.setBounds(650, 120, 1000, 100);
         this.add(namaCustomer);
         cetakButton = new JButton("Cetak Bill");
-        cetakButton.addActionListener(this);
+        cetakButton.addActionListener(event -> {
+            System.out.println("cetak dummy");
+            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total, idBill);
+            Thread cetakBill = new Thread(unduhDetil);
+            cetakBill.start();
+        });
         cetakButton.setBackground(new Color(0xD9D9D9));
         cetakButton.setBounds(775, 400, 230, 50);
         cetakButton.setFont(new Font("Poppins", Font.BOLD, 20));
         cetakButton.setForeground(new Color(0x395B64));
         cetakButton.setFocusable(false);
         this.add(cetakButton);
-
     }
-
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == cetakButton) {
-            System.out.println("cetak dummy");
-            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total, idBill);
-            Thread cetakBill = new Thread(unduhDetil);
-            cetakBill.run();
-
-        }
-    }
-
-
-
 }

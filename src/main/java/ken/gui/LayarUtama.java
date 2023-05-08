@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
-public class LayarUtama extends JFrame implements Runnable, ActionListener{
+public class LayarUtama extends JFrame {
 
     private JLabel clockLabel;
     private JLabel dayLabel;
@@ -37,7 +37,19 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
         this.setResizable(false);
         startButton = new JButton();
         startButton.setBounds(900,520,400,200);
-        startButton.addActionListener(this);
+        startButton.addActionListener(event -> {
+            System.out.println("run main program");
+            this.setVisible(false);
+            DefaultLayar defLay = new DefaultLayar();
+            Tabs tabs = new Tabs();
+            Menu menu = new Menu(tabs);
+
+            defLay.add(menu);
+            menu.setBounds(20,10,300,50);
+            menu.setPreferredSize(new Dimension(300, 50));
+            defLay.add(tabs);
+            tabs.setBounds(0, 70, defLay.getWidth(), defLay.getHeight() - 70); // set the bounds
+        });
         startButton.setFocusable(false);
         startButton.setContentAreaFilled( false );
         startButton.setText("START");
@@ -64,33 +76,13 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
 
     public void setTime(){
         while(true){
-//            Thread clockThread = new Thread(this); // create a new thread
-//            clockThread.start();
             time = timeFormat.format(Calendar.getInstance().getTime());
             clockLabel.setText(time);
             day = dayFormat.format(Calendar.getInstance().getTime());
             dayLabel.setText(day);
             date = dateFormat.format(Calendar.getInstance().getTime());
             dateLabel.setText(date);
-//            try {
-//                Thread.sleep(1000);
-//            }catch (InterruptedException e){
-//                e.printStackTrace();
-//            }
         }
-    }
-
-    @Override
-    public void run(){
-//        while(true){
-//            try{
-//                time = timeFormat.format(Calendar.getInstance().getTime());
-//                clockLabel.setText(time);
-//                Thread.sleep(1000);
-//            }catch(InterruptedException e){
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     public void createLabels(){
@@ -134,21 +126,5 @@ public class LayarUtama extends JFrame implements Runnable, ActionListener{
         nameLabel5.setFont(new Font("Poppins", Font.BOLD,20));
         nameLabel5.setBounds(445,320,400,250);
         nameLabel5.setForeground(new Color(0xFFFFFF));
-    }
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == startButton){
-            System.out.println("run main program");
-            this.setVisible(false);
-            DefaultLayar defLay = new DefaultLayar();
-            Tabs tabs = new Tabs();
-            Menu menu = new Menu(tabs);
-
-            defLay.add(menu);
-            menu.setBounds(20,10,300,50);
-            menu.setPreferredSize(new Dimension(300, 50));
-            defLay.add(tabs);
-            tabs.setBounds(0, 70, defLay.getWidth(), defLay.getHeight() - 70); // set the bounds
-        }
     }
 }

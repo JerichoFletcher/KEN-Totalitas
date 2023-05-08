@@ -230,7 +230,12 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     try{
                         notMember = !MemberHolder.instance().getMemberById(id).getName().equals(inputField.getText());
                     }catch(NullPointerException ex){
+                        ex.printStackTrace();
+                    }
+                    try{
                         notMember = !VIPHolder.instance().getVIPById(id).getName().equals(inputField.getText());
+                    }catch(NullPointerException ex){
+                        ex.printStackTrace();
                     }
                     if(inputField.getText().length() ==  0 || notMember){
                         Customer newCustomer = new Customer();
@@ -241,7 +246,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
                         Tabs.tabs.setSelectedComponent(layarFB);
                         for(int i = 0; i < listOfCartItem.size() ; i++){
                             int idt = listOfCartItem.get(i).getID();
-                            String namaBarang = listOfCartItem.get(i).getName();
+                            String namaBarang = listOfCartItem.get(i).getJudul();
                             int jumlah = listOfCartItem.get(i).getCounter();
                             float harga = listOfCartItem.get(i).getHarga();
                             BillItem billItem = new BillItem(idt, namaBarang, jumlah, harga);

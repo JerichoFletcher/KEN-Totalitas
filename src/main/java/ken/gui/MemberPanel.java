@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MemberPanel extends JPanel implements ActionListener {
+public class MemberPanel extends JPanel {
     private JButton editButton;
     private int id;
     private String nama;
@@ -34,7 +34,12 @@ public class MemberPanel extends JPanel implements ActionListener {
         this.setMaximumSize(new Dimension(1280,70)); // set maximum size to fixed value
         this.setMinimumSize(new Dimension(1280,70));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        editButton.addActionListener(this);
+        editButton.addActionListener(event -> {
+            System.out.println("tambah dummy");
+            EditMember layarEM = new EditMember(id,nama,phone,memberType,activeType);
+            Tabs.tabs.addCustomTab("Edit Member", layarEM, Tabs.tabCount);
+            Tabs.tabs.setSelectedComponent(layarEM);
+        });
         editButton.setFocusable(false);
         editButton.setContentAreaFilled( false );
         editButton.setFont(new Font("Poppins", Font.BOLD,20));
@@ -42,7 +47,12 @@ public class MemberPanel extends JPanel implements ActionListener {
         editButton.setForeground(new Color(0x395B64));
         editButton.setBorder(BorderFactory.createEmptyBorder());
         editButton.setBounds(1020,25,100,50);
-        historyButton.addActionListener(this);
+        historyButton.addActionListener(event -> {
+            System.out.println("Redirecting to History");
+            HistoryMember layarHM = new HistoryMember(id, nama);
+            Tabs.tabs.addCustomTab("History Member", layarHM, Tabs.tabCount);
+            Tabs.tabs.setSelectedComponent(layarHM);
+        });
         historyButton.setFocusable(false);
         historyButton.setContentAreaFilled( false );
         historyButton.setFont(new Font("Poppins", Font.BOLD,20));
@@ -77,19 +87,5 @@ public class MemberPanel extends JPanel implements ActionListener {
         this.add(title);
         this.add(editButton);
         this.add(historyButton);
-    }
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == editButton){
-            System.out.println("tambah dummy");
-            EditMember layarEM = new EditMember(id,nama,phone,memberType,activeType);
-            Tabs.tabs.addCustomTab("Edit Member", layarEM, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarEM);
-        } else if (e.getSource() == historyButton) {
-            System.out.println("Redirecting to History");
-            HistoryMember layarHM = new HistoryMember(id, nama);
-            Tabs.tabs.addCustomTab("History Member", layarHM, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarHM);
-        }
     }
 }

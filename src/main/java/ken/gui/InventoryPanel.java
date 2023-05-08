@@ -11,7 +11,7 @@ import ken.backend.settings.Settings;
 import ken.gui.tab.Kasir;
 import ken.util.UID;
 
-public class InventoryPanel extends JPanel implements ActionListener {
+public class InventoryPanel extends JPanel {
     private JButton editButton;
     private int id;
     private String judul;
@@ -44,7 +44,12 @@ public class InventoryPanel extends JPanel implements ActionListener {
         this.setMaximumSize(new Dimension(1280,100)); // set maximum size to fixed value
         this.setMinimumSize(new Dimension(1280,100));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        editButton.addActionListener(this);
+        editButton.addActionListener(event -> {
+            System.out.println("edit dummy");
+            EditInventoryItem layarEI = new EditInventoryItem(id,judul,harga,hargaBeli,quantity,kategori,path);
+            Tabs.tabs.addCustomTab("Edit Inventory", layarEI, Tabs.tabCount);
+            Tabs.tabs.setSelectedComponent(layarEI);
+        });
         editButton.setFocusable(false);
         editButton.setContentAreaFilled( false );
         editButton.setFont(new Font("Poppins", Font.BOLD,20));
@@ -88,15 +93,5 @@ public class InventoryPanel extends JPanel implements ActionListener {
         this.add(price);
         this.add(editButton);
         this.add(stokLabel);
-    }
-
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == editButton){
-            System.out.println("edit dummy");
-            EditInventoryItem layarEI = new EditInventoryItem(id,judul,harga,hargaBeli,quantity,kategori,path);
-            Tabs.tabs.addCustomTab("Edit Inventory", layarEI, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarEI);
-        }
     }
 }

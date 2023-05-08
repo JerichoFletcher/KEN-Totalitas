@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class HistoryPanel extends JPanel implements ActionListener {
+public class HistoryPanel extends JPanel {
     private JButton showDetailBUtton;
     private String judul;
     private JLabel priceLabel;
@@ -42,7 +42,11 @@ public class HistoryPanel extends JPanel implements ActionListener {
         title.setForeground(new Color(0x395B64));
         title.setFont(new Font("Poppins", Font.BOLD,20));
         showDetailBUtton = new JButton("DETIL");
-        showDetailBUtton.addActionListener(this);
+        showDetailBUtton.addActionListener(event -> {
+            ShowDetail showDetail = new ShowDetail(idCust, listOfBarang, total, idBill);
+            Tabs.tabs.addCustomTab("Detil Transaksi", showDetail, Tabs.tabCount);
+            Tabs.tabs.setSelectedComponent(showDetail);
+        });
         showDetailBUtton.setFocusable(false);
         showDetailBUtton.setContentAreaFilled( false );
         showDetailBUtton.setFont(new Font("Poppins", Font.BOLD,20));
@@ -53,13 +57,5 @@ public class HistoryPanel extends JPanel implements ActionListener {
         this.add(showDetailBUtton);
         this.add(title);
         this.add(priceLabel);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == showDetailBUtton) {
-            ShowDetail showDetail = new ShowDetail(idCust, listOfBarang, total, idBill);
-            Tabs.tabs.addCustomTab("Detil Transaksi", showDetail, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(showDetail);
-        }
     }
 }

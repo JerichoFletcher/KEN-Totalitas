@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MemberCheckoutPanel extends JPanel implements ActionListener {
+public class MemberCheckoutPanel extends JPanel {
     private JButton editButton;
     private int id;
     private String nama;
@@ -32,23 +32,7 @@ public class MemberCheckoutPanel extends JPanel implements ActionListener {
         this.setMaximumSize(new Dimension(300,50)); // set maximum size to fixed value
         this.setMinimumSize(new Dimension(300,50));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        editButton.addActionListener(this);
-        editButton.setFocusable(false);
-        editButton.setContentAreaFilled( false );
-        editButton.setFont(new Font("Poppins", Font.BOLD,15));
-        editButton.setBackground(new Color(0, 0, 0, 0));
-        editButton.setForeground(new Color(0x395B64));
-        editButton.setBorder(BorderFactory.createEmptyBorder());
-        editButton.setBounds(180,0,100,50);
-        title.setBounds(10,0,200,50);
-        title.setForeground(new Color(0x395B64));
-        title.setFont(new Font("Poppins", Font.BOLD,15));
-        this.add(title);
-        this.add(editButton);
-    }
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == editButton){
+        editButton.addActionListener(event -> {
             System.out.println("Chose Member with ID: " + id);
             co.setId(id);
             field.setText(nama);
@@ -62,6 +46,18 @@ public class MemberCheckoutPanel extends JPanel implements ActionListener {
 
 //            System.out.println(points);
             pointfield.setText(Float.toString(points));
-        }
+        });
+        editButton.setFocusable(false);
+        editButton.setContentAreaFilled( false );
+        editButton.setFont(new Font("Poppins", Font.BOLD,15));
+        editButton.setBackground(new Color(0, 0, 0, 0));
+        editButton.setForeground(new Color(0x395B64));
+        editButton.setBorder(BorderFactory.createEmptyBorder());
+        editButton.setBounds(180,0,100,50);
+        title.setBounds(10,0,200,50);
+        title.setForeground(new Color(0x395B64));
+        title.setFont(new Font("Poppins", Font.BOLD,15));
+        this.add(title);
+        this.add(editButton);
     }
 }

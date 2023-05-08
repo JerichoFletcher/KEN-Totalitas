@@ -20,7 +20,7 @@ import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class AddItem extends JPanel implements ActionListener{
+public class AddItem extends JPanel {
     private JPanel panelEdit;
     private JButton editButton;
     private JTextField textField;
@@ -168,43 +168,7 @@ public class AddItem extends JPanel implements ActionListener{
         });
 
         editButton = new JButton();
-        editButton.addActionListener(this);
-        editButton.setFocusable(false);
-        editButton.setContentAreaFilled( false );
-        editButton.setText("SAVE");
-        editButton.setFont(new Font("Poppins", Font.BOLD,40));
-        editButton.setBackground(new Color(0, 0, 0, 0));
-        editButton.setForeground(new Color(0x395B64));
-        editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        editButton.setBounds(950,440,200,90);
-
-
-        imageButton = new JButton("Choose Image");
-        imageButton.setBounds(650, 250,  550, 50);
-        imageButton.setBackground(new Color(0xD9D9D9));
-        imageButton.setForeground(Color.black);
-        imageButton.setFont(new Font("Poppins", Font.BOLD,18));
-        imageButton.addActionListener(this);
-        imageButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
-        imagelinkLabel= new JLabel("");
-        imagelinkLabel.setFont(new Font("Poppins", Font.BOLD,18));
-        imagelinkLabel.setForeground(new Color(0x395B64));
-        imagelinkLabel.setBounds(650,310,550,50);
-
-        panelEdit.add(textField);
-        panelEdit.add(textField2);
-        panelEdit.add(textField3);
-        panelEdit.add(textField4);
-        panelEdit.add(textField5);
-        panelEdit.add(editButton);
-        panelEdit.add(imageButton);
-        panelEdit.add(imagelinkLabel);
-
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == editButton) {
+        editButton.addActionListener(event -> {
             try {
                 Controller.instance().fetchData(InventoryHolder.instance(), "barang");
                 String addName = textField.getText().trim();
@@ -228,7 +192,23 @@ public class AddItem extends JPanel implements ActionListener{
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-        } else if (e.getSource() == imageButton) {
+        });
+        editButton.setFocusable(false);
+        editButton.setContentAreaFilled( false );
+        editButton.setText("SAVE");
+        editButton.setFont(new Font("Poppins", Font.BOLD,40));
+        editButton.setBackground(new Color(0, 0, 0, 0));
+        editButton.setForeground(new Color(0x395B64));
+        editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        editButton.setBounds(950,440,200,90);
+
+
+        imageButton = new JButton("Choose Image");
+        imageButton.setBounds(650, 250,  550, 50);
+        imageButton.setBackground(new Color(0xD9D9D9));
+        imageButton.setForeground(Color.black);
+        imageButton.setFont(new Font("Poppins", Font.BOLD,18));
+        imageButton.addActionListener(event -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             FileNameExtensionFilter jpgFilter = new FileNameExtensionFilter("JPG Files", "jpg");
@@ -242,6 +222,22 @@ public class AddItem extends JPanel implements ActionListener{
                 System.out.println("Selected file: " + imgurl);
                 imagelinkLabel.setText("Selected file: " + imgurl);
             }
-        }
+        });
+        imageButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+        imagelinkLabel= new JLabel("");
+        imagelinkLabel.setFont(new Font("Poppins", Font.BOLD,18));
+        imagelinkLabel.setForeground(new Color(0x395B64));
+        imagelinkLabel.setBounds(650,310,550,50);
+
+        panelEdit.add(textField);
+        panelEdit.add(textField2);
+        panelEdit.add(textField3);
+        panelEdit.add(textField4);
+        panelEdit.add(textField5);
+        panelEdit.add(editButton);
+        panelEdit.add(imageButton);
+        panelEdit.add(imagelinkLabel);
+
     }
 }

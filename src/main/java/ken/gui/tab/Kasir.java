@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Kasir extends KENTab implements ActionListener {
+public class Kasir extends KENTab {
     private JPanel inventory;
     private JPanel inventory2;
     private JPanel cart;
@@ -130,7 +130,68 @@ public class Kasir extends KENTab implements ActionListener {
         getHistoryButton.setBackground(new Color(0xD9D9D9));
         getHistoryButton.setForeground(Color.black);
         getHistoryButton.setFont(new Font("Poppins", Font.BOLD,20));
-        getHistoryButton.addActionListener(this);
+        getHistoryButton.addActionListener(event -> {
+            selectedHistory = (String) pilihHistory.getSelectedItem();
+            if (selectedHistory.length() != 0) {
+                System.out.println("get history" + selectedHistory);
+                inventory.removeAll();
+                listOfCartItem.clear();
+                cart.removeAll();
+                cart.revalidate();
+                cart.repaint();
+                for (Map.Entry<Integer, Barang> entry2 : InventoryHolder.instance().getListBarang().entrySet()) {
+                    Integer key = entry2.getKey();
+                    Barang value2 = entry2.getValue();
+                    boolean found = false;
+                    for (Map.Entry<Integer, BillItem> entry : BillHolder.instance().getBillById(Integer.parseInt(selectedHistory)).getListBarang().entrySet()) {
+                        BillItem value = entry.getValue();
+                        int amount = value.getJumlahDibeli();
+                        int id = value.getId();
+                        if (id == value2.getId()) {
+                            ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok()-amount, value2.getGambar(), price, cart, this, value2.getKategori());
+                            inventory.add(menuItem);
+                            found = true;
+                            CartItem cartItem = new CartItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), cart, this, price, menuItem);
+                            this.addCartItem(cartItem);
+                            cart.add(cartItem);
+                            for (int i = 0; i<amount-1;i++) {
+                                cartItem.incrementCounter();
+                            }
+                            cart.revalidate();
+                            cart.repaint();
+                            this.updatePriceText();
+                            System.out.println(value2.getId());
+                            System.out.println(cartItem.getID());
+                        }
+                    }
+                    if (!found) {
+                        ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok(), value2.getGambar(), price, cart, this, value2.getKategori());
+                        inventory.add(menuItem);
+                    }
+                }
+
+
+                setScrollPane(getScrollPane());
+                updatePriceText();
+            } else {
+                System.out.println("No Selected History, Setting to default");
+                inventory.removeAll();
+                listOfCartItem.clear();
+                cart.removeAll();
+                cart.revalidate();
+                cart.repaint();
+                for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
+                    Integer key = entry.getKey();
+                    Barang value = entry.getValue();
+                    // Do something with the key and value...
+
+                    ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this, value.getKategori());
+                    inventory.add(menuItem);
+                }
+                setScrollPane(getScrollPane());
+                updatePriceText();
+            }
+        });
         getHistoryButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.add(getHistoryButton);
 
@@ -225,179 +286,7 @@ public class Kasir extends KENTab implements ActionListener {
         searchButton.setBackground(new Color(0xD9D9D9));
         searchButton.setForeground(Color.black);
         searchButton.setFont(new Font("Poppins", Font.BOLD,12));
-        searchButton.addActionListener(this);
-        searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        this.add(searchButton);
-
-
-        scrollPane = new JScrollPane(inventory);
-        JScrollPane scrollPane1 = new JScrollPane(cart);
-        scrollPane.setBounds(10, 95, 740, 480);
-        scrollPane1.setBounds(760, 105, 490, 370);
-        checkoutButton = new JButton("Checkout");
-        checkoutButton.setBounds(950, 515,  300, 60);
-        checkoutButton.setBackground(new Color(0xD9D9D9));
-        checkoutButton.setForeground(Color.black);
-        checkoutButton.setFont(new Font("Poppins", Font.BOLD,25));
-        checkoutButton.addActionListener(this);
-        checkoutButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
-        saveBillButton = new JButton("Save Bill");
-        saveBillButton.setBounds(760, 515,  190, 60);
-        saveBillButton.setBackground(new Color(0xD9D9D9));
-        saveBillButton.setForeground(Color.black);
-        saveBillButton.setFont(new Font("Poppins", Font.BOLD,20));
-        saveBillButton.addActionListener(this);
-        saveBillButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
-        pricePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        this.add(pricePanel);
-        this.add(checkoutButton);
-        this.add(headerCart);
-        this.add(scrollPane1);
-        this.add(headerInv);
-        this.add(scrollPane);
-        this.add(saveBillButton);
-        JPanel item1 = new JPanel();
-    }
-
-    public List<CartItem> getCart(){
-        return listOfCartItem;
-    }
-
-    public void addCartItem(CartItem cartItem){
-        listOfCartItem.add(cartItem);
-    }
-
-    public void deleteAllCartItem() {
-        listOfCartItem.clear();
-    }
-    public void eraseItemFromCart(CartItem cartItem){
-        listOfCartItem.remove(cartItem);
-    }
-
-    public void setPriceText(float price){
-        this.price = price;
-        priceText.setText((String)Settings.get(UID.of(Vars.defaultNamespace, "settings", "currency")) + " " + price);
-    }
-    public float getPriceText(){
-        return this.price;
-    }
-
-    public void updatePriceText(){
-        // Build a map of items and refresh price text
-        Map<Integer, BillItem> map = new HashMap<>();
-        for(int i = 0, n = 0; i < cart.getComponentCount(); i++){
-            Component comp = cart.getComponent(i);
-            if(comp instanceof CartItem)map.put(n++, ((CartItem)comp).toBillItem());
-        }
-        setPriceText(Vars.billProcessor.get(map));
-    }
-
-    public JScrollPane getScrollPane(){
-        return scrollPane;
-    }
-
-    public void setScrollPane(JScrollPane scrollPane){
-        this.scrollPane = scrollPane;
-        this.scrollPane.revalidate();
-        this.scrollPane.repaint();
-    }
-
-
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == checkoutButton){
-            System.out.println("redirect ke checkout menu");
-            System.out.println(listOfCartItem.size());
-            LayarCheckout layarCheckout = new LayarCheckout(listOfCartItem, price);
-            Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
-            Tabs.tabs.setSelectedComponent(layarCheckout);
-        } else if (e.getSource()==saveBillButton) {
-//            System.out.println("save bill");
-            try {
-                Controller.instance().fetchData(BillHolder.instance(), "bill");
-            }catch(Exception ex){
-                throw new RuntimeException();
-            }
-            Bill billTemp = new Bill(0, price);
-            for(CartItem cartItem : listOfCartItem){
-                int idt = cartItem.getID();
-                String namaBarang = cartItem.getName();
-                int jumlah = cartItem.getCounter();
-                float harga = cartItem.getHarga();
-                BillItem billItem = new BillItem(idt, namaBarang, jumlah, harga);
-//                Barang barang = InventoryHolder.instance().getBarangById(listOfCartItem.get(i).getID());
-//                barang.setStok(barang.getStok() - listOfCartItem.get(i).getCounter());
-                billTemp.addBarang(billItem);
-            }
-            BillHolder.instance().addBill(billTemp);
-            try {
-                Controller.instance().writeData(BillHolder.instance(), "bill");
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-        } else if (e.getSource()==getHistoryButton) {
-            selectedHistory = (String) pilihHistory.getSelectedItem();
-            if (selectedHistory.length() != 0) {
-                System.out.println("get history" + selectedHistory);
-                inventory.removeAll();
-                listOfCartItem.clear();
-                cart.removeAll();
-                cart.revalidate();
-                cart.repaint();
-                for (Map.Entry<Integer, Barang> entry2 : InventoryHolder.instance().getListBarang().entrySet()) {
-                    Integer key = entry2.getKey();
-                    Barang value2 = entry2.getValue();
-                    boolean found = false;
-                    for (Map.Entry<Integer, BillItem> entry : BillHolder.instance().getBillById(Integer.parseInt(selectedHistory)).getListBarang().entrySet()) {
-                        BillItem value = entry.getValue();
-                        int amount = value.getJumlahDibeli();
-                        int id = value.getId();
-                        if (id == value2.getId()) {
-                            ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok()-amount, value2.getGambar(), price, cart, this, value2.getKategori());
-                            inventory.add(menuItem);
-                            found = true;
-                            CartItem cartItem = new CartItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), cart, this, price, menuItem);
-                            this.addCartItem(cartItem);
-                            cart.add(cartItem);
-                            for (int i = 0; i<amount-1;i++) {
-                                cartItem.incrementCounter();
-                            }
-                            cart.revalidate();
-                            cart.repaint();
-                            this.updatePriceText();
-                            System.out.println(value2.getId());
-                            System.out.println(cartItem.getID());
-                        }
-                    }
-                    if (!found) {
-                        ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok(), value2.getGambar(), price, cart, this, value2.getKategori());
-                        inventory.add(menuItem);
-                    }
-                }
-
-
-                setScrollPane(getScrollPane());
-                updatePriceText();
-            } else {
-                System.out.println("No Selected History, Setting to default");
-                inventory.removeAll();
-                listOfCartItem.clear();
-                cart.removeAll();
-                cart.revalidate();
-                cart.repaint();
-                for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
-                    Integer key = entry.getKey();
-                    Barang value = entry.getValue();
-                    // Do something with the key and value...
-
-                    ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this, value.getKategori());
-                    inventory.add(menuItem);
-                }
-                setScrollPane(getScrollPane());
-                updatePriceText();
-            }
-        } else if (e.getSource()==searchButton) {
+        searchButton.addActionListener(event -> {
             float searchHarga= -1;
             String searchNama = (String) inputFieldNama.getText().trim();
             String searchHargaString = (String) inputFieldHarga.getText().trim();
@@ -462,7 +351,111 @@ public class Kasir extends KENTab implements ActionListener {
                 scrollPane.repaint();
                 scrollPane.revalidate();
             }
-        }
+        });
+        searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.add(searchButton);
+
+
+        scrollPane = new JScrollPane(inventory);
+        JScrollPane scrollPane1 = new JScrollPane(cart);
+        scrollPane.setBounds(10, 95, 740, 480);
+        scrollPane1.setBounds(760, 105, 490, 370);
+        checkoutButton = new JButton("Checkout");
+        checkoutButton.setBounds(950, 515,  300, 60);
+        checkoutButton.setBackground(new Color(0xD9D9D9));
+        checkoutButton.setForeground(Color.black);
+        checkoutButton.setFont(new Font("Poppins", Font.BOLD,25));
+        checkoutButton.addActionListener(event -> {
+            System.out.println("redirect ke checkout menu");
+            System.out.println(listOfCartItem.size());
+            LayarCheckout layarCheckout = new LayarCheckout(listOfCartItem, price);
+            Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
+            Tabs.tabs.setSelectedComponent(layarCheckout);
+        });
+        checkoutButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+        saveBillButton = new JButton("Save Bill");
+        saveBillButton.setBounds(760, 515,  190, 60);
+        saveBillButton.setBackground(new Color(0xD9D9D9));
+        saveBillButton.setForeground(Color.black);
+        saveBillButton.setFont(new Font("Poppins", Font.BOLD,20));
+        saveBillButton.addActionListener(event -> {
+            try {
+                Controller.instance().fetchData(BillHolder.instance(), "bill");
+            }catch(Exception ex){
+                throw new RuntimeException();
+            }
+            Bill billTemp = new Bill(0, price);
+            for(CartItem cartItem : listOfCartItem){
+                int idt = cartItem.getID();
+                String namaBarang = cartItem.getName();
+                int jumlah = cartItem.getCounter();
+                float harga = cartItem.getHarga();
+                BillItem billItem = new BillItem(idt, namaBarang, jumlah, harga);
+//                Barang barang = InventoryHolder.instance().getBarangById(listOfCartItem.get(i).getID());
+//                barang.setStok(barang.getStok() - listOfCartItem.get(i).getCounter());
+                billTemp.addBarang(billItem);
+            }
+            BillHolder.instance().addBill(billTemp);
+            try {
+                Controller.instance().writeData(BillHolder.instance(), "bill");
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        saveBillButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+        pricePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.add(pricePanel);
+        this.add(checkoutButton);
+        this.add(headerCart);
+        this.add(scrollPane1);
+        this.add(headerInv);
+        this.add(scrollPane);
+        this.add(saveBillButton);
+        JPanel item1 = new JPanel();
     }
 
+    public List<CartItem> getCart(){
+        return listOfCartItem;
+    }
+
+    public void addCartItem(CartItem cartItem){
+        listOfCartItem.add(cartItem);
+    }
+
+    public void deleteAllCartItem() {
+        listOfCartItem.clear();
+    }
+    public void eraseItemFromCart(CartItem cartItem){
+        listOfCartItem.remove(cartItem);
+    }
+
+    public void setPriceText(float price){
+        this.price = price;
+        priceText.setText((String)Settings.get(UID.of(Vars.defaultNamespace, "settings", "currency")) + " " + price);
+    }
+    public float getPriceText(){
+        return this.price;
+    }
+
+    public void updatePriceText(){
+        // Build a map of items and refresh price text
+        Map<Integer, BillItem> map = new HashMap<>();
+        for(int i = 0, n = 0; i < cart.getComponentCount(); i++){
+            Component comp = cart.getComponent(i);
+            if(comp instanceof CartItem)map.put(n++, ((CartItem)comp).toBillItem());
+        }
+        setPriceText(Vars.billProcessor.get(map));
+    }
+
+    public JScrollPane getScrollPane(){
+        return scrollPane;
+    }
+
+    public void setScrollPane(JScrollPane scrollPane){
+        this.scrollPane = scrollPane;
+        this.scrollPane.revalidate();
+        this.scrollPane.repaint();
+    }
 }
