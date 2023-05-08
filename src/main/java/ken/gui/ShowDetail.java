@@ -12,21 +12,24 @@ import java.util.Calendar;
 import java.util.List;
 
 public class ShowDetail extends JPanel implements ActionListener {
+    private  int idBill;
     private JPanel panelBarang;
     private JButton daftarButton;
     private JButton cetakButton;
-    private String customer;
+    private int customer;
     private List<BillItem> listOfBillItem;
     private List<String> listOfName;
     private ArrayList<Integer> listOfAmount;
     private float total;
 
 
-    public ShowDetail(String customer, List<BillItem> listOfBillItem, float total) {
+    public ShowDetail(int customer, List<BillItem> listOfBillItem, float total, int idBill) {
         super();
+        this.idBill = idBill;
         this.total = total;
         this.listOfBillItem = listOfBillItem;
         this.customer = customer;
+        System.out.println(this.customer);
         listOfAmount = new ArrayList<Integer>();
         listOfName = new ArrayList<String>();
         this.setVisible(true);
@@ -85,7 +88,7 @@ public class ShowDetail extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == cetakButton) {
             System.out.println("cetak dummy");
-            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total);
+            UnduhDetil unduhDetil = new UnduhDetil(listOfName, listOfAmount, total, idBill);
             Thread cetakBill = new Thread(unduhDetil);
             cetakBill.run();
 

@@ -2,15 +2,14 @@ package ken.gui.tab;
 
 import ken.backend.Vars;
 import ken.backend.controller.Controller;
+import ken.backend.controller.holder.FixedBillHolder;
 import ken.backend.controller.holder.InventoryHolder;
 import ken.backend.controller.holder.BillHolder;
 import ken.backend.kelas.barang.Barang;
 import ken.backend.kelas.bill.Bill;
 import ken.backend.kelas.bill.BillItem;
-import ken.gui.CartItem;
-import ken.gui.LayarCheckout;
+import ken.gui.*;
 import ken.gui.MenuItem;
-import ken.gui.Tabs;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +26,7 @@ import java.util.Map;
 
 public class Kasir extends KENTab implements ActionListener {
     private JPanel inventory;
+    private JPanel inventory2;
     private JPanel cart;
     private JButton checkoutButton;
 
@@ -76,6 +76,7 @@ public class Kasir extends KENTab implements ActionListener {
         headerCart.setLayout(null);
         cart = new JPanel();
         inventory = new JPanel();
+        inventory2 = new JPanel();
         this.tabs = tabs;
         // Set the background and size of the header panel
         JLabel menuText = new JLabel("Items");
@@ -129,6 +130,9 @@ public class Kasir extends KENTab implements ActionListener {
         inventory.setBackground(new Color(0xFFFFFF));
         inventory.setLayout(new BoxLayout(inventory, BoxLayout.Y_AXIS));
         inventory.setLocation(0,0);
+        inventory2.setBackground(new Color(0xFFFFFF));
+        inventory2.setLayout(new BoxLayout(inventory2, BoxLayout.Y_AXIS));
+        inventory2.setLocation(0,0);
         cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
         Controller.instance().fetchData(InventoryHolder.instance(), "barang");
         for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
@@ -136,7 +140,7 @@ public class Kasir extends KENTab implements ActionListener {
             Barang value = entry.getValue();
             // Do something with the key and value...
 
-            ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this);
+            ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this, value.getKategori());
             inventory.add(menuItem);
         }
 
@@ -298,7 +302,29 @@ public class Kasir extends KENTab implements ActionListener {
             Tabs.tabs.addCustomTab("Layar Checkout", layarCheckout, Tabs.tabCount);
             Tabs.tabs.setSelectedComponent(layarCheckout);
         } else if (e.getSource()==saveBillButton) {
-            System.out.println("save bill");
+//            System.out.println("save bill");
+            try {
+                Controller.instance().fetchData(BillHolder.instance(), "bill");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            Bill billTemp = new Bill(0, price);
+            for(int i = 0; i < listOfCartItem.size() ; i++){
+                int idt = listOfCartItem.get(i).getID();
+                String namaBarang = listOfCartItem.get(i).getName();
+                int jumlah = listOfCartItem.get(i).getCounter();
+                float harga = listOfCartItem.get(i).getHarga();
+                BillItem billItem = new BillItem(idt, namaBarang, jumlah, harga);
+//                Barang barang = InventoryHolder.instance().getBarangById(listOfCartItem.get(i).getID());
+//                barang.setStok(barang.getStok() - listOfCartItem.get(i).getCounter());
+                billTemp.addBarang(billItem);
+            }
+            BillHolder.instance().addBill(billTemp);
+            try {
+                Controller.instance().writeData(BillHolder.instance(), "bill");
+            } catch (URISyntaxException  | IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } else if (e.getSource()==getHistoryButton) {
             selectedHistory = (String) pilihHistory.getSelectedItem();
             if (selectedHistory.length() != 0) {
@@ -317,7 +343,7 @@ public class Kasir extends KENTab implements ActionListener {
                         int amount = value.getJumlahDibeli();
                         int id = value.getId();
                         if (id == value2.getId()) {
-                            ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok()-amount, value2.getGambar(), price, cart, this);
+                            ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok()-amount, value2.getGambar(), price, cart, this, value2.getKategori());
                             inventory.add(menuItem);
                             found = true;
                             CartItem cartItem = new CartItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), cart, this, price, menuItem);
@@ -334,18 +360,34 @@ public class Kasir extends KENTab implements ActionListener {
                         }
                     }
                     if (!found) {
-                        ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok(), value2.getGambar(), price, cart, this);
+                        ken.gui.MenuItem menuItem = new MenuItem(value2.getId(), value2.getNamaBarang(), value2.getHargaBarang(), value2.getStok(), value2.getGambar(), price, cart, this, value2.getKategori());
                         inventory.add(menuItem);
                     }
                 }
 
 
                 setScrollPane(getScrollPane());
+                updatePriceText();
             } else {
-                System.out.println("Tidak memilih history");
+                System.out.println("No Selected History, Setting to default");
+                inventory.removeAll();
+                listOfCartItem.clear();
+                cart.removeAll();
+                cart.revalidate();
+                cart.repaint();
+                for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
+                    Integer key = entry.getKey();
+                    Barang value = entry.getValue();
+                    // Do something with the key and value...
+
+                    ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this, value.getKategori());
+                    inventory.add(menuItem);
+                }
+                setScrollPane(getScrollPane());
+                updatePriceText();
             }
         } else if (e.getSource()==searchButton) {
-            int searchHarga= -1;
+            float searchHarga= -1;
             String searchNama = (String) inputFieldNama.getText().trim();
             String searchHargaString = (String) inputFieldHarga.getText().trim();
             String searchCat = (String) inputFieldKategori.getText().trim();
@@ -356,11 +398,58 @@ public class Kasir extends KENTab implements ActionListener {
                     System.out.println("Invalid integer input");
                 }
             }
-            if (searchHarga != -1 || searchHargaString.length() == 0) {
+            if (searchNama.equals("Nama Barang")){
+                searchNama = "";
+            }
+            if (searchCat.equals("Kategori")) {
+                searchCat = "";
+            }
+            if (searchHarga != -1 || searchNama.length() != 0 || searchCat.length() != 0) {
                 System.out.println("Searching...");
                 System.out.println("Nama: " + searchNama);
                 System.out.println("Harga: " + searchHarga);
                 System.out.println("Kategori: " + searchCat);
+
+                if (searchHarga == -1) {
+                    searchHarga = Float.MAX_VALUE;
+                }
+                inventory2.removeAll();
+                inventory2.revalidate();
+                inventory2.repaint();
+
+
+                for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
+
+                    Integer key = entry.getKey();
+                    Barang value = entry.getValue();
+
+//                    ken.gui.InventoryPanel invPanel = new InventoryPanel(key, value.getNamaBarang(), value.getHargaBarang(), value.getHargaBeliBarang(), value.getStok(), value.getGambar(), value.getKategori());
+//                    inventory2.add(invPanel);
+
+                    System.out.println(value.getNamaBarang().trim().toLowerCase().startsWith(searchNama.toLowerCase()));
+                    System.out.println(value.getKategori().trim().toLowerCase().startsWith(searchCat.toLowerCase()));
+                    System.out.println(value.getHargaBarang()<=searchHarga);
+                    // Do something with the key and value...
+                    if (value.getNamaBarang().trim().toLowerCase().startsWith(searchNama.toLowerCase()) && value.getKategori().trim().toLowerCase().startsWith(searchCat.toLowerCase()) && value.getHargaBarang()<=searchHarga){
+                        System.out.println(value.getNamaBarang() + ' ' + value.getKategori() + ' ' + value.getHargaBarang());
+                        ken.gui.MenuItem menuItem = new MenuItem(value.getId(), value.getNamaBarang(), value.getHargaBarang(), value.getStok(), value.getGambar(), price, cart, this, value.getKategori());
+                        inventory2.add(menuItem);
+                    }
+                }
+
+                JViewport viewport = scrollPane.getViewport();
+                viewport.remove(inventory);
+                viewport.add(inventory2);
+
+                scrollPane.repaint();
+                scrollPane.revalidate();
+            } else {
+                JViewport viewport = scrollPane.getViewport();
+                viewport.remove(inventory2);
+                viewport.add(inventory);
+
+                scrollPane.repaint();
+                scrollPane.revalidate();
             }
         }
     }

@@ -20,11 +20,13 @@ import java.util.Map;
 
 public class Inventory extends KENTab implements ActionListener {
     private JPanel inventory;
+    private JPanel inventory2;
     private JTextField inputFieldNama;
     private JTextField inputFieldHarga;
     private JTextField inputFieldKategori;
     private JButton searchButton;
     private JButton addItemButton;
+    private JScrollPane scrollPane;
     public Inventory() throws URISyntaxException, IOException {
         super();
         this.setSize(500,500);
@@ -42,6 +44,7 @@ public class Inventory extends KENTab implements ActionListener {
 
     public void makePanelInventory() throws URISyntaxException, IOException {
         inventory = new JPanel();
+        inventory2 = new JPanel();
         JPanel headerInventory = new JPanel();
         headerInventory.setLayout(null);
         headerInventory.setBackground(new Color(0xD9D9D9));
@@ -65,6 +68,10 @@ public class Inventory extends KENTab implements ActionListener {
         inventory.setBackground(new Color(0xFFFFFF));
         inventory.setLayout(new BoxLayout(inventory, BoxLayout.Y_AXIS));
 
+        inventory2.setBackground(new Color(0xFFFFFF));
+        inventory2.setLayout(new BoxLayout(inventory2, BoxLayout.Y_AXIS));
+
+
         Controller.instance().fetchData(InventoryHolder.instance(), "barang");
         for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
             Integer key = entry.getKey();
@@ -74,9 +81,10 @@ public class Inventory extends KENTab implements ActionListener {
             ken.gui.InventoryPanel invPanel = new InventoryPanel(key, value.getNamaBarang(), value.getHargaBarang(), value.getHargaBeliBarang(), value.getStok(), value.getGambar(), value.getKategori());
             inventory.add(invPanel);
         }
-        JScrollPane scrollPane = new JScrollPane(inventory);
+        scrollPane = new JScrollPane(inventory);
         scrollPane.setBounds(0, 90, 1260, 480);
         this.add(scrollPane);
+
 
         inputFieldNama = new JTextField();
         inputFieldNama.setBounds(0, 50, 400, 40);
@@ -152,12 +160,21 @@ public class Inventory extends KENTab implements ActionListener {
         searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.add(searchButton);
     }
+    public JScrollPane getScrollPane(){
+        return scrollPane;
+    }
 
+    public void setScrollPane(JScrollPane scrollPane){
+        this.scrollPane = scrollPane;
+        this.scrollPane.revalidate();
+        this.scrollPane.repaint();
+    }
     public void actionPerformed(ActionEvent e){
         if (e.getSource()==searchButton) {
-            int searchHarga= -1;
+
+            float searchHarga= -1;
             String searchNama = (String) inputFieldNama.getText().trim();
-            String searchHargaString = (String) inputFieldHarga.getText().trim();
+            String searchHargaString = (String) inputFieldHarga.getText().trim().trim();
             String searchCat = (String) inputFieldKategori.getText().trim();
             if (searchHargaString.length() !=0 ) {
                 try {
@@ -166,11 +183,62 @@ public class Inventory extends KENTab implements ActionListener {
                     System.out.println("Invalid integer input");
                 }
             }
-            if (searchHarga != -1 || searchHargaString.length() == 0) {
+            if (searchNama.equals("Nama Barang")){
+                searchNama = "";
+            }
+            if (searchCat.equals("Kategori")) {
+                searchCat = "";
+            }
+            if (searchHarga != -1 || searchNama.length() != 0 || searchCat.length() != 0) {
                 System.out.println("Searching...");
                 System.out.println("Nama: " + searchNama);
                 System.out.println("Harga: " + searchHarga);
                 System.out.println("Kategori: " + searchCat);
+
+                if (searchHarga == -1) {
+                    searchHarga = Float.MAX_VALUE;
+                }
+                inventory2.removeAll();
+                inventory2.revalidate();
+                inventory2.repaint();
+
+
+                for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
+
+                    Integer key = entry.getKey();
+                    Barang value = entry.getValue();
+
+//                    ken.gui.InventoryPanel invPanel = new InventoryPanel(key, value.getNamaBarang(), value.getHargaBarang(), value.getHargaBeliBarang(), value.getStok(), value.getGambar(), value.getKategori());
+//                    inventory2.add(invPanel);
+
+                    System.out.println(value.getNamaBarang().trim().toLowerCase().startsWith(searchNama.toLowerCase()));
+                    System.out.println(value.getKategori().trim().toLowerCase().startsWith(searchCat.toLowerCase()));
+                    System.out.println(value.getHargaBarang()<=searchHarga);
+                    // Do something with the key and value...
+                    if (value.getNamaBarang().trim().toLowerCase().startsWith(searchNama.toLowerCase()) && value.getKategori().trim().toLowerCase().startsWith(searchCat.toLowerCase()) && value.getHargaBarang()<=searchHarga){
+                        System.out.println(value.getNamaBarang() + ' ' + value.getKategori() + ' ' + value.getHargaBarang());
+                        ken.gui.InventoryPanel invPanel = new InventoryPanel(key, value.getNamaBarang(), value.getHargaBarang(), value.getHargaBeliBarang(), value.getStok(), value.getGambar(), value.getKategori());
+                        inventory2.add(invPanel);
+                    }
+                }
+
+                JViewport viewport = scrollPane.getViewport();
+                viewport.remove(inventory);
+                viewport.add(inventory2);
+
+                scrollPane.repaint();
+                scrollPane.revalidate();
+//                scrollPane.removeAll();
+//                setScrollPane(getScrollPane());
+//                scrollPane.add(inventory2);
+//                setScrollPane(getScrollPane());
+            } else {
+                JViewport viewport = scrollPane.getViewport();
+                viewport.remove(inventory2);
+                viewport.add(inventory);
+
+                scrollPane.repaint();
+                scrollPane.revalidate();
             }
         } else if (e.getSource() == addItemButton) {
             AddItem layarAI = new AddItem();

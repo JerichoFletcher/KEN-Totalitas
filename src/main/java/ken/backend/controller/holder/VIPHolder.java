@@ -44,7 +44,7 @@ public class VIPHolder implements Holder, Serializable {
     public void removeVIP(int id) {
         this.listVIP.remove(id);
     }
-    public Customer getVIPById(int id) {
+    public VIP getVIPById(int id) {
         return listVIP.get(id);
     }
 }

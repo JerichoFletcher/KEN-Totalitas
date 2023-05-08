@@ -1,26 +1,17 @@
 {
   "listBarang": {
-    "1": {
-      "id": 1,
-      "stok": 50,
-      "namaBarang": "Buku Tulis",
-      "hargaBarang": 5000.0,
-      "hargaBeliBarang": 3500.0,
-      "kategori": "Alat Tulis",
-      "gambar": "./asset/buku_tulis.jpg"
-    },
     "2": {
       "id": 2,
-      "stok": 100,
-      "namaBarang": "Pensil",
-      "hargaBarang": 1000.0,
+      "stok": 996,
+      "namaBarang": "pencil",
+      "hargaBarang": 500.0,
       "hargaBeliBarang": 700.0,
       "kategori": "Alat Tulis",
       "gambar": "./asset/pensil.jpg"
     },
     "3": {
       "id": 3,
-      "stok": 75,
+      "stok": 65,
       "namaBarang": "Penghapus",
       "hargaBarang": 2000.0,
       "hargaBeliBarang": 1500.0,
@@ -29,7 +20,7 @@
     },
     "4": {
       "id": 4,
-      "stok": 30,
+      "stok": 25,
       "namaBarang": "Gunting",
       "hargaBarang": 5000.0,
       "hargaBeliBarang": 3500.0,
@@ -52,7 +43,7 @@
       "hargaBarang": 20000.0,
       "hargaBeliBarang": 15000.0,
       "kategori": "Alat Masak",
-      "gambar": "./asset/spatule.png"
+      "gambar": ""
     },
     "685179280": {
       "id": 685179280,
@@ -65,7 +56,7 @@
     },
     "1115337708": {
       "id": 1115337708,
-      "stok": 10,
+      "stok": 0,
       "namaBarang": "Action Figure",
       "hargaBarang": 1000000.0,
       "hargaBeliBarang": 25000.0,

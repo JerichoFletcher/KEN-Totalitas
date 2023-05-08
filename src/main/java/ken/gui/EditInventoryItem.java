@@ -1,5 +1,9 @@
 package ken.gui;
 
+import ken.backend.controller.Controller;
+import ken.backend.controller.holder.InventoryHolder;
+import ken.backend.kelas.barang.Barang;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -7,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class EditInventoryItem extends JPanel implements ActionListener{
     private JPanel panelEdit;
@@ -220,10 +226,10 @@ public class EditInventoryItem extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == editButton){
             String editName = textField.getText();
-            String editStok = textField.getText();
-            String editHarga = textField.getText();
-            String editHargaBeli = textField.getText();
-            String editKategori = textField.getText();
+            String editStok = textField2.getText();
+            String editHarga = textField3.getText();
+            String editHargaBeli = textField4.getText();
+            String editKategori = textField5.getText();
 
             if (editName.length() == 0) {
                 editName = judul;
@@ -251,6 +257,24 @@ public class EditInventoryItem extends JPanel implements ActionListener{
             System.out.println("Harga Beli : " + textField4.getText());
             System.out.println("Kategori : " + textField5.getText());
             System.out.println("Image URL : " + imgurl);
+            try {
+                Controller.instance().fetchData(InventoryHolder.instance(), "barang");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            Barang barang = InventoryHolder.instance().getBarangById(id);
+            barang.setNamaBarang(editName);
+            barang.setStok(Integer.parseInt(editStok));
+            barang.setHargaBarang(Float.parseFloat(editHarga));
+            barang.setHargaBeliBarang(Float.parseFloat(editHargaBeli));
+            barang.setKategori(editKategori);
+            barang.setGambar(imgurl);
+            try {
+                Controller.instance().writeData(InventoryHolder.instance(), "barang");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
         } else if (e.getSource() == imageButton) {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -266,7 +290,17 @@ public class EditInventoryItem extends JPanel implements ActionListener{
                 imagelinkLabel.setText("Selected file: " + imgurl);
             }
         } else if (e.getSource() == deleteButton) {
-            System.out.println("Delete Dummy!");
+            try {
+                Controller.instance().fetchData(InventoryHolder.instance(), "barang");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            InventoryHolder.instance().removeBarang(id);
+            try {
+                Controller.instance().writeData(InventoryHolder.instance(), "barang");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }

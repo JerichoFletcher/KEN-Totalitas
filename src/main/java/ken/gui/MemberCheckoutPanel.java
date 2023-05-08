@@ -1,5 +1,8 @@
 package ken.gui;
 
+import ken.backend.controller.holder.MemberHolder;
+import ken.backend.controller.holder.VIPHolder;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,12 +14,16 @@ public class MemberCheckoutPanel extends JPanel implements ActionListener {
     private String nama;
     private LayarCheckout co;
     private JTextField field;
-    public MemberCheckoutPanel(String inama,int iid, LayarCheckout checkout, JTextField ifield){
+    private JTextField pointfield;
+    private String type;
+    public MemberCheckoutPanel(String inama,int iid, LayarCheckout checkout, JTextField ifield, JTextField poin){
         super();
         this.nama = inama;
         this.id = iid;
         this.co = checkout;
         this.field = ifield;
+        this.pointfield = poin;
+//        this.type = tipe;
         JLabel title = new JLabel(nama);
         editButton = new JButton("CHOOSE");
         this.setLayout(null);
@@ -45,6 +52,16 @@ public class MemberCheckoutPanel extends JPanel implements ActionListener {
             System.out.println("Chose Member with ID: " + id);
             co.setId(id);
             field.setText(nama);
+            pointfield.setVisible(true);
+            float points = 0;
+            try {
+                points = MemberHolder.instance().getMemberById(id).getPoints();
+            } catch (NullPointerException ex) {
+                points = VIPHolder.instance().getVIPById(id).getPoints();
+            }
+
+//            System.out.println(points);
+            pointfield.setText(Float.toString(points));
         }
     }
 }
