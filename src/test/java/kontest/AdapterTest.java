@@ -215,5 +215,32 @@ public class AdapterTest {
         Controller.instance().writeData(InventoryHolder.instance(),"barang3");
 
     }
+    @Test
+    public void matchAllToJSON() throws JAXBException, URISyntaxException, IOException {
+        Vars.extension = "json";
+        Controller.instance().fetchData(InventoryHolder.instance(),"barang");
+        Controller.instance().fetchData(BillHolder.instance(),"bill");
+        Controller.instance().fetchData(FixedBillHolder.instance(),"billFixed");
+        Controller.instance().fetchData(MemberHolder.instance(),"member");
+        Controller.instance().fetchData(CustomerHolder.instance(),"customer");
+        Controller.instance().fetchData(VIPHolder.instance(),"vip");
+
+        Vars.extension = "ser";
+        Controller.instance().writeData(InventoryHolder.instance(),"barang");
+        Controller.instance().writeData(BillHolder.instance(),"bill");
+        Controller.instance().writeData(FixedBillHolder.instance(),"billFixed");
+        Controller.instance().writeData(MemberHolder.instance(),"member");
+        Controller.instance().writeData(CustomerHolder.instance(),"customer");
+        Controller.instance().writeData(VIPHolder.instance(),"vip");
+
+        Vars.extension = "xml";
+        Controller.instance().writeData(InventoryHolder.instance(),"barang");
+        Controller.instance().writeData(BillHolder.instance(),"bill");
+        Controller.instance().writeData(FixedBillHolder.instance(),"billFixed");
+        Controller.instance().writeData(MemberHolder.instance(),"member");
+        Controller.instance().writeData(CustomerHolder.instance(),"customer");
+        Controller.instance().writeData(VIPHolder.instance(),"vip");
+
+    }
 
 }

@@ -306,7 +306,7 @@ public class Kasir extends KENTab implements ActionListener {
 //            System.out.println("save bill");
             try {
                 Controller.instance().fetchData(BillHolder.instance(), "bill");
-            } catch (URISyntaxException | IOException ex) {
+            } catch (URISyntaxException | IOException | JAXBException ex) {
                 throw new RuntimeException(ex);
             }
             Bill billTemp = new Bill(0, price);
@@ -323,7 +323,7 @@ public class Kasir extends KENTab implements ActionListener {
             BillHolder.instance().addBill(billTemp);
             try {
                 Controller.instance().writeData(BillHolder.instance(), "bill");
-            } catch (URISyntaxException  | IOException ex) {
+            } catch (URISyntaxException  | IOException | JAXBException ex) {
                 throw new RuntimeException(ex);
             }
         } else if (e.getSource()==getHistoryButton) {

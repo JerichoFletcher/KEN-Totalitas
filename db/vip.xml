@@ -2,23 +2,13 @@
 <vipHolder>
     <listVIP>
         <entry>
-            <key>7</key>
-            <value>
-                <id>7</id>
-                <active>true</active>
-                <name>Farhan Kebab</name>
-                <phoneNumber>081245671234</phoneNumber>
-                <points>1000000</points>
-            </value>
-        </entry>
-        <entry>
             <key>8</key>
             <value>
                 <id>8</id>
                 <active>true</active>
                 <name>Salahudin al ayyubi</name>
                 <phoneNumber>21345326</phoneNumber>
-                <points>0</points>
+                <points>0.0</points>
             </value>
         </entry>
         <entry>
@@ -28,7 +18,17 @@
                 <active>true</active>
                 <name>KEN-TOTalitas</name>
                 <phoneNumber>4206942069</phoneNumber>
-                <points>0</points>
+                <points>100000.0</points>
+            </value>
+        </entry>
+        <entry>
+            <key>453500019</key>
+            <value>
+                <id>453500019</id>
+                <active>true</active>
+                <name>Putu</name>
+                <phoneNumber>01231231231</phoneNumber>
+                <points>0.0</points>
             </value>
         </entry>
     </listVIP>

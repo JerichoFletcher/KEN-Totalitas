@@ -11,6 +11,7 @@ import ken.backend.kelas.barang.Barang;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.bind.JAXBException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -225,6 +226,8 @@ public class AddItem extends JPanel implements ActionListener{
 //                    Controller.instance().writeData(VIPHolder.instance() , "vip");
                 }
             } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (JAXBException ex) {
                 throw new RuntimeException(ex);
             }
         } else if (e.getSource() == imageButton) {

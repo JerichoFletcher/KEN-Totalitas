@@ -2,27 +2,15 @@
 <inventoryHolder>
     <listBarang>
         <entry>
-            <key>1</key>
-            <value>
-                <gambar>./asset/buku_tulis.jpg</gambar>
-                <hargaBarang>5000.0</hargaBarang>
-                <hargaBeliBarang>3500.0</hargaBeliBarang>
-                <id>1</id>
-                <kategori>Alat Tulis</kategori>
-                <namaBarang>Buku Tulis</namaBarang>
-                <stok>50</stok>
-            </value>
-        </entry>
-        <entry>
             <key>2</key>
             <value>
                 <gambar>./asset/pensil.jpg</gambar>
-                <hargaBarang>1000.0</hargaBarang>
+                <hargaBarang>500.0</hargaBarang>
                 <hargaBeliBarang>700.0</hargaBeliBarang>
                 <id>2</id>
                 <kategori>Alat Tulis</kategori>
-                <namaBarang>Pensil</namaBarang>
-                <stok>100</stok>
+                <namaBarang>pencil</namaBarang>
+                <stok>996</stok>
             </value>
         </entry>
         <entry>
@@ -34,7 +22,7 @@
                 <id>3</id>
                 <kategori>Alat Tulis</kategori>
                 <namaBarang>Penghapus</namaBarang>
-                <stok>75</stok>
+                <stok>65</stok>
             </value>
         </entry>
         <entry>
@@ -46,7 +34,7 @@
                 <id>4</id>
                 <kategori>Alat Potong</kategori>
                 <namaBarang>Gunting</namaBarang>
-                <stok>30</stok>
+                <stok>25</stok>
             </value>
         </entry>
         <entry>
@@ -64,7 +52,7 @@
         <entry>
             <key>1545764559</key>
             <value>
-                <gambar>./asset/spatule.png</gambar>
+                <gambar></gambar>
                 <hargaBarang>20000.0</hargaBarang>
                 <hargaBeliBarang>15000.0</hargaBeliBarang>
                 <id>1545764559</id>
@@ -94,7 +82,7 @@
                 <id>1115337708</id>
                 <kategori>Aksesoris</kategori>
                 <namaBarang>Action Figure</namaBarang>
-                <stok>10</stok>
+                <stok>0</stok>
             </value>
         </entry>
         <entry>
