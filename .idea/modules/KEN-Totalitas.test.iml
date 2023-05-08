@@ -5,9 +5,4 @@
       <sourceFolder url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/test" isTestSource="true" generated="true" />
     </content>
   </component>
-  <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/test">
-      <sourceFolder url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/test" isTestSource="true" generated="true" />
-    </content>
-  </component>
 </module>

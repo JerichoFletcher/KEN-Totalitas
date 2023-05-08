@@ -1,4 +1,6 @@
 package kenpiechart;
+import ken.backend.controller.holder.InventoryHolder;
+import ken.backend.kelas.barang.Barang;
 import ken.backend.plugin.AddMenuTab;
 import ken.gui.tab.KENTab;
 
@@ -10,6 +12,8 @@ import ken.backend.kelas.bill.Bill;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 import java.awt.*;
@@ -63,12 +67,7 @@ public class KENPiechartTab extends KENTab{
             this.setLayout(new BorderLayout());
 //            this.setBounds(0,0,500,500);
             this.add(chartPanel, BorderLayout.CENTER);
-//            JLabel label = new JLabel();
-//            label.setFont(new Font("Poppins", Font.BOLD, 100));
-//            label.setForeground(new Color(0xFFFFFF));
-//            label.setBounds(300,100,1000,250);
-//            label.setText("Hello dummy");
-//            this.add(label);
+//
         }catch (Exception ex){
             ex.printStackTrace();
         }

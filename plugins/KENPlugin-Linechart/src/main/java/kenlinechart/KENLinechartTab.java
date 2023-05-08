@@ -31,18 +31,31 @@ public class KENLinecharttTab extends KENTab{
     public KENLinechartTab() {
         try{
             Controller.instance().fetchData(InventoryHolder.instance(), "barang");
-            List<String> listOfNames = new ArrayList<>();
-            Map<Integer, Integer> listOfAmount = new HashMap<>();
-            for (Map.Entry<Integer, Bill> entry : FixedBillHolder.instance().getListBill().entrySet()) {
-                Bill value = entry.getValue();
-                Integer id = value.getIdCustomer();
-                listOfAmount.merge(id, 1, Integer::sum);
-            }
-            // Create a dataset for the line chart
+            DefaultCategoryDataset barDataset = new DefaultCategoryDataset();
+            for (Map.Entry<Integer, Barang> entry : InventoryHolder.instance().getListBarang().entrySet()) {
+                Integer key = entry.getKey();
+                Barang barang = entry.getValue();
+                barDataset.addValue(barang.getHargaBarang(), "Harga", barang.getNamaBarang());
+                barDataset.addValue(barang.getHargaBeliBarang(), "Harga Beli", barang.getNamaBarang());
 
+            }
+            JFreeChart chart = ChartFactory.createBarChart(
+                    "Bought vs Sell Price Comparison",
+                    "Item", "Price", dataset,
+                    PlotOrientation.VERTICAL, true, true, false);
+
+            // set color for the bars
+            chart.getCategoryPlot().getRenderer().setSeriesPaint(0, new Color(0, 128, 0));
+            chart.getCategoryPlot().getRenderer().setSeriesPaint(1, new Color(255, 0, 0));
+
+            // create panel
+            ChartPanel panel = new ChartPanel(chart);
             this.setSize(500,500);
             this.setBackground(new Color(0x2C3333));
-            this.setLayout(new FlowLayout());
+            this.setLayout(new BorderLayout());
+//            this.setBounds(0,0,500,500);
+            this.add(chartPanel, BorderLayout.CENTER);
+
         }catch (IOException | URISyntaxException ex){
             ex.printStackTrace();
         }
