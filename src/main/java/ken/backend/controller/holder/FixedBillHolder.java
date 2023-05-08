@@ -5,7 +5,10 @@ import ken.backend.kelas.bill.Bill;
 import ken.backend.kelas.bill.BillItem;
 import ken.gui.MenuItem;
 import lombok.Getter;
+import lombok.Setter;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
@@ -14,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@XmlRootElement
 public class FixedBillHolder implements Holder, Serializable {
     private static FixedBillHolder _instance = null;
     public static FixedBillHolder instance() {
@@ -24,6 +28,7 @@ public class FixedBillHolder implements Holder, Serializable {
     }
 
     @Getter
+    @Setter
     private Map<Integer, Bill> listBill;
     
     public FixedBillHolder() {
@@ -32,10 +37,10 @@ public class FixedBillHolder implements Holder, Serializable {
     public int getBanyakBill() {
         return listBill.size();
     }
-    public void load(URI uri, AdapterData data) throws IOException {
+    public void load(URI uri, AdapterData data) throws IOException, JAXBException {
         _instance = data.get(uri, FixedBillHolder.class);
     }
-    public void write(URI uri, AdapterData data) throws IOException {
+    public void write(URI uri, AdapterData data) throws IOException, JAXBException {
         data.write(uri, FixedBillHolder.instance());
     }
     public Bill getBillById(int id){

@@ -5,12 +5,17 @@ import ken.backend.kelas.barang.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+@XmlRootElement
 public class InventoryHolder implements Holder, Serializable {
     private static InventoryHolder _instance = null;
     public static InventoryHolder instance() {
@@ -19,7 +24,8 @@ public class InventoryHolder implements Holder, Serializable {
         }
         return _instance;
     }
-
+//    @XmlElementWrapper(name = "listBarang")
+//    @XmlElement(name = "entry")
     @Getter
     @Setter
     private Map<Integer, Barang> listBarang;
@@ -28,11 +34,11 @@ public class InventoryHolder implements Holder, Serializable {
         this.listBarang = new HashMap<>();
     }
 
-    public void load(URI uri, AdapterData data) throws IOException {
+    public void load(URI uri, AdapterData data) throws IOException, JAXBException {
         _instance = data.get(uri, InventoryHolder.class);
     }
 
-    public void write(URI uri, AdapterData data) throws IOException {
+    public void write(URI uri, AdapterData data) throws IOException, JAXBException {
         data.write(uri, InventoryHolder.instance());
     }
 

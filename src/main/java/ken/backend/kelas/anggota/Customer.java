@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class Customer implements Serializable {
     @Getter
+    @Setter
     private int id;
     private static Random rand = new Random();
 

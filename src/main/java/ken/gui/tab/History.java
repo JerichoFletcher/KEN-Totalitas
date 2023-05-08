@@ -11,6 +11,7 @@ import ken.gui.UnduhHistory;
 
 
 import javax.swing.*;
+import javax.xml.bind.JAXBException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +35,7 @@ public class History extends KENTab implements ActionListener {
         this.setLayout(null);
         try {
             makePanelMembers();
-        }catch (IOException | URISyntaxException ex){
+        }catch (IOException | URISyntaxException | JAXBException ex){
             ex.printStackTrace();
         }
         this.setBounds(0,0,500,500);
@@ -45,7 +46,7 @@ public class History extends KENTab implements ActionListener {
         return "History";
     }
 
-    public void makePanelMembers() throws URISyntaxException, IOException{
+    public void makePanelMembers() throws URISyntaxException, IOException, JAXBException {
         history = new JPanel();
         JPanel headerMember = new JPanel();
         headerMember.setLayout(null);

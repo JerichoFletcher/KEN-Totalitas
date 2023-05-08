@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Member extends Customer implements Serializable {
     @Getter
+    @Setter
     protected String name;
     @Getter
     @Setter

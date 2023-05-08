@@ -20,6 +20,7 @@ public class Bill implements Serializable {
     @Setter
     private int idCustomer;
     @Getter
+    @Setter
     private float totalHarga;
     private static Random rand = new Random();
 

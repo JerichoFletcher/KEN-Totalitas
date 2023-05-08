@@ -10,6 +10,7 @@ import ken.backend.kelas.anggota.VIP;
 import ken.gui.MemberPanel;
 
 import javax.swing.*;
+import javax.xml.bind.JAXBException;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -24,7 +25,7 @@ public class Members extends KENTab {
         this.setLayout(null);
         try {
             makePanelMembers();;
-        }catch (IOException | URISyntaxException ex){
+        }catch (IOException | URISyntaxException | RuntimeException | JAXBException ex){
             ex.printStackTrace();
         }
         this.setBounds(0,0,500,500);
@@ -35,7 +36,7 @@ public class Members extends KENTab {
         return "Members";
     }
 
-    public void makePanelMembers() throws URISyntaxException, IOException{
+    public void makePanelMembers() throws URISyntaxException, IOException, JAXBException {
         members = new JPanel();
         JPanel headerMember = new JPanel();
         headerMember.setLayout(null);

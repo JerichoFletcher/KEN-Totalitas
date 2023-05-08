@@ -5,12 +5,15 @@ import ken.backend.kelas.anggota.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+@XmlRootElement
 public class CustomerHolder implements Holder, Serializable {
     private static CustomerHolder _instance = null;
     public static CustomerHolder instance(){
@@ -27,11 +30,11 @@ public class CustomerHolder implements Holder, Serializable {
         this.listCustomer = new HashMap<>();
     }
 
-    public void load(URI uri, AdapterData data) throws IOException {
+    public void load(URI uri, AdapterData data) throws IOException, JAXBException {
         _instance = data.get(uri, CustomerHolder.class);
     }
 
-    public void write(URI uri, AdapterData data) throws IOException {
+    public void write(URI uri, AdapterData data) throws IOException, JAXBException {
         data.write(uri, CustomerHolder.instance());
     }
     public int getBanyakCustomer(){

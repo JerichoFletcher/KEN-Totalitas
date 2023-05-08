@@ -12,6 +12,7 @@ import ken.gui.*;
 import ken.gui.MenuItem;
 
 import javax.swing.*;
+import javax.xml.bind.JAXBException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +55,7 @@ public class Kasir extends KENTab implements ActionListener {
         this.setLayout(null);
         try {
             makePanelKasir();
-        }catch (IOException | URISyntaxException ex){
+        }catch (IOException | URISyntaxException | JAXBException ex){
             ex.printStackTrace();
         }
 
@@ -66,7 +67,7 @@ public class Kasir extends KENTab implements ActionListener {
         return "Kasir";
     }
 
-    public void makePanelKasir() throws URISyntaxException, IOException {
+    public void makePanelKasir() throws URISyntaxException, IOException, JAXBException {
 
         JPanel headerInv = new JPanel();
         JPanel headerCart = new JPanel();

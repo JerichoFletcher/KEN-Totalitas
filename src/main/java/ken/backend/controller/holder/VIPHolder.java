@@ -6,12 +6,15 @@ import ken.backend.kelas.anggota.VIP;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+@XmlRootElement
 public class VIPHolder implements Holder, Serializable {
     private static VIPHolder _instance = null;
     public static VIPHolder instance(){
@@ -28,11 +31,11 @@ public class VIPHolder implements Holder, Serializable {
         this.listVIP = new HashMap<>();
     }
 
-    public void load(URI uri, AdapterData data) throws IOException {
+    public void load(URI uri, AdapterData data) throws IOException, JAXBException {
         _instance = data.get(uri, VIPHolder.class);
     }
 
-    public void write(URI uri, AdapterData data) throws IOException {
+    public void write(URI uri, AdapterData data) throws IOException, JAXBException {
         data.write(uri, VIPHolder.instance());
     }
     public int getBanyakVIP(){

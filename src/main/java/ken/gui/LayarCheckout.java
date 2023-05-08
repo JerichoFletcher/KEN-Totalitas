@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.AbstractMap.SimpleEntry;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.xml.bind.JAXBException;
 
 
 public class LayarCheckout extends JPanel implements ActionListener{
@@ -52,13 +53,13 @@ public class LayarCheckout extends JPanel implements ActionListener{
         this.total = total;
         try {
             makePanelLC();
-        }catch (IOException | URISyntaxException ex){
+        }catch (IOException | URISyntaxException | JAXBException ex){
             ex.printStackTrace();
         }
         this.setBounds(0,0,500,500);
     }
 
-    public void makePanelLC() throws URISyntaxException, IOException {
+    public void makePanelLC() throws URISyntaxException, IOException, JAXBException {
         JLabel checkoutText = new JLabel("Checkout");
         JLabel totalPrice = new JLabel("Total: " + Vars.mataUang + " " + total);
         checkoutText.setFont(new Font("Poppins", Font.BOLD,40));
@@ -262,7 +263,7 @@ public class LayarCheckout extends JPanel implements ActionListener{
                     this.clickCounter++;
                 }
 
-            }catch (IOException | URISyntaxException ex){
+            }catch (IOException | URISyntaxException | JAXBException ex){
                 ex.printStackTrace();
             }
         }

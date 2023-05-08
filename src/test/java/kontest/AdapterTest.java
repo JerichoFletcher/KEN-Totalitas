@@ -13,12 +13,13 @@ import ken.backend.kelas.bill.BillItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class AdapterTest {
     @Test
-    public void testAdapterJSON() throws IOException, URISyntaxException {
+    public void testAdapterJSON() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
 
@@ -26,7 +27,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testWriteJSON() throws IOException, URISyntaxException {
+    public void testWriteJSON() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
 
@@ -35,7 +36,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testReadBillJSON() throws IOException, URISyntaxException {
+    public void testReadBillJSON() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         BillHolder.instance().load(getClass().getResource("/database/bill.json").toURI(),adapter);
         Assertions.assertEquals(2, BillHolder.instance().getBanyakBill());
@@ -43,7 +44,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testWriteBillJSON() throws IOException, URISyntaxException {
+    public void testWriteBillJSON() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         BillHolder.instance().load(getClass().getResource("/database/bill.json").toURI(),adapter);
         Assertions.assertEquals(2, BillHolder.instance().getBanyakBill());
@@ -51,7 +52,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAddingBillItem() throws IOException, URISyntaxException {
+    public void testAddingBillItem() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         BillHolder.instance().load(getClass().getResource("/database/bill.json").toURI(),adapter);
         Assertions.assertEquals(2, BillHolder.instance().getBanyakBill());
@@ -62,7 +63,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAddingFixedBillItem() throws IOException, URISyntaxException {
+    public void testAddingFixedBillItem() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         FixedBillHolder.instance().load(getClass().getResource("/database/billFixed.json").toURI(),adapter);
         Assertions.assertEquals(2, FixedBillHolder.instance().getBanyakBill());
@@ -73,7 +74,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testWriteInventoryJSON() throws IOException, URISyntaxException {
+    public void testWriteInventoryJSON() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter);
         System.out.println("jumlah " + InventoryHolder.instance().getBanyakBarang());
@@ -83,7 +84,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testRWCustomerJSON() throws IOException, URISyntaxException {
+    public void testRWCustomerJSON() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         CustomerHolder.instance().load(getClass().getResource("/database/customer.json").toURI(),adapter);
         System.out.println("jumlah " + CustomerHolder.instance().getBanyakCustomer());
@@ -93,7 +94,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testRWMemberJSON() throws IOException, URISyntaxException {
+    public void testRWMemberJSON() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();;
         MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
         System.out.println("jumlah " + MemberHolder.instance().getBanyakMember());
@@ -102,7 +103,7 @@ public class AdapterTest {
         MemberHolder.instance().write(getClass().getResource("/database/member2.json").toURI(),adapter);
     }
     @Test
-    public void testRWVIPJSON() throws IOException, URISyntaxException {
+    public void testRWVIPJSON() throws IOException, URISyntaxException, JAXBException {
         AdapterJSON adapter = new AdapterJSON();
         CustomerHolder.instance().load(getClass().getResource("/database/customer.json").toURI(),adapter);
         MemberHolder.instance().load(getClass().getResource("/database/member.json").toURI(),adapter);
@@ -117,14 +118,14 @@ public class AdapterTest {
         VIPHolder.instance().write(getClass().getResource("/database/vip2.json").toURI(),adapter);
     }
     @Test
-    public void testControllerCustomer() throws IOException, URISyntaxException {
+    public void testControllerCustomer() throws IOException, URISyntaxException, JAXBException {
         Controller.instance().fetchData(MemberHolder.instance(),"member");
         Member nm = new Member("Nama", "098123",12425135);
         MemberHolder.instance().addMember(nm);
         Controller.instance().writeData(MemberHolder.instance(),"member");
     }
 
-    public void testAdapterXML2() throws IOException, URISyntaxException {
+    public void testAdapterXML2() throws IOException, URISyntaxException, JAXBException {
         AdapterXML adapter = new AdapterXML();;
         AdapterJSON adapter2 = new AdapterJSON();
         InventoryHolder.instance().load(getClass().getResource("/database/barang.xml").toURI(),adapter);
@@ -133,7 +134,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAdapterObject() throws IOException, URISyntaxException {
+    public void testAdapterObject() throws IOException, URISyntaxException, JAXBException {
         AdapterObject adapter = new AdapterObject();;
         AdapterJSON adapter2 = new AdapterJSON();
         InventoryHolder.instance().load(getClass().getResource("/database/barang.json").toURI(),adapter2);
@@ -141,7 +142,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAdapterObject2() throws IOException, URISyntaxException {
+    public void testAdapterObject2() throws IOException, URISyntaxException, JAXBException {
         AdapterObject adapter = new AdapterObject();;
         AdapterJSON adapter2 = new AdapterJSON();
         InventoryHolder.instance().load(getClass().getResource("/database/barang.ser").toURI(),adapter);
@@ -149,7 +150,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void testAdapterObject3() throws IOException, URISyntaxException {
+    public void testAdapterObject3() throws IOException, URISyntaxException, JAXBException {
         AdapterObject adapter = new AdapterObject();;
         AdapterJSON adapter2 = new AdapterJSON();
         InventoryHolder.instance().load(getClass().getResource("/database/barang.ser").toURI(),adapter);
@@ -157,7 +158,7 @@ public class AdapterTest {
     }
 
     @Test
-    public void changeAllSERtofollowJSON() throws URISyntaxException, IOException {
+    public void changeAllSERtofollowJSON() throws URISyntaxException, IOException, JAXBException {
         Vars.extension = "json";
         Controller.instance().fetchData(InventoryHolder.instance(),"barang");
         Controller.instance().fetchData(BillHolder.instance(),"bill");
@@ -173,9 +174,26 @@ public class AdapterTest {
         Controller.instance().writeData(CustomerHolder.instance(),"customer");
         Controller.instance().writeData(VIPHolder.instance(),"vip");
     }
+    @Test
+    public void changeAllXMLtofollowJSON() throws URISyntaxException, IOException, JAXBException {
+        Vars.extension = "json";
+        Controller.instance().fetchData(InventoryHolder.instance(),"barang");
+        Controller.instance().fetchData(BillHolder.instance(),"bill");
+        Controller.instance().fetchData(FixedBillHolder.instance(),"billFixed");
+        Controller.instance().fetchData(MemberHolder.instance(),"member");
+        Controller.instance().fetchData(CustomerHolder.instance(),"customer");
+        Controller.instance().fetchData(VIPHolder.instance(),"vip");
+        Vars.extension = "xml";
+        Controller.instance().writeData(InventoryHolder.instance(),"barang");
+        Controller.instance().writeData(BillHolder.instance(),"bill");
+        Controller.instance().writeData(FixedBillHolder.instance(),"billFixed");
+        Controller.instance().writeData(MemberHolder.instance(),"member");
+        Controller.instance().writeData(CustomerHolder.instance(),"customer");
+        Controller.instance().writeData(VIPHolder.instance(),"vip");
+    }
 
     @Test
-    public void populateBarangJSON() throws URISyntaxException, IOException {
+    public void populateBarangJSON() throws URISyntaxException, IOException, JAXBException {
         Vars.extension = "json";
         Controller.instance().fetchData(InventoryHolder.instance(),"barang");
         Barang barang1 = new Barang("Kucing Emas",500,500000,20000,"Aksesoris","./assets/kucingEmas.png");
@@ -187,6 +205,15 @@ public class AdapterTest {
         InventoryHolder.instance().addBarang(barang3);
         InventoryHolder.instance().addBarang(barang4);
         Controller.instance().writeData(InventoryHolder.instance(),"barang");
+    }
+
+    @Test
+    public void mencobaXML() throws URISyntaxException, IOException, JAXBException {
+        Vars.extension = "xml";
+        Controller.instance().fetchData(InventoryHolder.instance(),"barang2");
+        Vars.extension = "json";
+        Controller.instance().writeData(InventoryHolder.instance(),"barang3");
+
     }
 
 }

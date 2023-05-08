@@ -8,8 +8,10 @@ import java.io.Serializable;
 public class BillItem implements Serializable {
 
     @Getter
+    @Setter
     private int id;
     @Getter
+    @Setter
     private String namaBarang;
     @Getter
     @Setter

@@ -9,6 +9,7 @@ import ken.backend.kelas.anggota.Member;
 import ken.backend.kelas.anggota.VIP;
 
 import javax.swing.*;
+import javax.xml.bind.JAXBException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -145,7 +146,7 @@ public class DaftarMember extends JPanel implements ActionListener{
 //                    Controller.instance().writeData(VIPHolder.instance() , "vip");
 
                 }
-            } catch (URISyntaxException | IOException ex) {
+            } catch (URISyntaxException | IOException | JAXBException ex) {
                 throw new RuntimeException(ex);
             }
         }

@@ -10,6 +10,7 @@ import ken.backend.dataStore.AdapterXML;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -19,7 +20,7 @@ import java.util.Map;
 
 public class Controller {
     private static Controller _instance = null;
-    public static Controller instance(){
+    public static Controller instance() throws JAXBException {
         if(_instance == null){
             _instance = new Controller();
         }
@@ -29,7 +30,7 @@ public class Controller {
     @Setter
     private Map<String, AdapterData> adapterList;
 
-    public Controller(){
+    public Controller() throws JAXBException {
         this.adapterList = new HashMap<>();
         AdapterData json = new AdapterJSON();
         AdapterData xml = new AdapterXML();
@@ -40,13 +41,13 @@ public class Controller {
 
     }
 
-    public void fetchData(Holder obj, String whatData) throws URISyntaxException, IOException {
+    public void fetchData(Holder obj, String whatData) throws URISyntaxException, IOException, JAXBException {
 //        URI uri = URI.create("file://" + "D:/Coding/java/KEN-Totalitas/db");
 //        URI uri = URI.create("file://" + "D:/Coding/java/KEN-Totalitas/db");
 
         obj.load(new File(Vars.path+"/"+whatData+"."+Vars.extension).toURI(),adapterList.get(Vars.extension));
     }
-    public void writeData(Holder obj, String whatData) throws URISyntaxException, IOException {
+    public void writeData(Holder obj, String whatData) throws URISyntaxException, IOException, JAXBException {
         obj.write(new File(Vars.path+"/"+whatData+"."+Vars.extension).toURI(),adapterList.get(Vars.extension));
     }
 
